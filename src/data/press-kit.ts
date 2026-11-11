@@ -17,6 +17,17 @@ export const mediaKit = {
   outlets: Array.from(new Set(media.map(m => m.outlet))).slice(0, 14),
 };
 
+export const speakerGuide = {
+  introduction: "Harsh Verma is an AI speaker and Principal Software Engineer in AI at Palo Alto Networks. His keynotes connect agentic AI, cybersecurity and production engineering: how autonomous systems make decisions, where trust can break down, and what enterprises need to govern them responsibly.",
+  audiences: [
+    { title: "Enterprise leaders", detail: "AI adoption beyond the pilot: connect autonomous agents to business priorities, accountability and governance." },
+    { title: "Engineering teams", detail: "Explore multi-agent architectures, evaluation, human oversight and the transition from demos to production-grade systems." },
+    { title: "Security leaders", detail: "Examine AI-driven threats, agent security boundaries and the AI-vs-AI approach to enterprise defense." },
+  ],
+  organizerBio: "Harsh Verma is a Principal Software Engineer in AI at Palo Alto Networks and a Forbes Technology Council member. His work focuses on autonomous agent systems, machine learning and enterprise cybersecurity. As an AI keynote speaker, he translates technical research into conversations about agentic AI, responsible adoption and secure systems. His speaking history includes ACM Sacramento and UC Berkeley SkyDeck; recordings and event references are available on his portfolio.",
+  briefing: "To discuss an AI keynote, share your event date, location or online format, audience, and the decisions you want the session to inform. Include whether you need a keynote, panel contribution or executive masterclass; scope and availability are confirmed through the booking enquiry.",
+};
+
 import portraitAsset from "@/assets/harsh-verma-portrait.jpg.asset.json";
 import executiveAsset from "@/assets/harsh-verma-executive.jpg.asset.json";
 import speakerAsset from "@/assets/harsh-verma-speaker.jpg.asset.json";

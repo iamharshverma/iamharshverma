@@ -9,6 +9,8 @@ import { Reveal, PageHero, Counter } from "@/components/site/Reveal";
 import { TiltCard, Modal, Magnetic } from "@/components/site/Interactive";
 import { StageMap } from "@/components/site/StageMap";
 import { ReelWall } from "@/components/site/ReelWall";
+import { speakerGuide } from "@/data/press-kit";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/speaking")({
   head: () => ({
@@ -17,10 +19,12 @@ export const Route = createFileRoute("/speaking")({
       canonical("/speaking").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "Keynotes & Speaking — Harsh Verma" },
-      { name: "description", content: "Watch Harsh Verma's keynotes at ACM, UC Berkeley SkyDeck, SF Tech Week and more, plus 30+ judging and mentorship roles." },
-      { property: "og:title", content: "Keynotes & Speaking — Harsh Verma" },
-      { property: "og:description", content: "Keynotes on agentic AI, secure multi-agent systems and the AI-vs-AI counteroffensive." },
+      { title: "Harsh Verma | AI Keynote Speaker on Agentic AI & Security" },
+      { name: "description", content: "Explore AI speaker Harsh Verma's keynotes on agentic AI and enterprise security. Watch ACM and Berkeley SkyDeck talks, explore topics and enquire about your event." },
+      { property: "og:title", content: "Harsh Verma | AI Keynote Speaker on Agentic AI & Security" },
+      { property: "og:description", content: "AI keynotes for enterprise, engineering and security audiences, with recordings, speaking topics and event enquiries." },
+      { name: "twitter:title", content: "Harsh Verma | AI Keynote Speaker on Agentic AI & Security" },
+      { name: "twitter:description", content: "Explore agentic AI and enterprise security keynotes, recordings and event enquiries." },
       { property: "og:image", content: profile.stagePhoto },
       { name: "twitter:image", content: profile.stagePhoto },
     ],
@@ -35,12 +39,13 @@ function Speaking() {
   const [stage, setStage] = useState(0);
   const [play, setPlay] = useState<string | null>(null);
   const [more, setMore] = useState(false);
-  const k = keynotes[stage]!;
+  const k = keynotes[stage] ?? keynotes[0];
+  if (!k) return null;
   const id = ytId(k.href);
   return (
     <>
-      <PageHero eyebrow="// keynotes · panels · judging" title={<>Talks that turn AI <span className="text-brand-gradient">into action.</span></>}
-        intro="Keynotes across ACM, UC Berkeley SkyDeck, SF Tech Week and global summits — plus judging and mentoring at Techstars, Mayfield and the world's leading hackathons." />
+      <PageHero eyebrow="// keynotes · panels · judging" title={<>Harsh Verma · <span className="text-brand-gradient">AI keynote speaker.</span></>}
+        intro="Agentic AI, enterprise security and responsible adoption — grounded in engineering practice, with keynote recordings from ACM and UC Berkeley SkyDeck." />
       <section className="border-b border-border bg-card/40">
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (
@@ -52,6 +57,17 @@ function Speaking() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-6 pt-14">
+        <h2 className="font-display text-3xl font-bold">AI keynotes for leaders and builders</h2>
+        <p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">{speakerGuide.introduction}</p>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {speakerGuide.audiences.map(a => <div key={a.title} className="border-l-2 border-brand pl-5"><h3 className="font-display text-xl font-semibold">{a.title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{a.detail}</p></div>)}
+        </div>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Button asChild><Link to="/booking" search={{ topic: "Keynote" }}>Discuss your AI keynote</Link></Button>
+          <Button asChild variant="outline"><Link to="/speaker-bio">Speaker bio &amp; event history</Link></Button>
+        </div>
+      </section>
       <section className="mx-auto max-w-6xl px-6 py-20">
         <Reveal><p className="eyebrow">Now on stage · <Link to="/speaker-bio" className="text-brand">Full speaker bio &amp; PDF →</Link></p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Keynote theater</h2></Reveal>
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.6fr_1fr]">

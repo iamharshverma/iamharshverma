@@ -17,6 +17,7 @@ import { Route as BookingRouteImport } from './routes/booking'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as CollaborateRouteImport } from './routes/collaborate'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as HarshVermaAiSpeakerRouteImport } from './routes/harsh-verma-ai-speaker'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as MediaKitRouteImport } from './routes/media-kit'
 import { Route as PressKitRouteImport } from './routes/press-kit'
@@ -67,6 +68,11 @@ const CollaborateRoute = CollaborateRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HarshVermaAiSpeakerRoute = HarshVermaAiSpeakerRouteImport.update({
+  id: '/harsh-verma-ai-speaker',
+  path: '/harsh-verma-ai-speaker',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MediaRoute = MediaRouteImport.update({
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
   '/contact': typeof ContactRoute
+  '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
@@ -155,6 +162,7 @@ export interface FileRoutesByTo {
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
   '/contact': typeof ContactRoute
+  '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
@@ -177,6 +185,7 @@ export interface FileRoutesById {
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
   '/contact': typeof ContactRoute
+  '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
@@ -200,6 +209,7 @@ export interface FileRouteTypes {
     | '/books'
     | '/collaborate'
     | '/contact'
+    | '/harsh-verma-ai-speaker'
     | '/media'
     | '/media-kit'
     | '/press-kit'
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/books'
     | '/collaborate'
     | '/contact'
+    | '/harsh-verma-ai-speaker'
     | '/media'
     | '/media-kit'
     | '/press-kit'
@@ -242,6 +253,7 @@ export interface FileRouteTypes {
     | '/books'
     | '/collaborate'
     | '/contact'
+    | '/harsh-verma-ai-speaker'
     | '/media'
     | '/media-kit'
     | '/press-kit'
@@ -264,6 +276,7 @@ export interface RootRouteChildren {
   BooksRoute: typeof BooksRoute
   CollaborateRoute: typeof CollaborateRoute
   ContactRoute: typeof ContactRoute
+  HarshVermaAiSpeakerRoute: typeof HarshVermaAiSpeakerRoute
   MediaRoute: typeof MediaRoute
   MediaKitRoute: typeof MediaKitRoute
   PressKitRoute: typeof PressKitRoute
@@ -333,6 +346,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/harsh-verma-ai-speaker': {
+      id: '/harsh-verma-ai-speaker'
+      path: '/harsh-verma-ai-speaker'
+      fullPath: '/harsh-verma-ai-speaker'
+      preLoaderRoute: typeof HarshVermaAiSpeakerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/media': {
@@ -424,6 +444,7 @@ const rootRouteChildren: RootRouteChildren = {
   BooksRoute: BooksRoute,
   CollaborateRoute: CollaborateRoute,
   ContactRoute: ContactRoute,
+  HarshVermaAiSpeakerRoute: HarshVermaAiSpeakerRoute,
   MediaRoute: MediaRoute,
   MediaKitRoute: MediaKitRoute,
   PressKitRoute: PressKitRoute,

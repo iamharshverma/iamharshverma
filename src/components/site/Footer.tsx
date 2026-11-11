@@ -18,6 +18,7 @@ export function Footer() {
             <Link to="/contact" className="hover:text-brand">Contact</Link>
             <Link to="/press-kit" className="hover:text-brand">Press kit</Link>
             <Link to="/agentic-ai" className="hover:text-brand">Agentic AI</Link>
+            <Link to="/harsh-verma-ai-speaker" className="hover:text-brand">AI speaker & engineer</Link>
             <Link to="/testimonials" className="hover:text-brand">Testimonials</Link>
           </div>
         </div>

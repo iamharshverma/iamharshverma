@@ -6,7 +6,7 @@ import { canonical } from "@/lib/seo";
 import { profile, speaking } from "@/data/profile";
 import { keynotes } from "@/data/media";
 import { stages, onlineEvents } from "@/data/stages";
-import { pressKit } from "@/data/press-kit";
+import { pressKit, speakerGuide } from "@/data/press-kit";
 
 const PDF = "/downloads/harsh-verma-speaker-bio.pdf";
 
@@ -15,10 +15,12 @@ export const Route = createFileRoute("/speaker-bio")({
     links: canonical("/speaker-bio").links,
     meta: [
       canonical("/speaker-bio").url,
-      { title: "Harsh Verma Speaker Bio — Keynotes, Speaking History & Events" },
-      { name: "description", content: "Official speaker bio for Harsh Verma: agentic AI and AI security keynotes at ACM, UC Berkeley SkyDeck, SF Tech Week and IEEE, with a downloadable PDF." },
-      { property: "og:title", content: "Harsh Verma — Speaker Bio" },
-      { property: "og:description", content: "Speaking history, past events and a one-page speaker bio PDF for event organizers." },
+      { title: "Harsh Verma AI Speaker | AI Keynote Speaker Bio & Talks" },
+      { name: "description", content: "Harsh Verma, AI keynote speaker on agentic AI and enterprise security. Explore ACM and UC Berkeley SkyDeck talks, past events and a downloadable speaker bio PDF." },
+      { property: "og:title", content: "Harsh Verma AI Speaker | AI Keynote Speaker Bio & Talks" },
+      { property: "og:description", content: "Meet Harsh Verma, AI keynote speaker on agentic AI and enterprise security. Explore his speaking history, keynote recordings and speaker bio PDF." },
+      { name: "twitter:title", content: "Harsh Verma AI Speaker | AI Keynote Speaker Bio & Talks" },
+      { name: "twitter:description", content: "Agentic AI and enterprise security keynotes by Harsh Verma, with past events, recordings and a downloadable speaker bio PDF." },
       { property: "og:type", content: "profile" },
       { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
       { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
@@ -30,7 +32,7 @@ export const Route = createFileRoute("/speaker-bio")({
 
 function SpeakerBio() {
   return <>
-    <PageHero eyebrow="// speaker bio · for organizers" title={<>Harsh Verma, <span className="text-brand-gradient">on stage.</span></>} intro="Keynotes on agentic AI, enterprise security and trustworthy autonomous systems." />
+    <PageHero eyebrow="// speaker bio · for organizers" title={<>Harsh Verma · <span className="text-brand-gradient">AI speaker bio.</span></>} intro="AI keynote speaker on agentic AI, enterprise cybersecurity and trustworthy autonomous systems. Biography, past events and resources for conference organizers." />
     <section className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[0.8fr_1.2fr]">
       <img src={profile.stagePhoto} alt="Harsh Verma speaking on stage" className="w-full rounded-2xl border border-border object-cover" />
       <div className="min-w-0">
@@ -44,6 +46,11 @@ function SpeakerBio() {
       </div>
     </section>
     <section className="mx-auto max-w-6xl px-6 pb-14">
+      <h2 className="font-display text-3xl font-bold">Event-ready speaker introduction</h2>
+      <p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">{speakerGuide.organizerBio}</p>
+      <p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">His engineering perspective connects the architecture of autonomous agents with the security and governance questions leaders face when adopting AI. For a preview of his approach, explore the recorded keynotes below or <Link to="/speaking" className="text-brand underline underline-offset-4">watch the AI keynote recordings</Link>.</p>
+    </section>
+    <section className="mx-auto max-w-6xl px-6 pb-14">
       <h2 className="font-display text-3xl font-bold">Signature talks</h2>
       <div className="mt-6 grid gap-4 md:grid-cols-3">
         {speaking.filter(s => s.type !== "Judging").map(s => <div key={s.title} className="rounded-2xl border border-border bg-card p-6"><Mic className="size-5 text-brand" /><p className="mt-3 text-xs uppercase tracking-wider text-muted-foreground">{s.type}</p><h3 className="mt-1 font-display text-lg font-semibold">{s.title}</h3><p className="mt-2 text-sm text-muted-foreground">{s.desc}</p></div>)}
@@ -53,7 +60,7 @@ function SpeakerBio() {
       <h2 className="font-display text-3xl font-bold">Featured keynotes</h2>
       <ol className="mt-6 divide-y divide-border rounded-2xl border border-border bg-card">
         {keynotes.map(k => <li key={k.href} className="flex flex-col gap-1 p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="min-w-0"><p className="font-medium">{k.title}</p><p className="text-sm text-muted-foreground">{k.venue}</p></div>
+          <div className="min-w-0"><h3 className="font-medium">{k.title}</h3><p className="text-sm text-muted-foreground">{k.venue}</p><p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">{k.desc}</p></div>
           <a href={k.href} target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-1 text-sm text-brand"><PlayCircle className="size-4" />Watch</a>
         </li>)}
       </ol>
@@ -70,6 +77,11 @@ function SpeakerBio() {
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">{onlineEvents.map(e => <li key={e}>{e}</li>)}</ul>
         </div>
       </div>
+    </section>
+    <section className="mx-auto max-w-6xl px-6 pb-24">
+      <h2 className="font-display text-3xl font-bold">Planning an AI keynote?</h2>
+      <p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">{speakerGuide.briefing}</p>
+      <div className="mt-7 flex flex-wrap gap-3"><Button asChild><Link to="/booking" search={{ topic: "Keynote" }}>Enquire about an AI keynote</Link></Button><Button asChild variant="outline"><Link to="/speaking">Watch Harsh speak</Link></Button></div>
     </section>
   </>;
 }

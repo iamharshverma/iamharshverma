@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 - Portfolio content lives in src/data (profile.ts hub, media.ts for press/keynotes/blogs/judging, collaborate.ts); pages read from it so updates happen in one place.
+- The dedicated professional profile reuses profile and keynote data and references the shared Person schema identity, so search-focused content stays consistent with the portfolio.
 - Shared site chrome (Header, Footer, CommandPalette) is mounted in __root.tsx around <Outlet />.
 - Visitor Q&A assistant streams from src/routes/api/chat.ts; its knowledge is built server-side from src/data in src/lib/ai/knowledge.server.ts, so new content is answerable automatically.
 - Custom analytics events are emitted inline via window.__lovableEvents.track and registered in .lovable/events.json.

@@ -32,6 +32,10 @@
 - [x] Improvement plan: share image, booking paths, mobile bar, thank-you, Agentic AI page, advisory SEO
 - [x] Speaker bio page + PDF linked from Speaking
 - [x] Keynote video clips (YouTube embeds, real titles) on Speaking
-- [ ] Mobile Book bar fix
-- [ ] SEO/AI search review + ranking advice
-- [ ] Push to GitHub
+- [x] Mobile Book bar fix
+- [x] SEO/AI search review + ranking advice
+- [x] Push to GitHub
+- [x] Add a dedicated Harsh Verma AI speaker / Principal AI Engineer profile, linked for Google and AI discovery.
+- [x] Refresh Speaking and Speaker Bio content and metadata for AI speaker / AI keynote speaker searches; verify both pages.
+- [x] Check Google indexing for /speaker-bio and /speaking; both unknown to Google. Manual Request indexing is required; the API cannot perform it.
+- [ ] Verify delivery to iamharshverma/iamharshverma — changes committed for platform sync; direct delivery was blocked by the environment, and the named repository's update remains unverified.
