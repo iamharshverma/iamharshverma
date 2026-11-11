@@ -76,13 +76,29 @@ const stops: Stop[] = [
   ...education.map((e) => ({ kind: "edu" as const, period: e.period, title: e.degree.split(" — ")[0] ?? e.degree, org: e.school, points: e.degree.split(" — ").slice(1), tech: [], logo: e.logo })),
 ].sort((x, y) => parseInt(y.period.match(/\d{4}/)?.[0] ?? "0") - parseInt(x.period.match(/\d{4}/)?.[0] ?? "0"));
 
+const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+function span(s: Stop): [number, number] {
+  const parts = s.period.split("—").map((p) => p.trim().toLowerCase());
+  const conv = (p: string | undefined, end: boolean) => {
+    if (!p || p.startsWith("present")) return new Date().getFullYear() + new Date().getMonth() / 12;
+    const y = parseInt(p.match(/\d{4}/)?.[0] ?? "0"); const m = MONTHS.findIndex((x) => p.startsWith(x));
+    return y + (m >= 0 ? m / 12 : end ? 0.9 : 0);
+  };
+  return [conv(parts[0], false), conv(parts[1], true)];
+}
+function duration(s: Stop) {
+  const [a, b] = span(s); const mo = Math.max(1, Math.round((b - a) * 12));
+  return mo >= 12 ? `${Math.round(mo / 12 * 10) / 10} yrs` : `${mo} mo`;
+}
+
 function Journey() {
   const [filter, setFilter] = useState<"all" | "work" | "edu">("all");
   const list = stops.filter((s) => filter === "all" || s.kind === filter);
   const [sel, setSel] = useState(0);
   const cur = list[Math.min(sel, list.length - 1)];
-  const years = stops.map((s) => parseInt(s.period.match(/\d{4}/)?.[0] ?? "0"));
-  const min = Math.min(...years), max = new Date().getFullYear();
+  const min = Math.min(...stops.map((s) => span(s)[0])), max = new Date().getFullYear() + 1;
+  const idx = list.indexOf(cur as Stop);
+  const go = (d: number) => setSel((idx + d + list.length) % list.length);
   return (
     <section className="mx-auto max-w-6xl px-6 pb-24">
       <div className="flex flex-wrap items-end justify-between gap-4">
@@ -95,20 +111,29 @@ function Journey() {
         </div>
       </div>
 
-      <div className="relative mt-12 hidden h-14 md:block">
-        <div className="absolute inset-x-0 top-6 h-px bg-border" />
-        {list.map((s, i) => {
-          const y = parseInt(s.period.match(/\d{4}/)?.[0] ?? "0");
-          const left = ((y - min) / (max - min)) * 92 + 4;
-          const active = s === cur;
-          return (
-            <button key={s.org + s.title} onClick={() => setSel(i)} style={{ left: `${left}%` }} aria-label={`${s.org} ${s.period}`}
-              className="group absolute top-0 -translate-x-1/2 text-center">
-              <span className={`mx-auto mt-[18px] block rounded-full border-2 border-background transition ${active ? "h-4 w-4 bg-brand shadow-glow" : "h-3 w-3 bg-muted-foreground/50 group-hover:bg-brand"}`} />
-              <span className={`mt-1 block font-mono text-[11px] ${active ? "text-brand" : "text-muted-foreground"}`}>{y}</span>
-            </button>
-          );
-        })}
+      <div className="mt-12 hidden rounded-2xl border border-border bg-card p-5 md:block">
+        {(["work", "edu"] as const).filter((k) => filter === "all" || filter === k).map((k) => (
+          <div key={k} className="flex items-center gap-4 py-2">
+            <span className="w-24 shrink-0 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{k === "work" ? "Industry" : "Academia"}</span>
+            <div className="relative h-9 flex-1 rounded-lg bg-muted/60">
+              {list.map((s, i) => {
+                if (s.kind !== k) return null;
+                const [st, en] = span(s);
+                const active = s === cur;
+                return (
+                  <button key={s.org + s.title} onClick={() => setSel(i)} title={`${s.org} · ${s.period}`}
+                    style={{ left: `${((st - min) / (max - min)) * 100}%`, width: `${Math.max(((en - st) / (max - min)) * 100, 2.5)}%` }}
+                    className={`absolute inset-y-1 overflow-hidden rounded-md px-2 text-left text-[11px] font-medium whitespace-nowrap transition ${active ? "bg-brand-gradient text-primary-foreground shadow-glow" : "bg-brand/15 text-foreground hover:bg-brand/30"}`}>
+                    {s.org}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+        <div className="relative ml-28 h-4 font-mono text-[10px] text-muted-foreground">
+          {Array.from({ length: Math.floor((max - min) / 3) + 1 }, (_, i) => Math.ceil(min) + i * 3).filter((y) => y < max).map((y) => <span key={y} className="absolute -translate-x-1/2" style={{ left: `${((y - min) / (max - min)) * 100}%` }}>{y}</span>)}
+        </div>
       </div>
 
       <div className="mt-8 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
@@ -120,7 +145,7 @@ function Journey() {
                 <button onClick={() => setSel(i)} className={`flex w-full items-center gap-4 rounded-xl border p-4 text-left transition ${active ? "border-brand/50 bg-card shadow-glow" : "border-transparent hover:border-border hover:bg-card/60"}`}>
                   <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-lg ${active ? "bg-brand-gradient text-primary-foreground" : "bg-muted text-muted-foreground"}`}><Icon className="h-4 w-4" /></span>
                   <span className="min-w-0"><span className="block font-mono text-[11px] text-muted-foreground">{s.period}</span>
-                    <span className="block truncate font-display text-lg font-semibold">{s.org}</span></span>
+                    <span className="block font-display text-base font-semibold leading-snug md:text-lg">{s.org}</span></span>
                 </button>
               </li>
             );
@@ -134,7 +159,7 @@ function Journey() {
                 <div className="flex items-start gap-4">
                   {cur.logo && <img src={cur.logo} alt="" className="h-14 w-14 rounded-xl bg-logo-tile object-contain p-1" />}
                   <div>
-                    <p className="font-mono text-xs text-signal">{cur.kind === "work" ? "Experience" : "Education"} · {cur.period}</p>
+                    <p className="font-mono text-xs text-signal">{String(idx + 1).padStart(2, "0")} / {String(list.length).padStart(2, "0")} · {cur.kind === "work" ? "Experience" : "Education"} · {cur.period} · {duration(cur)}</p>
                     <h3 className="mt-2 font-display text-3xl font-bold leading-tight">{cur.title}</h3>
                     <p className="mt-1 text-brand">{cur.org}</p>
                     {cur.place && <p className="mt-1 flex items-center gap-1 text-sm text-muted-foreground"><MapPin className="h-3.5 w-3.5" />{cur.place}</p>}
@@ -147,6 +172,11 @@ function Journey() {
                     </motion.li>
                   ))}
                 </ul>
+                <div className="mt-8 flex items-center justify-between border-t border-border pt-5">
+                  <button onClick={() => go(-1)} className="rounded-full border border-border px-4 py-1.5 text-sm transition hover:border-brand hover:text-brand">← Previous</button>
+                  <div className="flex gap-1.5">{list.map((_, j) => <button key={j} onClick={() => setSel(j)} aria-label={`Milestone ${j + 1}`} className={`h-1.5 rounded-full transition-all ${j === idx ? "w-6 bg-brand" : "w-1.5 bg-muted-foreground/40"}`} />)}</div>
+                  <button onClick={() => go(1)} className="rounded-full border border-border px-4 py-1.5 text-sm transition hover:border-brand hover:text-brand">Next →</button>
+                </div>
                 {cur.tech.length > 0 && <div className="mt-6 flex flex-wrap gap-2">{cur.tech.map((t) => <span key={t} className="rounded-full border border-border bg-background/40 px-3 py-1 font-mono text-xs">{t}</span>)}</div>}
               </motion.div>
             )}
