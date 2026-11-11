@@ -9,7 +9,6 @@ import { Reveal, PageHero, Counter } from "@/components/site/Reveal";
 import { TiltCard, Modal, Magnetic } from "@/components/site/Interactive";
 import { StageMap } from "@/components/site/StageMap";
 import { ReelWall } from "@/components/site/ReelWall";
-import { KeynoteClips } from "@/components/site/KeynoteClips";
 
 export const Route = createFileRoute("/speaking")({
   head: () => ({
@@ -83,7 +82,6 @@ function Speaking() {
           </ul>
         </div>
       </section>
-      <KeynoteClips />
       <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">Reels</p><h2 className="mb-8 mt-4 font-display text-5xl font-bold tracking-tight">Backstage in 60 seconds</h2></Reveal><ReelWall /></section>
       <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">On stage</p><h2 className="mb-8 mt-4 font-display text-5xl font-bold tracking-tight">Where Harsh has spoken</h2></Reveal><StageMap /></section>
 
