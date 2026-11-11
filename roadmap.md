@@ -20,4 +20,5 @@
 - [ ] Publish site
 - [ ] Submit sitemap to Search Console
 - [x] Check iamharshverma.com
-- [ ] Push to GitHub after all done
+- [x] Push to GitHub after all done
+- [ ] Rewrite README + push
