@@ -17,15 +17,15 @@
 - [x] Speaking map: all venues
 - [x] Founder blog post on Insights (site-hosted)
 - [x] Homepage founder search intent
-- [ ] Publish site
-- [ ] Submit sitemap to Search Console
+- [x] Publish site (GitHub Pages)
+- [x] Submit sitemap to Search Console
 - [x] Check iamharshverma.com
 - [x] Push to GitHub after all done
 - [x] Rewrite README + push
 - [x] Move brands section to end (Collaborate)
 - [x] Remove Visual blueprints (Books)
 - [x] Push
-- [ ] GitHub Pages static build + deploy to iamharshverma.com
-- [ ] Founder SEO (agentic AI, AI advisory) on home + insights
-- [ ] Push to GitHub after all done
-- [ ] Settings-file flag to enable/disable GitHub Pages version
+- [x] GitHub Pages static build + deploy
+- [x] Founder SEO on home + insights
+- [x] Push to GitHub after all done
+- [x] Settings-file flag for GitHub version
