@@ -22,7 +22,7 @@ export function Logo() {
         </g>
       </svg>
       <span className="font-display text-xl font-semibold leading-none tracking-tight">
-        Harsh<span className="text-brand">.</span>
+        Harsh
       </span>
     </span>
   );
