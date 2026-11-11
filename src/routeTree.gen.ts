@@ -22,6 +22,7 @@ import { Route as MediaKitRouteImport } from './routes/media-kit'
 import { Route as PressKitRouteImport } from './routes/press-kit'
 import { Route as RecognitionRouteImport } from './routes/recognition'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as SpeakerBioRouteImport } from './routes/speaker-bio'
 import { Route as SpeakingRouteImport } from './routes/speaking'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
@@ -93,6 +94,11 @@ const ResearchRoute = ResearchRouteImport.update({
   path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpeakerBioRoute = SpeakerBioRouteImport.update({
+  id: '/speaker-bio',
+  path: '/speaker-bio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpeakingRoute = SpeakingRouteImport.update({
   id: '/speaking',
   path: '/speaking',
@@ -133,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/press-kit': typeof PressKitRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/speaker-bio': typeof SpeakerBioRoute
   '/speaking': typeof SpeakingRoute
   '/testimonials': typeof TestimonialsRoute
   '/api/chat': typeof ApiChatRoute
@@ -153,6 +160,7 @@ export interface FileRoutesByTo {
   '/press-kit': typeof PressKitRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/speaker-bio': typeof SpeakerBioRoute
   '/speaking': typeof SpeakingRoute
   '/testimonials': typeof TestimonialsRoute
   '/api/chat': typeof ApiChatRoute
@@ -174,6 +182,7 @@ export interface FileRoutesById {
   '/press-kit': typeof PressKitRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/speaker-bio': typeof SpeakerBioRoute
   '/speaking': typeof SpeakingRoute
   '/testimonials': typeof TestimonialsRoute
   '/api/chat': typeof ApiChatRoute
@@ -196,6 +205,7 @@ export interface FileRouteTypes {
     | '/press-kit'
     | '/recognition'
     | '/research'
+    | '/speaker-bio'
     | '/speaking'
     | '/testimonials'
     | '/api/chat'
@@ -216,6 +226,7 @@ export interface FileRouteTypes {
     | '/press-kit'
     | '/recognition'
     | '/research'
+    | '/speaker-bio'
     | '/speaking'
     | '/testimonials'
     | '/api/chat'
@@ -236,6 +247,7 @@ export interface FileRouteTypes {
     | '/press-kit'
     | '/recognition'
     | '/research'
+    | '/speaker-bio'
     | '/speaking'
     | '/testimonials'
     | '/api/chat'
@@ -257,6 +269,7 @@ export interface RootRouteChildren {
   PressKitRoute: typeof PressKitRoute
   RecognitionRoute: typeof RecognitionRoute
   ResearchRoute: typeof ResearchRoute
+  SpeakerBioRoute: typeof SpeakerBioRoute
   SpeakingRoute: typeof SpeakingRoute
   TestimonialsRoute: typeof TestimonialsRoute
   ApiChatRoute: typeof ApiChatRoute
@@ -357,6 +370,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/speaker-bio': {
+      id: '/speaker-bio'
+      path: '/speaker-bio'
+      fullPath: '/speaker-bio'
+      preLoaderRoute: typeof SpeakerBioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/speaking': {
       id: '/speaking'
       path: '/speaking'
@@ -409,6 +429,7 @@ const rootRouteChildren: RootRouteChildren = {
   PressKitRoute: PressKitRoute,
   RecognitionRoute: RecognitionRoute,
   ResearchRoute: ResearchRoute,
+  SpeakerBioRoute: SpeakerBioRoute,
   SpeakingRoute: SpeakingRoute,
   TestimonialsRoute: TestimonialsRoute,
   ApiChatRoute: ApiChatRoute,
