@@ -154,8 +154,26 @@ export const speaking = [
 ];
 
 export const advisory = [
-  { title: "Startup AI Strategy", desc: "Helping founders scope, build and scale AI products — from model choice to go-to-market.", org: "UC Berkeley SkyDeck" },
-  { title: "Executive Thought Leadership", desc: "Published insights for CIOs and CTOs on autonomous agentic systems.", org: "Forbes Technology Council" },
-  { title: "Mentoring Engineers", desc: "Guiding engineers to become Super Engineers across product, architecture and leadership.", org: "Raptors.Dev & communities" },
-  { title: "AI Security Governance", desc: "Advising on secure AI architecture, threat modeling and governance for enterprises.", org: "Industry advisory" },
+  { title: "Enterprise AI Strategy", desc: "Helping enterprise and founding teams scope, build and scale agentic AI products — from model choice to go-to-market.", org: "UC Berkeley SkyDeck",
+    outcomes: ["AI opportunity map ranked by value and risk", "Build vs. buy vs. partner decisions", "90-day agentic AI roadmap"], forWho: "CTOs, product leaders and founders" },
+  { title: "Executive Thought Leadership", desc: "Published insights for CIOs and CTOs on autonomous agentic systems.", org: "Forbes Technology Council",
+    outcomes: ["Board-ready AI briefings", "Executive workshops on agentic AI", "Narrative for customers and investors"], forWho: "CIOs, CTOs and leadership teams" },
+  { title: "Mentoring Engineers", desc: "Guiding engineers to become Super Engineers across product, architecture and leadership.", org: "Raptors.Dev & communities",
+    outcomes: ["Architecture and design reviews", "Career growth to staff and principal", "AI engineering best practices"], forWho: "Engineers and tech leads" },
+  { title: "AI Security Governance", desc: "Advising on secure AI architecture, threat modeling and governance for enterprises.", org: "Industry advisory",
+    outcomes: ["Threat model for LLM and agent systems", "Guardrails, evaluation and audit trails", "Responsible AI governance framework"], forWho: "Security, risk and platform teams" },
+];
+
+export const advisoryProcess = [
+  { step: "Discover", desc: "A focused call to understand your goals, constraints and where AI can create real value." },
+  { step: "Diagnose", desc: "Review of architecture, data, security posture and team readiness." },
+  { step: "Design", desc: "A clear roadmap with priorities, trust guardrails and success metrics." },
+  { step: "Deliver", desc: "Ongoing reviews and sprints so agents reach production safely." },
+];
+
+export const advisoryFaq = [
+  { q: "What does an advisory engagement look like?", a: "Typically monthly architecture reviews and strategy sessions, plus async support. Scope is tailored to your stage and goals." },
+  { q: "Do you work with enterprises or startups?", a: "Both. The focus is enterprise-grade agentic AI — secure, governed and scalable — whether you are a global company or an ambitious founding team." },
+  { q: "Can you advise on AI security specifically?", a: "Yes. AI security, threat modeling for LLM and agent systems, and governance are core areas of expertise." },
+  { q: "How do I get started?", a: "Send a short brief through the booking page with your goals and timeline. You will hear back to schedule a discovery call." },
 ];
