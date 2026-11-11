@@ -1,3 +1,4 @@
+import { STATIC_SITE } from "@/lib/site-mode";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { AnimatePresence, motion } from "framer-motion";
@@ -31,6 +32,10 @@ function errorText(err: Error) {
 }
 
 export function AskHarsh() {
+  return STATIC_SITE ? null : <AskHarshWidget />;
+}
+
+function AskHarshWidget() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   useEffect(() => {

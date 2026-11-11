@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "build:pages": "VITE_STATIC_SITE=1 vite build -c vite.pages.config.ts"
   },
   "overrides": {
     "rolldown": "1.2.1"

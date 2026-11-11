@@ -1,0 +1,12 @@
+// Static build for GitHub Pages (iamharshverma.com). Used only by `bun run build:pages`
+// (and the GitHub Actions workflow when deploy.config.json has githubPages.enabled = true).
+// Server-only features (Ask Harsh, forms) are hidden via VITE_STATIC_SITE.
+import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+export default defineConfig({
+  nitro: false,
+  tanstackStart: {
+    server: { entry: "server" },
+    prerender: { enabled: true, crawlLinks: true, failOnError: false, autoSubfolderIndex: false },
+    pages: [{ path: "/" }],
+  },
+});

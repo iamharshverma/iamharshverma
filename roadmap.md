@@ -22,6 +22,10 @@
 - [x] Check iamharshverma.com
 - [x] Push to GitHub after all done
 - [x] Rewrite README + push
-- [ ] Move brands section to end (Collaborate)
-- [ ] Remove Visual blueprints (Books)
-- [ ] Push
+- [x] Move brands section to end (Collaborate)
+- [x] Remove Visual blueprints (Books)
+- [x] Push
+- [ ] GitHub Pages static build + deploy to iamharshverma.com
+- [ ] Founder SEO (agentic AI, AI advisory) on home + insights
+- [ ] Push to GitHub after all done
+- [ ] Settings-file flag to enable/disable GitHub Pages version

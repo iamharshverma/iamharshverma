@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { subscribe, subscribeSchema, type LISTS } from "@/lib/subscribe.functions";
+import { STATIC_SITE, openMailto } from "@/lib/site-mode";
 
 export function Subscribe({ list, cta = "Subscribe", placeholder = "you@company.com" }: { list: (typeof LISTS)[number]; cta?: string; placeholder?: string }) {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ export function Subscribe({ list, cta = "Subscribe", placeholder = "you@company.
     e.preventDefault(); setErr("");
     const parsed = subscribeSchema.safeParse({ email, list });
     if (!parsed.success) return setErr(parsed.error.issues[0]?.message ?? "Invalid email");
+    if (STATIC_SITE) { openMailto(`Join list: ${list}`, `Please add ${email} to the ${list} list.`); setState("done"); return; }
     setState("busy");
     try {
       await subscribe({ data: parsed.data });

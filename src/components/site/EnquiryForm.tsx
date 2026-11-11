@@ -5,6 +5,7 @@ import { CalendarDays, CheckCircle2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { enquirySchema } from "@/lib/enquiry-schema";
 import { submitEnquiry } from "@/lib/enquiries.functions";
+import { STATIC_SITE, openMailto } from "@/lib/site-mode";
 
 export function EnquiryForm({ booking = false }: { booking?: boolean }) {
   const [topic, setTopic] = useState("Keynote");
@@ -18,7 +19,14 @@ export function EnquiryForm({ booking = false }: { booking?: boolean }) {
     const form = new FormData(e.currentTarget);
     const parsed = enquirySchema.safeParse({ ...Object.fromEntries(form), topic, kind: booking ? "booking" : "contact" });
     if (!parsed.success) { setError(parsed.error.issues[0]?.message ?? "Please check your details."); return; }
-    setError(""); setPending(true);
+    setError("");
+    if (STATIC_SITE) {
+      const d = parsed.data as Record<string, unknown>;
+      openMailto(`${booking ? "Booking request" : "Enquiry"}: ${topic}`, Object.entries(d).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join("\n"));
+      window.__lovableEvents?.track?.("project.contact_submitted", { topic });
+      return;
+    }
+    setPending(true);
     try {
       const result = await submit({ data: parsed.data });
       setReference(result.id);

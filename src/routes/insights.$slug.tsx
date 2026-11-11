@@ -15,6 +15,7 @@ export const Route = createFileRoute("/insights/$slug")({
         c.url,
         { title: `${a.title} — Harsh Verma` },
         { name: "description", content: a.excerpt },
+        { name: "keywords", content: "agentic AI, AI agents, AI advisory, AI for founders, AI security, Harsh Verma" },
         { property: "og:title", content: a.title },
         { property: "og:description", content: a.excerpt },
         { property: "og:type", content: "article" },
@@ -23,7 +24,7 @@ export const Route = createFileRoute("/insights/$slug")({
         { name: "twitter:image", content: a.img },
       ],
       scripts: [{ type: "application/ld+json", children: JSON.stringify({
-        "@context": "https://schema.org", "@type": "Article", headline: a.title, description: a.excerpt, image: a.img,
+        "@context": "https://schema.org", "@type": "Article", headline: a.title, description: a.excerpt, keywords: "agentic AI, AI agents, AI advisory, AI for founders", about: [{ "@type": "Thing", name: "Agentic AI" }, { "@type": "Thing", name: "AI advisory" }], image: a.img,
         ...(isNaN(Date.parse(a.date)) ? {} : { datePublished: new Date(a.date).toISOString().slice(0, 10) }), url: `${SITE_URL}/insights/${params.slug}`,
         author: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: "Harsh Verma" },
         publisher: { "@type": "Person", name: "Harsh Verma" }, ...(a.href ? { sameAs: a.href } : {}),

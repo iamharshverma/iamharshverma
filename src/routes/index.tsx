@@ -20,9 +20,9 @@ export const Route = createFileRoute("/")({
       canonical("/").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "Harsh Verma — AI Founder Advisor, Principal AI Engineer & Speaker" },
-      { name: "description", content: "Harsh Verma helps founders build trustworthy agentic AI. Principal AI Engineer at Palo Alto Networks, startup advisor, investor, author and keynote speaker." },
-      { property: "og:title", content: "Harsh Verma — AI Advisor for Founders" },
+      { title: "Harsh Verma — Agentic AI & AI Advisory for Founders | Principal AI Engineer" },
+      { name: "description", content: "AI advisory for founders: Harsh Verma helps startups design, secure and ship trustworthy agentic AI. Principal AI Engineer at Palo Alto Networks, startup advisor, author and keynote speaker." },
+      { property: "og:title", content: "Harsh Verma — Agentic AI & AI Advisory for Founders" },
       { property: "og:description", content: "Helping founders ship agentic AI that customers trust — engineer, advisor, investor and speaker." },
     ],
   }),
@@ -56,7 +56,7 @@ function Home() {
             <Reveal delay={0.1}>
               <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] tracking-tight md:text-8xl">Harsh Verma<br /><span className="text-5xl md:text-7xl"><RotatingRole i={i} /></span></h1>
             </Reveal>
-            <Reveal delay={0.2}><p className="mt-6 font-display text-xl font-medium md:text-2xl">Founder mindset. Engineer's precision. Speaker's voice.</p><p className="mt-3 max-w-xl text-base text-foreground/80">I help founders build agentic AI that customers trust — from first agent to enterprise scale.</p><p className="mt-4 max-w-xl text-lg text-muted-foreground">{profile.tagline}</p></Reveal>
+            <Reveal delay={0.2}><p className="mt-6 font-display text-xl font-medium md:text-2xl">Founder mindset. Engineer's precision. Speaker's voice.</p><p className="mt-3 max-w-xl text-base text-foreground/80">AI advisory for founders: I help startups build agentic AI that customers trust — from first agent to enterprise scale.</p><p className="mt-4 max-w-xl text-lg text-muted-foreground">{profile.tagline}</p></Reveal>
             <Reveal delay={0.3}>
               <div className="mt-10 flex flex-wrap gap-3">
                 <Magnetic><Link to="/booking" className="group inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow transition hover:scale-[1.03]">

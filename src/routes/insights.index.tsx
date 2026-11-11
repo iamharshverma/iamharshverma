@@ -11,8 +11,8 @@ export const Route = createFileRoute("/insights/")({
     links: canonical("/insights").links,
     meta: [
       canonical("/insights").url,
-      { title: "Insights by Harsh Verma — Agentic AI, AI Security & Engineering" },
-      { name: "description", content: "Articles by Harsh Verma on agentic AI, AI security, data orchestration and the future of engineering, from Forbes Technology Council and more." },
+      { title: "Agentic AI Insights for Founders & Tech Leaders — Harsh Verma" },
+      { name: "description", content: "Agentic AI strategy, AI security and AI advisory insights for founders and tech leaders by Harsh Verma, featured in Forbes Technology Council and more." },
       { property: "og:title", content: "Insights by Harsh Verma" },
       { property: "og:description", content: "Essays on agentic AI, AI security and engineering leadership." },
       { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
