@@ -1,4 +1,20 @@
 import portraitAsset from "@/assets/harsh-verma-portrait.jpg.asset.json";
+import executiveAsset from "@/assets/harsh-verma-executive.jpg.asset.json";
+import authorAsset from "@/assets/harsh-verma-author.jpg.asset.json";
+
+export const rolePortraits: Record<string, { src: string; caption: string }> = {
+  "Principal AI Engineer": { src: executiveAsset.url, caption: "Agentic AI & AI Security · Palo Alto Networks" },
+  Speaker: { src: portraitAsset.url, caption: "Keynotes on agentic AI & AI security" },
+  Investor: { src: executiveAsset.url, caption: "Backing founders building with AI" },
+  Author: { src: authorAsset.url, caption: "Two books · Coming January 2027" },
+  Advisor: { src: executiveAsset.url, caption: "Startup AI strategy & governance" },
+  Researcher: { src: authorAsset.url, caption: "27+ papers · 6 patents" },
+};
+export const portraitGallery = [
+  { src: executiveAsset.url, label: "The Engineer", note: "Architecting autonomous agent systems and AI security at enterprise scale." },
+  { src: portraitAsset.url, label: "The Speaker", note: "Bringing research to stages, panels and boardrooms around the world." },
+  { src: authorAsset.url, label: "The Author", note: "Writing the playbooks for the agentic AI era — two books in January 2027." },
+];
 export const IMG = "https://www.harshverma.me/images";
 
 export const profile = {

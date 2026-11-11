@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { profile, stats, awards } from "@/data/profile";
+import { profile, stats, awards, rolePortraits } from "@/data/profile";
 import { Reveal, Counter } from "@/components/site/Reveal";
 import { NeuralField } from "@/components/site/NeuralField";
 import { Expertise } from "@/components/site/Expertise";
@@ -25,9 +25,7 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-function RotatingRole() {
-  const [i, setI] = useState(0);
-  useEffect(() => { const t = setInterval(() => setI((v) => (v + 1) % profile.roles.length), 2200); return () => clearInterval(t); }, []);
+function RotatingRole({ i }: { i: number }) {
   return (
     <span className="relative block h-[2.3em] overflow-hidden">
       <AnimatePresence mode="wait">
@@ -39,6 +37,10 @@ function RotatingRole() {
 }
 
 function Home() {
+  const [i, setI] = useState(0);
+  useEffect(() => { const t = setInterval(() => setI((v) => (v + 1) % profile.roles.length), 2600); return () => clearInterval(t); }, []);
+  const role = profile.roles[i] ?? "";
+  const shot = rolePortraits[role] ?? { src: profile.portrait, caption: "Agentic AI & AI Security · Palo Alto Networks" };
   return (
     <>
       <section className="relative min-h-screen overflow-hidden grain">
@@ -48,7 +50,7 @@ function Home() {
           <div>
             <Reveal><p className="eyebrow">// founder · engineer · speaker</p></Reveal>
             <Reveal delay={0.1}>
-              <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] tracking-tight md:text-8xl">Harsh Verma<br /><span className="text-5xl md:text-7xl"><RotatingRole /></span></h1>
+              <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] tracking-tight md:text-8xl">Harsh Verma<br /><span className="text-5xl md:text-7xl"><RotatingRole i={i} /></span></h1>
             </Reveal>
             <Reveal delay={0.2}><p className="mt-6 font-display text-xl font-medium md:text-2xl">Founder mindset. Engineer's precision. Speaker's voice.</p><p className="mt-4 max-w-xl text-lg text-muted-foreground">{profile.tagline}</p></Reveal>
             <Reveal delay={0.3}>
@@ -64,10 +66,15 @@ function Home() {
             <div className="absolute -inset-10 rounded-full bg-brand-gradient opacity-25 blur-3xl" />
             <div className="absolute -top-24 left-1/2 h-48 w-2/3 -translate-x-1/2 rounded-full bg-signal/20 blur-3xl" />
             <div className="relative overflow-hidden rounded-xl border border-border bg-card">
-              <img src={profile.portrait} alt="Portrait of Harsh Verma" className="aspect-[4/5] w-full object-cover object-top" />
+              <div className="relative aspect-[4/5] w-full">
+                <AnimatePresence initial={false}>
+                  <motion.img key={shot.src} src={shot.src} alt={`Harsh Verma — ${role}`} initial={{ opacity: 0, scale: 1.04 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.7 }}
+                    className="absolute inset-0 h-full w-full object-cover object-top" />
+                </AnimatePresence>
+              </div>
               <div className="glass absolute inset-x-4 bottom-4 rounded-xl p-4">
-                <p className="font-mono text-xs text-muted-foreground">Currently</p>
-                <p className="text-sm">Agentic AI & AI Security · Palo Alto Networks</p>
+                <p className="font-mono text-xs text-muted-foreground">{role}</p>
+                <p className="text-sm">{shot.caption}</p>
               </div>
             </div>
           </Reveal>
