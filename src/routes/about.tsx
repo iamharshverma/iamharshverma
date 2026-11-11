@@ -18,6 +18,9 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "Biography, career timeline at Palo Alto Networks, education at Stanford GSB and UT Dallas, and fellowships of Harsh Verma." },
       { property: "og:title", content: "About Harsh Verma" },
       { property: "og:description", content: "Researcher by passion, entrepreneur at heart." },
+      { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
+      { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     scripts: [{ type: "application/ld+json", children: JSON.stringify({
       "@context": "https://schema.org", "@type": "ProfilePage",

@@ -12,6 +12,9 @@ export const Route = createFileRoute("/testimonials")({
     { name: "description", content: "Read sourced professional recommendations for Harsh Verma from managers and collaborators." },
     { property: "og:title", content: "Harsh Verma — Testimonials" },
     { property: "og:description", content: "Professional recommendations with links to the original sources." },
+    { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
+    { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
+    { name: "twitter:card", content: "summary_large_image" },
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
   ] }), component: Testimonials,
 });

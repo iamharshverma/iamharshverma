@@ -18,8 +18,8 @@ async function celebrate() {
   })();
 }
 
-export function EnquiryForm({ booking = false }: { booking?: boolean }) {
-  const [topic, setTopic] = useState("Keynote");
+export function EnquiryForm({ booking = false, initialTopic }: { booking?: boolean; initialTopic?: string | undefined }) {
+  const [topic, setTopic] = useState(initialTopic ?? "Keynote");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const [reference, setReference] = useState("");
@@ -47,7 +47,9 @@ export function EnquiryForm({ booking = false }: { booking?: boolean }) {
     } catch { setError("Your request wasn't saved. Please try again or email Harsh directly."); }
     finally { setPending(false); }
   }
-  if (reference) return <div className="py-12" role="status"><CheckCircle2 className="size-10 text-brand" /><h2 className="mt-4 font-display text-3xl">Request received</h2><p className="mt-3 text-muted-foreground">{booking ? "Your preferred date and brief have been saved. This is a booking request, not a confirmed engagement." : "Your enquiry has been saved."}</p><p className="mt-4 font-mono text-xs text-muted-foreground">Reference: {reference.slice(0, 8)}</p><Button variant="outline" className="mt-6" onClick={() => setReference("")}>Send another request</Button></div>;
+  if (reference) return <div className="py-10" role="status"><CheckCircle2 className="size-10 text-brand" /><h2 className="mt-4 font-display text-3xl">{booking ? "Thank you — request received" : "Request received"}</h2><p className="mt-3 text-muted-foreground">{booking ? "Your preferred date and brief have been saved. This is a booking request, not a confirmed engagement." : "Your enquiry has been saved."}</p><p className="mt-4 font-mono text-xs text-muted-foreground">Reference: {reference.slice(0, 8)}</p>
+    {booking && <div className="mt-8 rounded-xl border border-border bg-card p-5"><p className="font-display text-lg font-semibold">What happens next</p><ol className="mt-3 list-decimal space-y-1.5 pl-5 text-sm text-muted-foreground"><li>Harsh reviews your brief and availability.</li><li>You get a reply by email to confirm fit, format and timing.</li><li>Details and logistics are agreed before anything is confirmed.</li></ol><div className="mt-5 flex flex-wrap gap-2"><Button asChild variant="outline" size="sm"><Link to="/press-kit">Speaker bio & press kit</Link></Button><Button asChild variant="outline" size="sm"><Link to="/speaking">Watch recent talks</Link></Button></div></div>}
+    <Button variant="outline" className="mt-6" onClick={() => setReference("")}>Send another request</Button></div>;
   return <form onSubmit={send} className="space-y-6">
     <div className="flex flex-wrap gap-2" role="group" aria-label="Enquiry type">{(booking ? ["Keynote", "Advisory"] : ["Keynote", "Advisory", "Media", "Other"]).map(t => <Button key={t} type="button" variant={topic === t ? "default" : "outline"} aria-pressed={topic === t} onClick={() => setTopic(t)}>{t}</Button>)}</div>
     {!booking && (topic === "Keynote" || topic === "Advisory") && <Button asChild variant="outline" className="h-auto w-full whitespace-normal py-3"><Link to="/booking"><CalendarDays />Request a keynote or advisory booking</Link></Button>}

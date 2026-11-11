@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdvisoryRouteImport } from './routes/advisory'
+import { Route as AgenticAiRouteImport } from './routes/agentic-ai'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as CollaborateRouteImport } from './routes/collaborate'
@@ -40,6 +41,11 @@ const AboutRoute = AboutRouteImport.update({
 const AdvisoryRoute = AdvisoryRouteImport.update({
   id: '/advisory',
   path: '/advisory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgenticAiRoute = AgenticAiRouteImport.update({
+  id: '/agentic-ai',
+  path: '/agentic-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingRoute = BookingRouteImport.update({
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advisory': typeof AdvisoryRoute
+  '/agentic-ai': typeof AgenticAiRoute
   '/booking': typeof BookingRoute
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
@@ -136,6 +143,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advisory': typeof AdvisoryRoute
+  '/agentic-ai': typeof AgenticAiRoute
   '/booking': typeof BookingRoute
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
@@ -156,6 +164,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/advisory': typeof AdvisoryRoute
+  '/agentic-ai': typeof AgenticAiRoute
   '/booking': typeof BookingRoute
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
@@ -177,6 +186,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/advisory'
+    | '/agentic-ai'
     | '/booking'
     | '/books'
     | '/collaborate'
@@ -196,6 +206,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/advisory'
+    | '/agentic-ai'
     | '/booking'
     | '/books'
     | '/collaborate'
@@ -215,6 +226,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/advisory'
+    | '/agentic-ai'
     | '/booking'
     | '/books'
     | '/collaborate'
@@ -235,6 +247,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdvisoryRoute: typeof AdvisoryRoute
+  AgenticAiRoute: typeof AgenticAiRoute
   BookingRoute: typeof BookingRoute
   BooksRoute: typeof BooksRoute
   CollaborateRoute: typeof CollaborateRoute
@@ -272,6 +285,13 @@ declare module '@tanstack/react-router' {
       path: '/advisory'
       fullPath: '/advisory'
       preLoaderRoute: typeof AdvisoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agentic-ai': {
+      id: '/agentic-ai'
+      path: '/agentic-ai'
+      fullPath: '/agentic-ai'
+      preLoaderRoute: typeof AgenticAiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/booking': {
@@ -379,6 +399,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdvisoryRoute: AdvisoryRoute,
+  AgenticAiRoute: AgenticAiRoute,
   BookingRoute: BookingRoute,
   BooksRoute: BooksRoute,
   CollaborateRoute: CollaborateRoute,

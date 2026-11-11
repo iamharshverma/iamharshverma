@@ -12,6 +12,7 @@ import { Magnetic, TiltCard, LogoTile } from "@/components/site/Interactive";
 import { keynotes, media } from "@/data/media";
 import { pressLogos } from "@/data/collaborate";
 import { Faq } from "@/components/site/Faq";
+import { WorkWithMe } from "@/components/site/WorkWithMe";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,6 +25,9 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "AI advisory for founders: Harsh Verma helps startups design, secure and ship trustworthy agentic AI. Principal AI Engineer at Palo Alto Networks, startup advisor, author and keynote speaker." },
       { property: "og:title", content: "Harsh Verma — Agentic AI & AI Advisory for Founders" },
       { property: "og:description", content: "Helping founders ship agentic AI that customers trust — engineer, advisor, investor and speaker." },
+      { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
+      { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -64,6 +68,7 @@ function Home() {
                 </Link></Magnetic>
                 <Link to="/about" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 transition hover:border-brand hover:text-brand">Read the story</Link>
               </div>
+              <p className="mt-5 font-mono text-xs text-muted-foreground">RSA Conference · ACM keynotes · UC Berkeley SkyDeck · Forbes Technology Council</p>
             </Reveal>
           </div>
           <Reveal delay={0.2} className="relative mx-auto w-full max-w-sm shrink-0">
@@ -84,6 +89,7 @@ function Home() {
           </Reveal>
         </div>
       </section>
+      <WorkWithMe />
 
       <section className="border-y border-border bg-card/40">
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">

@@ -29,3 +29,4 @@
 - [x] Founder SEO on home + insights
 - [x] Push to GitHub after all done
 - [x] Settings-file flag for GitHub version
+- [x] Improvement plan: share image, booking paths, mobile bar, thank-you, Agentic AI page, advisory SEO

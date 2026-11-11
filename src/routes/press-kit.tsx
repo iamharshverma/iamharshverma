@@ -14,6 +14,9 @@ export const Route = createFileRoute("/press-kit")({
     { name: "description", content: "High-resolution photos, press quotes, downloadable bio and press kit PDF for media covering AI engineer and founder Harsh Verma." },
     { property: "og:title", content: "Harsh Verma — Press Kit" },
     { property: "og:description", content: "Biography, photography and speaker resources for editors and event organizers." },
+    { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
+    { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
+    { name: "twitter:card", content: "summary_large_image" },
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
   ] }), component: PressKit,
 });

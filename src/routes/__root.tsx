@@ -15,6 +15,7 @@ import { CommandPalette } from "@/components/site/CommandPalette";
 import { CursorGlow } from "@/components/site/CursorGlow";
 import { ScrollProgress, ScrollTop } from "@/components/site/Interactive";
 import { AskHarsh } from "@/components/site/AskHarsh";
+import { MobileBookBar } from "@/components/site/MobileBookBar";
 
 import { personJsonLd } from "@/lib/seo";
 import appCss from "../styles.css?url";
@@ -107,7 +108,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -143,6 +145,7 @@ function RootComponent() {
       <main className="relative z-10"><Outlet /></main>
       <Footer />
       <ScrollTop />
+      <MobileBookBar />
       <AskHarsh />
       <CommandPalette open={palette} setOpen={setPalette} />
     </QueryClientProvider>

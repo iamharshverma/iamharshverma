@@ -14,6 +14,9 @@ export const Route = createFileRoute("/media-kit")({
     { name: "description", content: "Bio, portrait, interview topics and downloadable media kit PDF for journalists, podcast hosts and broadcasters." },
     { property: "og:title", content: "Harsh Verma — Media Kit" },
     { property: "og:description", content: "Everything editors and podcast hosts need to feature Harsh Verma." },
+    { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
+    { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
+    { name: "twitter:card", content: "summary_large_image" },
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
   ] }), component: MediaKit,
 });
