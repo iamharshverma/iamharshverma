@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Command, Menu, X } from "lucide-react";
 import { nav } from "./nav";
 import { ThemeToggle } from "./ThemeToggle";
+import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { MessagesSquare } from "lucide-react";
 
@@ -16,7 +17,7 @@ export function Header({ onPalette }: { onPalette: () => void }) {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? "glass py-3" : "py-5"}`}>
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-6 xl:flex xl:justify-between">
-        <Link to="/" className="font-display text-2xl">Harsh<span className="text-brand">.</span></Link>
+        <Link to="/" aria-label="Harsh Verma home"><Logo /></Link>
         <nav className="hidden items-center gap-0.5 xl:flex">
           {nav.slice(1, -1).map((n) => (
             <Link key={n.to} to={n.to} className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition hover:text-foreground"
