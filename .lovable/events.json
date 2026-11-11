@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "events": {
+    "project.contact_submitted": {
+      "event_schema_version": 1,
+      "description": "A visitor submitted the contact inquiry form.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "topic"
+        ],
+        "properties": {
+          "topic": {
+            "type": "string",
+            "enum": [
+              "Keynote",
+              "Advisory",
+              "Media",
+              "Other"
+            ]
+          }
+        }
+      }
+    },
+    "project.keynote_played": {
+      "event_schema_version": 1,
+      "description": "A visitor started playing or opened a keynote video.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "keynote",
+          "source"
+        ],
+        "properties": {
+          "keynote": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "speaking",
+              "home"
+            ]
+          }
+        }
+      }
+    },
+    "project.media_searched": {
+      "event_schema_version": 1,
+      "description": "A visitor searched the Media press wall (fires after typing pauses).",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "group",
+          "result_count"
+        ],
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "result_count": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

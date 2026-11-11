@@ -1,0 +1,217 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: var(--display-font);
+  --font-sans: var(--body-font);
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-signal: var(--signal);
+  --color-logo-tile: var(--logo-tile);
+}
+
+:root {
+  --display-font: "Space Grotesk", ui-sans-serif, sans-serif;
+  --body-font: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --radius: 0.5rem;
+  --background: oklch(0.15 0.03 260);
+  --foreground: oklch(0.97 0.005 250);
+  --card: oklch(0.2 0.035 260);
+  --card-foreground: oklch(0.97 0.005 250);
+  --popover: oklch(0.2 0.035 260);
+  --popover-foreground: oklch(0.97 0.005 250);
+  --primary: oklch(0.68 0.19 250);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.24 0.035 260);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.22 0.03 260);
+  --muted-foreground: oklch(0.76 0.03 255);
+  --accent: oklch(0.27 0.05 258);
+  --accent-foreground: oklch(0.97 0.005 250);
+  --destructive: oklch(0.6 0.2 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.97 0.005 250 / 10%);
+  --input: oklch(0.97 0.005 250 / 15%);
+  --ring: oklch(0.68 0.19 250);
+  --brand: oklch(0.7 0.18 248);
+  --signal: oklch(0.8 0.15 70);
+  --spot: oklch(0.68 0.19 250 / 14%);
+  --logo-tile: oklch(0.96 0.01 250);
+  --gradient-brand: linear-gradient(110deg, oklch(0.78 0.14 230), oklch(0.62 0.21 258));
+  --shadow-glow: 0 20px 60px -20px oklch(0.68 0.19 250 / 45%);
+  --glass: oklch(0.17 0.03 260 / 90%);
+  --grid-line: oklch(0.97 0.005 250 / 5%);
+  --selection: oklch(0.68 0.19 250 / 40%);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --display-font: "Source Serif 4", Georgia, serif;
+  --body-font: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --background: oklch(0.982 0.002 240);
+  --foreground: oklch(0.2 0.02 255);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.39 0.065 190);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.945 0.004 240);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.955 0.003 240);
+  --muted-foreground: oklch(0.42 0.02 255);
+  --accent: oklch(0.94 0.018 190);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.48 0.19 27);
+  --border: oklch(0.24 0.018 165 / 16%);
+  --input: oklch(0.24 0.018 165 / 25%);
+  --ring: oklch(0.39 0.065 190);
+  --brand: oklch(0.36 0.07 200);
+  --signal: oklch(0.42 0.11 20);
+  --spot: oklch(0.39 0.07 165 / 5%);
+  --gradient-brand: linear-gradient(110deg, oklch(0.39 0.065 190), oklch(0.39 0.065 190));
+  --shadow-glow: 0 16px 45px -20px oklch(0.24 0.018 165 / 18%);
+  --glass: oklch(0.985 0.003 160 / 94%);
+  --grid-line: oklch(0.24 0.018 165 / 6%);
+  --selection: oklch(0.39 0.07 165 / 20%);
+}
+
+:root[data-theme="light"] .grain { background-image: none; }
+:root[data-theme="light"] .bg-grid { opacity: 0.45; }
+:root[data-theme="light"] .font-mono { letter-spacing: 0; }
+
+:root[data-theme="glass"] {
+  color-scheme: light;
+  --display-font: "Sora", ui-sans-serif, sans-serif;
+  --body-font: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --background: oklch(0.93 0.03 300);
+  --foreground: oklch(0.22 0.05 280);
+  --card: oklch(1 0 0 / 42%);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.98 0.01 300 / 92%);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.45 0.16 285);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(1 0 0 / 50%);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(1 0 0 / 35%);
+  --muted-foreground: oklch(0.4 0.05 280);
+  --accent: oklch(1 0 0 / 55%);
+  --accent-foreground: var(--foreground);
+  --border: oklch(1 0 0 / 65%);
+  --input: oklch(0.3 0.05 280 / 20%);
+  --ring: oklch(0.5 0.16 285);
+  --brand: oklch(0.45 0.17 285);
+  --signal: oklch(0.5 0.15 25);
+  --spot: oklch(1 0 0 / 30%);
+  --logo-tile: oklch(1 0 0 / 85%);
+  --gradient-brand: linear-gradient(110deg, oklch(0.48 0.18 290), oklch(0.55 0.17 340), oklch(0.6 0.14 45));
+  --shadow-glow: 0 24px 60px -24px oklch(0.35 0.12 290 / 35%), inset 0 1px 0 oklch(1 0 0 / 80%);
+  --glass: oklch(1 0 0 / 45%);
+  --grid-line: oklch(1 0 0 / 35%);
+  --selection: oklch(0.6 0.15 300 / 30%);
+}
+:root[data-theme="glass"] body {
+  background-image:
+    radial-gradient(55rem 40rem at 0% 0%, oklch(0.82 0.11 300 / 90%), transparent 60%),
+    radial-gradient(50rem 38rem at 100% 5%, oklch(0.85 0.1 210 / 85%), transparent 60%),
+    radial-gradient(48rem 34rem at 85% 95%, oklch(0.88 0.1 60 / 85%), transparent 60%),
+    radial-gradient(42rem 32rem at 10% 100%, oklch(0.84 0.1 350 / 80%), transparent 60%),
+    linear-gradient(160deg, oklch(0.95 0.02 290), oklch(0.93 0.03 250));
+  background-attachment: fixed;
+}
+:root[data-theme="glass"] .bg-card,
+:root[data-theme="glass"] [class*="bg-card/"],
+:root[data-theme="glass"] [class*="bg-muted/"],
+:root[data-theme="glass"] [class*="bg-background/"],
+:root[data-theme="glass"] .glass {
+  backdrop-filter: blur(22px) saturate(180%);
+}
+:root[data-theme="glass"] .bg-card { box-shadow: inset 0 1px 0 oklch(1 0 0 / 80%), 0 10px 40px -20px oklch(0.35 0.1 290 / 30%); }
+:root[data-theme="glass"] .grain { background-image: none; }
+:root[data-theme="glass"] .bg-grid { opacity: 0.6; }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--selection); }
+  h1, h2, h3 { overflow-wrap: break-word; letter-spacing: 0; }
+}
+
+@utility text-brand-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility bg-brand-gradient { background: var(--gradient-brand); }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility grain {
+  background-image: radial-gradient(circle at 20% 0%, oklch(0.68 0.19 250 / 16%), transparent 45%),
+    radial-gradient(circle at 90% 30%, oklch(0.8 0.15 70 / 6%), transparent 40%);
+}
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--color-border);
+}
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@utility animate-marquee { animation: marquee 40s linear infinite; }
+
+@utility bg-grid {
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 75%);
+}
+
+@media (max-width: 639px) {
+  h1.text-6xl, h1.text-7xl, h1.text-8xl { font-size: 2.75rem; line-height: 1.12; }
+  h2.text-5xl, h2.text-6xl { font-size: 2rem; line-height: 1.2; }
+  h1 span.text-5xl { font-size: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
