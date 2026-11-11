@@ -38,4 +38,5 @@
 - [x] Add a dedicated Harsh Verma AI speaker / Principal AI Engineer profile, linked for Google and AI discovery.
 - [x] Refresh Speaking and Speaker Bio content and metadata for AI speaker / AI keynote speaker searches; verify both pages.
 - [x] Check Google indexing for /speaker-bio and /speaking; both unknown to Google. Manual Request indexing is required; the API cannot perform it.
+- [x] Add "Read the Story" button to the homepage hero, opening the About story page; pushed and live on iamharshverma.com.
 - [ ] Verify delivery to iamharshverma/iamharshverma — changes committed for platform sync; direct delivery was blocked by the environment, and the named repository's update remains unverified.
