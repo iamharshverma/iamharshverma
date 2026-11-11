@@ -4,7 +4,7 @@ import { Subscribe } from "./Subscribe";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t border-border pb-20 md:pb-0">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <p className="font-display text-4xl font-bold tracking-tight md:text-6xl">Let's talk <span className="text-brand-gradient">AI.</span></p>
         <a href={`mailto:${profile.email}`} className="mt-4 inline-block text-muted-foreground hover:text-brand">{profile.email}</a>
