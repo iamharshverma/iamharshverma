@@ -8,6 +8,8 @@ import { keynotes, judging } from "@/data/media";
 import { Reveal, PageHero, Counter } from "@/components/site/Reveal";
 import { TiltCard, Modal, Magnetic } from "@/components/site/Interactive";
 import { StageMap } from "@/components/site/StageMap";
+import { ReelWall } from "@/components/site/ReelWall";
+import { KeynoteClips } from "@/components/site/KeynoteClips";
 
 export const Route = createFileRoute("/speaking")({
   head: () => ({
@@ -52,7 +54,7 @@ function Speaking() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <Reveal><p className="eyebrow">Now on stage</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Keynote theater</h2></Reveal>
+        <Reveal><p className="eyebrow">Now on stage · <Link to="/speaker-bio" className="text-brand">Full speaker bio &amp; PDF →</Link></p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Keynote theater</h2></Reveal>
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
           <AnimatePresence mode="wait">
             <motion.div key={stage} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="overflow-hidden rounded-2xl border border-border bg-card">
@@ -81,6 +83,8 @@ function Speaking() {
           </ul>
         </div>
       </section>
+      <KeynoteClips />
+      <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">Reels</p><h2 className="mb-8 mt-4 font-display text-5xl font-bold tracking-tight">Backstage in 60 seconds</h2></Reveal><ReelWall /></section>
       <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">On stage</p><h2 className="mb-8 mt-4 font-display text-5xl font-bold tracking-tight">Where Harsh has spoken</h2></Reveal><StageMap /></section>
 
       <section className="mx-auto max-w-6xl px-6 pb-20">
@@ -112,7 +116,7 @@ function Speaking() {
             <p className="eyebrow">Invite Harsh</p>
             <h2 className="mt-4 font-display text-4xl font-bold tracking-tight">Keynote, panel, or executive masterclass.</h2>
             <p className="mt-4 text-muted-foreground">Tailored to enterprise or technical audiences, with Smart Slides and pre-event promotion included.</p>
-            <div className="mt-6"><Magnetic><Link to="/contact" className="inline-flex rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow">Book a keynote</Link></Magnetic></div>
+            <div className="mt-6 flex flex-wrap items-center gap-4"><Magnetic><Link to="/contact" className="inline-flex rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow">Book a keynote</Link></Magnetic><Link to="/speaker-bio" className="inline-flex rounded-full border border-border px-6 py-3 font-medium hover:border-brand">Speaker bio &amp; PDF</Link></div>
           </div>
         </div>
       </section>
