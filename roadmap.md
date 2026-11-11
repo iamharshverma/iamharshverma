@@ -13,4 +13,11 @@
 - [x] Book waitlist + countdown
 - [x] Ask Harsh page-aware chips
 - [x] Newsletter signup
-- [ ] Push to GitHub main after all done
+- [x] Push to GitHub main after all done
+- [x] Speaking map: all venues
+- [x] Founder blog post on Insights (site-hosted)
+- [x] Homepage founder search intent
+- [ ] Publish site
+- [ ] Submit sitemap to Search Console
+- [x] Check iamharshverma.com
+- [ ] Push to GitHub after all done

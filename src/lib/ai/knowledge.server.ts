@@ -1,6 +1,6 @@
 import { profile, experience, education, memberships, awards, research, speaking, advisory, links } from "@/data/profile";
 import { media, keynotes, blogs, judging } from "@/data/media";
-import { slugify } from "@/data/insights";
+import { insights } from "@/data/insights";
 import { offerings } from "@/data/collaborate";
 import { books } from "@/data/books";
 import { testimonials, editorialMentions } from "@/data/testimonials";
@@ -18,7 +18,7 @@ export function buildInstructions() {
   lines.push(`\n## Awards\n` + awards.map((a) => `- ${a.title} (${a.org}): ${a.desc}`).join("\n"));
   lines.push(`\n## Research, patents, projects\n` + research.map((r) => `- [${r.kind}] ${r.title} — ${r.meta}. ${r.desc}${r.href ? ` ${r.href}` : ""}`).join("\n"));
   lines.push(`\n## Books\n` + books.map((b) => `- ${b.title}: ${b.subtitle}. ${b.status}. ${b.pitch} Site: ${b.site}`).join("\n"));
-  lines.push(`\n## Articles\n` + blogs.map((b) => `- ${b.title} (${b.pub}, ${b.date}): ${b.excerpt} Original: ${b.href} Page: https://www.iamharshverma.com/insights/${slugify(b.title)}`).join("\n"));
+  lines.push(`\n## Articles\n` + insights.map((b) => `- ${b.title} (${b.pub}, ${b.date}): ${b.excerpt} Original: ${b.href} Page: https://www.iamharshverma.com/insights/${b.slug}`).join("\n"));
   lines.push(`\n## Keynotes\n` + keynotes.map((k) => `- ${k.title} — ${k.venue} (${k.dur}). ${k.desc} ${k.href}`).join("\n"));
   lines.push(`Speaking topics: ` + speaking.map((s) => `${s.title} (${s.type})`).join("; "));
   lines.push(`\n## Judging & mentorship\n` + judging.map((j) => `- ${j.title} — ${j.org}, ${j.role}`).join("\n"));

@@ -625,7 +625,7 @@ export const blogs: Blog[] = [
   "date": "October 27, 2026",
   "read": "6 min read",
   "href": "https://www.forbes.com/councils/forbestechcouncil/2026/10/27/physical-ai-is-coming-when-ai-stops-generating-content-and-starts-acting-on-the-world/",
-  "excerpt": "Generative AI was defined by digital creation—LLMs generating text, summarizing data, and generating code where errors can be edited. Physical AI brings artificial intelligence into the real world through sensors and rob"
+  "excerpt": "Generative AI was defined by digital creation—LLMs generating text, summarizing data, and generating code where errors can be edited. Physical AI brings artificial intelligence into the real world through sensors and robotic actuation, where actions have irreversible physical consequences and there is no 'undo' button."
  },
  {
   "title": "The Real AI Moat: Why Models Are Cheap But Data Orchestration Is Priceless",
@@ -635,7 +635,7 @@ export const blogs: Blog[] = [
   "date": "October 2, 2026",
   "read": "6 min read",
   "href": "https://www.forbes.com/councils/forbestechcouncil/2026/10/02/the-real-ai-moat-why-models-are-cheap-but-data-orchestration-is-priceless/",
-  "excerpt": "As frontier models commoditize and open-source alternatives catch up, owning raw models offers little defensibility. The true enterprise AI moat lies in continuous data orchestration, clean operational governance, domain"
+  "excerpt": "As frontier models commoditize and open-source alternatives catch up, owning raw models offers little defensibility. The true enterprise AI moat lies in continuous data orchestration, clean operational governance, domain-specific data pipelines, and high-fidelity contextual retrieval."
  },
  {
   "title": "Beyond The Code: The Evolution Of The Next-Generation Engineer",
@@ -685,7 +685,147 @@ export const blogs: Blog[] = [
   "date": "August 25, 2026",
   "read": "6 min read",
   "href": "https://www.forbes.com/councils/forbestechcouncil/2026/08/25/engineering-the-predictable-why-pure-determinism-is-becoming-the-new-premium-in-ai-architecture/",
-  "excerpt": "In mission-critical enterprise environments, repeatability and mathematical predictability command a higher commercial premium than stochastic creativity. How to design deterministic control layers over generative models"
+  "excerpt": "In mission-critical enterprise environments, repeatability and mathematical predictability command a higher commercial premium than stochastic creativity. How to design deterministic control layers over generative models."
+ },
+ {
+  "title": "The Production Gap: Your AI Model Isn’t as Reliable as You Think [Feature Interview]",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-interview.png",
+  "pub": "HackerNoon",
+  "topic": "AI Research",
+  "date": "2026",
+  "read": "8 min read",
+  "href": "https://hackernoon.com/the-production-gap-your-ai-model-isnt-as-reliable-as-you-think-interview",
+  "excerpt": "In-depth HackerNoon interview breaking down the critical gap between benchmark performance and enterprise production reality, detailing architectural strategies for resilient model deployment."
+ },
+ {
+  "title": "Identity Is the New Perimeter: Managing AI Agents as Digital Actors",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-identity-perimeter.png",
+  "pub": "HackerNoon",
+  "topic": "Cybersecurity",
+  "date": "2026",
+  "read": "7 min read",
+  "href": "https://hackernoon.com/identity-is-the-new-perimeter-managing-ai-agents-as-digital-actors",
+  "excerpt": "AI agents are transforming cybersecurity from network perimeter defenses to continuous identity-first authorization. Featured on HackerNoon's Cybersecurity Tech Brief podcast on Spotify."
+ },
+ {
+  "title": "The Clean Attack Problem: When Nothing Looks Wrong, but Everything Is Compromised",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-clean-attack.png",
+  "pub": "HackerNoon",
+  "topic": "Cybersecurity",
+  "date": "2026",
+  "read": "6 min read",
+  "href": "https://hackernoon.com/the-clean-attack-problem-when-nothing-looks-wrong-but-everything-is-compromised",
+  "excerpt": "Modern cyber threats no longer trigger noisy alarms. By abusing authorized API credentials and valid business logic, AI-driven attacks operate entirely within legitimate parameters."
+ },
+ {
+  "title": "The Trade-Off Between Speed and Reliability in Modern AI Systems",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-speed-reliability.png",
+  "pub": "HackerNoon",
+  "topic": "AI Research",
+  "date": "2026",
+  "read": "6 min read",
+  "href": "https://hackernoon.com/the-trade-off-between-speed-and-reliability-in-modern-ai-systems",
+  "excerpt": "'Move fast and break things' causes catastrophic failure in mission-critical AI. Why leading architectural teams prioritize deterministic verification over raw inference speed."
+ },
+ {
+  "title": "AI Governance Is Failing Because We’re Regulating Models Instead of Behavior",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-governance.png",
+  "pub": "HackerNoon",
+  "topic": "AI Research",
+  "date": "2026",
+  "read": "6 min read",
+  "href": "https://hackernoon.com/ai-governance-is-failing-because-were-regulating-models-instead-of-behavior",
+  "excerpt": "An analysis of why static model audits fail to capture multi-agent emergent behavior, and why runtime behavioral observability is the only defensible governance framework."
+ },
+ {
+  "title": "The Observability Crisis in AI Systems: Why Your Logs Are Lying to You",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-observability.png",
+  "pub": "HackerNoon",
+  "topic": "AI Research",
+  "date": "2026",
+  "read": "7 min read",
+  "href": "https://hackernoon.com/the-observability-crisis-in-ai-systems-why-your-logs-are-lying-to-you",
+  "excerpt": "Standard logging stacks report HTTP 200s while models silently hallucinate, leak context, and drift. How semantic telemetry and cognitive tracing resolve the observability gap."
+ },
+ {
+  "title": "Reputation Systems for AI Agents: The Missing Layer of Trust",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-reputation.png",
+  "pub": "HackerNoon",
+  "topic": "AI Research",
+  "date": "2026",
+  "read": "6 min read",
+  "href": "https://hackernoon.com/reputation-systems-for-ai-agents-the-missing-layer-of-trust",
+  "excerpt": "Introducing behavioral scoring protocols and cryptographic audit trails to quantify trust before allowing autonomous agents to execute high-stakes cross-enterprise tasks."
+ },
+ {
+  "title": "Distributed Intelligence: Why Multi-Agent Systems Are the Successor to Microservices",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-distributed-intelligence.png",
+  "pub": "HackerNoon",
+  "topic": "Engineering",
+  "date": "2026",
+  "read": "7 min read",
+  "href": "https://hackernoon.com/distributed-intelligence-why-multi-agent-systems-are-the-successor-to-microservices-for-enterprise",
+  "excerpt": "Just as microservices decomposed monolithic codebases, autonomous multi-agent networks are decomposing complex reasoning workflows into distributed, collaborative nodes."
+ },
+ {
+  "title": "From Identity to Intent: Autonomous AI Agents Are the New Insider Threat",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-identity-intent.png",
+  "pub": "HackerNoon",
+  "topic": "Cybersecurity",
+  "date": "2026",
+  "read": "6 min read",
+  "href": "https://hackernoon.com/from-identity-to-intent-autonomous-ai-agents-are-the-new-insider-threat",
+  "excerpt": "When AI agents are granted access to internal production pipelines, authentication alone cannot prevent prompt injection or goal hijacking. We need continuous intent validation."
+ },
+ {
+  "title": "Trust Scores for AI: Should Agents Earn Permissions Over Time? Trust Isn’t Granted, It’s Earned",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-trust-scores.png",
+  "pub": "HackerNoon",
+  "topic": "Cybersecurity",
+  "date": "2026",
+  "read": "6 min read",
+  "href": "https://hackernoon.com/trust-scores-for-ai-should-agents-earn-permissions-over-time-trust-isnt-granted-its-earned",
+  "excerpt": "A dynamic least-privilege architecture where autonomous digital actors start in sandboxed environments and earn higher API thresholds through validated track records."
+ },
+ {
+  "title": "The Rise of the AI Orchestrator: The Latest, Most Important Enterprise Role",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-ai-orchestrator.png",
+  "pub": "HackerNoon",
+  "topic": "Engineering",
+  "date": "2026",
+  "read": "6 min read",
+  "href": "https://hackernoon.com/the-rise-of-the-ai-orchestrator-the-latest-most-important-enterprise-role",
+  "excerpt": "Enterprises don't struggle to access LLMs; they struggle to orchestrate multiple models, routing state, memory, tool executions, and security guardrails across departments."
+ },
+ {
+  "title": "What Most AI Startup Founders Get Wrong About AI Agents: The Autonomy Trap",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-autonomy-trap.png",
+  "pub": "HackerNoon",
+  "topic": "AI Research",
+  "date": "2026",
+  "read": "6 min read",
+  "href": "https://hackernoon.com/what-most-ai-startup-founders-get-wrong-about-ai-agents-the-autonomy-trap",
+  "excerpt": "Unconstrained autonomy produces brittle demos that collapse in real customer deployments. Why the most valuable agentic startups build scoped, deterministic workflows."
+ },
+ {
+  "title": "The Clean Attack Problem: When Nothing Looks Wrong but Everything is Compromised",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/hn-clean-attack.png",
+  "pub": "RSA Conference",
+  "topic": "Cybersecurity",
+  "date": "August 2026",
+  "read": "7 min read",
+  "href": "https://www.rsaconference.com/library/blog/the-clean-attack-problem",
+  "excerpt": "Published on RSA Conference official library: How AI agents mimic legitimate human interactions, adapt to organizational context, and operate within approved API policies to evade legacy SOC detection."
+ },
+ {
+  "title": "The Death of Authentication: Why Identity Isn't Enough for AI Systems",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/rsac-death-of-authentication.jpg",
+  "pub": "RSA Conference",
+  "topic": "AI Research",
+  "date": "September 2026",
+  "read": "8 min read",
+  "href": "https://www.rsaconference.com/Library/blog/the-death-of-authentication-why-identity-isnt-enough-for-ai-systems",
+  "excerpt": "Published on RSA Conference official library: For decades cybersecurity assumed verifying identity ensures legitimate behavior. In autonomous AI workflows, attacks happen with valid credentials and approved permissions. Why Zero Trust must evolve to continuous behavioral monitoring and runtime intent analysis."
  },
  {
   "title": "Agents Don't Break Rules, They Redefine Them",
@@ -695,7 +835,87 @@ export const blogs: Blog[] = [
   "date": "September 24, 2026",
   "read": "7 min read",
   "href": "https://www.rsaconference.com/Library/blog/agents-dont-break-rules-they-redefine-them",
-  "excerpt": "Published on RSA Conference official library: Autonomous AI agents don't fail by breaking rules—they follow instructions literally while circumventing intent through blind optimization and policy drift. Why AI security r"
+  "excerpt": "Published on RSA Conference official library: Autonomous AI agents don't fail by breaking rules—they follow instructions literally while circumventing intent through blind optimization and policy drift. Why AI security requires continuous runtime governance instead of static boundaries."
+ },
+ {
+  "title": "Harsh Verma Publishes Nuanced Framework on Rise of Agentic AI and Enterprise System Era",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/aij-agentic-framework.jpg",
+  "pub": "The AI Journal",
+  "topic": "AI Research",
+  "date": "May 2026",
+  "read": "6 min read",
+  "href": "https://aijourn.com/harsh-verma-publishes-nuanced-framework-on-rise-of-agentic-ai-and-enterprise-system-era-arguing-ai-system-architecture-has-replaced-model-building-as-the-core-discipline/",
+  "excerpt": "Argues that AI system architecture—context routing, deterministic verification, persistent memory, and latency orchestration—has decisively replaced raw model training as the primary core discipline."
+ },
+ {
+  "title": "How AI Agents Will Collaborate with Human Experts in High-Stakes Environments",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/aij-high-stakes.jpg",
+  "pub": "The AI Journal",
+  "topic": "AI Research",
+  "date": "May 2026",
+  "read": "6 min read",
+  "href": "https://aijourn.com/how-ai-agents-will-collaborate-with-human-experts-in-high-stakes-environments/",
+  "excerpt": "Analyzing how human-in-the-loop and human-on-the-loop protocols should be structured across high-consequence domains including automated threat response, medicine, and critical infrastructure."
+ },
+ {
+  "title": "Harsh Verma on Engineering Beyond the Code: The Future of AI and Cybersecurity",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/aij-beyond-code.jpg",
+  "pub": "The AI Journal",
+  "topic": "Interviews",
+  "date": "March 2026",
+  "read": "7 min read",
+  "href": "https://aijourn.com/harsh-verma-on-engineering-beyond-the-code-the-future-of-ai-and-cybersecurity/",
+  "excerpt": "Featured conversation on the convergence of large-scale artificial intelligence, autonomous security operations, and the future career trajectory of AI systems engineers."
+ },
+ {
+  "title": "Principal AI Engineer Harsh Verma Nominated for Tech Excellence Award at Influencer Magazine Awards 2026",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/aij-nomination.jpg",
+  "pub": "The AI Journal",
+  "topic": "Interviews",
+  "date": "June 2026",
+  "read": "4 min read",
+  "href": "https://aijourn.com/principal-ai-engineer-harsh-verma-nominated-for-tech-excellence-award-at-influencer-magazine-awards-2026-as-his-work-on-human-ai-collaboration-gains-enterprise-attention/",
+  "excerpt": "Coverage of Harsh Verma's nomination for Tech Excellence Award 2026, highlighting his research and architectural leadership in agentic trust models and enterprise human-AI collaboration."
+ },
+ {
+  "title": "Your First AI Agent Is Your New Intern: Here’s How to Manage It",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/aij-intern-agent.png",
+  "pub": "The AI Journal",
+  "topic": "AI Research",
+  "date": "June 2026",
+  "read": "5 min read",
+  "href": "https://aijourn.com/your-first-ai-agent-is-your-new-intern-heres-how-to-manage-it/",
+  "excerpt": "A grounded leadership guide for managing AI agents: establishing bounded roles, implementing stage-gated code reviews, and avoiding delegation traps in engineering organizations."
+ },
+ {
+  "title": "Designing the Intelligence Layer: Why Future Tech Leaders Must Be AI Architects First",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/aij-future-cto.png",
+  "pub": "The AI Journal",
+  "topic": "Engineering",
+  "date": "August 2026",
+  "read": "6 min read",
+  "href": "https://aijourn.com/designing-the-intelligence-layer-why-future-tech-leaders-must-be-ai-architects-first/",
+  "excerpt": "Why the modern CTO and VP of Engineering must evolve from managing cloud infrastructure to engineering the cognitive orchestration layer that powers all enterprise workflows."
+ },
+ {
+  "title": "Unlocking Corporate–Startup Co-Innovation with AI",
+  "img": "https://www.harshverma.me/images/blog/thumbnails/fc-co-innovation.png",
+  "pub": "Founders Creative",
+  "topic": "Engineering",
+  "date": "2026",
+  "read": "5 min read",
+  "href": "https://www.founderscreative.org/unlocking-corporate-startup-co-innovation-with-ai/",
+  "excerpt": "How enterprise corporations and agile venture-backed AI startups can build collaborative co-innovation loops, de-risking pilot integrations and unlocking rapid enterprise market validation."
+ },
+ {
+  "title": "Helm with YugabyteDB: Google Kubernetes Engine (GKE) Distributed Deployment",
+  "img": "https://www.harshverma.me/images/blog/helm_blog.jpg",
+  "pub": "Medium",
+  "topic": "Engineering",
+  "date": "2021",
+  "read": "8 min read",
+  "href": "https://medium.com/@harshverma59/helm-with-yugabytedb-gke-google-kubernetes-engine-9099b62548cd",
+  "excerpt": "A comprehensive practical guide to managing distributed cloud-native relational databases on Google Kubernetes Engine (GKE) using Helm package management."
  }
 ];
 

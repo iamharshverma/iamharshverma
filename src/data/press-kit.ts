@@ -21,7 +21,7 @@ import portraitAsset from "@/assets/harsh-verma-portrait.jpg.asset.json";
 import executiveAsset from "@/assets/harsh-verma-executive.jpg.asset.json";
 import speakerAsset from "@/assets/harsh-verma-speaker.jpg.asset.json";
 import authorAsset from "@/assets/harsh-verma-author.jpg.asset.json";
-import { testimonials, editorialMentions } from "./testimonials";
+import { editorialMentions } from "./testimonials";
 
 export const pressPhotos = [
   { src: executiveAsset.url, file: "harsh-verma-executive.jpg", label: "Executive", use: "Profiles, business features" },
@@ -33,7 +33,6 @@ export const pressPhotos = [
 export const pressQuotes = [
   ...media.filter(m => m.featured && m.quote).slice(0, 3).map(m => ({ quote: m.quote, by: m.outlet, context: m.title, href: m.href })),
   ...editorialMentions.map(e => ({ quote: e.quote, by: e.outlet, context: e.label, href: e.source })),
-  ...testimonials.slice(0, 2).map(t => ({ quote: t.quote, by: t.name, context: t.relationship, href: t.source })),
 ];
 
 export const bioText = () => [

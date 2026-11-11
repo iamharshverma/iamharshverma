@@ -1,0 +1,47 @@
+# Harsh Verma
+> Principal AI Engineer at Palo Alto Networks, founder-minded technologist, author and keynote speaker on agentic AI and AI security.
+
+## Pages
+- https://www.iamharshverma.com/
+- https://www.iamharshverma.com/about
+- https://www.iamharshverma.com/research
+- https://www.iamharshverma.com/books
+- https://www.iamharshverma.com/speaking
+- https://www.iamharshverma.com/media
+- https://www.iamharshverma.com/insights
+- https://www.iamharshverma.com/press-kit
+- https://www.iamharshverma.com/booking
+- https://www.iamharshverma.com/contact
+
+## Articles
+- [The Founder's Guide to Agentic AI: Build Trust Before Autonomy](https://www.iamharshverma.com/insights/the-founder-s-guide-to-agentic-ai-build-trust-before-autonomy): Harsh Verma, November 11, 2026
+- [Physical AI Is Coming: When AI Stops Generating Content And Starts Acting On The World](https://www.iamharshverma.com/insights/physical-ai-is-coming-when-ai-stops-generating-content-and-starts-acting-on-the-): Forbes Council, October 27, 2026
+- [The Real AI Moat: Why Models Are Cheap But Data Orchestration Is Priceless](https://www.iamharshverma.com/insights/the-real-ai-moat-why-models-are-cheap-but-data-orchestration-is-priceless): Forbes Council, October 2, 2026
+- [Beyond The Code: The Evolution Of The Next-Generation Engineer](https://www.iamharshverma.com/insights/beyond-the-code-the-evolution-of-the-next-generation-engineer): Forbes Council, April 20, 2026
+- [The Intelligence Per Dollar Metric: How Influential Leaders Measure AI Success](https://www.iamharshverma.com/insights/the-intelligence-per-dollar-metric-how-influential-leaders-measure-ai-success): Forbes Council, May 18, 2026
+- [Personalized AI Systems: The Hidden Trade-Off Behind Smarter AI (Personalization vs. Privacy)](https://www.iamharshverma.com/insights/personalized-ai-systems-the-hidden-trade-off-behind-smarter-ai-personalization-v): Forbes Council, June 11, 2026
+- [Your First AI Agent Is An Experiment, Not A Product](https://www.iamharshverma.com/insights/your-first-ai-agent-is-an-experiment-not-a-product): Forbes Council, July 23, 2026
+- [Engineering The Predictable: Why Pure Determinism Is Becoming The New Premium In AI Architecture](https://www.iamharshverma.com/insights/engineering-the-predictable-why-pure-determinism-is-becoming-the-new-premium-in-): Forbes Council, August 25, 2026
+- [The Production Gap: Your AI Model Isn’t as Reliable as You Think [Feature Interview]](https://www.iamharshverma.com/insights/the-production-gap-your-ai-model-isn-t-as-reliable-as-you-think-feature-intervie): HackerNoon, 2026
+- [Identity Is the New Perimeter: Managing AI Agents as Digital Actors](https://www.iamharshverma.com/insights/identity-is-the-new-perimeter-managing-ai-agents-as-digital-actors): HackerNoon, 2026
+- [The Clean Attack Problem: When Nothing Looks Wrong, but Everything Is Compromised](https://www.iamharshverma.com/insights/the-clean-attack-problem-when-nothing-looks-wrong-but-everything-is-compromised): HackerNoon, 2026
+- [The Trade-Off Between Speed and Reliability in Modern AI Systems](https://www.iamharshverma.com/insights/the-trade-off-between-speed-and-reliability-in-modern-ai-systems): HackerNoon, 2026
+- [AI Governance Is Failing Because We’re Regulating Models Instead of Behavior](https://www.iamharshverma.com/insights/ai-governance-is-failing-because-we-re-regulating-models-instead-of-behavior): HackerNoon, 2026
+- [The Observability Crisis in AI Systems: Why Your Logs Are Lying to You](https://www.iamharshverma.com/insights/the-observability-crisis-in-ai-systems-why-your-logs-are-lying-to-you): HackerNoon, 2026
+- [Reputation Systems for AI Agents: The Missing Layer of Trust](https://www.iamharshverma.com/insights/reputation-systems-for-ai-agents-the-missing-layer-of-trust): HackerNoon, 2026
+- [Distributed Intelligence: Why Multi-Agent Systems Are the Successor to Microservices](https://www.iamharshverma.com/insights/distributed-intelligence-why-multi-agent-systems-are-the-successor-to-microservi): HackerNoon, 2026
+- [From Identity to Intent: Autonomous AI Agents Are the New Insider Threat](https://www.iamharshverma.com/insights/from-identity-to-intent-autonomous-ai-agents-are-the-new-insider-threat): HackerNoon, 2026
+- [Trust Scores for AI: Should Agents Earn Permissions Over Time? Trust Isn’t Granted, It’s Earned](https://www.iamharshverma.com/insights/trust-scores-for-ai-should-agents-earn-permissions-over-time-trust-isn-t-granted): HackerNoon, 2026
+- [The Rise of the AI Orchestrator: The Latest, Most Important Enterprise Role](https://www.iamharshverma.com/insights/the-rise-of-the-ai-orchestrator-the-latest-most-important-enterprise-role): HackerNoon, 2026
+- [What Most AI Startup Founders Get Wrong About AI Agents: The Autonomy Trap](https://www.iamharshverma.com/insights/what-most-ai-startup-founders-get-wrong-about-ai-agents-the-autonomy-trap): HackerNoon, 2026
+- [The Clean Attack Problem: When Nothing Looks Wrong but Everything is Compromised](https://www.iamharshverma.com/insights/the-clean-attack-problem-when-nothing-looks-wrong-but-everything-is-compromised-rsa-conference): RSA Conference, August 2026
+- [The Death of Authentication: Why Identity Isn't Enough for AI Systems](https://www.iamharshverma.com/insights/the-death-of-authentication-why-identity-isn-t-enough-for-ai-systems): RSA Conference, September 2026
+- [Agents Don't Break Rules, They Redefine Them](https://www.iamharshverma.com/insights/agents-don-t-break-rules-they-redefine-them): RSA Conference, September 24, 2026
+- [Harsh Verma Publishes Nuanced Framework on Rise of Agentic AI and Enterprise System Era](https://www.iamharshverma.com/insights/harsh-verma-publishes-nuanced-framework-on-rise-of-agentic-ai-and-enterprise-sys): The AI Journal, May 2026
+- [How AI Agents Will Collaborate with Human Experts in High-Stakes Environments](https://www.iamharshverma.com/insights/how-ai-agents-will-collaborate-with-human-experts-in-high-stakes-environments): The AI Journal, May 2026
+- [Harsh Verma on Engineering Beyond the Code: The Future of AI and Cybersecurity](https://www.iamharshverma.com/insights/harsh-verma-on-engineering-beyond-the-code-the-future-of-ai-and-cybersecurity): The AI Journal, March 2026
+- [Principal AI Engineer Harsh Verma Nominated for Tech Excellence Award at Influencer Magazine Awards 2026](https://www.iamharshverma.com/insights/principal-ai-engineer-harsh-verma-nominated-for-tech-excellence-award-at-influen): The AI Journal, June 2026
+- [Your First AI Agent Is Your New Intern: Here’s How to Manage It](https://www.iamharshverma.com/insights/your-first-ai-agent-is-your-new-intern-here-s-how-to-manage-it): The AI Journal, June 2026
+- [Designing the Intelligence Layer: Why Future Tech Leaders Must Be AI Architects First](https://www.iamharshverma.com/insights/designing-the-intelligence-layer-why-future-tech-leaders-must-be-ai-architects-f): The AI Journal, August 2026
+- [Unlocking Corporate–Startup Co-Innovation with AI](https://www.iamharshverma.com/insights/unlocking-corporate-startup-co-innovation-with-ai): Founders Creative, 2026
+- [Helm with YugabyteDB: Google Kubernetes Engine (GKE) Distributed Deployment](https://www.iamharshverma.com/insights/helm-with-yugabytedb-google-kubernetes-engine-gke-distributed-deployment): Medium, 2021

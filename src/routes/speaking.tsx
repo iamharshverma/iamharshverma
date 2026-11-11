@@ -40,7 +40,6 @@ function Speaking() {
     <>
       <PageHero eyebrow="// keynotes · panels · judging" title={<>Talks that turn AI <span className="text-brand-gradient">into action.</span></>}
         intro="Keynotes across ACM, UC Berkeley SkyDeck, SF Tech Week and global summits — plus judging and mentoring at Techstars, Mayfield and the world's leading hackathons." />
-      <section className="mx-auto max-w-6xl px-6 py-16"><p className="eyebrow">On stage</p><h2 className="mb-8 mt-3 font-display text-4xl font-bold">Where Harsh has spoken</h2><StageMap /></section>
       <section className="border-b border-border bg-card/40">
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (
@@ -82,6 +81,7 @@ function Speaking() {
           </ul>
         </div>
       </section>
+      <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">On stage</p><h2 className="mb-8 mt-4 font-display text-5xl font-bold tracking-tight">Where Harsh has spoken</h2></Reveal><StageMap /></section>
 
       <section className="mx-auto max-w-6xl px-6 pb-20">
         <div className="flex items-end justify-between gap-4">
