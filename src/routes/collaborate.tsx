@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { Award, Check, Plus } from "lucide-react";
@@ -8,7 +9,9 @@ import { TiltCard, LogoTile, Magnetic } from "@/components/site/Interactive";
 
 export const Route = createFileRoute("/collaborate")({
   head: () => ({
+    links: canonical("/collaborate").links,
     meta: [
+      canonical("/collaborate").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Work With Harsh Verma — Keynotes, Advisory, Brand Partnerships" },

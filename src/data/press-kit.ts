@@ -16,3 +16,29 @@ export const mediaKit = {
   highlights: media.filter(m => m.featured && m.group !== "Keynotes & Talks").slice(0, 6),
   outlets: Array.from(new Set(media.map(m => m.outlet))).slice(0, 14),
 };
+
+import portraitAsset from "@/assets/harsh-verma-portrait.jpg.asset.json";
+import executiveAsset from "@/assets/harsh-verma-executive.jpg.asset.json";
+import speakerAsset from "@/assets/harsh-verma-speaker.jpg.asset.json";
+import authorAsset from "@/assets/harsh-verma-author.jpg.asset.json";
+import { testimonials, editorialMentions } from "./testimonials";
+
+export const pressPhotos = [
+  { src: executiveAsset.url, file: "harsh-verma-executive.jpg", label: "Executive", use: "Profiles, business features" },
+  { src: speakerAsset.url, file: "harsh-verma-on-stage.jpg", label: "On stage", use: "Event programs, keynote promos" },
+  { src: authorAsset.url, file: "harsh-verma-author.jpg", label: "Author", use: "Book coverage, interviews" },
+  { src: portraitAsset.url, file: "harsh-verma-portrait.jpg", label: "Portrait", use: "Bylines, podcasts" },
+];
+
+export const pressQuotes = [
+  ...media.filter(m => m.featured && m.quote).slice(0, 3).map(m => ({ quote: m.quote, by: m.outlet, context: m.title, href: m.href })),
+  ...editorialMentions.map(e => ({ quote: e.quote, by: e.outlet, context: e.label, href: e.source })),
+  ...testimonials.slice(0, 2).map(t => ({ quote: t.quote, by: t.name, context: t.relationship, href: t.source })),
+];
+
+export const bioText = () => [
+  "HARSH VERMA — OFFICIAL BIOGRAPHY", "",
+  "Short bio (50 words)", pressKit.shortBio, "",
+  "Full bio", pressKit.fullBio, "",
+  `Media enquiries: ${profile.email}`, "Website: https://www.iamharshverma.com",
+].join("\n");

@@ -1,15 +1,29 @@
+import { useId } from "react";
+
 export function Logo() {
+  const id = useId().replace(/:/g, "");
   return (
-    <span className="group inline-flex items-center gap-2.5">
-      <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-xl bg-brand-gradient shadow-glow transition duration-500 group-hover:rotate-[8deg]">
-        <svg viewBox="0 0 32 32" className="h-5 w-5 text-primary-foreground" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-          <path d="M6 6v20M6 16h8M14 6v20" />
-          <path d="M18 6l4.5 20L27 6" />
-        </svg>
-        <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary-foreground/40 to-transparent transition duration-700 group-hover:translate-x-full" />
+    <span className="group inline-flex items-center gap-3" aria-label="Harsh Verma">
+      <svg viewBox="0 0 48 48" className="h-10 w-10 transition duration-700 group-hover:rotate-[60deg]" aria-hidden="true">
+        <defs>
+          <linearGradient id={`g${id}`} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="var(--brand)" />
+            <stop offset="100%" stopColor="var(--signal)" />
+          </linearGradient>
+        </defs>
+        {/* hexagon frame */}
+        <path d="M24 2.5 42.6 13.25v21.5L24 45.5 5.4 34.75v-21.5Z" fill="none" stroke={`url(#g${id})`} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M24 7 38.7 15.5v17L24 41 9.3 32.5v-17Z" fill={`url(#g${id})`} opacity="0.12" />
+        <g className="transition duration-700 group-hover:-rotate-[60deg]" style={{ transformOrigin: "24px 24px" }}>
+          {/* H: left stem + crossbar, right stem becomes the V's first arm */}
+          <path d="M15 14v20M15 24h9" fill="none" stroke="var(--foreground)" strokeWidth="3.2" strokeLinecap="round" />
+          <path d="M24 14 29 34 34 14" fill="none" stroke={`url(#g${id})`} strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="24" cy="14" r="1.9" fill="var(--signal)" />
+        </g>
+      </svg>
+      <span className="font-display text-xl font-semibold leading-none tracking-tight">
+        Harsh<span className="text-brand">.</span>
       </span>
-      <span className="font-display text-xl font-semibold leading-none tracking-tight">Harsh<span className="text-brand">.</span>
-        <span className="block font-mono text-[9px] font-normal uppercase tracking-[0.25em] text-muted-foreground">AI · Founder · Speaker</span></span>
     </span>
   );
 }

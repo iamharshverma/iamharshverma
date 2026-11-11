@@ -16,6 +16,7 @@ import { CursorGlow } from "@/components/site/CursorGlow";
 import { ScrollProgress, ScrollTop } from "@/components/site/Interactive";
 import { AskHarsh } from "@/components/site/AskHarsh";
 
+import { personJsonLd } from "@/lib/seo";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -94,8 +95,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Agentic AI, AI security, research, speaking and advisory." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      
+      { property: "og:site_name", content: "Harsh Verma" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
     ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(personJsonLd) }],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },

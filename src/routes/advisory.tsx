@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { advisory } from "@/data/profile";
 import { Reveal, PageHero } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/advisory")({
   head: () => ({
+    links: canonical("/advisory").links,
     meta: [
+      canonical("/advisory").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Advisory & Mentoring — Harsh Verma" },

@@ -7,3 +7,10 @@
 - [x] Sourced testimonials page linked from Collaborate (four professional recommendations and one editorial mention; no invented client quotes).
 - [x] Executive light palette and typography refinements.
 - [ ] Send test booking request and confirm arrival at harshverma59@gmail.com (blocked: email domain not set up)
+- [x] SEO pass for verified Search Console site
+- [x] Insights hub + article pages
+- [x] Speaking map
+- [x] Book waitlist + countdown
+- [x] Ask Harsh page-aware chips
+- [x] Newsletter signup
+- [ ] Push to GitHub main after all done

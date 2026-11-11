@@ -6,6 +6,7 @@ export const nav = [
   { to: "/recognition", label: "Recognition" },
   { to: "/speaking", label: "Speaking" },
   { to: "/media", label: "Media" },
+  { to: "/insights", label: "Insights" },
   { to: "/collaborate", label: "Collaborate" },
   { to: "/contact", label: "Contact" },
 ] as const;

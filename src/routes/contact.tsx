@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { profile, links } from "@/data/profile";
@@ -6,7 +7,9 @@ import { Reveal, PageHero } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
+    links: canonical("/contact").links,
     meta: [
+      canonical("/contact").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Contact Harsh Verma — Keynotes, Advisory & Media" },

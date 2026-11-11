@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { Quote, ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/site/Reveal";
 import { testimonials, editorialMentions } from "@/data/testimonials";
 
 export const Route = createFileRoute("/testimonials")({
-  head: () => ({ meta: [
+  head: () => ({
+    links: canonical("/testimonials").links, meta: [
+      canonical("/testimonials").url,
     { title: "Harsh Verma — Professional Recommendations" },
     { name: "description", content: "Read sourced professional recommendations for Harsh Verma from managers and collaborators." },
     { property: "og:title", content: "Harsh Verma — Testimonials" },

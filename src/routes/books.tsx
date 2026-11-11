@@ -1,14 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowUpRight, Check, ZoomIn } from "lucide-react";
 import { books, caoStages, infographics, artifacts, audiences, aiSecurityThemes, aiSecurityAudiences } from "@/data/books";
 import { Reveal, PageHero } from "@/components/site/Reveal";
 import { TiltCard, Modal, Magnetic } from "@/components/site/Interactive";
+import { Countdown } from "@/components/site/Countdown";
+import { Subscribe } from "@/components/site/Subscribe";
 
 export const Route = createFileRoute("/books")({
   head: () => ({
+    links: canonical("/books").links,
     meta: [
+      canonical("/books").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Books by Harsh Verma — Beyond AI Engineering & AI vs. AI" },
@@ -18,6 +23,14 @@ export const Route = createFileRoute("/books")({
       { property: "og:image", content: books[0].cover },
       { name: "twitter:image", content: books[0].cover },
     ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": books.map((b) => ({
+        "@type": "Book", name: b.title, alternativeHeadline: b.subtitle, image: b.cover,
+        author: { "@id": "https://www.iamharshverma.com/#person", "@type": "Person", name: "Harsh Verma" },
+        datePublished: "2027-01", inLanguage: "en",
+      })),
+    }) }],
   }),
   component: Books,
 });
@@ -38,6 +51,16 @@ function Books() {
     <>
       <PageHero eyebrow="// author · January 2027 releases" title={<>Books for the <span className="text-brand-gradient">agentic era.</span></>}
         intro="Two books, one thesis: when AI makes output abundant, human judgment and engineered trust become the scarce advantage." />
+
+      <section className="mx-auto max-w-6xl px-6 pt-4">
+        <div className="grid gap-8 rounded-2xl border border-border bg-card p-8 md:grid-cols-[auto_1fr] md:items-center">
+          <div><p className="eyebrow">Launching January 2027</p><div className="mt-4"><Countdown /></div></div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div><p className="mb-2 text-sm font-medium">Beyond AI Engineering waitlist</p><Subscribe list="book-beyond-ai-engineering" cta="Join" /></div>
+            <div><p className="mb-2 text-sm font-medium">AI vs. AI waitlist</p><Subscribe list="book-ai-vs-ai" cta="Join" /></div>
+          </div>
+        </div>
+      </section>
 
       {/* Beyond AI Engineering */}
       <section className="mx-auto max-w-6xl overflow-hidden px-6 py-20">

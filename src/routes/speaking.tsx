@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { Clock, Play, Gavel } from "lucide-react";
@@ -6,10 +7,13 @@ import { profile } from "@/data/profile";
 import { keynotes, judging } from "@/data/media";
 import { Reveal, PageHero, Counter } from "@/components/site/Reveal";
 import { TiltCard, Modal, Magnetic } from "@/components/site/Interactive";
+import { StageMap } from "@/components/site/StageMap";
 
 export const Route = createFileRoute("/speaking")({
   head: () => ({
+    links: canonical("/speaking").links,
     meta: [
+      canonical("/speaking").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Keynotes & Speaking — Harsh Verma" },
@@ -36,6 +40,7 @@ function Speaking() {
     <>
       <PageHero eyebrow="// keynotes · panels · judging" title={<>Talks that turn AI <span className="text-brand-gradient">into action.</span></>}
         intro="Keynotes across ACM, UC Berkeley SkyDeck, SF Tech Week and global summits — plus judging and mentoring at Techstars, Mayfield and the world's leading hackathons." />
+      <section className="mx-auto max-w-6xl px-6 py-16"><p className="eyebrow">On stage</p><h2 className="mb-8 mt-3 font-display text-4xl font-bold">Where Harsh has spoken</h2><StageMap /></section>
       <section className="border-b border-border bg-card/40">
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (

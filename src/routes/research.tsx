@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { research, links } from "@/data/profile";
@@ -8,7 +9,9 @@ import { Reveal, PageHero } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/research")({
   head: () => ({
+    links: canonical("/research").links,
     meta: [
+      canonical("/research").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Research, Patents & Books — Harsh Verma" },

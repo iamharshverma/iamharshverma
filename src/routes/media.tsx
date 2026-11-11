@@ -1,4 +1,5 @@
 import { Download } from "lucide-react";
+import { canonical } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
@@ -11,7 +12,9 @@ import { TiltCard, Modal, LogoTile } from "@/components/site/Interactive";
 
 export const Route = createFileRoute("/media")({
   head: () => ({
+    links: canonical("/media").links,
     meta: [
+      canonical("/media").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Media & Press — Harsh Verma in Business Insider, USA Today, HackerNoon" },

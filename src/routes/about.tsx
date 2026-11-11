@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Briefcase, GraduationCap, MapPin } from "lucide-react";
@@ -8,14 +9,21 @@ import { Reveal, PageHero } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
+    links: canonical("/about").links,
     meta: [
+      canonical("/about").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "About Harsh Verma — Career, Education & Fellowships" },
+      { title: "About Harsh Verma — AI Engineer, Founder & Stanford Alumnus" },
       { name: "description", content: "Biography, career timeline at Palo Alto Networks, education at Stanford GSB and UT Dallas, and fellowships of Harsh Verma." },
       { property: "og:title", content: "About Harsh Verma" },
       { property: "og:description", content: "Researcher by passion, entrepreneur at heart." },
     ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({
+      "@context": "https://schema.org", "@type": "ProfilePage",
+      url: "https://www.iamharshverma.com/about",
+      mainEntity: { "@id": "https://www.iamharshverma.com/#person" },
+    }) }],
   }),
   component: About,
 });
@@ -92,8 +100,9 @@ function duration(s: Stop) {
 }
 
 function Journey() {
-  const [filter, setFilter] = useState<"all" | "work" | "edu">("all");
-  const list = stops.filter((s) => filter === "all" || s.kind === filter);
+  const [filter, setFilter] = useState<"work" | "edu">("work");
+  const list = stops.filter((s) => s.kind === filter);
+  const pick = (s: Stop) => { const l = stops.filter((x) => x.kind === s.kind); setFilter(s.kind as "work" | "edu"); setSel(l.indexOf(s)); };
   const [sel, setSel] = useState(0);
   const cur = list[Math.min(sel, list.length - 1)];
   const min = Math.min(...stops.map((s) => span(s)[0])), max = new Date().getFullYear() + 1;
@@ -104,24 +113,28 @@ function Journey() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <Reveal><p className="eyebrow">Journey</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">From code to boardroom</h2>
           <p className="mt-3 max-w-xl text-muted-foreground">Pick a milestone to explore the work, the place and the tools behind it.</p></Reveal>
-        <div className="flex rounded-full border border-border bg-card p-1">
-          {([["all", "All"], ["work", "Experience"], ["edu", "Education"]] as const).map(([k, l]) => (
-            <button key={k} onClick={() => { setFilter(k); setSel(0); }} className={`rounded-full px-4 py-2 text-sm transition ${filter === k ? "bg-brand-gradient text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>{l}</button>
+        <div className="flex rounded-full border border-border bg-card p-1 shadow-sm">
+          {([["work", "Experience", Briefcase], ["edu", "Education", GraduationCap]] as const).map(([k, l, I]) => (
+            <button key={k} onClick={() => { setFilter(k); setSel(0); }} className={`relative flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition ${filter === k ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>
+              {filter === k && <motion.span layoutId="journey-tab" className="absolute inset-0 rounded-full bg-brand-gradient shadow-glow" transition={{ type: "spring", stiffness: 380, damping: 30 }} />}
+              <I className="relative h-4 w-4" /><span className="relative">{l}</span>
+              <span className={`relative rounded-full px-1.5 font-mono text-[10px] ${filter === k ? "bg-background/25" : "bg-muted"}`}>{stops.filter((x) => x.kind === k).length}</span>
+            </button>
           ))}
         </div>
       </div>
 
       <div className="mt-12 hidden rounded-2xl border border-border bg-card p-5 md:block">
-        {(["work", "edu"] as const).filter((k) => filter === "all" || filter === k).map((k) => (
-          <div key={k} className="flex items-center gap-4 py-2">
+        {(["work", "edu"] as const).map((k) => (
+          <div key={k} className={`flex items-center gap-4 py-2 transition-opacity ${filter === k ? "opacity-100" : "opacity-50 hover:opacity-80"}`}>
             <span className="w-24 shrink-0 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{k === "work" ? "Industry" : "Academia"}</span>
             <div className="relative h-9 flex-1 rounded-lg bg-muted/60">
-              {list.map((s, i) => {
+              {stops.map((s) => {
                 if (s.kind !== k) return null;
                 const [st, en] = span(s);
                 const active = s === cur;
                 return (
-                  <button key={s.org + s.title} onClick={() => setSel(i)} title={`${s.org} · ${s.period}`}
+                  <button key={s.org + s.title} onClick={() => pick(s)} title={`${s.org} · ${s.period}`}
                     style={{ left: `${((st - min) / (max - min)) * 100}%`, width: `${Math.max(((en - st) / (max - min)) * 100, 2.5)}%` }}
                     className={`absolute inset-y-1 overflow-hidden rounded-md px-2 text-left text-[11px] font-medium whitespace-nowrap transition ${active ? "bg-brand-gradient text-primary-foreground shadow-glow" : "bg-brand/15 text-foreground hover:bg-brand/30"}`}>
                     {s.org}

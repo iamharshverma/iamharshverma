@@ -59,6 +59,27 @@ export type Database = {
         }
         Relationships: []
       }
+      portfolio_subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          list: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          list: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          list?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

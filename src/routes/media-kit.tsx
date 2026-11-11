@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/Reveal";
@@ -6,7 +7,9 @@ import { profile } from "@/data/profile";
 import { pressKit, mediaKit } from "@/data/press-kit";
 
 export const Route = createFileRoute("/media-kit")({
-  head: () => ({ meta: [
+  head: () => ({
+    links: canonical("/media-kit").links, meta: [
+      canonical("/media-kit").url,
     { title: "Harsh Verma — Media Kit for Journalists & Hosts" },
     { name: "description", content: "Bio, portrait, interview topics and downloadable media kit PDF for journalists, podcast hosts and broadcasters." },
     { property: "og:title", content: "Harsh Verma — Media Kit" },

@@ -9,6 +9,13 @@ import { PromptInput, PromptInputBody, PromptInputFooter, PromptInputSubmit, Pro
 import { Button } from "@/components/ui/button";
 import { profile } from "@/data/profile";
 
+const pageStarters: Record<string, string[]> = {
+  "/books": ["What is the C.A.O. framework?", "What is the book AI vs. AI about?", "When do Harsh's books come out?"],
+  "/speaking": ["Which keynotes has Harsh given on agentic security?", "What topics can Harsh speak on?", "How do I book Harsh for a keynote?"],
+  "/research": ["What are Harsh's main research areas?", "How many patents does Harsh hold?"],
+  "/insights": ["Summarize Harsh's latest Forbes articles.", "What does Harsh say about the real AI moat?"],
+  "/media": ["Where has Harsh been featured in the press?", "Which podcasts has Harsh appeared on?"],
+};
 const starters = [
   "What does Harsh work on at Palo Alto Networks?",
   "Which keynotes has Harsh given on agentic security?",
@@ -73,7 +80,7 @@ export function AskHarsh() {
                 {messages.length === 0 ? (
                   <ConversationEmptyState title="Ask about Harsh's work" description="Answers come from his portfolio: career, research, articles, keynotes and books.">
                     <div className="mt-4 flex flex-col gap-2">
-                      {starters.map((s) => (
+                      {(Object.entries(pageStarters).find(([k]) => typeof window !== "undefined" && window.location.pathname.startsWith(k))?.[1] ?? starters).map((s) => (
                         <Button variant="outline" key={s} onClick={() => send(s)} className="h-auto whitespace-normal px-3 py-2 text-left text-xs text-muted-foreground">{s}</Button>
                       ))}
                     </div>
@@ -83,6 +90,9 @@ export function AskHarsh() {
                     <Message key={m.id} from={m.role}>
                       <MessageContent className="group-[.is-user]:bg-brand group-[.is-user]:text-primary-foreground">
                         {m.parts.map((p, i) => (p.type === "text" ? <MessageResponse key={i}>{p.text}</MessageResponse> : null))}
+                        {m.role === "assistant" && m.parts.some((p) => p.type === "text" && /\b(book|booking|keynote|advis|hire|invite)/i.test(p.text)) && (
+                          <a href="/booking" className="mt-2 inline-flex rounded-full bg-brand-gradient px-3 py-1 text-xs font-medium text-primary-foreground">Book Harsh →</a>
+                        )}
                       </MessageContent>
                     </Message>
                   ))

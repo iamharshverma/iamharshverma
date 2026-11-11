@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -10,14 +11,17 @@ import { books } from "@/data/books";
 import { Magnetic, TiltCard, LogoTile } from "@/components/site/Interactive";
 import { keynotes, media } from "@/data/media";
 import { pressLogos } from "@/data/collaborate";
+import { Faq } from "@/components/site/Faq";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: canonical("/").links,
     meta: [
+      canonical("/").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "Harsh Verma — Principal AI Engineer, Speaker & Advisor" },
-      { name: "description", content: "Principal Software Engineer in AI at Palo Alto Networks. Agentic AI, AI security, 27+ papers, 6 patents, Forbes Technology Council." },
+      { title: "Harsh Verma — AI Founder, Principal AI Engineer & Speaker" },
+      { name: "description", content: "Harsh Verma is a founder-minded Principal AI Engineer at Palo Alto Networks, building agentic AI and AI security. Author, keynote speaker, startup advisor." },
       { property: "og:title", content: "Harsh Verma — Principal AI Engineer" },
       { property: "og:description", content: "Architecting enterprise autonomous agent systems and AI security governance." },
     ],
@@ -177,6 +181,7 @@ function Home() {
           ))}
         </div>
       </section>
+      <Faq />
     </>
   );
 }

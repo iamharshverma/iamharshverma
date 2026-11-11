@@ -1,11 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { Mic2, Compass } from "lucide-react";
 import { PageHero } from "@/components/site/Reveal";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { profile } from "@/data/profile";
 
 export const Route = createFileRoute("/booking")({
-  head: () => ({ meta: [
+  head: () => ({
+    links: canonical("/booking").links, meta: [
+      canonical("/booking").url,
     { title: "Book Harsh Verma — Keynotes & Advisory" },
     { name: "description", content: "Request Harsh Verma for an AI keynote or advisory engagement. Share your preferred date, audience and goals." },
     { property: "og:title", content: "Book Harsh Verma — Keynotes & Advisory" },

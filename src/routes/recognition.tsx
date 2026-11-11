@@ -1,11 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical } from "@/lib/seo";
 import { useState } from "react";
 import { awards } from "@/data/profile";
 import { Reveal, PageHero } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/recognition")({
   head: () => ({
+    links: canonical("/recognition").links,
     meta: [
+      canonical("/recognition").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Honors, Awards & Press — Harsh Verma" },
