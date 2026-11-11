@@ -60,7 +60,7 @@ function Home() {
             <Reveal delay={0.1}>
               <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] tracking-tight md:text-8xl">Harsh Verma<br /><span className="text-5xl md:text-7xl"><RotatingRole i={i} /></span></h1>
             </Reveal>
-            <Reveal delay={0.2}><p className="mt-6 font-display text-xl font-medium md:text-2xl">Founder mindset. Engineer's precision. Speaker's voice.</p><p className="mt-3 max-w-xl text-base text-foreground/80">AI advisory for founders: I help startups build agentic AI that customers trust — from first agent to enterprise scale.</p><p className="mt-4 max-w-xl text-lg text-muted-foreground">{profile.tagline}</p></Reveal>
+            <Reveal delay={0.2}><p className="mt-6 font-display text-xl font-medium md:text-2xl">Founder mindset. Engineer's precision. Speaker's voice.</p><p className="mt-3 max-w-xl text-base text-foreground/80">AI advisory for enterprises: I help enterprises build agentic AI that customers trust — from first agent to global scale.</p><p className="mt-4 max-w-xl text-lg text-muted-foreground">{profile.tagline}</p></Reveal>
             <Reveal delay={0.3}>
               <div className="mt-10 flex flex-wrap gap-3">
                 <Magnetic><Link to="/booking" className="group inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow transition hover:scale-[1.03]">
