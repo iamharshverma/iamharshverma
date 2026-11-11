@@ -7,6 +7,17 @@ import { enquirySchema } from "@/lib/enquiry-schema";
 import { submitEnquiry } from "@/lib/enquiries.functions";
 import { STATIC_SITE, openMailto } from "@/lib/site-mode";
 
+async function celebrate() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const confetti = (await import("canvas-confetti")).default;
+  const end = Date.now() + 1200;
+  (function frame() {
+    confetti({ particleCount: 6, angle: 60, spread: 70, origin: { x: 0, y: 0.7 } });
+    confetti({ particleCount: 6, angle: 120, spread: 70, origin: { x: 1, y: 0.7 } });
+    if (Date.now() < end) requestAnimationFrame(frame);
+  })();
+}
+
 export function EnquiryForm({ booking = false }: { booking?: boolean }) {
   const [topic, setTopic] = useState("Keynote");
   const [pending, setPending] = useState(false);
@@ -24,12 +35,14 @@ export function EnquiryForm({ booking = false }: { booking?: boolean }) {
       const d = parsed.data as Record<string, unknown>;
       openMailto(`${booking ? "Booking request" : "Enquiry"}: ${topic}`, Object.entries(d).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join("\n"));
       window.__lovableEvents?.track?.("project.contact_submitted", { topic });
+      if (booking) void celebrate();
       return;
     }
     setPending(true);
     try {
       const result = await submit({ data: parsed.data });
       setReference(result.id);
+      if (booking) void celebrate();
       window.__lovableEvents?.track?.("project.contact_submitted", { topic });
     } catch { setError("Your request wasn't saved. Please try again or email Harsh directly."); }
     finally { setPending(false); }
