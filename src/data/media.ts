@@ -1160,3 +1160,11 @@ export const judging: Judging[] = [
   "desc": "Panel discussion exploring responsible deployment frameworks for autonomous agents, algorithmic accountability, data provenance, and red-teaming methodologies."
  }
 ];
+
+export type Reel = { id: string; label: string; account: string };
+export const reels: Reel[] = [
+  { id: "DYcnn4hOfxe", label: "AI with Harsh", account: "aiwithharsh" },
+  { id: "DYaWly9vD60", label: "On stage", account: "aiwithharsh" },
+  { id: "DYSEXmMswXj", label: "Influencer Magazine Awards", account: "influencermagazineawards" },
+  { id: "DJ6szEOxxgl", label: "Speaker moments", account: "aiwithharsh" },
+];
