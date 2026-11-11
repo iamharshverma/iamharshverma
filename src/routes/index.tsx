@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { canonical } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ArrowRight, ArrowUpRight, BookOpen } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { profile, stats, awards, rolePortraits } from "@/data/profile";
 import { Reveal, Counter } from "@/components/site/Reveal";
 import { NeuralField } from "@/components/site/NeuralField";
@@ -63,11 +63,10 @@ function Home() {
             <Reveal delay={0.2}><p className="mt-6 font-display text-xl font-medium md:text-2xl">Founder mindset. Engineer's precision. Speaker's voice.</p><p className="mt-3 max-w-xl text-base text-foreground/80">AI advisory for enterprises: I help enterprises build agentic AI that customers trust — from first agent to global scale.</p><p className="mt-4 max-w-xl text-lg text-muted-foreground">{profile.tagline}</p></Reveal>
             <Reveal delay={0.3}>
               <div className="mt-10 flex flex-wrap gap-3">
-                <Magnetic><Link to="/booking" className="group inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow transition hover:scale-[1.03]">
-                  Book a keynote or advisory <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                <Magnetic><Link to="/about" className="group inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow transition hover:scale-[1.03]">
+                  Read the Story <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </Link></Magnetic>
                 <Link to="/harsh-verma-ai-speaker" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 transition hover:border-brand hover:text-brand">AI Speaker &amp; Engineer</Link>
-                <Link to="/about" className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-6 py-3 text-muted-foreground backdrop-blur transition hover:border-brand hover:text-brand"><BookOpen className="h-4 w-4" />Read the Story</Link>
               </div>
               <p className="mt-5 font-mono text-xs text-muted-foreground">RSA Conference · ACM keynotes · UC Berkeley SkyDeck · Forbes Technology Council</p>
             </Reveal>
