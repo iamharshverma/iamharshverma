@@ -48,13 +48,6 @@ function Collaborate() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <Reveal><p className="eyebrow">Enterprise & brand trust</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Brands I've worked with</h2></Reveal>
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {brands.map((b, i) => <Reveal key={b.name} delay={i * 0.02}><LogoTile src={b.logo} name={b.name} className="h-20" /></Reveal>)}
-        </div>
-      </section>
-
       <section className="mx-auto max-w-6xl px-6 pb-20">
         <Reveal><p className="eyebrow">Partnership models</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Ways to work together</h2></Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -157,6 +150,13 @@ function Collaborate() {
             <Link to="/press-kit" className="inline-flex rounded-full border border-border px-6 py-3 hover:border-brand hover:text-brand">Press kit</Link>
           </div>
         </Reveal>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <Reveal><p className="eyebrow">Enterprise & brand trust</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Brands I've worked with</h2></Reveal>
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {brands.map((b, i) => <Reveal key={b.name} delay={i * 0.02}><LogoTile src={b.logo} name={b.name} className="h-20" /></Reveal>)}
+        </div>
       </section>
     </>
   );

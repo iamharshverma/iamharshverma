@@ -3,7 +3,7 @@ import { canonical } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowUpRight, Check, ZoomIn } from "lucide-react";
-import { books, caoStages, infographics, artifacts, audiences, aiSecurityThemes, aiSecurityAudiences } from "@/data/books";
+import { books, caoStages, artifacts, audiences, aiSecurityThemes, aiSecurityAudiences } from "@/data/books";
 import { Reveal, PageHero } from "@/components/site/Reveal";
 import { TiltCard, Modal, Magnetic } from "@/components/site/Interactive";
 import { Countdown } from "@/components/site/Countdown";
@@ -138,23 +138,6 @@ function Books() {
             <p className="mt-3 text-sm text-muted-foreground">{lead === "Orchestrator" ? "You already operate at the highest altitude — the book's trust and accountability chapters are your next edge." : `Your next breakthrough: grow your ${next} muscles. The book maps the weekly experiments to get there.`}</p>
             <a href={bae.site} target="_blank" rel="noreferrer" className="mt-4 text-sm text-brand">Take the full C.A.O. assessment ↗</a>
           </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-20">
-        <Reveal><p className="eyebrow">15 infographics · 11 chapters</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Visual blueprints</h2></Reveal>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {infographics.map((g, i) => (
-            <Reveal key={g.title} delay={i * 0.05}>
-              <button onClick={() => setZoom(g.img)} className="block h-full w-full text-left">
-                <TiltCard>
-                  <div className="relative aspect-[3/4] overflow-hidden bg-muted"><img src={g.img} alt={g.title} loading="lazy" className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105" />
-                    <span className="glass absolute right-3 bottom-3 grid h-9 w-9 place-items-center rounded-full"><ZoomIn className="h-4 w-4 text-brand" /></span></div>
-                  <div className="p-4"><p className="font-mono text-[11px] text-signal">{g.ch}</p><p className="mt-1 font-display text-lg font-semibold">{g.title}</p><p className="text-xs text-muted-foreground">{g.note}</p></div>
-                </TiltCard>
-              </button>
-            </Reveal>
-          ))}
         </div>
       </section>
 

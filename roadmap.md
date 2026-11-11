@@ -21,4 +21,7 @@
 - [ ] Submit sitemap to Search Console
 - [x] Check iamharshverma.com
 - [x] Push to GitHub after all done
-- [ ] Rewrite README + push
+- [x] Rewrite README + push
+- [ ] Move brands section to end (Collaborate)
+- [ ] Remove Visual blueprints (Books)
+- [ ] Push
