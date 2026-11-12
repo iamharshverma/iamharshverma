@@ -15,9 +15,9 @@ function Card({ i, n, p, src, label, to }: { i: number; n: number; p: MotionValu
   return (
     <motion.figure style={{ x, y, rotate, scale, zIndex: n - i }}
       className="absolute left-1/2 top-1/2 w-[26cqmin] overflow-hidden rounded-xl border border-border bg-card shadow-glow md:w-[30cqmin]">
-      <Link to={to} aria-label={`Explore Harsh Verma — ${label}`} className="block rounded-xl transition-shadow hover:ring-2 hover:ring-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand">
-        <img src={src} alt={`Harsh Verma — ${label}`} loading="lazy" className="aspect-[4/5] w-full object-cover object-top" />
-        <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent px-1.5 pb-1.5 pt-6 font-mono text-[8px] text-foreground md:px-2 md:text-xs">{label}</span>
+      <Link to={to} aria-label={`Explore Harsh Verma — ${label}`} className="group block rounded-xl transition-shadow hover:ring-2 hover:ring-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand">
+        <img src={src} alt={`Harsh Verma — ${label}`} loading="lazy" className="aspect-[4/5] w-full object-cover object-top transition-transform duration-500 ease-out motion-safe:group-hover:-translate-y-1 motion-safe:group-hover:scale-105 motion-safe:group-focus-visible:-translate-y-1 motion-safe:group-focus-visible:scale-105 motion-reduce:transition-none" />
+        <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent px-1.5 pb-1.5 pt-6 font-mono text-[8px] text-foreground transition-transform duration-300 motion-safe:group-hover:-translate-y-1 motion-safe:group-focus-visible:-translate-y-1 motion-reduce:transition-none md:px-2 md:text-xs">{label}</span>
       </Link>
     </motion.figure>
   );
