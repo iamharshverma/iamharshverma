@@ -45,7 +45,7 @@ function About() {
             <Reveal delay={0.2}><p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">{profile.bio}</p></Reveal>
             <Reveal delay={0.3}>
               <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Button asChild><Link to="/collaborate">Let’s collaborate <ArrowUpRight /></Link></Button>
+                <Button asChild><a href="#who-is-harsh-verma">Know More <ChevronDown /></a></Button>
                 <Button asChild variant="ghost"><Link to="/speaking">See me on stage <ArrowUpRight /></Link></Button>
               </div>
               <p className="mt-6 flex items-center gap-2 text-xs text-muted-foreground"><MapPin className="h-3.5 w-3.5 shrink-0 text-signal" />{profile.location}</p>
@@ -53,11 +53,11 @@ function About() {
           </div>
           <Reveal delay={0.15} className="min-w-0">
             <figure className="relative mx-auto w-full max-w-md">
-              <div className="relative pl-4 pb-4">
+              <motion.div whileHover={reducedMotion ? {} : { y: -8, rotate: -1, scale: 1.025 }} transition={{ type: "spring", stiffness: 180, damping: 22 }} className="relative pl-4 pb-4">
                 <div aria-hidden="true" className="absolute inset-y-4 left-0 right-4 border border-brand/35" />
                 <motion.img src={aboutPortrait.url} alt="Harsh Verma smiling with arms crossed in a black blazer" fetchPriority="high" animate={{ y: reducedMotion ? 0 : [0, -6, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} whileHover={reducedMotion ? {} : { scale: 1.015, transition: { duration: 0.35 } }} className="relative aspect-[4/5] w-full object-cover object-top" />
                 <span aria-hidden="true" className="absolute -right-2 -top-3 font-mono text-3xl text-signal">+</span>
-              </div>
+              </motion.div>
               <figcaption className="ml-4 flex flex-wrap items-center justify-between gap-2 border-b border-border py-4 font-mono text-xs">
                 <span className="text-foreground">Founder · Engineer · Speaker</span>
                 <span className="text-signal">Curiosity → Impact</span>
@@ -67,7 +67,7 @@ function About() {
           </Reveal>
         </div>
       </section>
-      <section aria-label="Engineer. Speaker. Author." className="pt-10">
+      <section id="who-is-harsh-verma" aria-label="Engineer. Speaker. Author." className="scroll-mt-20 pt-10">
         <h2 className="sr-only">Engineer. Speaker. Author.</h2>
         <PortraitOrbit />
       </section>

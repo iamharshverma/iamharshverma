@@ -56,3 +56,4 @@
 - [x] Add recent blog articles to the homepage, linked to article pages and the full Insights collection; verified computer and phone.
 - [x] Expand About background, visible education and selected achievements using existing portfolio facts; verified career and education views on computer and phone.
 - [x] Add subtle portrait animation to the About introduction, respecting reduced-motion preferences; verified movement and reduced-motion behavior.
+- [x] Change the About introduction button to “Know More” and verify scrolling to “Who is Harsh Verma”; include the portrait hover update in GitHub delivery.
