@@ -69,7 +69,7 @@ function About() {
       </section>
       <section id="who-is-harsh-verma" aria-label="Engineer. Speaker. Author." className="scroll-mt-20 pt-10">
         <h2 className="sr-only">Engineer. Speaker. Author.</h2>
-        <PortraitOrbit />
+        <PortraitOrbit headingNote="scroll to expand !!" />
       </section>
       <SeoSummary heading="About Harsh Verma -" paragraphs={[
         "Harsh Verma is a Principal AI Engineer at Palo Alto Networks, where he builds agentic AI and AI security systems used by enterprises worldwide. He is an inventor on enterprise patents in agentic AI and copilots, and an author of peer-reviewed research.",

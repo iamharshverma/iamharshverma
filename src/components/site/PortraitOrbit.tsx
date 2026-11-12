@@ -23,7 +23,7 @@ function Card({ i, n, p, src, label, to }: { i: number; n: number; p: MotionValu
   );
 }
 
-export function PortraitOrbit({ heading, tag, sectionLink, centerText = <>“From being <span className="text-brand-gradient">Creator</span> to <span className="text-brand-gradient">Curator</span>&nbsp;!!”</> }: { heading?: ReactNode; tag?: string; sectionLink?: ReactNode; centerText?: ReactNode }) {
+export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerText = <>“From being <span className="text-brand-gradient">Creator</span> to <span className="text-brand-gradient">Curator</span>&nbsp;!!”</> }: { heading?: ReactNode; tag?: string; headingNote?: string; sectionLink?: ReactNode; centerText?: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const centerOpacity = useTransform(scrollYProgress, [0.45, 0.65], [0, 1]);
@@ -43,6 +43,7 @@ export function PortraitOrbit({ heading, tag, sectionLink, centerText = <>“Fro
           <h2 className={`font-display font-bold leading-tight tracking-normal ${tag ? "mt-3" : ""} ${heading ? "text-2xl md:text-4xl" : "text-3xl md:text-5xl"}`}>
           {heading ?? <>Who is <span className="text-brand-gradient">Harsh Verma</span>?</>}
           </h2>
+          {headingNote && <p className="mt-2 text-[10px] italic leading-relaxed text-muted-foreground">{headingNote}</p>}
           {sectionLink && <div className="mt-4 md:hidden">{sectionLink}</div>}
         </motion.div>
         {sectionLink && <div className="absolute right-[max(24px,calc((100vw-72rem)/2+24px))] top-[104px] z-20 hidden md:block">{sectionLink}</div>}
