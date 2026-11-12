@@ -58,4 +58,11 @@
 - [x] Add subtle portrait animation to the About introduction, respecting reduced-motion preferences; verified movement and reduced-motion behavior.
 - [x] Change the About introduction button to “Know More” and verify scrolling to “Who is Harsh Verma”; include the portrait hover update in GitHub delivery.
 - [x] Change the expanded photo-circle heading and hide its scroll hint; remove the selected dot after the About name.
-- [ ] Deliver the finished About photo-circle changes to iamharshverma/iamharshverma.
+- [x] Deliver the finished About photo-circle changes to iamharshverma/iamharshverma; deployment succeeded.
+- [x] Align homepage FAQ with preceding sections; verify desktop and phone.
+- [x] Strengthen shadows and side fades on the homepage “As seen on” strip; verified desktop and phone.
+- [x] Change the homepage photo-circle link to “know more” opening About.
+- [x] Add hover animation to the homepage portrait and its role label; verified movement and reduced-motion support.
+- [x] Refine homepage portraits, articles and press strip for phones; verified 320px, 390px, 430px and desktop layouts.
+- [x] Add a matching social strip in the footer only with verified Instagram, LinkedIn and Twitter links.
+- [x] Place social strip before copyright links and update profiles, including alternate portfolio; verified destinations and phone fit.

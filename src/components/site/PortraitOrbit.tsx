@@ -24,7 +24,7 @@ function Card({ i, n, p, src, label, to }: { i: number; n: number; p: MotionValu
   );
 }
 
-export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerText = <>“From being <span className="text-brand-gradient">Creator</span> to <span className="text-brand-gradient">Curator</span>&nbsp;!!”</> }: { heading?: ReactNode; tag?: string; headingNote?: string; sectionLink?: ReactNode; centerText?: ReactNode }) {
+export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerLink = { to: "/speaking", label: "See him on stage →" }, centerText = <>“From being <span className="text-brand-gradient">Creator</span> to <span className="text-brand-gradient">Curator</span>&nbsp;!!”</> }: { heading?: ReactNode; tag?: string; headingNote?: string; sectionLink?: ReactNode; centerLink?: { to: "/about" | "/speaking"; label: string }; centerText?: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const [expanded, setExpanded] = useState(false);
@@ -67,7 +67,7 @@ export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerTe
             <blockquote className={`mt-2 text-balance font-display font-bold leading-snug tracking-normal ${heading ? "text-[clamp(12px,3.4cqmin,24px)]" : "text-[clamp(13px,3.8cqmin,28px)]"}`}>
               {centerText}
             </blockquote>
-            <Link to="/speaking" className="mt-3 inline-block max-w-full text-balance font-mono text-[clamp(10px,2cqmin,14px)] leading-relaxed text-brand hover:underline">See him on stage →</Link>
+            <Link to={centerLink.to} className="mt-3 inline-block max-w-full text-balance font-mono text-[clamp(10px,2cqmin,14px)] leading-relaxed text-brand hover:underline">{centerLink.label}</Link>
           </motion.div>
         </div>
       </div>

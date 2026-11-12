@@ -339,6 +339,11 @@
 }
 @utility bg-brand-gradient { background: var(--gradient-brand); }
 @utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility border-shine {
+  --role-border-shine: 0 0 0 1px color-mix(in oklch, var(--color-brand) 65%, transparent), 0 0 18px color-mix(in oklch, var(--color-brand) 45%, transparent), inset 0 0 10px color-mix(in oklch, var(--color-brand) 18%, transparent);
+  border-color: var(--color-brand);
+  box-shadow: var(--role-border-shine);
+}
 @utility grain {
   background-image: radial-gradient(circle at 20% 0%, oklch(0.68 0.19 250 / 16%), transparent 45%),
     radial-gradient(circle at 90% 30%, oklch(0.8 0.15 70 / 6%), transparent 40%);
@@ -361,6 +366,32 @@
 @utility marquee-edge-fade {
   mask-image: linear-gradient(to right, transparent, var(--foreground) min(12%, 140px), var(--foreground) calc(100% - min(12%, 140px)), transparent);
 }
+@utility press-strip-depth {
+  --press-edge-width: min(22%, 240px);
+  --press-card-shadow: 0 8px 18px -8px color-mix(in oklch, var(--foreground) 28%, transparent);
+  --press-edge-shade: color-mix(in oklch, var(--background) 86%, var(--foreground) 14%);
+  position: relative;
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    width: var(--press-edge-width);
+    z-index: 1;
+    pointer-events: none;
+  }
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, var(--background), var(--press-edge-shade) 15%, transparent);
+  }
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, var(--background), var(--press-edge-shade) 15%, transparent);
+  }
+}
+@utility press-strip-fade {
+  mask-image: linear-gradient(to right, transparent, color-mix(in oklch, var(--foreground) 20%, transparent) 6%, var(--foreground) min(22%, 240px), var(--foreground) calc(100% - min(22%, 240px)), color-mix(in oklch, var(--foreground) 20%, transparent) 94%, transparent);
+}
+@utility press-card-shadow { box-shadow: var(--press-card-shadow); }
 
 @utility bg-grid {
   background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
@@ -382,3 +413,14 @@
 /* About page portrait orbit: circle radius per screen size */
 .orbit-stage { --orbit-r: 35cqmin; }
 @media (min-width: 768px) { .orbit-stage { --orbit-r: 36cqmin; } }
+@media (max-width: 767px) {
+  .home-portrait-orbit > div { height: 220svh; }
+  .home-portrait-orbit > div > div { height: 100svh; }
+  .home-portrait-orbit .orbit-stage {
+    width: min(92vw, 55svh);
+    top: 72px;
+    --orbit-r: 33cqmin;
+  }
+  .home-portrait-orbit .orbit-stage figure { border-radius: 8px; }
+  .home-portrait-orbit .orbit-stage figure span { font-size: 9px; }
+}

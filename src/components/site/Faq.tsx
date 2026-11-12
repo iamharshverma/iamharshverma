@@ -5,7 +5,7 @@ import { faqs } from "@/data/faq";
 export function Faq() {
   const [open, setOpen] = useState(0);
   return (
-    <section className="mx-auto max-w-4xl px-6 py-20" aria-labelledby="faq-title">
+    <section className="mx-auto max-w-6xl px-6 py-20" aria-labelledby="faq-title">
       <p className="eyebrow">// frequently asked</p>
       <h2 id="faq-title" className="mt-3 font-display text-3xl md:text-4xl">About Harsh's work</h2>
       <div className="mt-8 divide-y divide-border border-y border-border">

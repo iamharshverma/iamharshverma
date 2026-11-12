@@ -62,10 +62,15 @@ export const aboutBackground = [
 ];
 
 export const links = {
+  portfolio: "https://www.harshverma.me/",
+  instagram: "https://www.instagram.com/aiwithharsh",
+  twitter: "https://x.com/harshverma59",
   linkedin: "https://www.linkedin.com/in/harshverma59/",
   github: "https://github.com/iamharshverma",
   scholar: "https://scholar.google.com/citations?user=zSt9oRMAAAAJ&hl=en",
   forbes: "https://www.forbes.com/councils/forbestechcouncil/people/harshverma/",
+  rsac: "https://www.rsaconference.com/experts/Harsh%20Verma",
+  hackernoon: "https://hackernoon.com/u/harshverma59",
   theorg: "https://theorg.com/org/palo-alto-networks/person/harsh-verma",
   bio: "https://harshverma.bio/",
   mastodon: "https://mastodon.social/@harshverma59",
