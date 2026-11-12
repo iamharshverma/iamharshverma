@@ -31,19 +31,21 @@ export function PortraitOrbit({ heading, tag, sectionLink, centerText = <>“Fro
   const reducedMotion = useReducedMotion();
   const headingWidth = useTransform(scrollYProgress, [0.08, 0.5], ["90%", "34%"]);
   const headingY = useTransform(scrollYProgress, [0.08, 0.5], [-8, 0]);
+  const headingSpread = useTransform(scrollYProgress, [0.08, 0.5], [0, 1]);
+  const headingLeft = useTransform(headingSpread, (spread) => `calc(max(24px, (100vw - 72rem) / 2 + 24px) * ${1 - spread} + 40px * ${spread})`);
   const n = orbitPortraits.length;
   return (
     <div ref={ref} className="relative h-[260vh]">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
-        <motion.div style={{ "--heading-width": reducedMotion ? "34%" : headingWidth, y: reducedMotion ? 0 : headingY } as MotionStyle}
-          className={`absolute left-4 right-4 z-10 md:left-10 md:right-auto md:w-[var(--heading-width)] ${heading ? "top-24 md:top-[104px]" : "top-20 md:top-[88px]"}`}>
+        <motion.div style={{ "--heading-width": reducedMotion ? "34%" : headingWidth, "--heading-left": reducedMotion ? "40px" : headingLeft, y: reducedMotion ? 0 : headingY } as MotionStyle}
+          className={`absolute left-6 right-6 z-10 md:left-[var(--heading-left)] md:right-auto md:w-[var(--heading-width)] ${heading ? "top-24 md:top-[104px]" : "top-20 md:top-[88px]"}`}>
           {tag && <p className="eyebrow text-balance">{tag}</p>}
           <h2 className={`font-display font-bold leading-tight tracking-normal ${tag ? "mt-3" : ""} ${heading ? "text-2xl md:text-4xl" : "text-3xl md:text-5xl"}`}>
           {heading ?? <>Who is <span className="text-brand-gradient">Harsh Verma</span>?</>}
           </h2>
           {sectionLink && <div className="mt-4 md:hidden">{sectionLink}</div>}
         </motion.div>
-        {sectionLink && <div className="absolute right-10 top-[104px] z-20 hidden md:block">{sectionLink}</div>}
+        {sectionLink && <div className="absolute right-[max(24px,calc((100vw-72rem)/2+24px))] top-[104px] z-20 hidden md:block">{sectionLink}</div>}
         <div className="orbit-stage relative aspect-square w-[min(96vw,84vh)]" style={{ containerType: "size" }}>
           {orbitPortraits.map((g, i) => <Card key={g.label} i={i} n={n} p={scrollYProgress} src={g.src} label={g.label} to={g.to} />)}
           <motion.div style={{ opacity: centerOpacity, scale: centerScale }}
