@@ -14,7 +14,7 @@ export function ScrollTop() {
   if (!show) return null;
   return (
     <button aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="glass fixed right-6 bottom-24 z-50 grid h-11 w-11 place-items-center rounded-full text-brand transition hover:shadow-glow">
+      className="glass fixed right-6 bottom-24 z-50 hidden md:grid h-11 w-11 place-items-center rounded-full text-brand transition hover:shadow-glow">
       <ArrowUp className="h-4 w-4" />
     </button>
   );
