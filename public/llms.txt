@@ -17,6 +17,7 @@
 - https://www.iamharshverma.com/contact
 
 ## Articles
+- [Enterprise Agent Security Checklist: Tool Permissions and Human Approvals](https://www.iamharshverma.com/insights/enterprise-agent-security-checklist-tool-permissions-and-human-approvals): Least privilege, action-bound approvals, untrusted tool output, monitoring and containment. November 12, 2026.
 - [The Founder's Guide to Agentic AI: Build Trust Before Autonomy](https://www.iamharshverma.com/insights/the-founder-s-guide-to-agentic-ai-build-trust-before-autonomy): Harsh Verma, November 11, 2026
 - [Physical AI Is Coming: When AI Stops Generating Content And Starts Acting On The World](https://www.iamharshverma.com/insights/physical-ai-is-coming-when-ai-stops-generating-content-and-starts-acting-on-the-): Forbes Council, October 27, 2026
 - [The Real AI Moat: Why Models Are Cheap But Data Orchestration Is Priceless](https://www.iamharshverma.com/insights/the-real-ai-moat-why-models-are-cheap-but-data-orchestration-is-priceless): Forbes Council, October 2, 2026

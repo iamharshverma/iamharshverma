@@ -20,14 +20,14 @@ export const Route = createFileRoute("/insights/$slug")({
         { property: "og:description", content: a.excerpt },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
-        { property: "og:image", content: a.img },
-        { name: "twitter:image", content: a.img },
+        ...(a.img.startsWith("https://") ? [{ property: "og:image", content: a.img }, { name: "twitter:image", content: a.img }] : []),
       ],
       scripts: [{ type: "application/ld+json", children: JSON.stringify({
         "@context": "https://schema.org", "@type": "Article", headline: a.title, description: a.excerpt, keywords: "agentic AI, AI agents, AI advisory, AI for founders", about: [{ "@type": "Thing", name: "Agentic AI" }, { "@type": "Thing", name: "AI advisory" }], image: a.img,
         ...(isNaN(Date.parse(a.date)) ? {} : { datePublished: new Date(a.date).toISOString().slice(0, 10) }), url: `${SITE_URL}/insights/${params.slug}`,
         author: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: "Harsh Verma" },
         publisher: { "@type": "Person", name: "Harsh Verma" }, ...(a.href ? { sameAs: a.href } : {}),
+        ...(a.sources ? { citation: a.sources.map(source => source.href) } : {}),
       }) }, { type: "application/ld+json", children: JSON.stringify({
         "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
@@ -48,7 +48,7 @@ function Article() {
       <Link to="/insights" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand"><ArrowLeft className="h-4 w-4" />All insights</Link>
       <p className="mt-8 font-mono text-xs text-signal">{a.topic} · {a.pub} · {a.date} · {a.read}</p>
       <h1 className="mt-3 font-display text-4xl font-bold leading-tight tracking-tight md:text-5xl">{a.title}</h1>
-      <img src={a.img} alt="" className="mt-8 aspect-[16/9] w-full rounded-2xl border border-border object-cover" />
+      <img src={a.img} alt="" className={a.sources ? "mt-8 h-auto max-h-[520px] w-full rounded-lg border border-border object-contain" : "mt-8 aspect-[16/9] w-full rounded-2xl border border-border object-cover"} />
       {a.body ? (
         <div className="mt-10 space-y-6 text-lg leading-relaxed">
           <p className="text-xl text-muted-foreground">{a.excerpt}</p>
@@ -56,9 +56,11 @@ function Article() {
             <section key={i} className="space-y-4">
               {sec.h && <h2 className="pt-4 font-display text-2xl font-bold">{sec.h}</h2>}
               {sec.p.map((t) => <p key={t.slice(0, 40)} className="text-muted-foreground">{t}</p>)}
+              {sec.checklist && <ul className="divide-y divide-border">{sec.checklist.map(item => <li key={item}><label className="flex cursor-pointer items-start gap-3 py-4 text-base leading-relaxed"><input type="checkbox" className="mt-1 h-5 w-5 shrink-0 accent-brand" /><span>{item}</span></label></li>)}</ul>}
             </section>
           ))}
-          <div className="rounded-2xl border border-border bg-card p-6"><p className="font-display text-lg font-bold">Building with agentic AI?</p><p className="mt-1 text-sm text-muted-foreground">Harsh advises founders on AI strategy, architecture and trust.</p><Link to="/booking" search={{ topic: "Advisory" }} className="mt-4 inline-flex rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-medium text-primary-foreground">Book an advisory call</Link></div>
+          {a.sources && <section className="border-t border-border pt-6"><h2 className="font-display text-2xl font-bold">Sources and further reading</h2><ul className="mt-4 space-y-3 text-base">{a.sources.map(source => <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer" className="text-brand underline underline-offset-4">{source.title}</a></li>)}</ul></section>}
+          <div className="rounded-2xl border border-border bg-card p-6"><p className="font-display text-lg font-bold">Building with agentic AI?</p><p className="mt-1 text-sm text-muted-foreground">Harsh advises {a.topic === "Enterprise Security" ? "enterprises" : "founders"} on AI strategy, architecture and trust.</p><Link to="/booking" search={{ topic: "Advisory" }} className="mt-4 inline-flex rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-medium text-primary-foreground">Book an advisory call</Link></div>
         </div>
       ) : (<>
       <p className="mt-8 text-lg leading-relaxed text-muted-foreground">{a.excerpt}…</p>

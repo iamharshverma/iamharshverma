@@ -66,6 +66,7 @@ function Speaking() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild><Link to="/booking" search={{ topic: "Keynote" }}>Discuss your AI keynote</Link></Button>
           <Button asChild variant="outline"><Link to="/speaker-bio">Speaker bio &amp; event history</Link></Button>
+          <Button asChild variant="outline"><Link to="/insights/$slug" params={{ slug: "enterprise-agent-security-checklist-tool-permissions-and-human-approvals" }}>Enterprise agent security checklist</Link></Button>
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-6 py-20">

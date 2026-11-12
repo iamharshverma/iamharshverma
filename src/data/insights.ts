@@ -8,5 +8,5 @@ export const insights: (Insight)[] = [...originalPosts, ...blogs].map((b) => {
   seen.add(slug);
   return { ...b, slug };
 });
-export type Insight = Blog & { slug: string; body?: OriginalPost["body"] };
+export type Insight = Blog & { slug: string; body?: OriginalPost["body"]; sources?: OriginalPost["sources"] };
 export const findInsight = (slug: string) => insights.find((i) => i.slug === slug);
