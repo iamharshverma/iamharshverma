@@ -5,7 +5,7 @@ import { PageHero } from "@/components/site/Reveal";
 import { profile, experience, speaking, links } from "@/data/profile";
 import professionalPortrait from "@/assets/harsh-verma-professional-profile.jpg.asset.json";
 import { keynotes } from "@/data/media";
-import { canonical, SITE_URL } from "@/lib/seo";
+import { canonical, SITE_URL, ALT_PORTFOLIO_URL } from "@/lib/seo";
 
 const path = "/harsh-verma-ai-speaker";
 const title = "Harsh Verma — AI Speaker & Principal AI Engineer";
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/harsh-verma-ai-speaker")({
           jobTitle: profile.title,
           worksFor: { "@type": "Organization", name: profile.company },
           description: profile.bio,
-          sameAs: Object.values(links),
+          sameAs: [ALT_PORTFOLIO_URL, ...Object.values(links)],
           knowsAbout: ["Agentic AI", "AI security", "Enterprise AI", "Machine learning", "Distributed systems"],
         },
       }),

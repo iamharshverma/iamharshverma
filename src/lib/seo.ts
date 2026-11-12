@@ -2,6 +2,9 @@ import { links, profile } from "@/data/profile";
 
 export const SITE_URL = "https://www.iamharshverma.com";
 
+/** Harsh's other portfolio — same person, declared for search engines only. */
+export const ALT_PORTFOLIO_URL = "https://www.harshverma.me/";
+
 export const canonical = (path: string) => {
   const href = `${SITE_URL}${path === "/" ? "/" : path}`;
   return {
@@ -26,7 +29,7 @@ export const personJsonLd = {
       alumniOf: [{ "@type": "CollegeOrUniversity", name: "Stanford University" }],
       knowsAbout: ["Agentic AI", "AI Security", "Machine Learning", "Cybersecurity", "Autonomous Agents", "Distributed Systems", "AI Governance"],
       memberOf: { "@type": "Organization", name: "Forbes Technology Council" },
-      sameAs: Object.values(links),
+      sameAs: [ALT_PORTFOLIO_URL, ...Object.values(links)],
     },
     {
       "@type": "WebSite",

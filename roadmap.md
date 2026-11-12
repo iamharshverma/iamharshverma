@@ -46,3 +46,4 @@
 - [x] Submit sitemap and inspect About, Speaking and Research indexing: accepted with zero errors; About indexed, Speaking unknown, Research discovered but not indexed.
 - [x] Replace the two selected Insights thumbnails with article-specific artwork.
 - [x] Confirm new thumbnail delivery to GitHub — both artwork files delivered through the approved GitHub connection.
+- [x] Recolor the HV logo to deep blue + red, regenerate browser tab icons, and deliver to GitHub — live on iamharshverma.com.
