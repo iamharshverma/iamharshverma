@@ -289,6 +289,27 @@
 :root[data-theme="signal"] a .bg-card:hover, :root[data-theme="signal"] a.bg-card:hover { border-color: oklch(0.66 0.21 42); }
 :root[data-theme="signal"] .eyebrow { color: oklch(0.55 0.2 38); }
 
+/* Signal Orange: Meridian-style black footer and dark header links */
+:root[data-theme="signal"] footer {
+  position: relative; z-index: 1;
+  background-color: oklch(0.16 0.008 60);
+  --foreground: oklch(0.97 0.004 80);
+  --muted-foreground: oklch(0.72 0.01 80);
+  --border: oklch(0.32 0.01 60);
+  --input: oklch(0.38 0.01 60);
+  --background: oklch(0.22 0.008 60);
+  --card: oklch(0.22 0.008 60);
+  --brand: oklch(0.72 0.19 45);
+  color: var(--foreground);
+}
+:root[data-theme="signal"] footer input { background-color: oklch(0.22 0.008 60); color: var(--foreground); }
+:root[data-theme="signal"] footer a:hover { color: oklch(0.72 0.19 45); }
+:root[data-theme="signal"] header nav a,
+:root[data-theme="signal"] header .text-muted-foreground { color: oklch(0.16 0.008 60); }
+:root[data-theme="signal"] header nav a:hover,
+:root[data-theme="signal"] header nav a[data-status="active"],
+:root[data-theme="signal"] header nav a.text-brand { color: oklch(0.58 0.2 40); }
+
 @layer base {
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
