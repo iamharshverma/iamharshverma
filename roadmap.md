@@ -39,10 +39,10 @@
 - [x] Refresh Speaking and Speaker Bio content and metadata for AI speaker / AI keynote speaker searches; verify both pages.
 - [x] Check Google indexing for /speaker-bio and /speaking; both unknown to Google. Manual Request indexing is required; the API cannot perform it.
 - [x] Homepage hero primary button is "Read the Story" opening the About story page; duplicate button removed; pushed and live on iamharshverma.com.
-- [ ] Verify delivery to iamharshverma/iamharshverma — changes committed for platform sync; direct delivery was blocked by the environment, and the named repository's update remains unverified.
+- [x] Verify delivery to iamharshverma/iamharshverma — all missing source and image files delivered to main; GitHub Pages deployment succeeded.
 - [x] Build and verify enterprise agent security checklist linked from Insights and Speaking, with citations and 24 review items.
-- [ ] Confirm checklist publication on iamharshverma.com — waiting on delivery to the named GitHub repository; automatic platform sync is not a verified deployment.
+- [x] Confirm checklist publication on iamharshverma.com — live article returns 200 with the full checklist.
 - [ ] Update Forbes Council website link — requires access to the Forbes member profile editor or editorial approval.
 - [x] Submit sitemap and inspect About, Speaking and Research indexing: accepted with zero errors; About indexed, Speaking unknown, Research discovered but not indexed.
 - [x] Replace the two selected Insights thumbnails with article-specific artwork.
-- [ ] Confirm new thumbnail delivery to GitHub — GitHub connection approval was declined; changes will be committed for existing platform sync only.
+- [x] Confirm new thumbnail delivery to GitHub — both artwork files delivered through the approved GitHub connection.

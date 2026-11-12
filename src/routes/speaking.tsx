@@ -1,3 +1,4 @@
+import { SeoSummary } from "@/components/site/SeoSummary";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { canonical } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
@@ -46,6 +47,10 @@ function Speaking() {
     <>
       <PageHero eyebrow="// keynotes · panels · judging" title={<>Harsh Verma · <span className="text-brand-gradient">AI keynote speaker.</span></>}
         intro="Agentic AI, enterprise security and responsible adoption — grounded in engineering practice, with keynote recordings from ACM and UC Berkeley SkyDeck." />
+      <SeoSummary heading="Book Harsh Verma as an AI keynote speaker" paragraphs={[
+        "Harsh Verma speaks on agentic AI, AI security and responsible enterprise adoption. As a Principal AI Engineer at Palo Alto Networks, he brings real production experience to every keynote, panel and fireside chat, with talks delivered at ACM and UC Berkeley SkyDeck.",
+        "Event organisers book Harsh for engineering conferences, executive summits, university programmes and hackathon judging. Talks are tailored for technical, leadership and security audiences, in person or online.",
+      ]} links={[{ to: "/speaker-bio", label: "Speaker bio & PDF" }, { to: "/booking", label: "Book a keynote" }, { to: "/about", label: "About Harsh" }]} />
       <section className="border-b border-border bg-card/40">
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (

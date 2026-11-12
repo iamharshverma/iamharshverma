@@ -1,3 +1,4 @@
+import { SeoSummary } from "@/components/site/SeoSummary";
 import { createFileRoute } from "@tanstack/react-router";
 import { canonical } from "@/lib/seo";
 import { useState } from "react";
@@ -14,10 +15,10 @@ export const Route = createFileRoute("/about")({
       canonical("/about").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "About Harsh Verma — AI Engineer, Founder & Stanford Alumnus" },
-      { name: "description", content: "Biography, career timeline at Palo Alto Networks, education at Stanford GSB and UT Dallas, and fellowships of Harsh Verma." },
-      { property: "og:title", content: "About Harsh Verma" },
-      { property: "og:description", content: "Researcher by passion, entrepreneur at heart." },
+      { title: "About Harsh Verma | Principal AI Engineer, Speaker & Author" },
+      { name: "description", content: "Harsh Verma is a Principal AI Engineer at Palo Alto Networks, AI keynote speaker and author. Read his biography, career journey, Stanford GSB and UT Dallas education." },
+      { property: "og:title", content: "About Harsh Verma | Principal AI Engineer, Speaker & Author" },
+      { property: "og:description", content: "Biography and career journey of Harsh Verma, Principal AI Engineer at Palo Alto Networks, AI speaker and author." },
       { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
       { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,6 +36,10 @@ function About() {
   return (
     <>
       <PageHero eyebrow="// about" title={<>Researcher by passion,<br /><span className="text-brand-gradient">entrepreneur at heart.</span></>} intro={profile.bio} />
+      <SeoSummary heading="Who is Harsh Verma?" paragraphs={[
+        "Harsh Verma is a Principal AI Engineer at Palo Alto Networks, where he builds agentic AI and AI security systems used by enterprises worldwide. He is an inventor on enterprise patents in agentic AI and copilots, and an author of peer-reviewed research.",
+        "Beyond engineering, Harsh is an AI keynote speaker, a Forbes Technology Council member and the author of two upcoming books, Beyond AI Engineering and AI vs AI, both coming in January 2027. He studied at Stanford Graduate School of Business and the University of Texas at Dallas.",
+      ]} links={[{ to: "/speaking", label: "Keynotes & talks" }, { to: "/research", label: "Patents & research" }, { to: "/books", label: "Books" }]} />
       <section className="mx-auto max-w-6xl px-6 pt-20">
         <Reveal><p className="eyebrow">Many rooms, one mission</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Engineer. Speaker. Author.</h2></Reveal>
         <div className="mt-10 grid gap-4 md:h-[520px] md:grid-cols-3 md:gap-0 md:[&:hover>*]:flex-1">

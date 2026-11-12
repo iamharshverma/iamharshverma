@@ -1,3 +1,4 @@
+import { SeoSummary } from "@/components/site/SeoSummary";
 import { createFileRoute } from "@tanstack/react-router";
 import { canonical } from "@/lib/seo";
 import { useState } from "react";
@@ -14,10 +15,10 @@ export const Route = createFileRoute("/research")({
       canonical("/research").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "Research, Patents & Books — Harsh Verma" },
-      { name: "description", content: "Patents in agentic AI and copilots, 27+ peer-reviewed papers, open-source systems projects and upcoming books by Harsh Verma." },
-      { property: "og:title", content: "Research, Patents & Books — Harsh Verma" },
-      { property: "og:description", content: "Intellectual property and research in AI security and agentic systems." },
+      { title: "Harsh Verma Research | AI Patents, Papers & Agentic AI" },
+      { name: "description", content: "Explore Harsh Verma’s research: enterprise patents in agentic AI and copilots, 27+ peer-reviewed papers on AI security, open-source systems work and two upcoming books." },
+      { property: "og:title", content: "Harsh Verma Research | AI Patents, Papers & Agentic AI" },
+      { property: "og:description", content: "Enterprise patents, 27+ peer-reviewed papers and open-source work in agentic AI and AI security." },
       { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
       { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,6 +36,10 @@ function Research() {
     <>
       <PageHero eyebrow="// research · patents · writing" title={<>Ideas, <span className="text-brand-gradient">patented and published.</span></>}
         intro="Six enterprise patents, 27+ peer-reviewed papers, two books and a body of open-source systems work." />
+      <SeoSummary heading="Research in agentic AI and AI security" paragraphs={[
+        "Harsh Verma’s research focuses on making AI agents safe, reliable and useful in the enterprise. His work spans six enterprise patents in agentic AI and copilots, more than 27 peer-reviewed papers, and open-source systems projects.",
+        "Below you’ll find his latest technical writing, patents, publications and books, including Beyond AI Engineering and AI vs AI, coming in January 2027.",
+      ]} links={[{ to: "/insights", label: "Insights articles" }, { to: "/agentic-ai", label: "Agentic AI hub" }, { to: "/books", label: "Books" }]} />
       <section className="mx-auto max-w-6xl px-6 pt-16">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <Reveal><p className="eyebrow">Articles & thought leadership</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Latest writing</h2></Reveal>
