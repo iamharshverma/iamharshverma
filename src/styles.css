@@ -375,3 +375,7 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+/* About page portrait orbit: circle radius per screen size */
+.orbit-stage { --orbit-r: 44cqmin; }
+@media (min-width: 768px) { .orbit-stage { --orbit-r: 38cqmin; } }

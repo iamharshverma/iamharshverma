@@ -24,8 +24,6 @@ export const orbitPortraits = [
   { src: authorAsset.url, label: "Author" },
   { src: portraitAsset.url, label: "Researcher" },
   { src: profileAsset.url, label: "Advisor" },
-  { src: `${IMG}/harsh/Harsh_portfolio_pic.png`, label: "On stage" },
-  { src: `${IMG}/harsh_stanford.jpg`, label: "Stanford GSB" },
 ];
 
 export const profile = {
