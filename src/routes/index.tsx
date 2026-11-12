@@ -13,6 +13,9 @@ import { keynotes, media } from "@/data/media";
 import { pressLogos } from "@/data/collaborate";
 import { Faq } from "@/components/site/Faq";
 import { WorkWithMe } from "@/components/site/WorkWithMe";
+import { PortraitOrbit } from "@/components/site/PortraitOrbit";
+import { insights } from "@/data/insights";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,6 +52,7 @@ function Home() {
   useEffect(() => { const t = setInterval(() => setI((v) => (v + 1) % profile.roles.length), 2600); return () => clearInterval(t); }, []);
   const role = profile.roles[i] ?? "";
   const shot = rolePortraits[role] ?? { src: profile.portrait, caption: "Agentic AI & AI Security · Palo Alto Networks" };
+  const recentArticles = [...insights].sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0)).slice(0, 3);
   return (
     <>
       <section className="relative min-h-screen overflow-hidden grain">
@@ -169,7 +173,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-28">
+      <section className="mx-auto max-w-6xl px-6 pb-12">
         <div className="mb-10 flex items-end justify-between">
           <Reveal><p className="eyebrow">Coming January 2027</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Authored books</h2></Reveal>
           <Link to="/books" className="hidden items-center gap-1 text-sm text-brand md:flex">Explore the books <ArrowUpRight className="h-4 w-4" /></Link>
@@ -182,6 +186,30 @@ function Home() {
                   <img src={b.cover} alt={b.title} className="w-28 shrink-0 rounded-lg object-cover shadow-glow" loading="lazy" />
                   <div><p className="font-mono text-xs text-signal">{b.status}</p><h3 className="mt-2 font-display text-2xl font-bold">{b.title}</h3><p className="mt-1 text-sm text-brand">{b.subtitle}</p><p className="mt-3 line-clamp-3 text-sm text-muted-foreground">{b.pitch}</p></div>
                 </TiltCard>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+      <section aria-label="Connect with Harsh and explore">
+        <PortraitOrbit tag="Driven by purpose. Defined by people." heading={<>Connect with <span className="text-brand-gradient">Harsh</span> &amp; <span className="text-brand-gradient">Explore</span>&nbsp;!!</>} sectionLink={<Link to="/collaborate" className="inline-flex items-center gap-1 text-sm text-brand hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Explore collaboration <ArrowUpRight className="h-4 w-4" /></Link>} centerText={<><span className="text-brand-gradient">Passion</span> , Persistence &amp; <span className="text-brand-gradient">People</span></>} />
+      </section>
+      <section aria-labelledby="recent-articles-heading" className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
+          <Reveal><p className="eyebrow">Ideas into impact</p><h2 id="recent-articles-heading" className="mt-4 font-display text-3xl font-bold tracking-normal md:text-5xl">Recent articles</h2></Reveal>
+          <Button asChild variant="outline"><Link to="/insights">Explore the blog <ArrowUpRight /></Link></Button>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {recentArticles.map((article, index) => (
+            <Reveal key={article.slug} delay={index * 0.05}>
+              <Link to="/insights/$slug" params={{ slug: article.slug }} className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition hover:-translate-y-1 hover:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                <div className="aspect-video overflow-hidden bg-muted"><img src={article.img} alt="" loading="lazy" className="h-full w-full object-cover transition duration-500 motion-reduce:transition-none group-hover:scale-105" /></div>
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="font-mono text-xs text-signal">{article.topic} · {article.read}</p>
+                  <h3 className="mt-3 font-display text-xl font-semibold leading-snug group-hover:text-brand">{article.title}</h3>
+                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{article.excerpt}</p>
+                  <div className="mt-auto flex items-center justify-between gap-3 pt-6"><span className="text-xs text-muted-foreground">{article.date}</span><ArrowUpRight className="h-4 w-4 shrink-0 text-brand" /></div>
+                </div>
               </Link>
             </Reveal>
           ))}

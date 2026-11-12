@@ -22,11 +22,12 @@ export function Counter({ to, suffix = "", prefix = "", decimals = 0 }: { to: nu
   return <span ref={ref}>{prefix}{v.toFixed(decimals)}{suffix}</span>;
 }
 
-export function PageHero({ eyebrow, title, intro }: { eyebrow: string; title: ReactNode; intro?: string }) {
+export function PageHero({ eyebrow, title, intro, sideImage }: { eyebrow: string; title: ReactNode; intro?: string; sideImage?: ReactNode }) {
   return (
     <section className="relative overflow-hidden grain border-b border-border pt-36 pb-16">
       <div aria-hidden className="absolute inset-0 bg-grid" />
-      <div className="relative mx-auto max-w-6xl px-6">
+      <div className={`relative mx-auto max-w-6xl px-6 ${sideImage ? "grid items-center gap-10 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]" : ""}`}>
+        <div className="min-w-0">
         <Reveal><p className="eyebrow">{eyebrow}</p></Reveal>
         <Reveal delay={0.1}><h1 className="mt-4 font-display text-5xl font-bold tracking-tight font-bold leading-[1.02] tracking-tight md:text-7xl">{title}</h1></Reveal>
         {intro && <Reveal delay={0.2}><p className="mt-6 max-w-2xl text-lg text-muted-foreground">{intro}</p></Reveal>}
@@ -35,6 +36,8 @@ export function PageHero({ eyebrow, title, intro }: { eyebrow: string; title: Re
             {["Founder", "Engineer", "Speaker"].map((t) => <span key={t} className="rounded-full border border-border bg-card/60 px-3 py-1 text-muted-foreground">{t}</span>)}
           </div>
         </Reveal>
+        </div>
+        {sideImage}
       </div>
     </section>
   );

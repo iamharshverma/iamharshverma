@@ -48,3 +48,11 @@
 - [x] Confirm new thumbnail delivery to GitHub — both artwork files delivered through the approved GitHub connection.
 - [x] Recolor the HV logo to deep blue + red, regenerate browser tab icons, and deliver to GitHub — live on iamharshverma.com.
 - [x] About photo circle: move above the bio, enlarge portraits, verify live on desktop and phone
+- [x] Fit the photo-circle quote and link; rename the selected About bio heading to “About Harsh Verma -”.
+- [x] Link all five orbit portraits to their matching pages and rename “Fellowships & memberships” to “Fellowships & Associations”.
+- [x] Enlarge the “Who is Harsh Verma?” heading above the photo circle.
+- [x] Add the photo-circle section before homepage FAQs with “Connect with Harsh & Explore !!”; verified desktop and phone.
+- [x] Move the homepage photo-circle heading to the section start and rename it “Connect with Harsh & Explore !!”.
+- [x] Add recent blog articles to the homepage, linked to article pages and the full Insights collection; verified computer and phone.
+- [x] Expand About background, visible education and selected achievements using existing portfolio facts; verified career and education views on computer and phone.
+- [x] Add subtle portrait animation to the About introduction, respecting reduced-motion preferences; verified movement and reduced-motion behavior.

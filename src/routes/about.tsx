@@ -1,13 +1,15 @@
 import { SeoSummary } from "@/components/site/SeoSummary";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { canonical } from "@/lib/seo";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Briefcase, GraduationCap, MapPin } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Briefcase, GraduationCap, MapPin, ChevronDown, ChevronUp } from "lucide-react";
+import aboutPortrait from "@/assets/harsh-verma-about.jpg.asset.json";
 import { ArrowUpRight } from "lucide-react";
-import { profile, experience, education, memberships } from "@/data/profile";
+import { profile, experience, education, memberships, aboutBackground, awards, stats } from "@/data/profile";
+import { Button } from "@/components/ui/button";
 import { PortraitOrbit } from "@/components/site/PortraitOrbit";
-import { Reveal, PageHero } from "@/components/site/Reveal";
+import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -20,9 +22,6 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "Harsh Verma is a Principal AI Engineer at Palo Alto Networks, AI keynote speaker and author. Read his biography, career journey, Stanford GSB and UT Dallas education." },
       { property: "og:title", content: "About Harsh Verma | Principal AI Engineer, Speaker & Author" },
       { property: "og:description", content: "Biography and career journey of Harsh Verma, Principal AI Engineer at Palo Alto Networks, AI speaker and author." },
-      { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
-      { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
     scripts: [{ type: "application/ld+json", children: JSON.stringify({
       "@context": "https://schema.org", "@type": "ProfilePage",
@@ -34,17 +33,56 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
+  const [backgroundOpen, setBackgroundOpen] = useState(false);
+  const reducedMotion = useReducedMotion();
   return (
     <>
-      <PageHero eyebrow="// about" title={<>Researcher by passion,<br /><span className="text-brand-gradient">entrepreneur at heart.</span></>} intro={profile.bio} />
+      <section aria-labelledby="about-intro-heading" className="relative overflow-hidden border-b border-border pt-28 pb-10 md:pt-36 md:pb-12">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:gap-14">
+          <div className="min-w-0">
+            <Reveal><p className="eyebrow">The person behind the possibilities</p><h1 id="about-intro-heading" className="mt-5 font-display text-5xl font-bold leading-tight tracking-normal md:text-6xl">{profile.name}<span className="text-signal">.</span></h1></Reveal>
+            <Reveal delay={0.1}><p className="mt-5 font-display text-2xl font-medium leading-snug md:text-3xl">Engineer by Passion.<br /><span className="text-brand-gradient">Entrepreneur at Heart.</span></p></Reveal>
+            <Reveal delay={0.2}><p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">{profile.bio}</p></Reveal>
+            <Reveal delay={0.3}>
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <Button asChild><Link to="/collaborate">Let’s collaborate <ArrowUpRight /></Link></Button>
+                <Button asChild variant="ghost"><Link to="/speaking">See me on stage <ArrowUpRight /></Link></Button>
+              </div>
+              <p className="mt-6 flex items-center gap-2 text-xs text-muted-foreground"><MapPin className="h-3.5 w-3.5 shrink-0 text-signal" />{profile.location}</p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.15} className="min-w-0">
+            <figure className="relative mx-auto w-full max-w-md">
+              <div className="relative pl-4 pb-4">
+                <div aria-hidden="true" className="absolute inset-y-4 left-0 right-4 border border-brand/35" />
+                <motion.img src={aboutPortrait.url} alt="Harsh Verma smiling with arms crossed in a black blazer" fetchPriority="high" animate={{ y: reducedMotion ? 0 : [0, -6, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} whileHover={reducedMotion ? {} : { scale: 1.015, transition: { duration: 0.35 } }} className="relative aspect-[4/5] w-full object-cover object-top" />
+                <span aria-hidden="true" className="absolute -right-2 -top-3 font-mono text-3xl text-signal">+</span>
+              </div>
+              <figcaption className="ml-4 flex flex-wrap items-center justify-between gap-2 border-b border-border py-4 font-mono text-xs">
+                <span className="text-foreground">Founder · Engineer · Speaker</span>
+                <span className="text-signal">Curiosity → Impact</span>
+              </figcaption>
+              <blockquote className="mt-5 border-l-2 border-signal pl-4 font-display text-lg leading-snug text-muted-foreground">“{profile.quote}”</blockquote>
+            </figure>
+          </Reveal>
+        </div>
+      </section>
       <section aria-label="Engineer. Speaker. Author." className="pt-10">
         <h2 className="sr-only">Engineer. Speaker. Author.</h2>
         <PortraitOrbit />
       </section>
-      <SeoSummary heading="Who is Harsh Verma?" paragraphs={[
+      <SeoSummary heading="About Harsh Verma -" paragraphs={[
         "Harsh Verma is a Principal AI Engineer at Palo Alto Networks, where he builds agentic AI and AI security systems used by enterprises worldwide. He is an inventor on enterprise patents in agentic AI and copilots, and an author of peer-reviewed research.",
         "Beyond engineering, Harsh is an AI keynote speaker, a Forbes Technology Council member and the author of two upcoming books, Beyond AI Engineering and AI vs AI, both coming in January 2027. He studied at Stanford Graduate School of Business and the University of Texas at Dallas.",
-      ]} links={[{ to: "/speaking", label: "Keynotes & talks" }, { to: "/research", label: "Patents & research" }, { to: "/books", label: "Books" }]} />
+      ]} links={[{ to: "/speaking", label: "Keynotes & talks" }, { to: "/research", label: "Patents & research" }, { to: "/books", label: "Books" }]}>
+      <div className="mt-6">
+        <Button variant="outline" aria-expanded={backgroundOpen} aria-controls="about-background" onClick={() => setBackgroundOpen((open) => !open)}>{backgroundOpen ? "Read less" : "Read more"}{backgroundOpen ? <ChevronUp /> : <ChevronDown />}</Button>
+      </div>
+      </SeoSummary>
+      <section id="about-background" hidden={!backgroundOpen} aria-labelledby="background-heading" className={backgroundOpen ? "mx-auto grid max-w-6xl gap-10 px-6 pt-10 md:grid-cols-[1fr_2fr]" : "hidden"}>
+        <div><p className="eyebrow">The person behind the work</p><h2 id="background-heading" className="mt-4 font-display text-3xl font-bold md:text-4xl">Background &amp; purpose</h2><p className="mt-5 text-sm text-muted-foreground">{profile.location}</p></div>
+        <div className="space-y-5 text-base leading-relaxed text-muted-foreground">{aboutBackground.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+      </section>
       <section className="mx-auto grid max-w-6xl gap-6 px-6 py-20 md:grid-cols-3">
         {profile.philosophy.map((p, i) => (
           <Reveal key={p.p} delay={i * 0.1}>
@@ -56,9 +94,21 @@ function About() {
           </Reveal>
         ))}
       </section>
+      <section aria-labelledby="education-heading" className="mx-auto max-w-6xl px-6 pb-20">
+        <p className="eyebrow">Foundations for impact</p><h2 id="education-heading" className="mt-4 font-display text-3xl font-bold md:text-5xl">Education</h2>
+        <div className="mt-8 divide-y divide-border border-y border-border">
+          {education.map((item) => <div key={item.school} className="grid gap-3 py-6 md:grid-cols-[180px_1fr]"><p className="font-mono text-sm text-signal">{item.period}</p><div><h3 className="font-display text-xl font-semibold">{item.school}</h3><p className="mt-2 leading-relaxed text-muted-foreground">{item.degree}</p></div></div>)}
+        </div>
+      </section>
       <Journey />
+      <section aria-labelledby="achievements-heading" className="mx-auto max-w-6xl px-6 pb-24">
+        <div className="flex flex-wrap items-end justify-between gap-5"><div><p className="eyebrow">Research. Leadership. Recognition.</p><h2 id="achievements-heading" className="mt-4 font-display text-3xl font-bold md:text-5xl">Selected achievements</h2></div><Button asChild variant="outline"><Link to="/recognition">All recognition <ArrowUpRight /></Link></Button></div>
+        <dl className="mt-10 grid grid-cols-2 gap-6 border-y border-border py-8 md:grid-cols-4">{stats.map((stat) => <div key={stat.label}><dd className="font-display text-4xl font-bold text-signal">{stat.value}{stat.suffix}</dd><dt className="mt-2 text-sm text-muted-foreground">{stat.label}</dt></div>)}</dl>
+        <div className="mt-8 grid gap-6 md:grid-cols-2">{awards.slice(0, 4).map((award) => <article key={award.title} className="border-l-2 border-brand pl-5"><p className="font-mono text-xs text-signal">{award.badge} · {award.cat}</p><h3 className="mt-2 font-display text-xl font-semibold">{award.title}</h3><p className="mt-2 text-sm text-muted-foreground">{award.org}</p><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{award.desc}</p></article>)}</div>
+        <Button asChild variant="link" className="mt-6 px-0"><Link to="/research">Explore patents &amp; publications <ArrowUpRight /></Link></Button>
+      </section>
       <section className="mx-auto max-w-6xl px-6 pb-28">
-        <Reveal><p className="eyebrow">Invited associations</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Fellowships & memberships</h2></Reveal>
+        <Reveal><p className="eyebrow">Invited associations</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Fellowships & Associations</h2></Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {memberships.map((m, i) => (
             <Reveal key={m.name} delay={i * 0.04}>

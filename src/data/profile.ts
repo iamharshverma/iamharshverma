@@ -19,12 +19,12 @@ export const portraitGallery = [
 ];
 export const IMG = "https://www.harshverma.me/images";
 export const orbitPortraits = [
-  { src: executiveAsset.url, label: "Engineer" },
-  { src: speakerAsset.url, label: "Speaker" },
-  { src: authorAsset.url, label: "Author" },
-  { src: portraitAsset.url, label: "Researcher" },
-  { src: profileAsset.url, label: "Advisor" },
-];
+  { src: executiveAsset.url, label: "Engineer", to: "/harsh-verma-ai-speaker" },
+  { src: speakerAsset.url, label: "Speaker", to: "/speaking" },
+  { src: authorAsset.url, label: "Author", to: "/books" },
+  { src: portraitAsset.url, label: "Researcher", to: "/research" },
+  { src: profileAsset.url, label: "Advisor", to: "/advisory" },
+] as const;
 
 export const profile = {
   name: "Harsh Verma",
@@ -52,6 +52,13 @@ export const stats = [
   { value: 27, suffix: "+", label: "Peer-reviewed papers" },
   { value: 6, suffix: "", label: "Enterprise patents" },
   { value: 44, suffix: "+", label: "Global press features" },
+];
+
+export const aboutBackground = [
+  "Based in the San Francisco Bay Area, Harsh brings an engineering mindset to the intersection of artificial intelligence, cybersecurity and enterprise strategy. His work spans machine learning, distributed systems and autonomous agents, with a focus on making intelligent systems responsible, secure and practical at scale.",
+  "His academic journey began with a B.Tech (Hons.) in Computer Science and Engineering at Uttarakhand Technical University, where he ranked third in the university. He went on to study Computer Science and Data Science at The University of Texas at Dallas, then pursued leadership and entrepreneurship through Stanford Graduate School of Business's executive business program.",
+  "Before joining Palo Alto Networks in 2020, Harsh worked on computer vision at Hypergiant Sensory Science and real-time object tracking and spatial analytics at Worlds Enterprises. At Palo Alto Networks, his work includes enterprise AI/ML, firewall models, cloud security services and autonomous security-policy recommendations.",
+  "Beyond his engineering work, Harsh writes for Forbes Technology Council, delivers keynotes on agentic AI and security, and mentors through communities including UC Berkeley SkyDeck. His two upcoming books, Beyond AI Engineering and AI vs. AI, bring his engineering and security perspectives to the agentic era and are both coming in January 2027.",
 ];
 
 export const links = {
