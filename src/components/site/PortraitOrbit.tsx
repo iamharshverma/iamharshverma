@@ -1,6 +1,7 @@
-import { useRef, type ReactNode } from "react";
-import { motion, useReducedMotion, useScroll, useTransform, type MotionStyle, type MotionValue } from "framer-motion";
+import { useRef, useState, type ReactNode } from "react";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform, type MotionStyle, type MotionValue } from "framer-motion";
 import { Link } from "@tanstack/react-router";
+import { ChevronDown } from "lucide-react";
 import { orbitPortraits } from "@/data/profile";
 
 function Card({ i, n, p, src, label, to }: { i: number; n: number; p: MotionValue<number>; src: string; label: string; to: (typeof orbitPortraits)[number]["to"] }) {
@@ -26,24 +27,35 @@ function Card({ i, n, p, src, label, to }: { i: number; n: number; p: MotionValu
 export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerText = <>“From being <span className="text-brand-gradient">Creator</span> to <span className="text-brand-gradient">Curator</span>&nbsp;!!”</> }: { heading?: ReactNode; tag?: string; headingNote?: string; sectionLink?: ReactNode; centerText?: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const [expanded, setExpanded] = useState(false);
+  useMotionValueEvent(scrollYProgress, "change", (progress) => setExpanded(progress >= 0.55));
   const centerOpacity = useTransform(scrollYProgress, [0.45, 0.65], [0, 1]);
   const centerScale = useTransform(scrollYProgress, [0.45, 0.65], [0.9, 1]);
   const reducedMotion = useReducedMotion();
   const headingWidth = useTransform(scrollYProgress, [0.08, 0.5], ["90%", "34%"]);
   const headingY = useTransform(scrollYProgress, [0.08, 0.5], [-8, 0]);
+  const headingTop = useTransform(scrollYProgress, [0, 0.06], [16, 88]);
   const headingSpread = useTransform(scrollYProgress, [0.08, 0.5], [0, 1]);
   const headingLeft = useTransform(headingSpread, (spread) => `calc(max(24px, (100vw - 72rem) / 2 + 24px) * ${1 - spread} + 40px * ${spread})`);
   const n = orbitPortraits.length;
   return (
     <div ref={ref} className="relative h-[260vh]">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
-        <motion.div style={{ "--heading-width": reducedMotion ? "34%" : headingWidth, "--heading-left": reducedMotion ? "40px" : headingLeft, y: reducedMotion ? 0 : headingY } as MotionStyle}
-          className={`absolute left-6 right-6 z-10 md:left-[var(--heading-left)] md:right-auto md:w-[var(--heading-width)] ${heading ? "top-24 md:top-[104px]" : "top-20 md:top-[88px]"}`}>
+        <motion.div style={{ "--heading-width": reducedMotion ? "34%" : headingWidth, "--heading-left": reducedMotion ? "40px" : headingLeft, ...(headingNote ? { top: reducedMotion ? 88 : headingTop } : {}), y: reducedMotion ? 0 : headingY } as MotionStyle}
+          className={`absolute left-6 right-6 z-10 md:left-[var(--heading-left)] md:right-auto md:w-[var(--heading-width)] ${headingNote ? "" : heading ? "top-24 md:top-[104px]" : "top-20 md:top-[88px]"}`}>
           {tag && <p className="eyebrow text-balance">{tag}</p>}
           <h2 className={`font-display font-bold leading-tight tracking-normal ${tag ? "mt-3" : ""} ${heading ? "text-2xl md:text-4xl" : "text-3xl md:text-5xl"}`}>
-          {heading ?? <>Who is <span className="text-brand-gradient">Harsh Verma</span>?</>}
+          {heading ?? <>{expanded ? "Meet " : "Who is "}<span className="text-brand-gradient">Harsh Verma</span>{expanded ? " !!" : "?"}</>}
           </h2>
-          {headingNote && <p className="mt-2 text-[10px] italic leading-relaxed text-muted-foreground">{headingNote}</p>}
+          {headingNote && !expanded && <motion.p
+            key={reducedMotion ? "static-hint" : "animated-hint"}
+            animate={reducedMotion ? { y: 0 } : { y: [0, 3, 0] }}
+            transition={reducedMotion ? { duration: 0 } : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            className="mt-3 flex w-fit items-center gap-1.5 border-b border-brand/40 pb-1 text-xs font-semibold italic leading-relaxed text-foreground motion-reduce:transform-none! md:text-sm"
+          >
+            <ChevronDown aria-hidden="true" className="size-3.5 text-brand" />
+            {headingNote}
+          </motion.p>}
           {sectionLink && <div className="mt-4 md:hidden">{sectionLink}</div>}
         </motion.div>
         {sectionLink && <div className="absolute right-[max(24px,calc((100vw-72rem)/2+24px))] top-[104px] z-20 hidden md:block">{sectionLink}</div>}

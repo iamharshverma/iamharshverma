@@ -40,7 +40,7 @@ function About() {
       <section aria-labelledby="about-intro-heading" className="relative overflow-hidden border-b border-border pt-28 pb-10 md:pt-36 md:pb-12">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:gap-14">
           <div className="min-w-0">
-            <Reveal><p className="eyebrow">The person behind the possibilities</p><h1 id="about-intro-heading" className="mt-5 font-display text-5xl font-bold leading-tight tracking-normal md:text-6xl">{profile.name}<span className="text-signal">.</span></h1></Reveal>
+            <Reveal><p className="eyebrow">The person behind the possibilities</p><h1 id="about-intro-heading" className="mt-5 font-display text-5xl font-bold leading-tight tracking-normal md:text-6xl">{profile.name}</h1></Reveal>
             <Reveal delay={0.1}><p className="mt-5 font-display text-2xl font-medium leading-snug md:text-3xl">Engineer by Passion.<br /><span className="text-brand-gradient">Entrepreneur at Heart.</span></p></Reveal>
             <Reveal delay={0.2}><p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">{profile.bio}</p></Reveal>
             <Reveal delay={0.3}>

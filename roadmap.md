@@ -57,3 +57,5 @@
 - [x] Expand About background, visible education and selected achievements using existing portfolio facts; verified career and education views on computer and phone.
 - [x] Add subtle portrait animation to the About introduction, respecting reduced-motion preferences; verified movement and reduced-motion behavior.
 - [x] Change the About introduction button to “Know More” and verify scrolling to “Who is Harsh Verma”; include the portrait hover update in GitHub delivery.
+- [x] Change the expanded photo-circle heading and hide its scroll hint; remove the selected dot after the About name.
+- [ ] Deliver the finished About photo-circle changes to iamharshverma/iamharshverma.
