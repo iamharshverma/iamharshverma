@@ -239,10 +239,10 @@
   --input: oklch(0.82 0.008 80);
   --ring: oklch(0.66 0.21 42);
   --brand: oklch(0.6 0.2 40);
-  --signal: oklch(0.62 0.17 155);
-  --spot: oklch(0.75 0.18 50 / 18%);
+  --signal: oklch(0.58 0.2 40);
+  --spot: oklch(0.75 0.18 50 / 14%);
   --logo-tile: oklch(1 0 0);
-  --gradient-brand: linear-gradient(110deg, oklch(0.55 0.2 35), oklch(0.68 0.21 45), oklch(0.76 0.17 60));
+  --gradient-brand: linear-gradient(0deg, oklch(0.66 0.21 42), oklch(0.66 0.21 42));
   --shadow-glow: 0 20px 50px -28px oklch(0.6 0.2 42 / 45%);
   --glass: oklch(1 0 0 / 92%);
   --grid-line: oklch(0.8 0.01 80 / 50%);
@@ -273,6 +273,21 @@
 :root[data-theme="signal"] nav a,
 :root[data-theme="signal"] .font-mono { font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0; }
 :root[data-theme="signal"] .text-brand-gradient { background: none; -webkit-background-clip: initial; background-clip: initial; color: var(--brand); }
+
+/* Signal Orange polish: flat Meridian-style controls, crisp white surfaces */
+:root[data-theme="signal"] .bg-grid { opacity: 0.25; }
+:root[data-theme="signal"] a.rounded-full,
+:root[data-theme="signal"] button.rounded-full { border-radius: 0.375rem; }
+:root[data-theme="signal"] a.border:not([class*="bg-"]),
+:root[data-theme="signal"] button.border:not([class*="bg-"]) { background-color: oklch(1 0 0); border-color: oklch(0.2 0.01 60); }
+:root[data-theme="signal"] a.border:not([class*="bg-"]):hover { background-color: oklch(0.18 0.01 60); color: oklch(0.99 0 0); }
+:root[data-theme="signal"] .shadow-glow { box-shadow: 0 1px 0 oklch(0.5 0.18 40), 0 8px 20px -12px oklch(0.6 0.2 42 / 50%); }
+:root[data-theme="signal"] header.glass { background-color: oklch(1 0 0 / 96%); border-bottom: 1px solid oklch(0.88 0.006 80); box-shadow: none; }
+:root[data-theme="signal"] .blur-3xl.bg-brand-gradient { opacity: 0.12; }
+:root[data-theme="signal"] .blur-3xl[class*="bg-signal"] { opacity: 0; }
+:root[data-theme="signal"] .bg-card { border-color: oklch(0.88 0.006 80); transition: border-color .2s, transform .2s; }
+:root[data-theme="signal"] a .bg-card:hover, :root[data-theme="signal"] a.bg-card:hover { border-color: oklch(0.66 0.21 42); }
+:root[data-theme="signal"] .eyebrow { color: oklch(0.55 0.2 38); }
 
 @layer base {
   * { border-color: var(--color-border); }
