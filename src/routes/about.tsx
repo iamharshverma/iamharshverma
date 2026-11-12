@@ -37,14 +37,14 @@ function About() {
   return (
     <>
       <PageHero eyebrow="// about" title={<>Researcher by passion,<br /><span className="text-brand-gradient">entrepreneur at heart.</span></>} intro={profile.bio} />
-      <SeoSummary heading="Who is Harsh Verma?" paragraphs={[
-        "Harsh Verma is a Principal AI Engineer at Palo Alto Networks, where he builds agentic AI and AI security systems used by enterprises worldwide. He is an inventor on enterprise patents in agentic AI and copilots, and an author of peer-reviewed research.",
-        "Beyond engineering, Harsh is an AI keynote speaker, a Forbes Technology Council member and the author of two upcoming books, Beyond AI Engineering and AI vs AI, both coming in January 2027. He studied at Stanford Graduate School of Business and the University of Texas at Dallas.",
-      ]} links={[{ to: "/speaking", label: "Keynotes & talks" }, { to: "/research", label: "Patents & research" }, { to: "/books", label: "Books" }]} />
       <section aria-label="Engineer. Speaker. Author." className="pt-10">
         <h2 className="sr-only">Engineer. Speaker. Author.</h2>
         <PortraitOrbit />
       </section>
+      <SeoSummary heading="Who is Harsh Verma?" paragraphs={[
+        "Harsh Verma is a Principal AI Engineer at Palo Alto Networks, where he builds agentic AI and AI security systems used by enterprises worldwide. He is an inventor on enterprise patents in agentic AI and copilots, and an author of peer-reviewed research.",
+        "Beyond engineering, Harsh is an AI keynote speaker, a Forbes Technology Council member and the author of two upcoming books, Beyond AI Engineering and AI vs AI, both coming in January 2027. He studied at Stanford Graduate School of Business and the University of Texas at Dallas.",
+      ]} links={[{ to: "/speaking", label: "Keynotes & talks" }, { to: "/research", label: "Patents & research" }, { to: "/books", label: "Books" }]} />
       <section className="mx-auto grid max-w-6xl gap-6 px-6 py-20 md:grid-cols-3">
         {profile.philosophy.map((p, i) => (
           <Reveal key={p.p} delay={i * 0.1}>
