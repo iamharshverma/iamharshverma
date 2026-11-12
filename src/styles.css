@@ -221,7 +221,7 @@
   color-scheme: light;
   --display-font: "Space Grotesk", ui-sans-serif, sans-serif;
   --body-font: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --background: oklch(0.955 0.004 80);
+  --background: oklch(0.99 0.002 80);
   --foreground: oklch(0.18 0.01 60);
   --card: oklch(1 0 0);
   --card-foreground: var(--foreground);
@@ -250,12 +250,13 @@
   --radius: 0.375rem;
 }
 :root[data-theme="signal"] body {
+  background-color: oklch(0.99 0.002 80);
   background-image:
-    radial-gradient(38rem 26rem at 0% 0%, oklch(0.82 0.13 50 / 55%), transparent 70%),
-    radial-gradient(38rem 26rem at 100% 0%, oklch(0.82 0.13 50 / 55%), transparent 70%),
-    radial-gradient(34rem 24rem at 0% 52rem, oklch(0.85 0.11 52 / 40%), transparent 70%),
-    radial-gradient(34rem 24rem at 100% 52rem, oklch(0.85 0.11 52 / 40%), transparent 70%),
-    linear-gradient(180deg, oklch(0.93 0.04 60) 0rem, oklch(0.955 0.004 80) 12rem);
+    radial-gradient(32rem 24rem at 0% 0%, oklch(0.88 0.09 52 / 55%), transparent 70%),
+    radial-gradient(32rem 24rem at 100% 0%, oklch(0.88 0.09 52 / 55%), transparent 70%),
+    radial-gradient(30rem 22rem at 0% 100%, oklch(0.9 0.07 55 / 45%), transparent 70%),
+    radial-gradient(30rem 22rem at 100% 100%, oklch(0.9 0.07 55 / 45%), transparent 70%);
+  background-attachment: fixed;
   background-repeat: no-repeat;
 }
 :root[data-theme="signal"] body::before {
@@ -283,7 +284,8 @@
 :root[data-theme="signal"] a.border:not([class*="bg-"]):hover { background-color: oklch(0.18 0.01 60); color: oklch(0.99 0 0); }
 :root[data-theme="signal"] .shadow-glow { box-shadow: 0 1px 0 oklch(0.5 0.18 40), 0 8px 20px -12px oklch(0.6 0.2 42 / 50%); }
 :root[data-theme="signal"] header.glass { background-color: oklch(1 0 0 / 96%); border-bottom: 1px solid oklch(0.88 0.006 80); box-shadow: none; }
-:root[data-theme="signal"] .blur-3xl.bg-brand-gradient { opacity: 0.12; }
+:root[data-theme="signal"] .blur-3xl.bg-brand-gradient { opacity: 0.06; }
+:root[data-theme="signal"] main [class*="bg-card/"], :root[data-theme="signal"] main [class*="bg-muted/"] { background-color: oklch(1 0 0 / 80%); }
 :root[data-theme="signal"] .blur-3xl[class*="bg-signal"] { opacity: 0; }
 :root[data-theme="signal"] .bg-card { border-color: oklch(0.88 0.006 80); transition: border-color .2s, transform .2s; }
 :root[data-theme="signal"] a .bg-card:hover, :root[data-theme="signal"] a.bg-card:hover { border-color: oklch(0.66 0.21 42); }
