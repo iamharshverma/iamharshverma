@@ -5,7 +5,8 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Briefcase, GraduationCap, MapPin } from "lucide-react";
 import { ArrowUpRight } from "lucide-react";
-import { profile, experience, education, memberships, portraitGallery } from "@/data/profile";
+import { profile, experience, education, memberships } from "@/data/profile";
+import { PortraitOrbit } from "@/components/site/PortraitOrbit";
 import { Reveal, PageHero } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/about")({
@@ -40,22 +41,9 @@ function About() {
         "Harsh Verma is a Principal AI Engineer at Palo Alto Networks, where he builds agentic AI and AI security systems used by enterprises worldwide. He is an inventor on enterprise patents in agentic AI and copilots, and an author of peer-reviewed research.",
         "Beyond engineering, Harsh is an AI keynote speaker, a Forbes Technology Council member and the author of two upcoming books, Beyond AI Engineering and AI vs AI, both coming in January 2027. He studied at Stanford Graduate School of Business and the University of Texas at Dallas.",
       ]} links={[{ to: "/speaking", label: "Keynotes & talks" }, { to: "/research", label: "Patents & research" }, { to: "/books", label: "Books" }]} />
-      <section className="mx-auto max-w-6xl px-6 pt-20">
-        <Reveal><p className="eyebrow">Many rooms, one mission</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Engineer. Speaker. Author.</h2></Reveal>
-        <div className="mt-10 grid gap-4 md:h-[520px] md:grid-cols-3 md:gap-0 md:[&:hover>*]:flex-1">
-          {portraitGallery.map((g, i) => (
-            <Reveal key={g.label} delay={i * 0.08} className="h-[420px] md:h-full">
-              <figure className="group relative h-full overflow-hidden rounded-2xl border border-border md:mx-2">
-                <img src={g.src} alt={`Harsh Verma — ${g.label}`} loading="lazy" className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-105" />
-                <figcaption className="glass absolute inset-x-4 bottom-4 rounded-xl p-4 transition duration-500 md:translate-y-2 md:group-hover:translate-y-0">
-                  <p className="font-mono text-xs text-signal">0{i + 1}</p>
-                  <p className="font-display text-2xl font-semibold">{g.label}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{g.note}</p>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+      <section aria-label="Engineer. Speaker. Author." className="pt-10">
+        <h2 className="sr-only">Engineer. Speaker. Author.</h2>
+        <PortraitOrbit />
       </section>
       <section className="mx-auto grid max-w-6xl gap-6 px-6 py-20 md:grid-cols-3">
         {profile.philosophy.map((p, i) => (

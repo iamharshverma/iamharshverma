@@ -2,6 +2,7 @@ import portraitAsset from "@/assets/harsh-verma-portrait.jpg.asset.json";
 import executiveAsset from "@/assets/harsh-verma-executive.jpg.asset.json";
 import speakerAsset from "@/assets/harsh-verma-speaker.jpg.asset.json";
 import authorAsset from "@/assets/harsh-verma-author.jpg.asset.json";
+import profileAsset from "@/assets/harsh-verma-professional-profile.jpg.asset.json";
 
 export const rolePortraits: Record<string, { src: string; caption: string }> = {
   "Principal AI Engineer": { src: executiveAsset.url, caption: "Agentic AI & AI Security · Palo Alto Networks" },
@@ -17,6 +18,15 @@ export const portraitGallery = [
   { src: authorAsset.url, label: "The Author", note: "Writing the playbooks for the agentic AI era — two books in January 2027." },
 ];
 export const IMG = "https://www.harshverma.me/images";
+export const orbitPortraits = [
+  { src: executiveAsset.url, label: "Engineer" },
+  { src: speakerAsset.url, label: "Speaker" },
+  { src: authorAsset.url, label: "Author" },
+  { src: portraitAsset.url, label: "Researcher" },
+  { src: profileAsset.url, label: "Advisor" },
+  { src: `${IMG}/harsh/Harsh_portfolio_pic.png`, label: "On stage" },
+  { src: `${IMG}/harsh_stanford.jpg`, label: "Stanford GSB" },
+];
 
 export const profile = {
   name: "Harsh Verma",
