@@ -108,7 +108,7 @@ function Home() {
 
       <section className="py-12">
         <p className="eyebrow text-center">As seen on</p>
-        <div className="mt-6 overflow-hidden">
+        <div className="marquee-edge-fade mt-6 overflow-hidden">
           <div className="flex w-max animate-marquee gap-4">
             {[...pressLogos, ...pressLogos].map((b, i) => <LogoTile key={i} src={b.logo} name={b.name} />)}
           </div>

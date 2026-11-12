@@ -358,6 +358,9 @@
 
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @utility animate-marquee { animation: marquee 40s linear infinite; }
+@utility marquee-edge-fade {
+  mask-image: linear-gradient(to right, transparent, var(--foreground) min(12%, 140px), var(--foreground) calc(100% - min(12%, 140px)), transparent);
+}
 
 @utility bg-grid {
   background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
