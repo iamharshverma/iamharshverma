@@ -89,4 +89,9 @@
 - [x] Capitalize B and T in the Collaborate headline "Let's Build Together."
 - [x] Capitalize W in the Recognition headline "Recognized Worldwide."
 - [x] Rename Insights headline to "AI Era!" and capitalize "Speaker" in the Speaking headline.
-- [ ] Remove brand name text under logos on Collaborate, keeping logo-only tiles; verify and push to iamharshverma/iamharshverma, confirm deployment.
+- [x] Remove brand name text under logos on Collaborate, keeping logo-only tiles; verified and deployed.
+- [x] Insights headline "AI Era." with period; deployed.
+- [x] Fix mobile layout on Speaking and About pages: smaller hero padding/headings on phones; verified no overflow at 390px.
+- [ ] Convert Collaborate brand grid to a floating left-to-right logo marquee with corner fading; verify desktop and phone.
+- [ ] Submit iamharshverma.com sitemap to Google Search Console.
+- [ ] Push all changes to iamharshverma/iamharshverma and confirm deployment.

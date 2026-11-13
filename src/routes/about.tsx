@@ -40,7 +40,7 @@ function About() {
       <section aria-labelledby="about-intro-heading" className="relative overflow-hidden border-b border-border pt-28 pb-10 md:pt-36 md:pb-12">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:gap-14">
           <div className="min-w-0">
-            <Reveal><p className="eyebrow">The person behind the possibilities</p><h1 id="about-intro-heading" className="mt-5 font-display text-5xl font-bold leading-tight tracking-normal md:text-6xl">{profile.name}</h1></Reveal>
+            <Reveal><p className="eyebrow">The person behind the possibilities</p><h1 id="about-intro-heading" className="mt-5 font-display text-4xl font-bold leading-tight tracking-normal md:text-6xl">{profile.name}</h1></Reveal>
             <Reveal delay={0.1}><p className="mt-5 font-display text-2xl font-medium leading-snug md:text-3xl">Engineer by Passion.<br /><span className="text-brand-gradient">Entrepreneur at Heart.</span></p></Reveal>
             <Reveal delay={0.2}><p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">{profile.bio}</p></Reveal>
             <Reveal delay={0.3}>
@@ -108,7 +108,7 @@ function About() {
         <Button asChild variant="link" className="mt-6 px-0"><Link to="/research">Explore patents &amp; publications <ArrowUpRight /></Link></Button>
       </section>
       <section className="mx-auto max-w-6xl px-6 pb-28">
-        <Reveal><p className="eyebrow">Invited associations</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Fellowships & Associations</h2></Reveal>
+        <Reveal><p className="eyebrow">Invited associations</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Fellowships & Associations</h2></Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {memberships.map((m, i) => (
             <Reveal key={m.name} delay={i * 0.04}>
@@ -157,7 +157,7 @@ function Journey() {
   return (
     <section className="mx-auto max-w-6xl px-6 pb-24">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <Reveal><p className="eyebrow">Journey</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">From code to boardroom</h2>
+        <Reveal><p className="eyebrow">Journey</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">From code to boardroom</h2>
           <p className="mt-3 max-w-xl text-muted-foreground">Pick a milestone to explore the work, the place and the tools behind it.</p></Reveal>
         <div className="flex rounded-full border border-border bg-card p-1 shadow-sm">
           {([["work", "Experience", Briefcase], ["edu", "Education", GraduationCap]] as const).map(([k, l, I]) => (

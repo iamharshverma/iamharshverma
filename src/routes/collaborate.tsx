@@ -52,7 +52,7 @@ function Collaborate() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-20">
-        <Reveal><p className="eyebrow">Partnership models</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Ways to work together</h2></Reveal>
+        <Reveal><p className="eyebrow">Partnership models</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Ways to work together</h2></Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {offerings.map((o, i) => {
             const open = openIdx === i;
@@ -83,7 +83,7 @@ function Collaborate() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-20">
-        <Reveal><p className="eyebrow">Audience</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Who you'll reach</h2></Reveal>
+        <Reveal><p className="eyebrow">Audience</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Who you'll reach</h2></Reveal>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {audienceFacts.map((f) => (
             <div key={f.l} className="rounded-xl border border-border bg-card p-6"><p className="font-display text-4xl font-bold text-signal">{f.v}</p><p className="mt-2 font-semibold">{f.l}</p><p className="text-sm text-muted-foreground">{f.d}</p></div>
@@ -144,7 +144,7 @@ function Collaborate() {
 
       <section className="mx-auto max-w-6xl px-6 pb-28 text-center">
         <Reveal>
-          <h2 className="font-display text-5xl font-bold tracking-tight">Have a stage, a startup, or a story?</h2>
+          <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">Have a stage, a startup, or a story?</h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Magnetic><Link to="/contact" className="inline-flex rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow">Send a proposal</Link></Magnetic>
             <a href="https://adplist.org/mentors/harsh-verma" target="_blank" rel="noreferrer" className="inline-flex rounded-full border border-border px-6 py-3 hover:border-brand hover:text-brand">Book mentorship on ADPList</a>
@@ -167,19 +167,16 @@ function Collaborate() {
               <p className="font-mono text-xs leading-relaxed text-muted-foreground">BRANDS &<br />INSTITUTIONS</p>
             </div>
           </Reveal>
-          <div className="mt-8 grid grid-cols-2 overflow-hidden rounded-lg border border-border bg-border gap-px sm:grid-cols-3 md:mt-10 lg:grid-cols-4">
-            {brands.map((b, i) => (
-              <div key={b.name} className="group relative min-w-0 bg-card p-2.5 transition-colors duration-300 hover:bg-accent sm:p-3">
-                <div className="mb-2 flex items-center justify-between font-mono text-[9px] text-muted-foreground">
-                  <span className="rounded-sm border border-border px-1 py-px transition-colors duration-300 group-hover:border-signal/50 group-hover:text-signal">{String(i + 1).padStart(2, "0")}</span>
-                  <span aria-hidden className="h-1 w-1 rounded-full bg-border transition-all duration-300 group-hover:scale-150 group-hover:bg-signal" />
-                </div>
-                <div className="flex h-12 items-center justify-center rounded-sm bg-logo-tile px-2 sm:h-14">
-                  <img src={b.logo} alt={b.name} title={b.name} loading="lazy" decoding="async" className="max-h-8 w-full max-w-28 object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-110 sm:max-h-9" />
-                </div>
-                <div aria-hidden className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-signal motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-x-100" />
+          <div className="press-strip-depth mt-8 overflow-hidden md:mt-10">
+            <div className="press-strip-fade py-3">
+              <div className="flex w-max animate-marquee gap-3 hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] md:gap-4">
+                {[...brands, ...brands].map((b, i) => (
+                  <div key={`${b.name}-${i}`} className="press-card-shadow flex h-16 w-36 shrink-0 items-center justify-center rounded-lg border border-border bg-logo-tile px-4 sm:h-20 sm:w-44">
+                    <img src={b.logo} alt={b.name} title={b.name} loading="lazy" decoding="async" className="max-h-9 w-full max-w-28 object-contain sm:max-h-11 sm:max-w-32" />
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

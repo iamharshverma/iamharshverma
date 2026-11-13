@@ -91,7 +91,7 @@ function Speaking() {
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <Reveal><p className="eyebrow">Now on stage · <Link to="/speaker-bio" className="text-brand">Full speaker bio &amp; PDF →</Link></p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Keynote theater</h2></Reveal>
+        <Reveal><p className="eyebrow">Now on stage · <Link to="/speaker-bio" className="text-brand">Full speaker bio &amp; PDF →</Link></p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Keynote theater</h2></Reveal>
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
           <AnimatePresence mode="wait">
             <motion.div key={stage} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="overflow-hidden rounded-2xl border border-border bg-card">
@@ -120,12 +120,12 @@ function Speaking() {
           </ul>
         </div>
       </section>
-      <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">Reels</p><h2 className="mb-8 mt-4 font-display text-5xl font-bold tracking-tight">Backstage in 60 seconds</h2></Reveal><ReelWall /></section>
-      <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">On stage</p><h2 className="mb-8 mt-4 font-display text-5xl font-bold tracking-tight">Where Harsh has spoken</h2></Reveal><StageMap /></section>
+      <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">Reels</p><h2 className="mb-8 mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Backstage in 60 seconds</h2></Reveal><ReelWall /></section>
+      <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">On stage</p><h2 className="mb-8 mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Where Harsh has spoken</h2></Reveal><StageMap /></section>
 
       <section className="mx-auto max-w-6xl px-6 pb-20">
         <div className="flex items-end justify-between gap-4">
-          <Reveal><p className="eyebrow">Judging & mentorship</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Shaping the next builders</h2></Reveal>
+          <Reveal><p className="eyebrow">Judging & mentorship</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Shaping the next builders</h2></Reveal>
           <p className="hidden font-mono text-xs text-muted-foreground md:block">{judging.length} roles</p>
         </div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
