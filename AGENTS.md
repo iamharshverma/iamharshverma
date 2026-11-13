@@ -44,3 +44,5 @@ use the editor.
 - PageHero accepts optional side media without changing text-only pages; About owns its editorial portrait introduction and accessible background disclosure to keep both designs page-specific.
 - Press resources and sourced recommendations live in src/data; the press PDF is prebuilt from the same biography and topics and served as a same-origin static download.
 - GitHub Pages static build: `vite.pages.config.ts` + `.github/workflows/github-pages.yml`, toggled by `deploy.config.json`; server features fall back via `src/lib/site-mode.ts` (STATIC_SITE). Why: Pages has no server. Uploaded photos are mirrored in `github-pages/__l5e` because Lovable asset URLs only resolve on Lovable hosting — re-copy when adding assets.
+- Preserve the existing static sitemap and domain; GitHub Pages prerenders every sitemap URL and fails on rendering errors so search crawlers receive page-specific HTML. Omit lastmod unless a page-specific significant-change timestamp is authoritative.
+- Speaking structured data uses shared keynote records and the shared Person identity, without invented video upload dates; this keeps talk discovery aligned with visible content.

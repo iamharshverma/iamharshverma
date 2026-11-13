@@ -1,6 +1,6 @@
 import { SeoSummary } from "@/components/site/SeoSummary";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { canonical } from "@/lib/seo";
+import { canonical, SITE_URL } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { Clock, Play, Gavel } from "lucide-react";
@@ -20,15 +20,31 @@ export const Route = createFileRoute("/speaking")({
       canonical("/speaking").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "Harsh Verma | AI Keynote Speaker on Agentic AI & Security" },
-      { name: "description", content: "Explore AI speaker Harsh Verma's keynotes on agentic AI and enterprise security. Watch ACM and Berkeley SkyDeck talks, explore topics and enquire about your event." },
-      { property: "og:title", content: "Harsh Verma | AI Keynote Speaker on Agentic AI & Security" },
-      { property: "og:description", content: "AI keynotes for enterprise, engineering and security audiences, with recordings, speaking topics and event enquiries." },
-      { name: "twitter:title", content: "Harsh Verma | AI Keynote Speaker on Agentic AI & Security" },
-      { name: "twitter:description", content: "Explore agentic AI and enterprise security keynotes, recordings and event enquiries." },
+      { title: "Harsh Verma | AI Keynote Talks on Agentic AI & Security" },
+      { name: "description", content: "Watch Harsh Verma’s AI keynotes at VLink, ACM and UC Berkeley SkyDeck. Explore talks on agentic AI, enterprise security and trust, and invite him to speak." },
+      { property: "og:title", content: "Harsh Verma | AI Keynote Talks on Agentic AI & Security" },
+      { property: "og:description", content: "Watch Harsh Verma’s AI keynotes at VLink, ACM and UC Berkeley SkyDeck. Explore talks on agentic AI, enterprise security and trust, and invite him to speak." },
+      { name: "twitter:title", content: "Harsh Verma | AI Keynote Talks on Agentic AI & Security" },
+      { name: "twitter:description", content: "Watch Harsh Verma’s AI keynotes at VLink, ACM and UC Berkeley SkyDeck. Explore talks on agentic AI, enterprise security and trust, and invite him to speak." },
       { property: "og:image", content: profile.stagePhoto },
       { name: "twitter:image", content: profile.stagePhoto },
     ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": `${SITE_URL}/speaking#page`,
+      name: "AI keynote talks by Harsh Verma",
+      url: `${SITE_URL}/speaking`,
+      about: { "@id": `${SITE_URL}/#person` },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: keynotes.map((keynote, index) => ({
+          "@type": "ListItem", position: index + 1,
+          item: { "@type": "CreativeWork", name: keynote.title, description: keynote.desc,
+            url: keynote.href, author: { "@id": `${SITE_URL}/#person` } },
+        })),
+      },
+    }) }],
   }),
   component: Speaking,
 });

@@ -9,7 +9,7 @@ import { canonical, SITE_URL, ALT_PORTFOLIO_URL } from "@/lib/seo";
 
 const path = "/harsh-verma-ai-speaker";
 const title = "Harsh Verma — AI Speaker & Principal AI Engineer";
-const description = "Meet Harsh Verma, Principal AI Engineer at Palo Alto Networks and AI speaker on agentic AI, cybersecurity and enterprise AI. Explore his experience, talks and speaker bio.";
+const description = "Meet Harsh Verma, AI engineer at Palo Alto Networks and speaker on agentic AI and cybersecurity. Explore his enterprise experience, keynotes and speaker bio.";
 
 export const Route = createFileRoute("/harsh-verma-ai-speaker")({
   head: () => ({
