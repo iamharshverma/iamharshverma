@@ -84,3 +84,4 @@
 - [x] Landscape mobile (short/wide phone) layout for the orbit section on Home and About — photos now unstack into a row, quote underneath
 - [x] Optimize page titles and descriptions for Harsh Verma and AI talks; verified all 50 sitemap pages, unique titles, self-referencing URLs, and talk structured data.
 - [ ] Push completed search optimization to iamharshverma/iamharshverma and verify live delivery.
+- [x] Wrap the selected portrait heading at narrower widths so it stays clear of photos; verified Home and About at phone, landscape, tablet and computer widths.

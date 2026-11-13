@@ -85,15 +85,15 @@ export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerLi
   const headingY = useTransform(scrollYProgress, [0.08, 0.5], [-8, 0]);
   const headingTop = useTransform(scrollYProgress, [0, 0.06], [-72, 0]);
   const headingSpread = useTransform(scrollYProgress, [0.08, 0.5], [0, 1]);
-  const headingLeft = useTransform(headingSpread, (value) => geometry.headingOffset * value);
+  const headingLeft = useTransform(headingSpread, (value) => `${geometry.headingOffset * value}px`);
   const n = orbitPortraits.length;
   return (
     <div ref={ref} className="portrait-orbit relative h-[260vh]">
       <div className="orbit-sticky sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <motion.div style={{ "--heading-shift": reducedMotion ? `${geometry.headingOffset}px` : headingLeft, y: reducedMotion ? 0 : headingNote ? headingTop : headingY } as MotionStyle}
-          className={`orbit-heading absolute left-6 right-6 z-10 md:left-[max(24px,calc((100vw-72rem)/2+24px))] md:right-auto ${!landscape && (expanded || reducedMotion) ? "md:w-[34%]" : "md:w-[90%]"} ${landscape ? "top-[80px]" : headingNote ? "top-[88px]" : heading ? "top-24 md:top-[104px]" : "top-20 md:top-[88px]"}`}>
+          className={`orbit-heading absolute left-6 right-6 z-10 md:left-[max(24px,calc((100vw-72rem)/2+24px))] md:right-auto ${!landscape && (expanded || reducedMotion) ? "md:w-[min(34vw,calc(50vw-min(14.4vw,12.6vh)-56px))]" : "md:w-[90%]"} ${landscape ? "top-[80px]" : headingNote ? "top-[88px]" : heading ? "top-24 md:top-[104px]" : "top-20 md:top-[88px]"}`}>
           {tag && <p className="eyebrow text-balance">{tag}</p>}
-          <h2 className={`font-display font-bold leading-tight tracking-normal ${tag ? "mt-3" : ""} ${landscape ? "text-lg md:text-xl" : heading ? "text-2xl md:text-4xl" : "text-3xl md:text-5xl"}`}>
+          <h2 className={`text-balance break-words font-display font-bold leading-tight tracking-normal ${tag ? "mt-3" : ""} ${landscape ? "text-lg md:text-xl" : heading ? "text-2xl md:text-2xl lg:text-4xl" : "text-3xl md:text-3xl lg:text-5xl"}`}>
           {heading ?? <>{expanded ? "Meet " : "Who is "}<span className="text-brand-gradient">Harsh Verma</span>{expanded ? " !!" : "?"}</>}
           </h2>
           {headingNote && !expanded && !reducedMotion && <motion.p

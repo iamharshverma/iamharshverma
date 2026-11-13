@@ -14,7 +14,7 @@ export default defineConfig({
   nitro: false,
   tanstackStart: {
     server: { entry: "server" },
-    prerender: { enabled: true, crawlLinks: true, failOnError: true, autoSubfolderIndex: false },
+    prerender: { enabled: true, crawlLinks: false, failOnError: true, autoSubfolderIndex: false },
     pages,
   },
 });
