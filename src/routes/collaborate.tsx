@@ -37,7 +37,7 @@ function Collaborate() {
 
   return (
     <>
-      <PageHero eyebrow="// partnerships · advisory · creator" title={<>Let's build <span className="text-brand-gradient">together.</span></>}
+      <PageHero eyebrow="// partnerships · advisory · creator" title={<>Let's Build <span className="text-brand-gradient">Together.</span></>}
         intro="From keynote stages to boardrooms to the LinkedIn feed — ways to partner with a principal AI engineer who founders, engineers and executives trust." />
 
       <section className="border-b border-border bg-card/40">
@@ -167,17 +167,17 @@ function Collaborate() {
               <p className="font-mono text-xs leading-relaxed text-muted-foreground">BRANDS &<br />INSTITUTIONS</p>
             </div>
           </Reveal>
-          <div className="mt-8 grid grid-cols-2 overflow-hidden rounded-lg border border-border bg-border gap-px md:mt-10 md:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 overflow-hidden rounded-lg border border-border bg-border gap-px sm:grid-cols-3 md:mt-10 lg:grid-cols-4">
             {brands.map((b, i) => (
-              <div key={b.name} className="group relative min-w-0 bg-card p-3 transition-colors duration-300 hover:bg-accent sm:p-5">
-                <div className="mb-3 flex items-center justify-between font-mono text-[10px] text-muted-foreground">
-                  <span>{String(i + 1).padStart(2, "0")}</span>
-                  <span aria-hidden className="h-px w-5 bg-border transition-all duration-300 group-hover:w-9 group-hover:bg-signal" />
+              <div key={b.name} className="group relative min-w-0 bg-card p-2.5 transition-colors duration-300 hover:bg-accent sm:p-3">
+                <div className="mb-2 flex items-center justify-between font-mono text-[9px] text-muted-foreground">
+                  <span className="rounded-sm border border-border px-1 py-px transition-colors duration-300 group-hover:border-signal/50 group-hover:text-signal">{String(i + 1).padStart(2, "0")}</span>
+                  <span aria-hidden className="h-1 w-1 rounded-full bg-border transition-all duration-300 group-hover:scale-150 group-hover:bg-signal" />
                 </div>
-                <div className="flex h-20 items-center justify-center rounded-sm bg-logo-tile px-3 sm:h-24">
-                  <img src={b.logo} alt={b.name} loading="lazy" decoding="async" className="max-h-12 w-full max-w-40 object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105" />
+                <div className="flex h-12 items-center justify-center rounded-sm bg-logo-tile px-2 sm:h-14">
+                  <img src={b.logo} alt={b.name} loading="lazy" decoding="async" className="max-h-8 w-full max-w-28 object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-110 sm:max-h-9" />
                 </div>
-                <p className="mt-3 min-h-10 text-xs font-medium leading-5 sm:text-sm">{b.name}</p>
+                <p className="mt-2 truncate text-[11px] font-medium leading-4 text-muted-foreground transition-colors duration-300 group-hover:text-foreground" title={b.name}>{b.name}</p>
                 <div aria-hidden className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-signal motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-x-100" />
               </div>
             ))}

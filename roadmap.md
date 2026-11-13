@@ -83,5 +83,8 @@
 - [x] Smaller About orbit center button
 - [x] Landscape mobile (short/wide phone) layout for the orbit section on Home and About — photos now unstack into a row, quote underneath
 - [x] Optimize page titles and descriptions for Harsh Verma and AI talks; verified all 50 sitemap pages, unique titles, self-referencing URLs, and talk structured data.
-- [ ] Push completed search optimization to iamharshverma/iamharshverma and verify live delivery.
+- [x] Push completed search optimization and heading fix to iamharshverma/iamharshverma; GitHub Pages deployment succeeded and live titles, talk data and 50-URL sitemap verified.
 - [x] Wrap the selected portrait heading at narrower widths so it stays clear of photos; verified Home and About at phone, landscape, tablet and computer widths.
+- [ ] Make Collaborate brand entries smaller and more creative; verify desktop and phone.
+- [ ] Capitalize B and T in the Collaborate headline "Let's Build Together."
+- [ ] Push all changes to iamharshverma/iamharshverma and confirm deployment.
