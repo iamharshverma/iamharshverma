@@ -38,6 +38,7 @@ use the editor.
 - Public contact and booking requests share a client/server validated insert-only server function; private rows are available only through Cloud management so visitors cannot read leads.
 - The header owns the theme switch, with semantic CSS variables and a stored browser preference so every page shares the selected appearance.
 - Home and About reuse PortraitOrbit with page-specific center text, center links and optional section links passed as props, so portrait links and scroll animation stay consistent without changing other pages.
+- PortraitOrbit measures geometry with ResizeObserver and animates numeric transforms; React state changes only at expansion boundaries to avoid per-frame layout and rerenders.
 - PageHero accepts optional side media without changing text-only pages; About owns its editorial portrait introduction and accessible background disclosure to keep both designs page-specific.
 - Press resources and sourced recommendations live in src/data; the press PDF is prebuilt from the same biography and topics and served as a same-origin static download.
 - GitHub Pages static build: `vite.pages.config.ts` + `.github/workflows/github-pages.yml`, toggled by `deploy.config.json`; server features fall back via `src/lib/site-mode.ts` (STATIC_SITE). Why: Pages has no server. Uploaded photos are mirrored in `github-pages/__l5e` because Lovable asset URLs only resolve on Lovable hosting — re-copy when adding assets.

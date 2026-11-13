@@ -410,17 +410,25 @@
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
-/* About page portrait orbit: circle radius per screen size */
-.orbit-stage { --orbit-r: 35cqmin; }
-@media (min-width: 768px) { .orbit-stage { --orbit-r: 36cqmin; } }
+/* Only transform/opacity change during portrait scrolling; geometry updates on resize. */
+.orbit-card { translate: -50% -50%; will-change: transform; }
+@media (min-width: 768px) {
+  .orbit-heading { translate: var(--heading-shift, 0px) 0; }
+}
 @media (max-width: 767px) {
-  .home-portrait-orbit > div { height: 220svh; }
-  .home-portrait-orbit > div > div { height: 100svh; }
-  .home-portrait-orbit .orbit-stage {
-    width: min(92vw, 55svh);
-    top: 72px;
-    --orbit-r: 33cqmin;
+  .portrait-orbit { height: 180svh; }
+  .portrait-orbit .orbit-sticky { height: 72svh; }
+  .portrait-orbit .orbit-stage {
+    width: min(92vw, 52svh);
+    top: 80px;
   }
-  .home-portrait-orbit .orbit-stage figure { border-radius: 8px; }
-  .home-portrait-orbit .orbit-stage figure span { font-size: 9px; }
+  .portrait-orbit .orbit-stage figure { border-radius: 8px; }
+  .portrait-orbit .orbit-stage figure span { font-size: 9px; }
+  .portrait-orbit + section { padding-top: 24px; }
+  section:has(> .portrait-orbit) + section { padding-top: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portrait-orbit { height: auto; }
+  .portrait-orbit .orbit-sticky { position: relative; }
+  .orbit-card { will-change: auto; }
 }

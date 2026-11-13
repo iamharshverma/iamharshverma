@@ -66,3 +66,4 @@
 - [x] Refine homepage portraits, articles and press strip for phones; verified 320px, 390px, 430px and desktop layouts.
 - [x] Add a matching social strip in the footer only with verified Instagram, LinkedIn and Twitter links.
 - [x] Place social strip before copyright links and update profiles, including alternate portfolio; verified destinations and phone fit.
+- [x] Smooth shared photo-circle scrolling and reduce bottom spacing on Home and About for phones; verified expansion, navigation, compact spacing and reduced motion.
