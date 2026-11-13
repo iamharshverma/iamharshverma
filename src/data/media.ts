@@ -615,6 +615,12 @@ export const keynotes: Keynote[] = [
  }
 ];
 
+export const homeKeynotes = [
+  "https://www.youtube.com/watch?v=nIgJ99Bihsw",
+  "https://www.youtube.com/watch?v=RS_BKcbeV3o",
+  "https://www.youtube.com/watch?v=E6kA_o57DrM",
+].flatMap(href => keynotes.filter(keynote => keynote.href === href));
+
 export type Blog = { title: string; img: string; pub: string; topic: string; date: string; read: string; href: string; excerpt: string };
 export const blogs: Blog[] = [
  {

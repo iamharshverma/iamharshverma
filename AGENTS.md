@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 - Portfolio content lives in src/data (profile.ts hub, media.ts for press/keynotes/blogs/judging, collaborate.ts); pages read from it so updates happen in one place.
+- Homepage keynote selections are curated in src/data/media.ts by source URL and reuse shared keynote records, so homepage replacements do not reorder the Speaking theater.
 - Recognition-only features live in src/data/recognition.ts with thumbnails, descriptions, original PDFs and page previews; a per-entry featured flag enables the larger editorial treatment while rows directly open document tabs or the interview URL, protecting the homepage and supporting mobile viewing.
 - Site-hosted checklist articles use the shared Insights article route with checklist items and source links in original-post data; this keeps static pages, discovery and citations consistent.
 - The dedicated professional profile reuses profile and keynote data and references the shared Person schema identity, so search-focused content stays consistent with the portfolio.

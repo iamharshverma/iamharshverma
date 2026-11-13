@@ -9,7 +9,7 @@ import { NeuralField } from "@/components/site/NeuralField";
 import { Expertise } from "@/components/site/Expertise";
 import { books } from "@/data/books";
 import { Magnetic, TiltCard, LogoTile } from "@/components/site/Interactive";
-import { keynotes, media } from "@/data/media";
+import { homeKeynotes, media } from "@/data/media";
 import { pressLogos } from "@/data/collaborate";
 import { Faq } from "@/components/site/Faq";
 import { WorkWithMe } from "@/components/site/WorkWithMe";
@@ -146,7 +146,7 @@ function Home() {
           <Link to="/speaking" className="hidden items-center gap-1 text-sm text-brand md:flex">Keynote theater <ArrowUpRight className="h-4 w-4" /></Link>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
-          {keynotes.slice(0, 3).map((k, i) => (
+          {homeKeynotes.map((k, i) => (
             <Reveal key={k.title} delay={i * 0.06}>
               <a href={k.href} target="_blank" rel="noreferrer" className="block h-full" onClick={() => window.__lovableEvents?.track?.("project.keynote_played", { keynote: k.title, source: "home" })}>
                 <TiltCard>

@@ -1,9 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { books } from "@/data/books";
 import { enquirySchema } from "@/lib/enquiry-schema";
-import { keynotes, reels } from "@/data/media";
+import { homeKeynotes, keynotes, reels } from "@/data/media";
 
 describe("Portfolio rules", () => {
+  it("features the Digital Battleground in the third homepage slot instead of Berkeley", () => {
+    expect(homeKeynotes.map(k => k.href)).toEqual([
+      "https://www.youtube.com/watch?v=nIgJ99Bihsw",
+      "https://www.youtube.com/watch?v=RS_BKcbeV3o",
+      "https://www.youtube.com/watch?v=E6kA_o57DrM",
+    ]);
+  });
   it("puts the On stage reel first for the default reel selection", () => {
     expect(reels[0]?.id).toBe("DYaWly9vD60");
     expect(reels.filter(r => r.id === "DYaWly9vD60")).toHaveLength(1);
