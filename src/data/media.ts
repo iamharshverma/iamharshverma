@@ -534,6 +534,14 @@ export const media: MediaItem[] = [
 export type Keynote = { title: string; img: string; dur: string; venue: string; desc: string; href: string };
 export const keynotes: Keynote[] = [
  {
+  "title": "Enterprise AI: Building Solutions for Security, Scale & Trust",
+  "img": "https://img.youtube.com/vi/nIgJ99Bihsw/hqdefault.jpg",
+  "dur": "46:18",
+  "venue": "TechTalk with VLink Keynote (Ep. 55)",
+  "desc": "Deep-dive executive presentation covering enterprise AI architectures, scaling multi-agent workloads, identity boundaries, and real-time behavioral defense.",
+  "href": "https://www.youtube.com/watch?v=nIgJ99Bihsw"
+ },
+ {
   "title": "ACM Sacramento Keynote: When Enterprises Become Multi-Agent Systems",
   "img": "https://img.youtube.com/vi/RS_BKcbeV3o/hqdefault.jpg",
   "dur": "38:42",
@@ -572,14 +580,6 @@ export const keynotes: Keynote[] = [
   "venue": "FutureAGI Global Keynote / SF Tech Week",
   "desc": "Keynote during SF Tech Week on scaling AI infrastructure, mitigating agentic risk, powering cybersecurity with generative AI, and driving enterprise AI adoption across Silicon Valley.",
   "href": "https://www.youtube.com/watch?v=MPhFC1h5GIc"
- },
- {
-  "title": "Enterprise AI: Building Solutions for Security, Scale & Trust",
-  "img": "https://img.youtube.com/vi/nIgJ99Bihsw/hqdefault.jpg",
-  "dur": "46:18",
-  "venue": "TechTalk with VLink Keynote (Ep. 55)",
-  "desc": "Deep-dive executive presentation covering enterprise AI architectures, scaling multi-agent workloads, identity boundaries, and real-time behavioral defense.",
-  "href": "https://www.youtube.com/watch?v=nIgJ99Bihsw"
  },
  {
   "title": "Inside Vibe Shift: The Builders Behind the Models",
@@ -1163,8 +1163,8 @@ export const judging: Judging[] = [
 
 export type Reel = { id: string; label: string; account: string };
 export const reels: Reel[] = [
-  { id: "DYcnn4hOfxe", label: "AI with Harsh", account: "aiwithharsh" },
   { id: "DYaWly9vD60", label: "On stage", account: "aiwithharsh" },
+  { id: "DYcnn4hOfxe", label: "AI with Harsh", account: "aiwithharsh" },
   { id: "DYSEXmMswXj", label: "Influencer Magazine Awards", account: "influencermagazineawards" },
   { id: "DJ6szEOxxgl", label: "Speaker moments", account: "aiwithharsh" },
 ];

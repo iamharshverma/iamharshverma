@@ -1,8 +1,17 @@
 import { describe, expect, it } from "vitest";
 import { books } from "@/data/books";
 import { enquirySchema } from "@/lib/enquiry-schema";
+import { keynotes, reels } from "@/data/media";
 
 describe("Portfolio rules", () => {
+  it("puts the On stage reel first for the default reel selection", () => {
+    expect(reels[0]?.id).toBe("DYaWly9vD60");
+    expect(reels.filter(r => r.id === "DYaWly9vD60")).toHaveLength(1);
+  });
+  it("puts the VLink enterprise AI keynote first for the default theater selection", () => {
+    expect(keynotes[0]?.href).toBe("https://www.youtube.com/watch?v=nIgJ99Bihsw");
+    expect(keynotes.filter(k => k.href === "https://www.youtube.com/watch?v=nIgJ99Bihsw")).toHaveLength(1);
+  });
   it("releases Beyond AI Engineering in January 2027", () => {
     expect(books.find(b => b.slug === "beyond-ai-engineering")?.status).toBe("Coming January 2027");
   });

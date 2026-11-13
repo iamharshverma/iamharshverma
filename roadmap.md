@@ -76,3 +76,6 @@
 - [x] Compact feature list entries with thumbnails and click-to-reveal links; add an Awards & Honors section title; verified all five disclosures, documents and phone/desktop fit.
 - [x] Update Prime Insightful and X-Raised thumbnails with their newly supplied photos; verified both images load in the selected entries.
 - [x] Enlarge feature rows with visible descriptions and direct document/interview opening; capitalize Features and Interviews; verified document modals, BCS navigation and phone fit.
+- [x] Add HackerNoon production AI interview with original cover thumbnail and direct article opening; verified desktop and phone.
+- [x] Put the selected “On stage” reel first and select it by default in Speaking; verified initial selection and switching back to the correct reel.
+- [ ] Resolve the root-domain certificate mismatch — blocked on GoDaddy access: remove conflicting @ A records 15.197.225.128 and 3.33.251.168/forwarding, keeping the four GitHub A records. GitHub reports certificate dns_changed; https://www.iamharshverma.com/recognition already verified secure, HTTP 200, Awards & Honors visible.

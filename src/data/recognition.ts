@@ -20,6 +20,7 @@ import cioStory8 from "@/assets/harsh-verma-cio-updated-story-8.jpg.asset.json";
 import primePortrait from "@/assets/harsh-verma-prime-interview.jpg.asset.json";
 import bcsPortrait from "@/assets/harsh-verma-bcs-interview.jpg.asset.json";
 import xRaisedPortrait from "@/assets/harsh-verma-x-raised-interview.jpg.asset.json";
+import hackerNoonCover from "@/assets/harsh-verma-hackernoon-interview.jpg.asset.json";
 
 export const magazineFeatures = [{
   featured: true,
@@ -73,5 +74,14 @@ export const magazineFeatures = [{
   headline: "Harsh Verma on the future of AI and cybersecurity, strategic thinking and the skills engineers need in an AI-driven world.",
   storyUrl: "https://aijourn.com/harsh-verma-on-engineering-beyond-the-code-the-future-of-ai-and-cybersecurity/",
   cover: xRaisedPortrait.url,
+  documents: [],
+}, {
+  title: "The Production Gap: Your AI Model Isn’t as Reliable as You Think",
+  name: "Harsh Verma",
+  outlet: "HackerNoon",
+  kind: "Interview",
+  headline: "Harsh Verma on engineering resilient AI for production, securing autonomous agents and the technical judgment needed to build systems people can trust.",
+  storyUrl: "https://hackernoon.com/the-production-gap-your-ai-model-isnt-as-reliable-as-you-think-interview",
+  cover: hackerNoonCover.url,
   documents: [],
 }];
