@@ -367,29 +367,11 @@
   mask-image: linear-gradient(to right, transparent, var(--foreground) min(12%, 140px), var(--foreground) calc(100% - min(12%, 140px)), transparent);
 }
 @utility press-strip-depth {
-  --press-edge-width: min(22%, 240px);
   --press-card-shadow: 0 8px 18px -8px color-mix(in oklch, var(--foreground) 28%, transparent);
-  --press-edge-shade: color-mix(in oklch, var(--background) 86%, var(--foreground) 14%);
   position: relative;
-  &::before, &::after {
-    content: "";
-    position: absolute;
-    inset-block: 0;
-    width: var(--press-edge-width);
-    z-index: 1;
-    pointer-events: none;
-  }
-  &::before {
-    left: 0;
-    background: linear-gradient(to right, var(--background), var(--press-edge-shade) 15%, transparent);
-  }
-  &::after {
-    right: 0;
-    background: linear-gradient(to left, var(--background), var(--press-edge-shade) 15%, transparent);
-  }
 }
 @utility press-strip-fade {
-  mask-image: linear-gradient(to right, transparent, color-mix(in oklch, var(--foreground) 20%, transparent) 6%, var(--foreground) min(22%, 240px), var(--foreground) calc(100% - min(22%, 240px)), color-mix(in oklch, var(--foreground) 20%, transparent) 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, rgb(0 0 0 / 0.35) 3%, rgb(0 0 0 / 0.78) 6%, #000 9%, #000 calc(100% - 9%), rgb(0 0 0 / 0.78) calc(100% - 6%), rgb(0 0 0 / 0.35) calc(100% - 3%), transparent);
 }
 @utility press-card-shadow { box-shadow: var(--press-card-shadow); }
 

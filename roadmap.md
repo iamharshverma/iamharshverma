@@ -1,3 +1,6 @@
+- [x] Optimize five professional search identities across Home, About, Advisory, Speaking and the engineering profile; verified all five page titles, descriptions, single canonicals and sitemap tests.
+- [x] Deliver updated professional search titles to iamharshverma/iamharshverma: GitHub Pages deployment succeeded; live Home and Speaking titles verified.
+- [x] Inspect homepage and Speaking in Search Console: homepage indexed (last crawl November 11); Speaking unknown to Google. Request indexing requires the Search Console UI.
 - [x] Add stored keynote/advisory booking requests linked from Contact (reconfirmed in follow-up).
 - [x] Compact, collapsible and dismissible AI assistant.
 - [x] January 2027 book dates and expanded AI vs. AI section.
@@ -92,6 +95,8 @@
 - [x] Remove brand name text under logos on Collaborate, keeping logo-only tiles; verified and deployed.
 - [x] Insights headline "AI Era." with period; deployed.
 - [x] Fix mobile layout on Speaking and About pages: smaller hero padding/headings on phones; verified no overflow at 390px.
-- [ ] Convert Collaborate brand grid to a floating left-to-right logo marquee with corner fading; verify desktop and phone.
-- [ ] Submit iamharshverma.com sitemap to Google Search Console.
-- [ ] Push all changes to iamharshverma/iamharshverma and confirm deployment.
+- [x] Convert Collaborate brand grid to a floating left-to-right logo marquee with corner fading; verified desktop and phone.
+- [x] Submit iamharshverma.com sitemap to Google Search Console — 50 URLs, 0 errors, downloaded by Google.
+- [x] Update LinkedIn network stat to 18.1K+ and Favikon score to 94/100.
+- [x] Push all changes to iamharshverma/iamharshverma; deployment 8b91f91 succeeded.
+- [ ] Soften the brand/press strip corner fade so edges are not too dark; verify Home and Collaborate, then push to iamharshverma/iamharshverma.
