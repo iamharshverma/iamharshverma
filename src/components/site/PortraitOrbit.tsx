@@ -87,7 +87,7 @@ export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerLi
               {centerText}
             </blockquote>
             {centerLink.appearance === "button" ? (
-              <Button asChild size="sm" className="mt-3 h-auto min-h-8 max-w-full whitespace-normal px-2 py-1 font-mono text-[10px] leading-tight md:px-3 md:text-xs">
+              <Button asChild size="sm" className="mt-2 h-auto min-h-6 max-w-full whitespace-normal rounded-md px-1.5 py-0.5 font-mono text-[9px] leading-tight md:px-2 md:text-[10px]">
                 <Link to={centerLink.to}>{centerLink.label}</Link>
               </Button>
             ) : <Link to={centerLink.to} className="mt-3 inline-block max-w-full text-balance font-mono text-[clamp(10px,2cqmin,14px)] leading-relaxed text-brand hover:underline">{centerLink.label}</Link>}
