@@ -175,9 +175,8 @@ function Collaborate() {
                   <span aria-hidden className="h-1 w-1 rounded-full bg-border transition-all duration-300 group-hover:scale-150 group-hover:bg-signal" />
                 </div>
                 <div className="flex h-12 items-center justify-center rounded-sm bg-logo-tile px-2 sm:h-14">
-                  <img src={b.logo} alt={b.name} loading="lazy" decoding="async" className="max-h-8 w-full max-w-28 object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-110 sm:max-h-9" />
+                  <img src={b.logo} alt={b.name} title={b.name} loading="lazy" decoding="async" className="max-h-8 w-full max-w-28 object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-110 sm:max-h-9" />
                 </div>
-                <p className="mt-2 truncate text-[11px] font-medium leading-4 text-muted-foreground transition-colors duration-300 group-hover:text-foreground" title={b.name}>{b.name}</p>
                 <div aria-hidden className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-signal motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-x-100" />
               </div>
             ))}
