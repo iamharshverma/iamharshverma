@@ -31,7 +31,7 @@ function Insights() {
   const list = useMemo(() => insights.filter((i) => (topic === "All" || i.topic === topic) && (i.title + i.excerpt).toLowerCase().includes(q.toLowerCase())), [topic, q]);
   return (
     <>
-      <PageHero eyebrow="// writing · research notes" title={<>Insights for the <span className="text-brand-gradient">AI Era!</span></>} intro="Essays on autonomous AI, security and how engineering is changing — published on Forbes and beyond." />
+      <PageHero eyebrow="// writing · research notes" title={<>Insights for the <span className="text-brand-gradient">AI Era.</span></>} intro="Essays on autonomous AI, security and how engineering is changing — published on Forbes and beyond." />
       <section className="mx-auto max-w-6xl px-6 pb-12">
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative min-w-60 flex-1"><Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
