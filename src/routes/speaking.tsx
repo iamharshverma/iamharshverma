@@ -61,7 +61,7 @@ function Speaking() {
   const id = ytId(k.href);
   return (
     <>
-      <PageHero eyebrow="// keynotes · panels · judging" title={<>Harsh Verma · <span className="text-brand-gradient">AI keynote speaker.</span></>}
+      <PageHero eyebrow="// keynotes · panels · judging" title={<>Harsh Verma · <span className="text-brand-gradient">AI Keynote Speaker.</span></>}
         intro="Agentic AI, enterprise security and responsible adoption — grounded in engineering practice, with keynote recordings from ACM and UC Berkeley SkyDeck." />
       <SeoSummary heading="Book Harsh Verma as an AI keynote speaker" paragraphs={[
         "Harsh Verma speaks on agentic AI, AI security and responsible enterprise adoption. As a Principal AI Engineer at Palo Alto Networks, he brings real production experience to every keynote, panel and fireside chat, with talks delivered at ACM and UC Berkeley SkyDeck.",

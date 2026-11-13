@@ -88,4 +88,5 @@
 - [x] Make Collaborate brand entries smaller and more creative; verified desktop (275x130 tiles) and phone (170x118, 2-col).
 - [x] Capitalize B and T in the Collaborate headline "Let's Build Together."
 - [x] Capitalize W in the Recognition headline "Recognized Worldwide."
+- [x] Rename Insights headline to "AI Era!" and capitalize "Speaker" in the Speaking headline.
 - [ ] Push all changes to iamharshverma/iamharshverma and confirm deployment.
