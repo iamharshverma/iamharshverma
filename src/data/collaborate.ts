@@ -2,7 +2,7 @@ const B = "https://www.harshverma.me/images/media/brands";
 
 export const socialStats = [
   { value: 18.1, suffix: "K+", decimals: 1, label: "LinkedIn tech network" },
-  { value: 79, suffix: "/100", decimals: 0, label: "Favikon creator score" },
+  { value: 94, suffix: "/100", decimals: 0, label: "Favikon creator score" },
   { value: 3.75, suffix: "B+", decimals: 2, label: "Aggregate media reach" },
   { value: 1, prefix: "Top ", suffix: "%", decimals: 0, label: "ADPList global mentor" },
 ];
