@@ -36,7 +36,7 @@ function Recognition() {
   const list = awards.filter((a) => (c === "All" || a.cat === c) && (a.title + a.org).toLowerCase().includes(q.toLowerCase()));
   return (
     <>
-      <PageHero eyebrow="// honors · awards" title={<>Recognized <span className="text-brand-gradient">worldwide.</span></>}
+      <PageHero eyebrow="// honors · awards" title={<>Recognized <span className="text-brand-gradient">Worldwide.</span></>}
         intro="Honored by premier technology councils, engineering bodies and business foundations for advances in enterprise AI and autonomous security." />
       <section aria-labelledby="magazine-features-heading" className="border-t border-border bg-card/30 py-16">
         <div className="mx-auto max-w-6xl px-6">

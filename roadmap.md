@@ -85,6 +85,7 @@
 - [x] Optimize page titles and descriptions for Harsh Verma and AI talks; verified all 50 sitemap pages, unique titles, self-referencing URLs, and talk structured data.
 - [x] Push completed search optimization and heading fix to iamharshverma/iamharshverma; GitHub Pages deployment succeeded and live titles, talk data and 50-URL sitemap verified.
 - [x] Wrap the selected portrait heading at narrower widths so it stays clear of photos; verified Home and About at phone, landscape, tablet and computer widths.
-- [ ] Make Collaborate brand entries smaller and more creative; verify desktop and phone.
-- [ ] Capitalize B and T in the Collaborate headline "Let's Build Together."
+- [x] Make Collaborate brand entries smaller and more creative; verified desktop (275x130 tiles) and phone (170x118, 2-col).
+- [x] Capitalize B and T in the Collaborate headline "Let's Build Together."
+- [x] Capitalize W in the Recognition headline "Recognized Worldwide."
 - [ ] Push all changes to iamharshverma/iamharshverma and confirm deployment.
