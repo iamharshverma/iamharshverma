@@ -15,7 +15,7 @@ export const Route = createFileRoute("/collaborate")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Work With Harsh Verma — Keynotes, Advisory, Brand Partnerships" },
-      { name: "description", content: "Collaborate with Harsh Verma: keynotes, board advisory, masterclasses, podcasts, brand partnerships and 1:1 mentorship reaching 16.6K+ tech leaders." },
+      { name: "description", content: "Collaborate with Harsh Verma: keynotes, board advisory, masterclasses, podcasts, brand partnerships and 1:1 mentorship reaching 18.1K+ tech leaders." },
       { property: "og:title", content: "Work With Harsh Verma" },
       { property: "og:description", content: "Keynotes, advisory, masterclasses, brand collaborations and mentorship." },
       { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },

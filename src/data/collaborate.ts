@@ -1,7 +1,7 @@
 const B = "https://www.harshverma.me/images/media/brands";
 
 export const socialStats = [
-  { value: 16.6, suffix: "K+", decimals: 1, label: "LinkedIn tech network" },
+  { value: 18.1, suffix: "K+", decimals: 1, label: "LinkedIn tech network" },
   { value: 79, suffix: "/100", decimals: 0, label: "Favikon creator score" },
   { value: 3.75, suffix: "B+", decimals: 2, label: "Aggregate media reach" },
   { value: 1, prefix: "Top ", suffix: "%", decimals: 0, label: "ADPList global mentor" },
@@ -20,7 +20,7 @@ export const pressLogos = brands.slice(6);
 export const offerings = [
   { tag: "Brand & Creator", badge: "High reach", title: "Brand Collaborations & Sponsored Content",
     desc: "Co-branded technical breakdowns, sponsored LinkedIn articles, video features and authentic product launches reaching tech decision-makers.",
-    points: ["Dedicated LinkedIn feature (16.6K+ network)", "5.8% average engagement", "Authentic developer & executive framing", "Cross-amplification on Instagram (@aiwithharsh)"] },
+    points: ["Dedicated LinkedIn feature (18.1K+ network)", "5.8% average engagement", "Authentic developer & executive framing", "Cross-amplification on Instagram (@aiwithharsh)"] },
   { tag: "Keynote & Events", badge: "Most requested", title: "Keynote Speaking & Moderation",
     desc: "Authoritative keynotes on Autonomous AI Systems, Zero-Trust Architecture, Agentic Cybersecurity and Engineering Culture.",
     points: ["Smart Slide deck included (16+ slides)", "Tailored to enterprise or technical audiences", "Fireside chats & panel moderation", "Pre-event promotion & press syndication"] },
