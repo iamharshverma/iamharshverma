@@ -54,7 +54,7 @@ function MediaPage() {
 
   return (
     <>
-      <PageHero eyebrow="// press · podcasts · broadcast" title={<>In the <span className="text-brand-gradient">headlines.</span></>}
+      <PageHero eyebrow="// press · podcasts · broadcast" title={<>In the <span className="text-brand-gradient">Headlines.</span></>}
         intro="International press, executive podcasts, Times Square NYC broadcasts and technical interviews shaping the conversation on enterprise AI and cybersecurity." />
       <div className="mx-auto -mt-6 flex max-w-6xl flex-wrap gap-3 px-6 pb-8"><Button asChild><Link to="/media-kit"><Download />Media kit</Link></Button><Button asChild variant="outline"><Link to="/press-kit">Press kit</Link></Button></div>
 

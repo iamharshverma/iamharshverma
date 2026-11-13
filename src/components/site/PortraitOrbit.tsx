@@ -3,6 +3,7 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform,
 import { Link } from "@tanstack/react-router";
 import { ChevronDown } from "lucide-react";
 import { orbitPortraits } from "@/data/profile";
+import { Button } from "@/components/ui/button";
 
 const Card = memo(function Card({ i, n, spread, radius, reducedMotion, src, label, to }: { i: number; n: number; spread: MotionValue<number>; radius: number; reducedMotion: boolean; src: string; label: string; to: (typeof orbitPortraits)[number]["to"] }) {
   const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
@@ -23,7 +24,7 @@ const Card = memo(function Card({ i, n, spread, radius, reducedMotion, src, labe
   );
 });
 
-export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerLink = { to: "/speaking", label: "See him on stage →" }, centerText = <>“From being <span className="text-brand-gradient">Creator</span> to <span className="text-brand-gradient">Curator</span>&nbsp;!!”</> }: { heading?: ReactNode; tag?: string; headingNote?: string; sectionLink?: ReactNode; centerLink?: { to: "/about" | "/speaking"; label: string }; centerText?: ReactNode }) {
+export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerLink = { to: "/speaking", label: "See him on stage →" }, centerText = <>“From being <span className="text-brand-gradient">Creator</span> to <span className="text-brand-gradient">Curator</span>&nbsp;!!”</> }: { heading?: ReactNode; tag?: string; headingNote?: string; sectionLink?: ReactNode; centerLink?: { to: "/about" | "/speaking"; label: string; appearance?: "button" }; centerText?: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const [geometry, setGeometry] = useState({ radius: 0, headingOffset: 0 });
@@ -75,7 +76,6 @@ export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerLi
             <ChevronDown aria-hidden="true" className="size-3.5 text-brand" />
             {headingNote}
           </motion.p>}
-          {sectionLink && <div className="mt-4 md:hidden">{sectionLink}</div>}
         </motion.div>
         {sectionLink && <div className="absolute right-[max(24px,calc((100vw-72rem)/2+24px))] top-[104px] z-20 hidden md:block">{sectionLink}</div>}
         <div ref={stageRef} className="orbit-stage relative aspect-square w-[min(96vw,84vh)]" style={{ containerType: "size" }}>
@@ -86,8 +86,13 @@ export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerLi
             <blockquote className={`mt-2 text-balance font-display font-bold leading-snug tracking-normal ${heading ? "text-[clamp(12px,3.4cqmin,24px)]" : "text-[clamp(13px,3.8cqmin,28px)]"}`}>
               {centerText}
             </blockquote>
-            <Link to={centerLink.to} className="mt-3 inline-block max-w-full text-balance font-mono text-[clamp(10px,2cqmin,14px)] leading-relaxed text-brand hover:underline">{centerLink.label}</Link>
+            {centerLink.appearance === "button" ? (
+              <Button asChild size="sm" className="mt-3 h-auto min-h-8 max-w-full whitespace-normal px-2 py-1 font-mono text-[10px] leading-tight md:px-3 md:text-xs">
+                <Link to={centerLink.to}>{centerLink.label}</Link>
+              </Button>
+            ) : <Link to={centerLink.to} className="mt-3 inline-block max-w-full text-balance font-mono text-[clamp(10px,2cqmin,14px)] leading-relaxed text-brand hover:underline">{centerLink.label}</Link>}
           </motion.div>
+          {sectionLink && <div className="absolute inset-x-0 top-[calc(93%+16px)] z-10 flex justify-center md:hidden">{sectionLink}</div>}
         </div>
       </div>
     </div>

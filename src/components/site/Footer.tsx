@@ -12,9 +12,9 @@ export function Footer() {
         <div className="mt-8 max-w-md"><p className="mb-3 text-sm font-medium">Newsletter — new essays on agentic AI & security</p><Subscribe list="newsletter" /></div>
         <section aria-label="Social media" className="pt-6">
           <p className="eyebrow text-center">Stay connected</p>
-          <div className="mt-2 overflow-hidden">
-            <div className="py-1">
-              <div className="flex w-max animate-marquee gap-2 hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
+          <div className="mt-1 overflow-hidden">
+            <div className="py-0.5">
+              <div className="flex w-max animate-marquee gap-1.5 hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
                 {[0, 1, 2, 3].flatMap((copy) => [
                   { name: "Instagram", href: links.instagram, Icon: Instagram },
                   { name: "LinkedIn", href: links.linkedin, Icon: Linkedin },
@@ -24,8 +24,8 @@ export function Footer() {
                   { name: "RSAC", href: links.rsac, Icon: ShieldCheck },
                   { name: "HackerNoon", href: links.hackernoon, Icon: Code },
                 ].map(({ name, href, Icon }) => (
-                  <a key={`${copy}-${name}`} href={href} target="_blank" rel="noopener noreferrer" tabIndex={copy === 0 ? 0 : -1} aria-hidden={copy > 0 ? true : undefined} className="press-card-shadow flex h-9 w-28 shrink-0 items-center justify-center gap-1.5 rounded-md border border-border bg-card px-2 text-xs font-semibold text-foreground transition hover:border-shine focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
-                    <Icon aria-hidden="true" className="size-3.5 shrink-0 text-brand" />{name}<ArrowUpRight aria-hidden="true" className="size-3 shrink-0 text-muted-foreground" />
+                  <a key={`${copy}-${name}`} href={href} target="_blank" rel="noopener noreferrer" tabIndex={copy === 0 ? 0 : -1} aria-hidden={copy > 0 ? true : undefined} className="press-card-shadow flex h-7 w-24 shrink-0 items-center justify-center gap-1 rounded-md border border-border bg-card px-1.5 text-[10px] font-semibold text-foreground transition hover:border-shine focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+                    <Icon aria-hidden="true" className="size-3 shrink-0 text-brand" />{name}<ArrowUpRight aria-hidden="true" className="size-2.5 shrink-0 text-muted-foreground" />
                   </a>
                 )))}
               </div>

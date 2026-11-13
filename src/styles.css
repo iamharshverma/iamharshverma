@@ -417,7 +417,7 @@
 }
 @media (max-width: 767px) {
   .portrait-orbit { height: 180svh; }
-  .portrait-orbit .orbit-sticky { height: 72svh; }
+  .portrait-orbit .orbit-sticky { height: 72svh; min-height: calc(min(92vw, 52svh) + 220px); }
   .portrait-orbit .orbit-stage {
     width: min(92vw, 52svh);
     top: 80px;

@@ -49,7 +49,7 @@ function Books() {
 
   return (
     <>
-      <PageHero eyebrow="// author · January 2027 releases" title={<>Books for the <span className="text-brand-gradient">agentic era.</span></>}
+      <PageHero eyebrow="// author · January 2027 releases" title={<>Books for the <span className="text-brand-gradient">Agentic Era.</span></>}
         intro="Two books, one thesis: when AI makes output abundant, human judgment and engineered trust become the scarce advantage." />
 
       <section className="mx-auto max-w-6xl px-6 pt-4">
@@ -174,7 +174,7 @@ function Books() {
             </div>
             <div className="mt-8"><Magnetic><a href={avs.site} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow">Visit beyondaivsai.com <ArrowUpRight className="h-4 w-4" /></a></Magnetic></div>
           </Reveal>
-          <Reveal delay={0.1} className="relative mx-auto w-full max-w-xs">
+          <Reveal delay={0.1} className="relative mx-auto w-full max-w-lg">
             <div className="absolute -inset-8 rounded-full bg-signal/20 blur-3xl" />
             <motion.img whileHover={{ rotate: 2, scale: 1.02 }} src={avs.cover} alt={avs.title} className="relative w-full rounded-xl shadow-glow" />
           </Reveal>

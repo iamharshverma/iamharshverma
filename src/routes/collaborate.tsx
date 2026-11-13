@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Award, Check, Plus } from "lucide-react";
 import { socialStats, brands, offerings, personas, audienceFacts, creatorBadges, formats } from "@/data/collaborate";
 import { Reveal, PageHero, Counter } from "@/components/site/Reveal";
-import { TiltCard, LogoTile, Magnetic } from "@/components/site/Interactive";
+import { TiltCard, Magnetic } from "@/components/site/Interactive";
 
 export const Route = createFileRoute("/collaborate")({
   head: () => ({
@@ -155,10 +155,33 @@ function Collaborate() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <Reveal><p className="eyebrow">Enterprise & brand trust</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Brands I've worked with</h2></Reveal>
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {brands.map((b, i) => <Reveal key={b.name} delay={i * 0.02}><LogoTile src={b.logo} name={b.name} className="h-20" /></Reveal>)}
+      <section aria-labelledby="brand-showcase-heading" className="border-t border-border bg-card/30 py-14 md:py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="max-w-2xl">
+              <p className="eyebrow flex items-center gap-3"><span aria-hidden className="h-2 w-2 rounded-full bg-signal" />Enterprise & brand trust</p>
+              <h2 id="brand-showcase-heading" className="mt-4 font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Brands I've<br /><span className="text-brand">worked with.</span></h2>
+            </div>
+            <div className="flex items-center gap-4 border-l-2 border-signal pl-5">
+              <span className="font-display text-5xl font-bold text-signal">{String(brands.length).padStart(2, "0")}</span>
+              <p className="font-mono text-xs leading-relaxed text-muted-foreground">BRANDS &<br />INSTITUTIONS</p>
+            </div>
+          </Reveal>
+          <div className="mt-8 grid grid-cols-2 overflow-hidden rounded-lg border border-border bg-border gap-px md:mt-10 md:grid-cols-4">
+            {brands.map((b, i) => (
+              <div key={b.name} className="group relative min-w-0 bg-card p-3 transition-colors duration-300 hover:bg-accent sm:p-5">
+                <div className="mb-3 flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+                  <span>{String(i + 1).padStart(2, "0")}</span>
+                  <span aria-hidden className="h-px w-5 bg-border transition-all duration-300 group-hover:w-9 group-hover:bg-signal" />
+                </div>
+                <div className="flex h-20 items-center justify-center rounded-sm bg-logo-tile px-3 sm:h-24">
+                  <img src={b.logo} alt={b.name} loading="lazy" decoding="async" className="max-h-12 w-full max-w-40 object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105" />
+                </div>
+                <p className="mt-3 min-h-10 text-xs font-medium leading-5 sm:text-sm">{b.name}</p>
+                <div aria-hidden className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-signal motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-x-100" />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

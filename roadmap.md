@@ -67,3 +67,12 @@
 - [x] Add a matching social strip in the footer only with verified Instagram, LinkedIn and Twitter links.
 - [x] Place social strip before copyright links and update profiles, including alternate portfolio; verified destinations and phone fit.
 - [x] Smooth shared photo-circle scrolling and reduce bottom spacing on Home and About for phones; verified expansion, navigation, compact spacing and reduced motion.
+- [x] Move mobile collaboration link below all orbit photos; verified phone sizes and navigation.
+- [x] Turn About’s “See him on stage” link into a button; verified phone fit and Speaking navigation.
+- [x] Further shrink footer social strip cards and icons; verified phone and desktop fit.
+- [x] Add Recognition-only Passion Vista magazine feature with original story PDF and certificate; verified card, both PDFs, all page previews and phone fit.
+- [x] Remove the selected CIO card cover only, retain its PDF, and add BCS and X-Raised interview entries on Recognition; verified links, PDF viewer and phone fit.
+- [x] Replace and delete the old CIO documents with the updated eight-page story, certificate and trophy; change magazine features to full-width editorial list entries; verified document viewing and desktop/phone fit.
+- [x] Compact feature list entries with thumbnails and click-to-reveal links; add an Awards & Honors section title; verified all five disclosures, documents and phone/desktop fit.
+- [x] Update Prime Insightful and X-Raised thumbnails with their newly supplied photos; verified both images load in the selected entries.
+- [x] Enlarge feature rows with visible descriptions and direct document/interview opening; capitalize Features and Interviews; verified document modals, BCS navigation and phone fit.

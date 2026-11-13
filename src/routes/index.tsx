@@ -194,7 +194,7 @@ function Home() {
         </div>
       </section>
       <section aria-label="Connect with Harsh and explore" className="home-portrait-orbit">
-        <PortraitOrbit tag="Driven by purpose. Defined by people." heading={<>Connect with <span className="text-brand-gradient">Harsh</span> &amp; <span className="text-brand-gradient">Explore</span>&nbsp;!!</>} centerLink={{ to: "/about", label: "know more" }} sectionLink={<Link to="/collaborate" className="inline-flex items-center gap-1 text-sm text-brand hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Explore collaboration <ArrowUpRight className="h-4 w-4" /></Link>} centerText={<><span className="text-brand-gradient">Passion</span> , Persistence &amp; <span className="text-brand-gradient">People</span></>} />
+        <PortraitOrbit tag="Driven by purpose. Defined by people." heading={<>Connect with <span className="text-brand-gradient">Harsh</span> &amp; <span className="text-brand-gradient">Explore</span>&nbsp;!!</>} centerLink={{ to: "/about", label: "know more", appearance: "button" }} sectionLink={<Link to="/collaborate" className="inline-flex items-center gap-1 text-sm text-brand hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Explore collaboration <ArrowUpRight className="h-4 w-4" /></Link>} centerText={<><span className="text-brand-gradient">Passion</span> , Persistence &amp; <span className="text-brand-gradient">People</span></>} />
       </section>
       <section aria-labelledby="recent-articles-heading" className="mx-auto max-w-6xl px-6 py-20">
         <div className="mb-8 grid min-w-0 gap-4 sm:flex sm:items-end sm:justify-between md:mb-10">
