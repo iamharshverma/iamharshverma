@@ -6,8 +6,8 @@ import { canonical } from "@/lib/seo";
 import { advisory, advisoryProcess, advisoryFaq } from "@/data/profile";
 import { Reveal, PageHero } from "@/components/site/Reveal";
 
-const TITLE = "AI Advisory for Enterprises & Mentoring — Harsh Verma";
-const DESC = "Agentic AI advisory for enterprises: strategy, secure architecture and governance, plus executive briefings and engineer mentoring from Principal AI Engineer Harsh Verma.";
+const TITLE = "Harsh Verma - Agentic AI & AI Advisory for Founders";
+const DESC = "Agentic AI and AI advisory for founders and enterprises with Harsh Verma: strategy, secure architecture, governance, executive briefings and engineer mentoring.";
 
 export const Route = createFileRoute("/advisory")({
   head: () => ({
@@ -42,7 +42,7 @@ function Advisory() {
   return (
     <>
       <PageHero eyebrow="// advisory · mentoring" title={<>Guidance for builders of <span className="text-brand-gradient">what's next.</span></>}
-        intro="Helping enterprises build agentic AI that customers trust — strategy, secure architecture, governance and the people who ship it." />
+        intro="Helping founders and enterprises build agentic AI that customers trust — strategy, secure architecture, governance and the people who ship it." />
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <Reveal><p className="eyebrow">Choose a focus</p><h2 className="mt-3 font-display text-4xl font-bold tracking-tight">How I can help</h2></Reveal>

@@ -24,10 +24,10 @@ export const Route = createFileRoute("/")({
       canonical("/").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "Harsh Verma — AI Keynote Speaker, Engineer & Advisor" },
-      { name: "description", content: "Explore Harsh Verma’s AI keynotes, agentic AI research and enterprise advisory. Watch talks on AI security, trusted agents and engineering at scale." },
-      { property: "og:title", content: "Harsh Verma — AI Keynote Speaker, Engineer & Advisor" },
-      { property: "og:description", content: "Explore Harsh Verma’s AI keynotes, agentic AI research and enterprise advisory. Watch talks on AI security, trusted agents and engineering at scale." },
+      { title: "Harsh Verma - Principal Software Engineer AI/ML" },
+      { name: "description", content: "Harsh Verma, Principal Software Engineer in AI/ML at Palo Alto Networks, speaker and author. Explore agentic AI, cybersecurity and AI advisory for founders." },
+      { property: "og:title", content: "Harsh Verma - Principal Software Engineer AI/ML" },
+      { property: "og:description", content: "Harsh Verma, Principal Software Engineer in AI/ML at Palo Alto Networks, speaker and author. Explore agentic AI, cybersecurity and AI advisory for founders." },
       { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
       { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
     ],
@@ -63,7 +63,7 @@ function Home() {
             <Reveal delay={0.1}>
               <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] tracking-tight md:text-8xl">Harsh Verma<br /><span className="text-5xl md:text-7xl"><RotatingRole i={i} /></span></h1>
             </Reveal>
-            <Reveal delay={0.2}><p className="mt-6 font-display text-xl font-medium md:text-2xl">Founder mindset. Engineer's precision. Speaker's voice.</p><p className="mt-3 max-w-xl text-base text-foreground/80">AI advisory for enterprises: I help enterprises build agentic AI that customers trust - from first agent to global scale.</p><p className="mt-4 max-w-xl text-lg text-muted-foreground">{profile.tagline}</p></Reveal>
+            <Reveal delay={0.2}><p className="mt-6 font-display text-xl font-medium md:text-2xl">Founder mindset. Engineer's precision. Speaker's voice.</p><p className="mt-3 max-w-xl text-base text-foreground/80">Principal Software Engineer in AI/ML at Palo Alto Networks. I help founders and enterprises build agentic AI that customers trust — from first agent to global scale.</p><p className="mt-4 max-w-xl text-lg text-muted-foreground">{profile.tagline}</p></Reveal>
             <Reveal delay={0.3}>
               <div className="mt-10 flex flex-wrap gap-3">
                 <Magnetic><Link to="/about" className="group inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow transition hover:scale-[1.03]">

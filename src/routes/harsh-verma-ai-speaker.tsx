@@ -8,8 +8,8 @@ import { keynotes } from "@/data/media";
 import { canonical, SITE_URL, ALT_PORTFOLIO_URL } from "@/lib/seo";
 
 const path = "/harsh-verma-ai-speaker";
-const title = "Harsh Verma — AI Speaker & Principal AI Engineer";
-const description = "Meet Harsh Verma, AI engineer at Palo Alto Networks and speaker on agentic AI and cybersecurity. Explore his enterprise experience, keynotes and speaker bio.";
+const title = "Harsh Verma - AI & Cybersecurity Engineer";
+const description = "Harsh Verma, Principal Software Engineer in AI/ML at Palo Alto Networks. Explore AI and cybersecurity engineering, secure agentic systems and keynote talks.";
 
 export const Route = createFileRoute("/harsh-verma-ai-speaker")({
   head: () => ({
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/harsh-verma-ai-speaker")({
           worksFor: { "@type": "Organization", name: profile.company },
           description: profile.bio,
           sameAs: [ALT_PORTFOLIO_URL, ...Object.values(links)],
-          knowsAbout: ["Agentic AI", "AI security", "Enterprise AI", "Machine learning", "Distributed systems"],
+          knowsAbout: ["Artificial Intelligence", "Agentic AI", "AI security", "Cybersecurity", "Enterprise AI", "Machine learning", "Distributed systems"],
         },
       }),
     }],
@@ -52,7 +52,7 @@ export const Route = createFileRoute("/harsh-verma-ai-speaker")({
 function ProfessionalProfile() {
   const currentRole = experience[0];
   return <>
-    <PageHero eyebrow="// engineering · speaking · enterprise AI" title="Harsh Verma" intro="Principal AI Engineer at Palo Alto Networks · AI speaker on agentic AI, security and trustworthy autonomous systems." />
+    <PageHero eyebrow="// engineering · speaking · enterprise AI" title="Harsh Verma" intro="Principal Software Engineer in AI/ML at Palo Alto Networks · Artificial intelligence and cybersecurity engineer, speaker on agentic AI and trustworthy autonomous systems." />
     <section className="mx-auto grid max-w-6xl items-start gap-10 px-6 py-16 md:grid-cols-[0.8fr_1.2fr]">
       <img src={professionalPortrait.url} alt="Harsh Verma, Principal AI Engineer and AI speaker" className="w-full rounded-lg" />
       <div className="min-w-0">
