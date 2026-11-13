@@ -81,4 +81,4 @@
 - [x] Deliver the homepage Digital Battleground keynote replacement to GitHub; deployment succeeded and the third featured entry and video URL were verified live.
 - [ ] Resolve the root-domain certificate mismatch — blocked on GoDaddy access: remove conflicting @ A records 15.197.225.128 and 3.33.251.168/forwarding, keeping the four GitHub A records. GitHub reports certificate dns_changed; https://www.iamharshverma.com/recognition already verified secure, HTTP 200, Awards & Honors visible.
 - [x] Smaller About orbit center button
-- [ ] Landscape mobile (short/wide phone) layout for the orbit section on Home and About — currently cluttered
+- [x] Landscape mobile (short/wide phone) layout for the orbit section on Home and About — photos now unstack into a row, quote underneath
