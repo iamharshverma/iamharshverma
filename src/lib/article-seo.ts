@@ -13,7 +13,7 @@ const TOPIC_KEYWORDS: Record<string, string[]> = {
 const SECURITY_HINT = /secur|attack|identity|threat|authenticat|insider|trust|privacy|perimeter|defend/i;
 
 export const articleKeywords = (a: SeoInput) => {
-  const base = TOPIC_KEYWORDS[a.topic] ?? TOPIC_KEYWORDS["AI Research"];
+  const base = TOPIC_KEYWORDS[a.topic] ?? TOPIC_KEYWORDS["AI Research"]!;
   const extra = SECURITY_HINT.test(a.title) && a.topic !== "Cybersecurity" ? ["AI cybersecurity"] : [];
   return [...new Set([...base, ...extra, "Harsh Verma"])];
 };
@@ -22,7 +22,7 @@ const clip = (s: string, n: number) => (s.length <= n ? s : s.slice(0, s.lastInd
 
 /** Search title kept within ~60 chars: main headline + primary keyword + name. */
 export const articleSeoTitle = (a: SeoInput) => {
-  const head = a.title.split(/[:(\[]/)[0].trim();
+  const head = (a.title.split(/[:(\[]/)[0] ?? a.title).trim();
   const kw = SECURITY_HINT.test(a.title) || /secur/i.test(a.topic) ? "AI Security" : a.topic === "Engineering" ? "AI Engineering" : "AI";
   const suffix = ` | ${kw} — Harsh Verma`;
   return clip(head, 60 - suffix.length) + suffix;
@@ -30,7 +30,8 @@ export const articleSeoTitle = (a: SeoInput) => {
 
 /** Meta description kept within 160 chars, naming the topic keyword and author. */
 export const articleSeoDescription = (a: SeoInput) => {
-  const lead = `${articleKeywords(a)[0][0].toUpperCase()}${articleKeywords(a)[0].slice(1)} insight by Harsh Verma: `;
+  const k = articleKeywords(a)[0] ?? "AI";
+  const lead = `${k.charAt(0).toUpperCase()}${k.slice(1)} insight by Harsh Verma: `;
   return clip(lead + a.excerpt.replace(/\s+/g, " ").trim(), 160);
 };
 
