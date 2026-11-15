@@ -2,28 +2,35 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { canonical, SITE_URL } from "@/lib/seo";
 import { findInsight, insights } from "@/data/insights";
+import { articleKeywords, articleSeoDescription, articleSeoImage, articleSeoTitle } from "@/lib/article-seo";
 import { Subscribe } from "@/components/site/Subscribe";
 
 export const Route = createFileRoute("/insights/$slug")({
   loader: ({ params }) => { const a = findInsight(params.slug); if (!a) throw notFound(); return a; },
   head: ({ params, loaderData: a }) => {
     if (!a) return { meta: [{ title: "Article not found — Harsh Verma" }, { name: "robots", content: "noindex" }] };
+    const t = articleSeoTitle(a), d = articleSeoDescription(a), img = articleSeoImage(a), kw = articleKeywords(a);
     const c = canonical(`/insights/${params.slug}`);
     return {
       links: c.links,
       meta: [
         c.url,
-        { title: `${a.title} — Harsh Verma` },
-        { name: "description", content: a.excerpt },
+        { title: t },
+        { name: "description", content: d },
+        { name: "keywords", content: kw.join(", ") },
         { name: "keywords", content: "agentic AI, AI agents, AI advisory, AI for founders, AI security, Harsh Verma" },
-        { property: "og:title", content: a.title },
-        { property: "og:description", content: a.excerpt },
+        { property: "og:title", content: t },
+        { property: "og:description", content: d },
+        { name: "twitter:title", content: t },
+        { name: "twitter:description", content: d },
+        { property: "og:image:alt", content: a.title },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
-        ...(a.img.startsWith("https://") ? [{ property: "og:image", content: a.img }, { name: "twitter:image", content: a.img }] : []),
+        { property: "og:image", content: img },
+        { name: "twitter:image", content: img },
       ],
       scripts: [{ type: "application/ld+json", children: JSON.stringify({
-        "@context": "https://schema.org", "@type": "Article", headline: a.title, description: a.excerpt, keywords: "agentic AI, AI agents, AI advisory, AI for founders", about: [{ "@type": "Thing", name: "Agentic AI" }, { "@type": "Thing", name: "AI advisory" }], image: a.img,
+        "@context": "https://schema.org", "@type": "Article", headline: a.title, description: d, keywords: kw.join(", "), about: kw.slice(0, 3).map(name => ({ "@type": "Thing", name })), image: img,
         ...(isNaN(Date.parse(a.date)) ? {} : { datePublished: new Date(a.date).toISOString().slice(0, 10) }), url: `${SITE_URL}/insights/${params.slug}`,
         author: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: "Harsh Verma" },
         publisher: { "@type": "Person", name: "Harsh Verma" }, ...(a.href ? { sameAs: a.href } : {}),
