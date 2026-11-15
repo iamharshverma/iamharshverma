@@ -18,7 +18,7 @@ export const Route = createFileRoute("/media")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Media & Press — Harsh Verma in Business Insider, USA Today, HackerNoon" },
-      { name: "description", content: "44+ media features: Times Square NYC broadcast, Business Insider, USA Today, Yahoo Finance, HackerNoon interviews, podcasts and keynotes." },
+      { name: "description", content: "45+ media features: Times Square NYC broadcast, Business Insider, USA Today, Yahoo Finance, HackerNoon interviews, podcasts and keynotes." },
       { property: "og:title", content: "Media & Press — Harsh Verma" },
       { property: "og:description", content: "Press, podcasts, keynotes and interviews on enterprise AI and cybersecurity." },
       { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/media")({
 
 const groups = ["All", "Press", "Podcasts & Interviews", "Keynotes & Talks", "Awards & Honors", "Institutional"] as const;
 const impact = [
-  { v: 44, s: "+", l: "Media features" }, { v: 3.75, s: "B+", l: "Syndicated views", d: 2 },
+  { v: 45, s: "+", l: "Media features" }, { v: 3.75, s: "B+", l: "Syndicated views", d: 2 },
   { v: 14, s: "+", l: "Podcasts & keynotes" }, { v: 100, s: "M+", l: "Est. global reach" },
 ];
 

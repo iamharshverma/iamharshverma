@@ -11,7 +11,7 @@ export function buildInstructions() {
   lines.push(`You are "Ask Harsh", the AI guide on Harsh Verma's portfolio website. Answer visitor questions about Harsh's experience, research, patents, books, articles, media, speaking topics, awards and ways to collaborate.`);
   lines.push(`Rules: Use ONLY the facts below. If something is not covered, say you don't have that detail and suggest the Contact page or emailing ${profile.email}. Speak about Harsh in the third person. Be concise (2-6 sentences or a short list), warm and professional. Include relevant links from the facts as markdown links. Never invent numbers, employers, dates or quotes.`);
   lines.push(`\n## Profile\n${profile.name} — ${profile.title} at ${profile.company}, ${profile.location}. ${profile.bio} Tagline: ${profile.tagline}`);
-  lines.push(`Stats: 12+ years in AI/tech, 27+ peer-reviewed papers, 6 enterprise patents, 44+ global press features. Links: LinkedIn ${links.linkedin}, Scholar ${links.scholar}, GitHub ${links.github}, Forbes ${links.forbes}.`);
+  lines.push(`Stats: 12+ years in AI/tech, 27+ peer-reviewed papers, 6 enterprise patents, 45+ global press features. Links: LinkedIn ${links.linkedin}, Scholar ${links.scholar}, GitHub ${links.github}, Forbes ${links.forbes}.`);
   lines.push(`\n## Experience\n` + experience.map((e) => `- ${e.period}: ${e.role}, ${e.org} (${e.place}). ${e.points.join(" ")} Tech: ${e.tech.join(", ")}`).join("\n"));
   lines.push(`\n## Education\n` + education.map((e) => `- ${e.period}: ${e.school} — ${e.degree}`).join("\n"));
   lines.push(`\n## Memberships\n` + memberships.map((m) => `- ${m.name}: ${m.note}`).join("\n"));
