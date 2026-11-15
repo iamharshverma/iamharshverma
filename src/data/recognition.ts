@@ -109,6 +109,6 @@ export const magazineFeatures: MagazineFeature[] = [{
   documents: [],
   socials: [
     { label: "Instagram", href: "https://www.instagram.com/p/DftthWtK70s/" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/feed/update/urn:li:activity:7527288512111501312" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/feed/update/urn:li:activity:7527288512111501312/" },
   ],
 }];
