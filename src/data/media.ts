@@ -633,7 +633,7 @@ export const homeKeynotes = [
   "https://www.youtube.com/watch?v=E6kA_o57DrM",
 ].flatMap(href => keynotes.filter(keynote => keynote.href === href));
 
-export type Blog = { title: string; img: string; pub: string; topic: string; date: string; read: string; href: string; excerpt: string };
+export type Blog = { title: string; img: string; pub: string; topic: string; date: string; read: string; href: string; excerpt: string; body?: { h?: string; p: string[]; checklist?: string[] }[]; sources?: { title: string; href: string }[] };
 export const blogs: Blog[] = [
  {
   "title": "Security Without Humans: Designing Systems that Defend Themselves",
@@ -643,7 +643,45 @@ export const blogs: Blog[] = [
   "date": "November 13, 2026",
   "read": "7 min read",
   "href": "https://www.rsaconference.com/Library/blog/security-without-humans-designing-systems-that-defend-themselves",
-  "excerpt": "Published on RSA Conference official library: AI-driven threats move at machine speed, so security must shift from monitoring to autonomous response. Why self-healing systems that isolate, repair and recover on their own are now essential — and how intent, time and interaction put guardrails on defensive automation."
+  "excerpt": "Published on RSA Conference official library: AI-driven threats move at machine speed, so security must shift from monitoring to autonomous response. Why self-healing systems that isolate, repair and recover on their own are now essential — and how intent, time and interaction put guardrails on defensive automation.",
+  "sources": [{ "title": "Read the original article on the RSA Conference Library", "href": "https://www.rsaconference.com/Library/blog/security-without-humans-designing-systems-that-defend-themselves" }],
+  "body": [
+   {
+    "p": [
+     "For two decades, security operations were built around a human loop: sensors detect, analysts triage, responders act. That loop assumed attacks moved at human speed. AI-driven threats break the assumption. An autonomous attack chain can probe, adapt and pivot across an environment in minutes — while a ticket is still waiting in a queue.",
+     "The conclusion is uncomfortable but unavoidable: when offense operates at machine speed, defense that depends on human reaction time will always arrive late. Security has to move from monitoring what happened to responding as it happens — and that means designing systems that can defend themselves."
+    ]
+   },
+   {
+    "h": "From monitoring to autonomous response",
+    "p": [
+     "Traditional security stacks are excellent at seeing and poor at acting. Dashboards fill with alerts, but every containment decision still routes through a person. Autonomous response inverts this: the system itself isolates a compromised workload, revokes a suspicious token, or rolls back a poisoned configuration — in seconds, not hours.",
+     "This is not about removing humans from security. It is about removing humans from the critical path of the first response, so their judgment is spent on strategy, exceptions and improvement instead of reflexive triage."
+    ]
+   },
+   {
+    "h": "What a self-healing system actually does",
+    "p": [
+     "Self-healing is often marketed as magic, but in practice it is three disciplined capabilities working together:",
+     "Isolate — detect anomalous behavior and quarantine the affected component before blast radius grows. Repair — restore known-good state automatically, whether that means redeploying a clean image, rotating credentials or reverting a drifted policy. Recover — verify the system is healthy, rejoin it to service and record everything for review.",
+     "Each step is deterministic and testable. The intelligence is in deciding when to trigger them; the actions themselves are engineering, not improvisation."
+    ]
+   },
+   {
+    "h": "Guardrails: intent, time and interaction",
+    "p": [
+     "Autonomy without boundaries is just a faster way to make mistakes. Defensive automation earns trust through three guardrails. Intent: every autonomous action maps to a declared, human-approved objective — the system can act, but only toward purposes a person has defined. Time: autonomy is granted in bounded windows, with automatic expiry and escalation when a situation outlasts its mandate. Interaction: high-impact or irreversible actions still require a human checkpoint, and every machine decision is logged so people can audit, question and override.",
+     "These guardrails turn autonomy from a risk into a control. The system defends itself continuously, and humans stay accountable for what it is allowed to do."
+    ]
+   },
+   {
+    "h": "Where to start",
+    "p": [
+     "Begin with the responses you already trust. Pick one well-understood incident pattern — a compromised credential, a drifting configuration, a malware detection — and automate its containment end to end. Measure time-to-respond before and after. Then expand autonomy deliberately, one verified pattern at a time.",
+     "The organizations that thrive in the AI-threat era will not be the ones with the most analysts. They will be the ones whose systems can take the first hit, heal themselves, and hand humans a clear account of what happened."
+    ]
+   }
+  ]
  },
  {
   "title": "Physical AI Is Coming: When AI Stops Generating Content And Starts Acting On The World",
