@@ -21,8 +21,22 @@ import primePortrait from "@/assets/harsh-verma-prime-interview.jpg.asset.json";
 import bcsPortrait from "@/assets/harsh-verma-bcs-interview.jpg.asset.json";
 import xRaisedPortrait from "@/assets/harsh-verma-x-raised-interview.jpg.asset.json";
 import hackerNoonCover from "@/assets/harsh-verma-hackernoon-interview.jpg.asset.json";
+import influencerUkCover from "@/assets/harsh-verma-influencer-uk-interview.jpg.asset.json";
 
-export const magazineFeatures = [{
+export type MagazineFeature = {
+  featured?: boolean;
+  title: string;
+  name: string;
+  outlet: string;
+  kind: string;
+  headline: string;
+  storyUrl: string;
+  cover: string;
+  documents: { id: string; label: string; url: string; pages: string[] }[];
+  socials?: { label: string; href: string }[];
+};
+
+export const magazineFeatures: MagazineFeature[] = [{
   featured: true,
   title: "The Most Admired Global Indians 2026",
   name: "Harsh Verma",
@@ -84,4 +98,17 @@ export const magazineFeatures = [{
   storyUrl: "https://hackernoon.com/the-production-gap-your-ai-model-isnt-as-reliable-as-you-think-interview",
   cover: hackerNoonCover.url,
   documents: [],
+}, {
+  title: "The Future of AI Is About Making Intelligent Machines Worthy of Our Trust",
+  name: "Harsh Verma",
+  outlet: "Influencer Magazine UK",
+  kind: "Cover interview",
+  headline: "From the Influencer UK November 2026 cover — Top 50 Tech Leaders Making Impact — Harsh Verma on Agentic AI, enterprise security and mentoring the next generation of engineers.",
+  storyUrl: "https://influencermagazine.uk/2026/11/harsh-verma-the-future-of-ai-is-not-justt-about-making-machines-more-intelligent-it-is-about-making-intelligent-machines-worthy-of-our-trust/",
+  cover: influencerUkCover.url,
+  documents: [],
+  socials: [
+    { label: "Instagram", href: "https://www.instagram.com/p/DftthWtK70s/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/feed/update/urn:li:activity:7527288512111501312" },
+  ],
 }];

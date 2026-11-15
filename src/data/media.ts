@@ -2,6 +2,18 @@
 export type MediaItem = { title: string; img: string; cat: string; group: string; year: number; outlet: string; quote: string; href: string | null; cta: string | null; featured: boolean };
 export const media: MediaItem[] = [
  {
+  "title": "Influencer Magazine UK: Making Intelligent Machines Worthy of Our Trust",
+  "img": "/__l5e/assets-v1/3c58b507-8208-49f3-b143-7ca23e0a2d9c/harsh-verma-influencer-uk-interview.jpg",
+  "cat": "Cover Interview",
+  "year": 2026,
+  "outlet": "Influencer Magazine UK",
+  "quote": "The future of AI is not just about making machines more intelligent; it is about making intelligent machines worthy of our trust.",
+  "href": "https://influencermagazine.uk/2026/11/harsh-verma-the-future-of-ai-is-not-justt-about-making-machines-more-intelligent-it-is-about-making-intelligent-machines-worthy-of-our-trust/",
+  "cta": "Read Interview",
+  "featured": false,
+  "group": "Podcasts & Interviews"
+ },
+ {
   "title": "BCS, The Chartered Institute for IT: Harsh Verma FBCS Member Spotlight",
   "img": "https://www.harshverma.me/images/media/bcs_feature_badge.svg",
   "cat": "Institutional Feature",

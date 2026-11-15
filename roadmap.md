@@ -100,3 +100,4 @@
 - [x] Update LinkedIn network stat to 18.1K+ and Favikon score to 94/100.
 - [x] Push all changes to iamharshverma/iamharshverma; deployment 8b91f91 succeeded.
 - [x] Soften the brand/press strip corner fade so edges are not too dark; verify Home and Collaborate, then push to iamharshverma/iamharshverma.
+- [x] Add Influencer Magazine UK interview to Recognition (with social links) and Media Podcasts & Interviews; pushed to GitHub.

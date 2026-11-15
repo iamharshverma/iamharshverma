@@ -4,7 +4,7 @@ import { useState } from "react";
 import { awards } from "@/data/profile";
 import { Reveal, PageHero } from "@/components/site/Reveal";
 import { magazineFeatures } from "@/data/recognition";
-import { ArrowUpRight, Download } from "lucide-react";
+import { ArrowUpRight, Download, Instagram, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -77,7 +77,23 @@ function Recognition() {
                 ? "group grid h-auto w-full grid-cols-1 items-center gap-8 whitespace-normal rounded-none border-t-2 border-signal px-0 py-8 text-left hover:bg-transparent md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-14 md:py-12"
                 : "grid h-auto w-full grid-cols-[80px_minmax(0,1fr)_16px] items-center gap-3 whitespace-normal rounded-none px-0 py-6 text-left hover:bg-muted/30 md:grid-cols-[112px_minmax(0,1fr)_24px] md:gap-7 md:py-8";
               if (!feature.documents.length) {
-                return <article key={feature.title} aria-label={feature.title}><Reveal><Button asChild variant="ghost" className={rowClass}><a href={feature.storyUrl} target="_blank" rel="noreferrer">{content}</a></Button></Reveal></article>;
+                return (
+                  <article key={feature.title} aria-label={feature.title}>
+                    <Reveal>
+                      <Button asChild variant="ghost" className={rowClass}><a href={feature.storyUrl} target="_blank" rel="noreferrer">{content}</a></Button>
+                      {feature.socials?.length ? (
+                        <div className="-mt-3 flex items-center gap-2 pb-5 pl-[92px] md:pl-[140px]">
+                          <span className="font-mono text-[10px] uppercase text-muted-foreground">Also on</span>
+                          {feature.socials.map((s) => (
+                            <a key={s.href} href={s.href} target="_blank" rel="noreferrer" aria-label={`${feature.outlet} feature on ${s.label}`} className="grid size-8 place-items-center rounded-full border border-border text-muted-foreground transition hover:border-brand hover:text-brand">
+                              {s.label === "Instagram" ? <Instagram className="size-3.5" /> : <Linkedin className="size-3.5" />}
+                            </a>
+                          ))}
+                        </div>
+                      ) : null}
+                    </Reveal>
+                  </article>
+                );
               }
               return (
               <article key={feature.title} aria-label={feature.title}>
