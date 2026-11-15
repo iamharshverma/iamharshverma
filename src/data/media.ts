@@ -636,6 +636,16 @@ export const homeKeynotes = [
 export type Blog = { title: string; img: string; pub: string; topic: string; date: string; read: string; href: string; excerpt: string };
 export const blogs: Blog[] = [
  {
+  "title": "Security Without Humans: Designing Systems that Defend Themselves",
+  "img": "/__l5e/assets-v1/c29e7264-7448-4627-b059-b6dbdba5e504/harsh-verma-rsac-security-without-humans.jpg",
+  "pub": "RSA Conference",
+  "topic": "Cybersecurity",
+  "date": "November 13, 2026",
+  "read": "7 min read",
+  "href": "https://www.rsaconference.com/Library/blog/security-without-humans-designing-systems-that-defend-themselves",
+  "excerpt": "Published on RSA Conference official library: AI-driven threats move at machine speed, so security must shift from monitoring to autonomous response. Why self-healing systems that isolate, repair and recover on their own are now essential — and how intent, time and interaction put guardrails on defensive automation."
+ },
+ {
   "title": "Physical AI Is Coming: When AI Stops Generating Content And Starts Acting On The World",
   "img": "https://www.harshverma.me/images/blog/thumbnails/forbes-physical-ai.jpg",
   "pub": "Forbes Council",
