@@ -15,13 +15,16 @@ export const originalPosts: OriginalPost[] = [
     pub: "iamharshverma.com",
     topic: "Agentic AI",
     date: "November 20, 2026",
-    read: "7 min read",
+    read: "12 min read",
     href: "",
     excerpt: "What I learned judging Google Cloud's Agents for Impact Hackathon in Sunnyvale as a Google Cloud AI Developer Expert: the creativity, the energy in the room, and how the best teams turned urban heat data into agents a city could actually use.",
     sources: [
       { title: "Google Cloud: Agents for Impact Hackathon, Sunnyvale", href: "https://cloud.google.com/events/agents-for-impact-svl" },
       { title: "Google Cloud: Agents for Impact 2026 resources", href: "https://cloud.google.com/resources/agents-for-impact-2026" },
       { title: "Challenge 1 brief: Community Climate Resilience, Urban Heat (GitHub)", href: "https://github.com/haggman/A4I2026-challenge-1-walkability" },
+      { title: "Agent Development Kit (ADK) documentation", href: "https://google.github.io/adk-docs/" },
+      { title: "BigQuery ML introduction", href: "https://cloud.google.com/bigquery/docs/bqml-introduction" },
+      { title: "Google Antigravity", href: "https://antigravity.google/" },
     ],
     body: [
       { p: [
@@ -48,6 +51,46 @@ export const originalPosts: OriginalPost[] = [
       { h: "Creativity that surprised me", p: [
         "The strongest teams treated heat as the instrument, not the ceiling. Some brought their own data, such as tree canopy, bus stops or cooling centers, to shift the question from where it is hot to where help changes outcomes. Others built placement recommendations that explained why one intersection beat another, in plain language.",
         "The best demos were not the flashiest. They were the ones where the agent was honest about what it did not know: a single day of street readings, missing timestamps in some cities, and the difference between how hot it gets and how often.",
+      ] },
+      { h: "Anatomy of a strong agent: what the winning patterns had in common", p: [
+        "Across the tables, the teams that impressed me did not build a chatbot with a dataset attached. They built a small system: a model that reasons, a set of tools that do real work, data it can query, and an output a person can act on. The model was the coordinator, not the whole product.",
+        "In practice that meant three layers. A reasoning layer (Gemini) that plans and decides which tool to call. A tool layer of narrow, well-described functions: predict the heat offset for a location, look up nearby cooling resources, rank candidate sites. And a data layer in BigQuery that holds the street readings, station history and any data the team brought in.",
+      ], checklist: [
+        "Narrow tools with typed inputs and outputs beat one giant prompt that tries to do everything.",
+        "Each tool returns evidence (numbers, sources, row counts), so the agent's answer can be checked.",
+        "The agent states uncertainty and data gaps instead of filling them with confident prose.",
+        "The final output is an artifact (a ranked placement recommendation), not just a chat reply.",
+      ] },
+      { h: "ADK: from prompt to engineered agent", p: [
+        "Google's Agent Development Kit (ADK) is an open-source framework for building agents in code. The teams that used it well treated their agent like software: they defined the agent's instructions, registered Python functions as tools, and could run and inspect it locally before deploying.",
+        "ADK pays off as an agent grows. It supports composing multiple agents, so one coordinator can hand work to specialists such as a data analyst agent and a report-writing agent. It also lets you inspect each step and tool call, which is exactly what a judge, or a city official, needs to trust the answer.",
+      ], checklist: [
+        "Write tool docstrings as if the model is a new teammate; the description is how it decides when to call the tool.",
+        "Keep a clear split between instructions (what the agent should do) and tools (what it is allowed to do).",
+        "Use multi-agent composition only when roles are genuinely different; one well-scoped agent is easier to debug.",
+        "Test the agent with questions about places that were never measured, the case that proves the model is actually used.",
+        "Log every tool call and its arguments so you can replay and explain any answer.",
+      ] },
+      { h: "BigQuery and BigQuery ML: the agent's ground truth", p: [
+        "BigQuery was the backbone of the challenge. Instead of moving data into a notebook, teams kept it where it lives and let SQL do the heavy lifting: joining street-level heat readings with station history, aggregating by neighborhood and filtering candidate sites.",
+        "The required differentiator was BigQuery ML, which lets you train and run models with SQL. A team could train a model to predict the heat offset from features of a location, then expose ML.PREDICT behind an agent tool. That pattern, a model in the warehouse and an agent that calls it, is one I would recommend to any enterprise team: the data never leaves the governed environment, and the prediction is reproducible.",
+      ], checklist: [
+        "Give the agent parameterized queries or tools, never free-form SQL against production data.",
+        "Cap query cost and result size so an agent loop cannot run up a bill.",
+        "Return the query or model version alongside the answer for auditability.",
+        "Use service accounts with least-privilege IAM, so the agent can read what it needs and nothing more.",
+      ] },
+      { h: "Google Antigravity: building at the speed of an idea", p: [
+        "Google Antigravity is Google's agent-first development environment, where AI agents can plan, write and run code alongside the developer. In a one-day hackathon, that changes the economics of time. Teams used it to scaffold the ADK agent, write and fix SQL against BigQuery, and build a simple front end in hours rather than days.",
+        "The lesson was not that AI writes the code for you. The teams that got the most from Antigravity gave it precise tasks, reviewed every change and kept the human decisions, such as what to predict, how to frame it and what to tell a city, firmly in their own hands. Agent-assisted development amplifies clear thinking; it does not replace it.",
+      ] },
+      { h: "Putting the Google Cloud ecosystem together", p: [
+        "The most complete solutions connected the pieces into one flow: data in BigQuery, a model trained with BigQuery ML, an agent built with ADK and powered by Gemini, development accelerated in Antigravity, and the whole thing running in Google Cloud with Cloud Shell for set-up and a service such as Cloud Run or Vertex AI Agent Engine for hosting.",
+        "A reference flow I would sketch for any team: a user asks a question in a simple web app; the ADK agent plans; it calls a prediction tool backed by BigQuery ML and a lookup tool backed by BigQuery; it composes a recommendation with the evidence attached; and every step is logged for review. Swap urban heat for fraud, supply chains or security alerts and the architecture still holds.",
+      ] },
+      { h: "Security and trust: the part most demos skip", p: [
+        "Coming from AI security, I watch for what happens when an agent has real access. Even in a hackathon, the best teams scoped their service accounts, kept credentials out of code and avoided letting the model write arbitrary queries. These habits are cheap on day one and very expensive to retrofit later.",
+        "For production, I would add input validation on every tool, guardrails against prompt injection in retrieved content, human approval for actions that spend budget or affect people, and evaluation sets that are re-run whenever the model, prompt or data changes.",
       ] },
       { h: "Lessons for anyone building agents", p: [
         "Frame the prediction precisely, because every downstream claim depends on it. Make the agent use real tools, so its answers are grounded. Design for the decision-maker, not the demo audience. Keep humans in the loop for decisions that move budgets or affect communities.",
