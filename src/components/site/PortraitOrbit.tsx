@@ -81,7 +81,10 @@ export function PortraitOrbit({ heading, tag, headingNote, sectionLink, centerLi
   const spread = useTransform(scrollYProgress, [0.08, 0.55], [0, 1]);
   const centerOpacity = useTransform(scrollYProgress, [0.45, 0.65], [0, 1]);
   const centerScale = useTransform(scrollYProgress, [0.45, 0.65], [0.9, 1]);
-  const reducedMotion = useReducedMotion();
+  const motionPreference = useReducedMotion();
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => { setHydrated(true); }, []);
+  const reducedMotion = hydrated && Boolean(motionPreference);
   const headingY = useTransform(scrollYProgress, [0.08, 0.5], [-8, 0]);
   const headingTop = useTransform(scrollYProgress, [0, 0.06], [-72, 0]);
   const headingSpread = useTransform(scrollYProgress, [0.08, 0.5], [0, 1]);

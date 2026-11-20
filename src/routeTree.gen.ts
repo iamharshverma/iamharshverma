@@ -17,12 +17,15 @@ import { Route as BookingRouteImport } from './routes/booking'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as CollaborateRouteImport } from './routes/collaborate'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ForbesRouteImport } from './routes/forbes'
+import { Route as HackernoonRouteImport } from './routes/hackernoon'
 import { Route as HarshVermaAiSpeakerRouteImport } from './routes/harsh-verma-ai-speaker'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as MediaKitRouteImport } from './routes/media-kit'
 import { Route as PressKitRouteImport } from './routes/press-kit'
 import { Route as RecognitionRouteImport } from './routes/recognition'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as RsacRouteImport } from './routes/rsac'
 import { Route as SpeakerBioRouteImport } from './routes/speaker-bio'
 import { Route as SpeakingRouteImport } from './routes/speaking'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
@@ -70,6 +73,16 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForbesRoute = ForbesRouteImport.update({
+  id: '/forbes',
+  path: '/forbes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HackernoonRoute = HackernoonRouteImport.update({
+  id: '/hackernoon',
+  path: '/hackernoon',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HarshVermaAiSpeakerRoute = HarshVermaAiSpeakerRouteImport.update({
   id: '/harsh-verma-ai-speaker',
   path: '/harsh-verma-ai-speaker',
@@ -98,6 +111,11 @@ const RecognitionRoute = RecognitionRouteImport.update({
 const ResearchRoute = ResearchRouteImport.update({
   id: '/research',
   path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RsacRoute = RsacRouteImport.update({
+  id: '/rsac',
+  path: '/rsac',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SpeakerBioRoute = SpeakerBioRouteImport.update({
@@ -140,12 +158,15 @@ export interface FileRoutesByFullPath {
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
   '/contact': typeof ContactRoute
+  '/forbes': typeof ForbesRoute
+  '/hackernoon': typeof HackernoonRoute
   '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/rsac': typeof RsacRoute
   '/speaker-bio': typeof SpeakerBioRoute
   '/speaking': typeof SpeakingRoute
   '/testimonials': typeof TestimonialsRoute
@@ -162,12 +183,15 @@ export interface FileRoutesByTo {
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
   '/contact': typeof ContactRoute
+  '/forbes': typeof ForbesRoute
+  '/hackernoon': typeof HackernoonRoute
   '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/rsac': typeof RsacRoute
   '/speaker-bio': typeof SpeakerBioRoute
   '/speaking': typeof SpeakingRoute
   '/testimonials': typeof TestimonialsRoute
@@ -185,12 +209,15 @@ export interface FileRoutesById {
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
   '/contact': typeof ContactRoute
+  '/forbes': typeof ForbesRoute
+  '/hackernoon': typeof HackernoonRoute
   '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/rsac': typeof RsacRoute
   '/speaker-bio': typeof SpeakerBioRoute
   '/speaking': typeof SpeakingRoute
   '/testimonials': typeof TestimonialsRoute
@@ -209,12 +236,15 @@ export interface FileRouteTypes {
     | '/books'
     | '/collaborate'
     | '/contact'
+    | '/forbes'
+    | '/hackernoon'
     | '/harsh-verma-ai-speaker'
     | '/media'
     | '/media-kit'
     | '/press-kit'
     | '/recognition'
     | '/research'
+    | '/rsac'
     | '/speaker-bio'
     | '/speaking'
     | '/testimonials'
@@ -231,12 +261,15 @@ export interface FileRouteTypes {
     | '/books'
     | '/collaborate'
     | '/contact'
+    | '/forbes'
+    | '/hackernoon'
     | '/harsh-verma-ai-speaker'
     | '/media'
     | '/media-kit'
     | '/press-kit'
     | '/recognition'
     | '/research'
+    | '/rsac'
     | '/speaker-bio'
     | '/speaking'
     | '/testimonials'
@@ -253,12 +286,15 @@ export interface FileRouteTypes {
     | '/books'
     | '/collaborate'
     | '/contact'
+    | '/forbes'
+    | '/hackernoon'
     | '/harsh-verma-ai-speaker'
     | '/media'
     | '/media-kit'
     | '/press-kit'
     | '/recognition'
     | '/research'
+    | '/rsac'
     | '/speaker-bio'
     | '/speaking'
     | '/testimonials'
@@ -276,12 +312,15 @@ export interface RootRouteChildren {
   BooksRoute: typeof BooksRoute
   CollaborateRoute: typeof CollaborateRoute
   ContactRoute: typeof ContactRoute
+  ForbesRoute: typeof ForbesRoute
+  HackernoonRoute: typeof HackernoonRoute
   HarshVermaAiSpeakerRoute: typeof HarshVermaAiSpeakerRoute
   MediaRoute: typeof MediaRoute
   MediaKitRoute: typeof MediaKitRoute
   PressKitRoute: typeof PressKitRoute
   RecognitionRoute: typeof RecognitionRoute
   ResearchRoute: typeof ResearchRoute
+  RsacRoute: typeof RsacRoute
   SpeakerBioRoute: typeof SpeakerBioRoute
   SpeakingRoute: typeof SpeakingRoute
   TestimonialsRoute: typeof TestimonialsRoute
@@ -348,6 +387,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/forbes': {
+      id: '/forbes'
+      path: '/forbes'
+      fullPath: '/forbes'
+      preLoaderRoute: typeof ForbesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hackernoon': {
+      id: '/hackernoon'
+      path: '/hackernoon'
+      fullPath: '/hackernoon'
+      preLoaderRoute: typeof HackernoonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/harsh-verma-ai-speaker': {
       id: '/harsh-verma-ai-speaker'
       path: '/harsh-verma-ai-speaker'
@@ -388,6 +441,13 @@ declare module '@tanstack/react-router' {
       path: '/research'
       fullPath: '/research'
       preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rsac': {
+      id: '/rsac'
+      path: '/rsac'
+      fullPath: '/rsac'
+      preLoaderRoute: typeof RsacRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/speaker-bio': {
@@ -444,12 +504,15 @@ const rootRouteChildren: RootRouteChildren = {
   BooksRoute: BooksRoute,
   CollaborateRoute: CollaborateRoute,
   ContactRoute: ContactRoute,
+  ForbesRoute: ForbesRoute,
+  HackernoonRoute: HackernoonRoute,
   HarshVermaAiSpeakerRoute: HarshVermaAiSpeakerRoute,
   MediaRoute: MediaRoute,
   MediaKitRoute: MediaKitRoute,
   PressKitRoute: PressKitRoute,
   RecognitionRoute: RecognitionRoute,
   ResearchRoute: ResearchRoute,
+  RsacRoute: RsacRoute,
   SpeakerBioRoute: SpeakerBioRoute,
   SpeakingRoute: SpeakingRoute,
   TestimonialsRoute: TestimonialsRoute,

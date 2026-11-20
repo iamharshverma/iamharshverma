@@ -67,12 +67,12 @@ function SpeakerBio() {
     </section>
     <section className="mx-auto max-w-6xl px-6 pb-24">
       <h2 className="font-display text-3xl font-bold">Past events by city</h2>
-      <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {stages.map(s => <div key={s.city} className="rounded-2xl border border-border bg-card p-6">
-          <p className="flex items-center gap-2 font-display text-lg font-semibold"><MapPin className="size-4 text-brand" />{s.city}<span className="text-sm font-normal text-muted-foreground">{s.region}</span></p>
+      <div className="mt-6 columns-1 gap-4 md:columns-2 lg:columns-3">
+        {stages.map(s => <div key={s.city} className="mb-4 break-inside-avoid rounded-2xl border border-border bg-card p-6">
+          <p className="flex flex-wrap items-center gap-2 font-display text-lg font-semibold"><MapPin className="size-4 shrink-0 text-brand" />{s.city}<span className="text-sm font-normal text-muted-foreground">{s.region}</span></p>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">{s.events.map(e => <li key={e.title}><span className="mr-2 rounded bg-secondary px-1.5 py-0.5 text-xs text-foreground">{e.kind}</span>{e.title}</li>)}</ul>
         </div>)}
-        <div className="rounded-2xl border border-border bg-card p-6">
+        <div className="mb-4 break-inside-avoid rounded-2xl border border-border bg-card p-6">
           <p className="flex items-center gap-2 font-display text-lg font-semibold"><Globe2 className="size-4 text-brand" />Online & global</p>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">{onlineEvents.map(e => <li key={e}>{e}</li>)}</ul>
         </div>

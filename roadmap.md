@@ -103,3 +103,41 @@
 - [x] Add Influencer Magazine UK interview to Recognition (with social links) and Media Podcasts & Interviews; pushed to GitHub.
 - [x] Review all 33 Insights articles; expand 30 thin blog bodies with distinct topic briefs, practical guidance, source links and matching reading times. Verify every article and phone layout; restore the missing RSA article sitemap entry.
 - [x] Submit sitemap to Search Console so new blog posts and Recognition entries get indexed faster
+- [x] Remove testimonial names from visitor assistant knowledge and enforce title-only recommendations; privacy tests and direct visitor Q&A check passed.
+- [x] Submit existing sitemap containing Testimonials and both articles: Google accepted 52 URLs with no errors or warnings; Security Without Humans indexed, hackathon unknown. Individual Request indexing requires Search Console UI.
+- [x] Target hackathon metadata to Google Agents for Impact hackathon and AI agent development; verified title, description and matching 1200×630 share images.
+- [x] Refresh Contact with the compressed provided image, preserving enquiry form; verified phone and desktop with no horizontal overflow.
+- [x] Capitalize “Future” in the Contact headline.
+- [x] Replace blank reel loading with a 59 KB speaker poster, click-to-load player and slow-load Instagram fallback; verified real iframe load, delayed-network timeout, selection and phone layout.
+- [x] Add an Inverge-inspired flowing particle effect to Research introduction only; verified populated animation, pause, reduced motion, light theme, phone/landscape fit and unchanged About page.
+- [x] Store each reel’s original thumbnail and show matching covers in the Speaking preview and reel selector; verified all four selections, click-to-play and phone fit.
+- [x] Add smooth scroll-driven zoom to the Research particle animation; verified enlargement, native wheel scrolling, pause/resume, reduced motion and phone fit.
+- [x] Refine Research into a compact grain bubble that expands during native scroll; verified desktop, phone, landscape and reduced motion.
+- [x] Remove numeric counts from the selected Research introduction paragraph.
+- [x] Replace the reel’s text play button with a centered white play icon over its thumbnail; verified selected playback and slow-load retry.
+- [x] Show the Research in agentic AI and AI security section immediately below the initial animation without an empty scroll-stage gap; verified first-screen visibility on desktop and phone.
+- [x] Tighten the selected Speaker Bio engagement entries with naturally sized columns; verified New York and Dehradun heights and phone fit.
+- [x] Add an animated idea/research icon at the top left of the selected Research summary; verified movement and reduced motion.
+- [x] Full left-gutter panel on Research with its own animated icon and content; lightbulb pulses gently
+- [x] Gutter bulb opens a random theme idea quote; verified click, keyboard, Escape, outside close and phone
+- [x] Move What I research below Latest writing, directly above Research archive; side rail link order follows the new page order.
+- [x] Capitalize Agentic AI and AI Security in the Research page heading.
+- [x] Capitalize Latest Writing and Research Archive headings on the Research page.
+- [x] Capitalize Research in the What I Research heading.
+- [x] Capitalize Patented and Published in the Research intro headline.
+- [x] Wire Crimson Noir through shared theme tokens and the Research panel; use blue homepage impact numbers with white labels.
+- [x] Replace Research’s external RSAC column link with a full site page featuring real RSAC articles.
+- [x] Refine the selected expertise illustration with blue/red accents and white copy in Crimson Noir.
+- [x] Change the selected portrait-circle glow to blue in Crimson Noir.
+- [x] Make the rotating homepage role words blue in Crimson Noir.
+- [x] Alternate the selected book glows between blue and red in Crimson Noir, respecting reduced motion.
+- [x] Change the selected Speaking reel glow to blue in Crimson Noir.
+- [x] Homepage book cards: left glows blue, right glows red on mouse hover only (noir theme); also fixed book glow keyframes to animate background-color so the 5s blue/5s red alternation works
+- [x] Add Forbes and HackerNoon article collections matching RSAC, link from Research, and verify article navigation and phone layout.
+- [x] Make selected Speaking engagement numbers blue in Crimson Noir, matching Home and About.
+- [x] Make selected Collaborate reach numbers blue in Crimson Noir with white labels.
+- [x] Make selected Collaborate audience percentages and reach estimate numbers blue in Crimson Noir.
+- [x] Make selected Media page impact numbers blue in Crimson Noir with white labels.
+- [x] Make the selected Collaborate brand-count number blue in Crimson Noir with a white label.
+- [x] Optimize Media search wording and publisher article discovery; verified 55 pages with unique titles, single descriptions/canonicals, sharing tags, sitemap coverage and Research → Forbes → article navigation; all 36 tests passed.
+- [x] Save all latest changes for connected GitHub sync; direct push and GitHub sync/deployment status are unavailable from this chat.

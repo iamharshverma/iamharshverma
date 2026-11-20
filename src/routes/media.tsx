@@ -17,13 +17,12 @@ export const Route = createFileRoute("/media")({
       canonical("/media").url,
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "Media & Press — Harsh Verma in Business Insider, USA Today, HackerNoon" },
-      { name: "description", content: "45+ media features: Times Square NYC broadcast, Business Insider, USA Today, Yahoo Finance, HackerNoon interviews, podcasts and keynotes." },
-      { property: "og:title", content: "Media & Press — Harsh Verma" },
-      { property: "og:description", content: "Press, podcasts, keynotes and interviews on enterprise AI and cybersecurity." },
+      { title: "Harsh Verma Media & Press | AI & Cybersecurity Interviews" },
+      { name: "description", content: "Explore Harsh Verma’s AI and cybersecurity interviews, podcasts, keynotes and 45+ media features, including Business Insider, USA Today and HackerNoon." },
+      { property: "og:title", content: "Harsh Verma Media & Press | AI & Cybersecurity Interviews" },
+      { property: "og:description", content: "Explore Harsh Verma’s AI and cybersecurity interviews, podcasts, keynotes and 45+ media features, including Business Insider, USA Today and HackerNoon." },
       { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
       { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: MediaPage,
@@ -62,8 +61,8 @@ function MediaPage() {
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">
           {impact.map((s, i) => (
             <div key={s.l} className={`px-6 py-8 ${i ? "md:border-l" : ""} border-border`}>
-              <p className="font-display text-4xl font-bold text-signal md:text-5xl"><Counter to={s.v} suffix={s.s} decimals={s.d} /></p>
-              <p className="mt-1 text-sm text-muted-foreground">{s.l}</p>
+              <p className="font-display text-4xl font-bold text-stat-number md:text-5xl"><Counter to={s.v} suffix={s.s} decimals={s.d} /></p>
+              <p className="mt-1 text-sm text-stat-label">{s.l}</p>
             </div>
           ))}
         </div>

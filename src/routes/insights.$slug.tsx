@@ -18,7 +18,6 @@ export const Route = createFileRoute("/insights/$slug")({
         { title: t },
         { name: "description", content: d },
         { name: "keywords", content: kw.join(", ") },
-        { name: "keywords", content: "agentic AI, AI agents, AI advisory, AI for founders, AI security, Harsh Verma" },
         { property: "og:title", content: t },
         { property: "og:description", content: d },
         { name: "twitter:title", content: t },

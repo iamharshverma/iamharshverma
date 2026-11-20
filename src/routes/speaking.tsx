@@ -71,8 +71,8 @@ function Speaking() {
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (
             <div key={s.l} className={`px-6 py-8 ${i ? "md:border-l" : ""} border-border`}>
-              <p className="font-display text-4xl font-bold text-signal md:text-5xl"><Counter to={s.v} suffix="+" /></p>
-              <p className="mt-1 text-sm text-muted-foreground">{s.l}</p>
+              <p className="font-display text-4xl font-bold text-stat-number md:text-5xl"><Counter to={s.v} suffix="+" /></p>
+              <p className="mt-1 text-sm text-stat-label">{s.l}</p>
             </div>
           ))}
         </div>

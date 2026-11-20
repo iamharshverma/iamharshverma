@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Cloud, Gem, Moon, Orbit, Sun } from "lucide-react";
+import { Cloud, Flame, Gem, Moon, Orbit, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const THEMES = ["dark", "light", "glass", "sky", "signal"] as const;
+const THEMES = ["dark", "light", "glass", "sky", "signal", "noir"] as const;
 type Theme = (typeof THEMES)[number];
-const NAMES: Record<Theme, string> = { dark: "Keynote Midnight", light: "Classic Light", glass: "Founder Glass", sky: "Executive Sky", signal: "Signal Orange" };
+const NAMES: Record<Theme, string> = { dark: "Keynote Midnight", light: "Classic Light", glass: "Founder Glass", sky: "Executive Sky", signal: "Signal Orange", noir: "Crimson Noir" };
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("dark");
@@ -21,6 +21,6 @@ export function ThemeToggle() {
     localStorage.setItem("portfolio-theme", next);
   }
   const label = `Switch to ${NAMES[next]}`;
-  const Icon = next === "light" ? Sun : next === "glass" ? Gem : next === "sky" ? Cloud : next === "signal" ? Orbit : Moon;
+  const Icon = next === "light" ? Sun : next === "glass" ? Gem : next === "sky" ? Cloud : next === "signal" ? Orbit : next === "noir" ? Flame : Moon;
   return <Button variant="ghost" size="icon-lg" aria-label={label} title={label} onClick={toggle}><Icon /></Button>;
 }

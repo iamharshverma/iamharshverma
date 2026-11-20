@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Pause, Play } from "lucide-react";
 import { expertise } from "@/data/profile";
 import { Reveal } from "./Reveal";
+import { Button } from "@/components/ui/button";
 
 const lenses = ["All", "Founder lens", "Engineer lens", "Researcher lens", "Speaker lens"] as const;
 
@@ -16,11 +17,12 @@ export function Expertise() {
     return () => clearInterval(t);
   }, [auto]);
   const pick = (i: number) => { setActive(i); setAuto(false); };
-  const s = expertise[active]!;
+  const s = expertise[active];
+  if (!s) return null;
   const dim = (role: string) => lens !== "All" && role !== lens;
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
+    <section className="expertise-section mx-auto max-w-6xl px-6 py-24">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <Reveal>
           <p className="eyebrow">Expertise</p>
@@ -29,7 +31,7 @@ export function Expertise() {
         </Reveal>
         <div className="flex flex-wrap gap-2">
           {lenses.map((l) => (
-            <button key={l} onClick={() => setLens(l)} className={`rounded-full border px-3 py-1.5 text-xs transition ${lens === l ? "border-brand bg-brand-gradient text-primary-foreground" : "border-border text-muted-foreground hover:text-foreground"}`}>{l.replace(" lens", "")}</button>
+            <Button key={l} variant={lens === l ? "default" : "outline"} size="sm" onClick={() => setLens(l)} aria-pressed={lens === l} className="rounded-full text-xs">{l.replace(" lens", "")}</Button>
           ))}
         </div>
       </div>
@@ -37,29 +39,29 @@ export function Expertise() {
       <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_1fr]">
         <Reveal className="relative aspect-square overflow-hidden rounded-2xl border border-border bg-card/60">
           <div aria-hidden className="absolute inset-0 bg-grid" />
-          <motion.div aria-hidden className="absolute rounded-full bg-brand/20 blur-3xl" animate={{ left: `${s.x - 15}%`, top: `${s.y - 15}%` }} transition={{ type: "spring", stiffness: 60 }} style={{ width: "30%", height: "30%" }} />
+          <motion.div aria-hidden className="absolute rounded-full bg-expertise-active/20 blur-3xl" animate={{ left: `${s.x - 15}%`, top: `${s.y - 15}%` }} transition={{ type: "spring", stiffness: 60 }} style={{ width: "30%", height: "30%" }} />
           <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             {expertise.map((a, i) => expertise.slice(i + 1).map((b) => Math.hypot(a.x - b.x, a.y - b.y) < 42 && (
-              <line key={a.name + b.name} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="var(--brand)"
+              <line key={a.name + b.name} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke={a.name === s.name || b.name === s.name ? "var(--expertise-active)" : "var(--expertise-link)"}
                 strokeOpacity={a.name === s.name || b.name === s.name ? 0.8 : 0.12} strokeWidth={a.name === s.name || b.name === s.name ? 0.45 : 0.25} />
             )))}
           </svg>
           {expertise.map((e, i) => {
             const on = i === active;
             return (
-              <button key={e.name} onClick={() => pick(i)} onMouseEnter={() => pick(i)} aria-pressed={on}
-                className={`absolute -translate-x-1/2 -translate-y-1/2 transition-opacity ${dim(e.role) ? "opacity-25" : "opacity-100"}`} style={{ left: `${e.x}%`, top: `${e.y}%` }}>
+              <Button variant="ghost" size="icon" key={e.name} onClick={() => pick(i)} onMouseEnter={() => pick(i)} aria-pressed={on} aria-label={e.name}
+                className={`absolute -translate-x-1/2 -translate-y-1/2 overflow-visible hover:bg-transparent transition-opacity ${dim(e.role) ? "opacity-25" : "opacity-100"}`} style={{ left: `${e.x}%`, top: `${e.y}%` }}>
                 <span className="relative grid place-items-center">
-                  {on && <motion.span layoutId="ring" className="absolute h-9 w-9 rounded-full border border-brand" />}
-                  <span className={`block rounded-full transition-all ${on ? "h-4 w-4 bg-signal shadow-glow" : "h-2.5 w-2.5 bg-brand"}`} />
+                  {on && <motion.span layoutId="ring" className="absolute h-9 w-9 rounded-full border border-expertise-active" />}
+                  <span className={`block rounded-full transition-all ${on ? "expertise-node-active h-4 w-4 bg-expertise-active" : "h-2.5 w-2.5 bg-expertise-node"}`} />
                 </span>
-                <span className={`absolute mt-2 whitespace-nowrap font-mono text-[10px] sm:text-[11px] ${e.x > 75 ? "right-0" : e.x < 25 ? "left-0" : "left-1/2 -translate-x-1/2"} ${on ? "text-foreground" : "text-muted-foreground"}`}>{e.name}</span>
-              </button>
+                <span className={`absolute top-full mt-1 whitespace-nowrap font-mono text-[10px] sm:text-[11px] ${e.x > 75 ? "right-0" : e.x < 25 ? "left-0" : "left-1/2 -translate-x-1/2"} ${on ? "text-foreground" : "text-muted-foreground"}`}>{e.name}</span>
+              </Button>
             );
           })}
-          <button onClick={() => setAuto(!auto)} aria-label={auto ? "Pause tour" : "Play tour"} className="glass absolute right-3 bottom-3 grid h-9 w-9 place-items-center rounded-full text-brand">
+          <Button variant="outline" size="icon" onClick={() => setAuto(!auto)} aria-label={auto ? "Pause tour" : "Play tour"} title={auto ? "Pause tour" : "Play tour"} className="glass absolute right-3 bottom-3 rounded-full text-foreground">
             {auto ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-          </button>
+          </Button>
         </Reveal>
 
         <div className="flex flex-col gap-4">
@@ -74,7 +76,7 @@ export function Expertise() {
               <p className="mt-3 text-muted-foreground">{s.desc}</p>
               <div className="mt-6">
                 <div className="flex justify-between text-sm"><span>Depth</span><span className="font-mono text-signal">{s.level}%</span></div>
-                <div className="mt-2 h-2 overflow-hidden rounded-full bg-muted"><motion.div key={s.name} initial={{ width: 0 }} animate={{ width: `${s.level}%` }} transition={{ duration: 0.9 }} className="h-full bg-brand-gradient" /></div>
+                <div className="mt-2 h-2 overflow-hidden rounded-full bg-muted"><motion.div key={s.name} initial={{ width: 0 }} animate={{ width: `${s.level}%` }} transition={{ duration: 0.9 }} className="h-full bg-expertise-link" /></div>
               </div>
               <p className="mt-6 font-mono text-xs text-muted-foreground">PROOF POINTS</p>
               <ul className="mt-2 space-y-2">{s.proof.map((p) => <li key={p} className="flex gap-2 text-sm"><span className="text-signal">▸</span>{p}</li>)}</ul>
@@ -83,7 +85,7 @@ export function Expertise() {
           </AnimatePresence>
           <div className="grid grid-cols-4 gap-2 sm:grid-cols-8">
             {expertise.map((e, i) => (
-              <button key={e.name} onClick={() => pick(i)} aria-label={e.name} className={`h-1.5 rounded-full transition ${i === active ? "bg-brand" : "bg-muted hover:bg-muted-foreground/40"}`} />
+              <Button variant="ghost" key={e.name} onClick={() => pick(i)} aria-label={`Select ${e.name}`} aria-pressed={i === active} className="h-6 w-full px-0 hover:bg-transparent"><span className={`h-1.5 w-full rounded-full transition ${i === active ? "bg-expertise-active" : "bg-expertise-link/30"}`} /></Button>
             ))}
           </div>
         </div>

@@ -4,6 +4,7 @@ import type { Blog, BodyImage } from "./media";
 import a4iHall from "@/assets/a4i-hackathon-hall.jpg.asset.json";
 import a4iTeams from "@/assets/a4i-hackathon-teams-building.jpg.asset.json";
 import a4iJudge from "@/assets/harsh-verma-a4i-hackathon-judge.jpg.asset.json";
+import a4iShare from "@/assets/google-agents-for-impact-share.jpg.asset.json";
 
 export type OriginalPost = Blog & { body: { h?: string; p: string[]; checklist?: string[]; img?: BodyImage }[]; sources?: { title: string; href: string }[] };
 
@@ -12,6 +13,12 @@ export const originalPosts: OriginalPost[] = [
   {
     title: "Judging Google Cloud's Agents for Impact Hackathon as a Google Developer Expert",
     img: a4iHall.url,
+    seo: {
+      title: "Google Agents for Impact Hackathon | Harsh Verma",
+      description: "Harsh Verma shares Google Agents for Impact hackathon judging insights and AI agent development lessons with ADK, Gemini, BigQuery and Google Antigravity.",
+      image: a4iShare.url,
+      keywords: ["Google Agents for Impact hackathon", "AI agent development", "Google ADK", "Gemini", "BigQuery", "Google Antigravity", "Harsh Verma"],
+    },
     pub: "iamharshverma.com",
     topic: "Agentic AI",
     date: "November 20, 2026",

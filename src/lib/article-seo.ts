@@ -1,6 +1,6 @@
 import { SITE_URL } from "@/lib/seo";
 
-type SeoInput = { title: string; topic: string; excerpt: string; img: string; pub: string };
+type SeoInput = { title: string; topic: string; excerpt: string; img: string; pub: string; seo?: { title: string; description: string; image: string; keywords: string[] } };
 
 const TOPIC_KEYWORDS: Record<string, string[]> = {
   Cybersecurity: ["AI cybersecurity", "AI agent security", "identity security", "zero trust", "threat detection"],
@@ -13,7 +13,8 @@ const TOPIC_KEYWORDS: Record<string, string[]> = {
 const SECURITY_HINT = /secur|attack|identity|threat|authenticat|insider|trust|privacy|perimeter|defend/i;
 
 export const articleKeywords = (a: SeoInput) => {
-  const base = TOPIC_KEYWORDS[a.topic] ?? TOPIC_KEYWORDS["AI Research"]!;
+  if (a.seo) return a.seo.keywords;
+  const base = TOPIC_KEYWORDS[a.topic] ?? TOPIC_KEYWORDS["AI Research"] ?? [];
   const extra = SECURITY_HINT.test(a.title) && a.topic !== "Cybersecurity" ? ["AI cybersecurity"] : [];
   return [...new Set([...base, ...extra, "Harsh Verma"])];
 };
@@ -22,18 +23,25 @@ const clip = (s: string, n: number) => (s.length <= n ? s : s.slice(0, s.lastInd
 
 /** Search title kept within ~60 chars: main headline + primary keyword + name. */
 export const articleSeoTitle = (a: SeoInput) => {
+  if (a.seo) return a.seo.title;
   const head = (a.title.split(/[:(\[]/)[0] ?? a.title).trim();
   const kw = SECURITY_HINT.test(a.title) || /secur/i.test(a.topic) ? "AI Security" : a.topic === "Engineering" ? "AI Engineering" : "AI";
-  const suffix = ` | ${kw} — Harsh Verma`;
+  // The RSAC and HackerNoon Clean Attack briefs are separate publisher editions.
+  const edition = /^The Clean Attack Problem/i.test(a.title) && a.pub === "RSA Conference" ? "RSAC" : kw;
+  const suffix = ` | ${edition} — Harsh Verma`;
   return clip(head, 60 - suffix.length) + suffix;
 };
 
 /** Meta description kept within 160 chars, naming the topic keyword and author. */
 export const articleSeoDescription = (a: SeoInput) => {
+  if (a.seo) return a.seo.description;
   const k = articleKeywords(a)[0] ?? "AI";
   const lead = `${k.charAt(0).toUpperCase()}${k.slice(1)} insight by Harsh Verma: `;
   return clip(lead + a.excerpt.replace(/\s+/g, " ").trim(), 160);
 };
 
 /** Absolute share image; bundled/mirrored paths are resolved against the site URL. */
-export const articleSeoImage = (a: SeoInput) => (a.img.startsWith("http") ? a.img : `${SITE_URL}${a.img.startsWith("/") ? "" : "/"}${a.img}`);
+export const articleSeoImage = (a: SeoInput) => {
+  const image = a.seo?.image ?? a.img;
+  return image.startsWith("http") ? image : `${SITE_URL}${image.startsWith("/") ? "" : "/"}${image}`;
+};

@@ -40,7 +40,7 @@ function RotatingRole({ i }: { i: number }) {
     <span className="relative block h-[2.3em] overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.span key={i} initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "-100%" }} transition={{ duration: 0.45 }}
-          className="block max-w-[10ch] leading-[1.15] text-brand-gradient">{profile.roles[i]}</motion.span>
+          className="home-rotating-role block max-w-[10ch] leading-[1.15] text-brand-gradient">{profile.roles[i]}</motion.span>
       </AnimatePresence>
     </span>
   );
@@ -98,8 +98,8 @@ function Home() {
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (
             <div key={s.label} className={`px-6 py-10 ${i ? "md:border-l" : ""} border-border`}>
-              <p className="font-display text-5xl font-bold tracking-tight font-bold text-signal md:text-6xl"><Counter to={s.value} suffix={s.suffix} /></p>
-              <p className="mt-2 text-sm text-muted-foreground">{s.label}</p>
+              <p className="font-display text-5xl font-bold tracking-normal text-stat-number md:text-6xl"><Counter to={s.value} suffix={s.suffix} /></p>
+              <p className="mt-2 text-sm text-stat-label">{s.label}</p>
             </div>
           ))}
         </div>
@@ -180,9 +180,9 @@ function Home() {
           <Link to="/books" className="hidden items-center gap-1 text-sm text-brand md:flex">Explore the books <ArrowUpRight className="h-4 w-4" /></Link>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
-          {books.map((b) => (
+          {books.map((b, i) => (
             <Reveal key={b.slug}>
-              <Link to="/books" className="block h-full">
+              <Link to="/books" className={`block h-full home-book-card ${i === 0 ? "home-book-blue" : "home-book-red"}`}>
                 <TiltCard className="flex flex-col gap-4 p-5 sm:flex-row sm:gap-6 sm:p-6">
                   <img src={b.cover} alt={b.title} className="w-28 shrink-0 rounded-lg object-cover shadow-glow" loading="lazy" />
                   <div><p className="font-mono text-xs text-signal">{b.status}</p><h3 className="mt-2 font-display text-2xl font-bold">{b.title}</h3><p className="mt-1 text-sm text-brand">{b.subtitle}</p><p className="mt-3 line-clamp-3 text-sm text-muted-foreground">{b.pitch}</p></div>

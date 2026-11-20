@@ -87,7 +87,7 @@ function About() {
         {profile.philosophy.map((p, i) => (
           <Reveal key={p.p} delay={i * 0.1}>
             <div className="h-full rounded-2xl border border-border bg-card p-8">
-              <p className="font-display text-6xl text-brand-gradient">P{i + 1}</p>
+              <p className="about-p-number font-display text-6xl text-brand-gradient">P{i + 1}</p>
               <h3 className="mt-4 font-display text-3xl">{p.p}</h3>
               <p className="mt-3 text-muted-foreground">{p.d}</p>
             </div>
@@ -103,7 +103,7 @@ function About() {
       <Journey />
       <section aria-labelledby="achievements-heading" className="mx-auto max-w-6xl px-6 pb-24">
         <div className="flex flex-wrap items-end justify-between gap-5"><div><p className="eyebrow">Research. Leadership. Recognition.</p><h2 id="achievements-heading" className="mt-4 font-display text-3xl font-bold md:text-5xl">Selected achievements</h2></div><Button asChild variant="outline"><Link to="/recognition">All recognition <ArrowUpRight /></Link></Button></div>
-        <dl className="mt-10 grid grid-cols-2 gap-6 border-y border-border py-8 md:grid-cols-4">{stats.map((stat) => <div key={stat.label}><dd className="font-display text-4xl font-bold text-signal">{stat.value}{stat.suffix}</dd><dt className="mt-2 text-sm text-muted-foreground">{stat.label}</dt></div>)}</dl>
+        <dl className="mt-10 grid grid-cols-2 gap-6 border-y border-border py-8 md:grid-cols-4">{stats.map((stat) => <div key={stat.label}><dd className="font-display text-4xl font-bold text-stat-number">{stat.value}{stat.suffix}</dd><dt className="mt-2 text-sm text-stat-label">{stat.label}</dt></div>)}</dl>
         <div className="mt-8 grid gap-6 md:grid-cols-2">{awards.slice(0, 4).map((award) => <article key={award.title} className="border-l-2 border-brand pl-5"><p className="font-mono text-xs text-signal">{award.badge} · {award.cat}</p><h3 className="mt-2 font-display text-xl font-semibold">{award.title}</h3><p className="mt-2 text-sm text-muted-foreground">{award.org}</p><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{award.desc}</p></article>)}</div>
         <Button asChild variant="link" className="mt-6 px-0"><Link to="/research">Explore patents &amp; publications <ArrowUpRight /></Link></Button>
       </section>

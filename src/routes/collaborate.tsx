@@ -20,7 +20,6 @@ export const Route = createFileRoute("/collaborate")({
       { property: "og:description", content: "Keynotes, advisory, masterclasses, brand collaborations and mentorship." },
       { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
       { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Collaborate,
@@ -44,8 +43,8 @@ function Collaborate() {
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">
           {socialStats.map((s, i) => (
             <div key={s.label} className={`px-6 py-8 ${i ? "md:border-l" : ""} border-border`}>
-              <p className="font-display text-4xl font-bold text-signal md:text-5xl"><Counter to={s.value} suffix={s.suffix} prefix={s.prefix} decimals={s.decimals} /></p>
-              <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
+              <p className="font-display text-4xl font-bold text-stat-number md:text-5xl"><Counter to={s.value} suffix={s.suffix} prefix={s.prefix} decimals={s.decimals} /></p>
+              <p className="mt-1 text-sm text-stat-label">{s.label}</p>
             </div>
           ))}
         </div>
@@ -86,7 +85,7 @@ function Collaborate() {
         <Reveal><p className="eyebrow">Audience</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Who you'll reach</h2></Reveal>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {audienceFacts.map((f) => (
-            <div key={f.l} className="rounded-xl border border-border bg-card p-6"><p className="font-display text-4xl font-bold text-signal">{f.v}</p><p className="mt-2 font-semibold">{f.l}</p><p className="text-sm text-muted-foreground">{f.d}</p></div>
+            <div key={f.l} className="rounded-xl border border-border bg-card p-6"><p className="font-display text-4xl font-bold text-stat-number">{f.v}</p><p className="mt-2 font-semibold">{f.l}</p><p className="text-sm text-muted-foreground">{f.d}</p></div>
           ))}
         </div>
         <div className="mt-6 rounded-2xl border border-border bg-card p-6 md:p-10">
@@ -123,8 +122,8 @@ function Collaborate() {
               <input type="range" min={1} max={12} value={posts} onChange={(e) => setPosts(+e.target.value)} className="mt-3 w-full accent-[var(--brand)]" />
             </label>
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <div className="rounded-xl bg-muted p-4"><p className="font-display text-3xl font-bold text-signal">{reach.toLocaleString()}</p><p className="text-xs text-muted-foreground">Estimated impressions</p></div>
-              <div className="rounded-xl bg-muted p-4"><p className="font-display text-3xl font-bold text-brand">{engaged.toLocaleString()}</p><p className="text-xs text-muted-foreground">Engaged tech leaders (5.8%)</p></div>
+              <div className="rounded-xl bg-muted p-4"><p className="font-display text-3xl font-bold text-stat-number">{reach.toLocaleString()}</p><p className="text-xs text-muted-foreground">Estimated impressions</p></div>
+              <div className="rounded-xl bg-muted p-4"><p className="font-display text-3xl font-bold text-stat-number">{engaged.toLocaleString()}</p><p className="text-xs text-muted-foreground">Engaged tech leaders (5.8%)</p></div>
             </div>
             <p className="mt-3 text-xs text-muted-foreground">Indicative only, based on average past performance.</p>
           </div>
@@ -163,8 +162,8 @@ function Collaborate() {
               <h2 id="brand-showcase-heading" className="mt-4 font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Brands I've<br /><span className="text-brand">worked with.</span></h2>
             </div>
             <div className="flex items-center gap-4 border-l-2 border-signal pl-5">
-              <span className="font-display text-5xl font-bold text-signal">{String(brands.length).padStart(2, "0")}</span>
-              <p className="font-mono text-xs leading-relaxed text-muted-foreground">BRANDS &<br />INSTITUTIONS</p>
+              <span className="font-display text-5xl font-bold text-stat-number">{String(brands.length).padStart(2, "0")}</span>
+              <p className="font-mono text-xs leading-relaxed text-stat-label">BRANDS &<br />INSTITUTIONS</p>
             </div>
           </Reveal>
           <div className="press-strip-depth mt-8 overflow-hidden md:mt-10">

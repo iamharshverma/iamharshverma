@@ -17,7 +17,7 @@ export const Route = createFileRoute("/press-kit")({
     { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
     { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
     { name: "twitter:card", content: "summary_large_image" },
-    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
+    { property: "og:type", content: "website" },
   ] }), component: PressKit,
 });
 function PressKit() {

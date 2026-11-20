@@ -22,7 +22,6 @@ export const Route = createFileRoute("/recognition")({
       { property: "og:description", content: "Global recognition for enterprise AI and autonomous security." },
       { property: "og:image", content: "https://www.iamharshverma.com/og-image.jpg" },
       { name: "twitter:image", content: "https://www.iamharshverma.com/og-image.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Recognition,

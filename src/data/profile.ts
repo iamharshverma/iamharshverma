@@ -164,6 +164,14 @@ export const research: Work[] = [
   { kind: "Project", title: "SkipList Probabilistic Index", meta: "Algorithms · O(log N)", year: 2018, href: "https://github.com/iamharshverma/SkipLists", desc: "Layered probabilistic index without tree rebalancing." },
 ];
 
+export const researchFocus = [
+  { area: "Agentic AI systems", question: "How do autonomous agents stay reliable when they plan, call tools and act on their own?", work: "Patent-pending work on agent orchestration, copilot reasoning loops and copilot navigation (Palo Alto Networks).", finding: "Agents reach production when every action is scoped, observable and reversible, not when the model is smarter." },
+  { area: "AI vs AI security", question: "How can defenders respond at machine speed to attackers who already use AI?", work: "The AI vs. AI book and RSAC writing on self-defending systems and autonomous response.", finding: "Human-in-the-loop review becomes human-on-the-loop: automation contains threats, people set the guardrails and audit trails." },
+  { area: "Trustworthy enterprise copilots", question: "What makes an AI copilot safe to trust with real enterprise data and decisions?", work: "Enterprise copilot patents and Forbes Technology Council columns for CIOs and CTOs.", finding: "Trust comes from grounding, permission-aware retrieval and evaluation built into the product, not added after launch." },
+  { area: "Secure real-time AI", question: "How can deep learning process live data streams without weakening security?", work: "IEEE CogML 2019 paper on secure real-time streaming, plus 27+ peer-reviewed publications.", finding: "Security and latency can be designed together when encryption, model inference and stream processing share one architecture." },
+  { area: "Scalable distributed systems", question: "Which systems foundations let AI products scale to millions of users?", work: "Granted load-testing patent and open-source lock-free hash table, Hadoop and indexing projects.", finding: "Simulating real multi-tenant load early exposes the bottlenecks that later break AI features at scale." },
+];
+
 export const communities = ["Palo Alto Networks", "Forbes Tech Council", "IEEE", "Stanford GSB", "UC Berkeley SkyDeck", "Sigma Xi", "BCS", "ODSC", "HackUTD", "Hackmakers", "SIIM", "Google Developer Experts"];
 
 export const speaking = [

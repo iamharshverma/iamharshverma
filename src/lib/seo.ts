@@ -13,6 +13,38 @@ export const canonical = (path: string) => {
   };
 };
 
+/** Describe only the articles visibly listed on a publisher collection page. */
+export const publisherCollectionJsonLd = (
+  path: string,
+  name: string,
+  description: string,
+  articles: readonly { title: string; slug: string; href: string }[],
+) => ({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE_URL}${path}#collection`,
+  url: `${SITE_URL}${path}`,
+  name,
+  description,
+  about: { "@id": `${SITE_URL}/#person` },
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: articles.length,
+    itemListElement: articles.map((article, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Article",
+        headline: article.title,
+        url: `${SITE_URL}/insights/${article.slug}`,
+        sameAs: article.href,
+        author: { "@id": `${SITE_URL}/#person` },
+      },
+    })),
+  },
+});
+
 export const personJsonLd = {
   "@context": "https://schema.org",
   "@graph": [

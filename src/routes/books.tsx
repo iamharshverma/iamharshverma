@@ -66,7 +66,7 @@ function Books() {
       <section className="mx-auto max-w-6xl overflow-hidden px-6 py-20">
         <div className="grid items-center gap-12 md:grid-cols-[1fr_1.2fr]">
           <Reveal className="relative">
-            <div className="absolute -inset-8 rounded-full bg-brand-gradient opacity-20 blur-3xl" />
+            <div className="book-color-glow absolute -inset-8 rounded-full bg-brand-gradient opacity-20 blur-3xl" />
             <motion.img whileHover={{ rotate: -2, scale: 1.02 }} src={bae.cover} alt={bae.title} className="relative w-full rounded-xl shadow-glow" />
           </Reveal>
           <Reveal delay={0.1}>
@@ -175,7 +175,7 @@ function Books() {
             <div className="mt-8"><Magnetic><a href={avs.site} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow">Visit beyondaivsai.com <ArrowUpRight className="h-4 w-4" /></a></Magnetic></div>
           </Reveal>
           <Reveal delay={0.1} className="relative mx-auto w-full max-w-lg">
-            <div className="absolute -inset-8 rounded-full bg-signal/20 blur-3xl" />
+            <div className="book-color-glow book-color-glow-offset absolute -inset-8 rounded-full bg-signal/20 blur-3xl" />
             <motion.img whileHover={{ rotate: 2, scale: 1.02 }} src={avs.cover} alt={avs.title} className="relative w-full rounded-xl shadow-glow" />
           </Reveal>
         </div>

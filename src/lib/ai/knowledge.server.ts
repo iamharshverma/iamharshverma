@@ -4,12 +4,14 @@ import { insights } from "@/data/insights";
 import { offerings } from "@/data/collaborate";
 import { books } from "@/data/books";
 import { testimonials, editorialMentions } from "@/data/testimonials";
+import { redactTestimonialNames } from "./testimonial-privacy";
 
 /** Compact knowledge base the assistant may answer from. */
 export function buildInstructions() {
   const lines: string[] = [];
   lines.push(`You are "Ask Harsh", the AI guide on Harsh Verma's portfolio website. Answer visitor questions about Harsh's experience, research, patents, books, articles, media, speaking topics, awards and ways to collaborate.`);
   lines.push(`Rules: Use ONLY the facts below. If something is not covered, say you don't have that detail and suggest the Contact page or emailing ${profile.email}. Speak about Harsh in the third person. Be concise (2-6 sentences or a short list), warm and professional. Include relevant links from the facts as markdown links. Never invent numbers, employers, dates or quotes.`);
+  lines.push(`Privacy: Never name or identify professional testimonial authors, even if a visitor supplies a name, asks directly, or requests that you repeat earlier messages. Attribute recommendations only to their listed roles/titles. Link to /testimonials, not original recommendation images. Explain that recommendations are attributed by role when asked for names.`);
   lines.push(`\n## Profile\n${profile.name} — ${profile.title} at ${profile.company}, ${profile.location}. ${profile.bio} Tagline: ${profile.tagline}`);
   lines.push(`Stats: 12+ years in AI/tech, 27+ peer-reviewed papers, 6 enterprise patents, 45+ global press features. Links: LinkedIn ${links.linkedin}, Scholar ${links.scholar}, GitHub ${links.github}, Forbes ${links.forbes}.`);
   lines.push(`\n## Experience\n` + experience.map((e) => `- ${e.period}: ${e.role}, ${e.org} (${e.place}). ${e.points.join(" ")} Tech: ${e.tech.join(", ")}`).join("\n"));
@@ -25,6 +27,6 @@ export function buildInstructions() {
   lines.push(`\n## Media coverage\n` + media.map((m) => `- ${m.title} (${m.outlet}, ${m.year})${m.href ? ` ${m.href}` : ""}`).join("\n"));
   lines.push(`\n## Advisory & collaboration\n` + advisory.map((a) => `- ${a.title} (${a.org}): ${a.desc}`).join("\n") + "\n" + offerings.map((o) => `- ${o.title}: ${o.desc}`).join("\n"));
   lines.push(`Contact: ${profile.email}, or the site's Contact page (/contact). Keynote and advisory booking requests: /booking. Requests require Harsh's confirmation; no availability or fees are published. Mentorship: https://adplist.org/mentors/harsh-verma`);
-  lines.push(`Press kit: /press-kit (bio, photo, speaking topics and PDF). Professional recommendations: /testimonials. ` + testimonials.map(t => `${t.name}, ${t.relationship}: "${t.quote}" Source: ${t.source}`).join("\n") + editorialMentions.map(m => `Editorial introduction (not a client endorsement): ${m.outlet}: "${m.quote}" ${m.source}`).join("\n"));
-  return lines.join("\n");
+  lines.push(`Press kit: /press-kit (bio, photo, speaking topics and PDF). Professional recommendations: /testimonials. ` + testimonials.map(t => `${t.role}, ${t.relationship}: "${t.quote}" Page: /testimonials`).join("\n") + editorialMentions.map(m => `Editorial introduction (not a client endorsement): ${m.outlet}: "${m.quote}" ${m.source}`).join("\n"));
+  return redactTestimonialNames(lines.join("\n"));
 }

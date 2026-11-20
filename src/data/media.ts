@@ -1,4 +1,8 @@
 // Generated from harshverma.me content.
+import onStageThumbnail from "@/assets/reel-DYaWly9vD60.webp.asset.json";
+import aiWithHarshThumbnail from "@/assets/reel-DYcnn4hOfxe.webp.asset.json";
+import awardsThumbnail from "@/assets/reel-DYSEXmMswXj.webp.asset.json";
+import speakerMomentsThumbnail from "@/assets/reel-DJ6szEOxxgl.webp.asset.json";
 export type MediaItem = { title: string; img: string; cat: string; group: string; year: number; outlet: string; quote: string; href: string | null; cta: string | null; featured: boolean };
 export const media: MediaItem[] = [
  {
@@ -634,7 +638,7 @@ export const homeKeynotes = [
 ].flatMap(href => keynotes.filter(keynote => keynote.href === href));
 
 export type BodyImage = { src: string; alt: string; caption?: string; portrait?: boolean };
-export type Blog = { title: string; img: string; pub: string; topic: string; date: string; read: string; href: string; excerpt: string; body?: { h?: string; p: string[]; checklist?: string[]; img?: BodyImage }[]; sources?: { title: string; href: string }[] };
+export type Blog = { title: string; img: string; pub: string; topic: string; date: string; read: string; href: string; excerpt: string; seo?: { title: string; description: string; image: string; keywords: string[] }; body?: { h?: string; p: string[]; checklist?: string[]; img?: BodyImage }[]; sources?: { title: string; href: string }[] };
 export const blogs: Blog[] = [
  {
   "title": "Security Without Humans: Designing Systems that Defend Themselves",
@@ -2373,10 +2377,10 @@ export const judging: Judging[] = [
  }
 ];
 
-export type Reel = { id: string; label: string; account: string };
+export type Reel = { id: string; label: string; account: string; thumbnail: string };
 export const reels: Reel[] = [
-  { id: "DYaWly9vD60", label: "On stage", account: "aiwithharsh" },
-  { id: "DYcnn4hOfxe", label: "AI with Harsh", account: "aiwithharsh" },
-  { id: "DYSEXmMswXj", label: "Influencer Magazine Awards", account: "influencermagazineawards" },
-  { id: "DJ6szEOxxgl", label: "Speaker moments", account: "aiwithharsh" },
+  { id: "DYaWly9vD60", label: "On stage", account: "aiwithharsh", thumbnail: onStageThumbnail.url },
+  { id: "DYcnn4hOfxe", label: "AI with Harsh", account: "aiwithharsh", thumbnail: aiWithHarshThumbnail.url },
+  { id: "DYSEXmMswXj", label: "Influencer Magazine Awards", account: "influencermagazineawards", thumbnail: awardsThumbnail.url },
+  { id: "DJ6szEOxxgl", label: "Speaker moments", account: "aiwithharsh", thumbnail: speakerMomentsThumbnail.url },
 ];

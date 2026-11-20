@@ -1,5 +1,6 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { streamText, type ModelMessage } from "ai";
+import { createTestimonialPrivacyTransform } from "./testimonial-privacy";
 
 import {
   createLovableAiGatewayRunIdFetch,
@@ -26,6 +27,7 @@ export function createResponsesCall(
     // AI SDK 6 lacks `instructions`: rename this key to `system` there.
     ...(instructions ? { instructions } : {}),
     messages,
+    experimental_transform: () => createTestimonialPrivacyTransform(),
     abortSignal: request.signal,
     providerOptions: {
       openai: {
@@ -44,6 +46,6 @@ export function createResponsesCall(
   return {
     result,
     response: () =>
-      withLovableAiGatewayRunIdHeader(result.toUIMessageStreamResponse({ sendReasoning: true }), runIdFetch),
+      withLovableAiGatewayRunIdHeader(result.toUIMessageStreamResponse({ sendReasoning: false }), runIdFetch),
   };
 }
