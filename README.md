@@ -8,7 +8,7 @@ Official portfolio of **Harsh Verma**, Principal Software Engineer in AI at Palo
 
 Harsh builds enterprise autonomous agent systems and AI security governance at Palo Alto Networks. His work spans agentic AI, machine learning for threat detection and trustworthy autonomy, backed by 27+ peer-reviewed papers and 6 enterprise patents.
 
-- **Education:** Stanford Graduate School of Business, UT Dallas
+- **Education:** Stanford Graduate School of Business (LEAD), UT Dallas
 - **Recognition:** Forbes Technology Council, BCS Fellow, ACM and industry keynotes
 - **Speaking:** ACM Distinguished Keynote, UC Berkeley SkyDeck, SF Tech Week, international conferences
 - **Mentoring and judging:** Techstars, UC Berkeley SkyDeck, Mayfield AI Garage, global hackathons
