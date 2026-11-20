@@ -1,11 +1,72 @@
 import securityImage from "@/assets/enterprise-agent-security.jpg";
 import trustImage from "@/assets/agentic-ai-trust.jpg";
-import type { Blog } from "./media";
+import type { Blog, BodyImage } from "./media";
+import a4iHall from "@/assets/a4i-hackathon-hall.jpg.asset.json";
+import a4iTeams from "@/assets/a4i-hackathon-teams-building.jpg.asset.json";
+import a4iJudge from "@/assets/harsh-verma-a4i-hackathon-judge.jpg.asset.json";
 
-export type OriginalPost = Blog & { body: { h?: string; p: string[]; checklist?: string[] }[]; sources?: { title: string; href: string }[] };
+export type OriginalPost = Blog & { body: { h?: string; p: string[]; checklist?: string[]; img?: BodyImage }[]; sources?: { title: string; href: string }[] };
 
 // Essays published first on this site. href is empty: the page itself is the original.
 export const originalPosts: OriginalPost[] = [
+  {
+    title: "Judging Google Cloud's Agents for Impact Hackathon as a Google Developer Expert",
+    img: a4iHall.url,
+    pub: "iamharshverma.com",
+    topic: "Agentic AI",
+    date: "November 20, 2026",
+    read: "7 min read",
+    href: "",
+    excerpt: "What I learned judging Google Cloud's Agents for Impact Hackathon in Sunnyvale as a Google Cloud AI Developer Expert: the creativity, the energy in the room, and how the best teams turned urban heat data into agents a city could actually use.",
+    sources: [
+      { title: "Google Cloud: Agents for Impact Hackathon, Sunnyvale", href: "https://cloud.google.com/events/agents-for-impact-svl" },
+      { title: "Google Cloud: Agents for Impact 2026 resources", href: "https://cloud.google.com/resources/agents-for-impact-2026" },
+      { title: "Challenge 1 brief: Community Climate Resilience, Urban Heat (GitHub)", href: "https://github.com/haggman/A4I2026-challenge-1-walkability" },
+    ],
+    body: [
+      { p: [
+        "On November 17, 2026 I spent the day at the Google Event Center in Sunnyvale as a judge for Google Cloud's Agents for Impact Hackathon. As a Google Cloud AI Developer Expert, I get to see a lot of AI demos. Very few days pack this much learning, creativity and raw builder energy into ten hours.",
+        "The format was simple and demanding: one day, curated teams, real public datasets and Google's newest agentic stack, including Antigravity, the Agent Development Kit (ADK), Gemini models and BigQuery. One winning team advances to the AI Arena, where a live audience votes to send a team to the stage at Google Cloud Next '27.",
+      ], img: { src: a4iJudge.url, alt: "Harsh Verma standing in front of the Google Cloud Agents for Impact Hackathon wall in Sunnyvale", caption: "Arriving at the Google Event Center in Sunnyvale, ready to judge.", portrait: true } },
+      { h: "The problem: heat, block by block", p: [
+        "The challenge I judged was Community Climate Resilience: Urban Heat. Heat is the deadliest weather in America, and also the most unequal. Two blocks in the same city can differ by more than fifteen degrees at the same hour. A city has a small budget, a hot summer coming and a decision to make about where to put help.",
+        "Teams worked with NOAA Heat Watch street-level readings plus years of weather-station history. The brief asked for an agent that predicts how much hotter a specific spot runs than the rest of the city, calls that prediction for places nobody ever measured, and turns it into a recommendation a city council can act on.",
+      ] },
+      { h: "The ambience and the energy", p: [
+        "The hall felt like a launch event: a wall of glowing light panels, numbered table beacons, and more than a dozen teams heads-down over laptops by mid-morning. Data people, agent builders, front-end developers and storytellers were sketching architectures on paper before anyone opened a keyboard.",
+        "What stayed with me was the generosity. Google experts moved table to table unblocking teams, and teams helped each other with Cloud Shell and BigQuery set-up. The pressure was real, but the mood was curiosity, not competition.",
+      ], img: { src: a4iTeams.url, alt: "Hackathon teams working at numbered tables in the Google Event Center hall", caption: "Mid-afternoon: teams building, mentors circulating, the countdown on screen." } },
+      { h: "What I looked for as a judge", p: [
+        "A polished demo is not the same as a useful agent. I asked every team the same few questions, and they map closely to what separates production AI from a prototype.",
+      ], checklist: [
+        "Does the agent actually call the model, or just describe historical data? Answering for unmeasured locations was the whole point.",
+        "Is the claim stated correctly? The model predicts an offset (this spot runs 8° hotter), not an absolute temperature. Teams that said it precisely earned trust immediately.",
+        "Is there a tool the team built, with a clear contract, rather than one long prompt?",
+        "Did they audit the outcome: who benefits from the recommendation, and who might be missed?",
+        "Can a city official understand the recommendation, its uncertainty and its limits in under a minute?",
+      ] },
+      { h: "Creativity that surprised me", p: [
+        "The strongest teams treated heat as the instrument, not the ceiling. Some brought their own data, such as tree canopy, bus stops or cooling centers, to shift the question from where it is hot to where help changes outcomes. Others built placement recommendations that explained why one intersection beat another, in plain language.",
+        "The best demos were not the flashiest. They were the ones where the agent was honest about what it did not know: a single day of street readings, missing timestamps in some cities, and the difference between how hot it gets and how often.",
+      ] },
+      { h: "Lessons for anyone building agents", p: [
+        "Frame the prediction precisely, because every downstream claim depends on it. Make the agent use real tools, so its answers are grounded. Design for the decision-maker, not the demo audience. Keep humans in the loop for decisions that move budgets or affect communities.",
+        "These are the same principles I apply to agentic AI in enterprise and security work: clear authority, verifiable actions and evidence before autonomy. Seeing teams discover them in one afternoon was a reminder that good engineering habits are learnable fast when the problem is real.",
+      ] },
+      { h: "How to run an engaging hackathon", p: [
+        "Agents for Impact is a strong template for organizers. A few things made it work:",
+      ], checklist: [
+        "One concrete, human problem with a real decision-maker, instead of an open-ended theme.",
+        "Curated, open datasets ready on day one, with known limitations written down.",
+        "Clear team lanes (data, agent, front end, story) so everyone contributes from minute zero.",
+        "Published judging criteria shared before coding starts, not after.",
+        "Experts on the floor, a visible countdown, and a meaningful next stage for the winners.",
+      ] },
+      { h: "Thank you", p: [
+        "Thank you to the Google Cloud team, the Developer Experts community and every builder who spent a long day turning street-level heat data into something a city could use. I left with new ideas, new friends and real optimism about what agentic AI can do for communities. If you are planning a hackathon or building agents for public good, I would love to compare notes.",
+      ] },
+    ],
+  },
   {
     title: "Enterprise Agent Security Checklist: Tool Permissions and Human Approvals",
     img: securityImage,
