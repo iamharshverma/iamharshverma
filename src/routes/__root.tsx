@@ -89,10 +89,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Harsh Verma — Principal AI Engineer" },
-      { name: "description", content: "Harsh Verma, Principal Software Engineer in AI at Palo Alto Networks: agentic AI, AI security, research, speaking and advisory." },
+      { title: "Harsh Verma — Principal Software Engineer" },
+      { name: "description", content: "Harsh Verma, Principal Software Engineer at Palo Alto Networks: AI, cybersecurity, agentic systems, research, speaking and advisory." },
       { name: "author", content: "Harsh Verma" },
-      { property: "og:title", content: "Harsh Verma — Principal AI Engineer" },
+      { property: "og:title", content: "Harsh Verma — Principal Software Engineer" },
       { property: "og:description", content: "Agentic AI, AI security, research, speaking and advisory." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -126,6 +126,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <noscript><style>{`.content-reveal { opacity: 1 !important; transform: none !important; }`}</style></noscript>
         {children}
         <Scripts />
       </body>

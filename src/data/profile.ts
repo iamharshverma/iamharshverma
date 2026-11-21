@@ -3,6 +3,26 @@ import executiveAsset from "@/assets/harsh-verma-executive.jpg.asset.json";
 import speakerAsset from "@/assets/harsh-verma-speaker.jpg.asset.json";
 import authorAsset from "@/assets/harsh-verma-author.jpg.asset.json";
 import profileAsset from "@/assets/harsh-verma-professional-profile.jpg.asset.json";
+import { professionalIdentity } from "./identity";
+import { ownerReportedMetrics } from "./metrics";
+import { books } from "./books";
+import architectureArt from "@/assets/research-pillar-architecture.webp.asset.json";
+import defenseArt from "@/assets/research-pillar-defense.webp.asset.json";
+import trustArt from "@/assets/research-pillar-trust.webp.asset.json";
+import securityArt from "@/assets/research-pillar-security.webp.asset.json";
+import distributedArt from "@/assets/research-pillar-distributed.webp.asset.json";
+import evaluationArt from "@/assets/research-pillar-evaluation.webp.asset.json";
+import thermalArt from "@/assets/thermal-entry-research.webp.asset.json";
+import hashArt from "@/assets/project-microservice_gateway.svg.asset.json";
+import hadoopArt from "@/assets/project-hadoop_cluster.svg.asset.json";
+import tokenizerArt from "@/assets/project-speech_ai.svg.asset.json";
+import skipArt from "@/assets/project-skiplist_index.svg.asset.json";
+import agentsTopic from "@/assets/research-topic-0.webp.asset.json";
+import securityTopic from "@/assets/research-topic-1.webp.asset.json";
+import distributedTopic from "@/assets/research-topic-2.webp.asset.json";
+import copilotTopic from "@/assets/research-topic-3.webp.asset.json";
+import realtimeTopic from "@/assets/research-topic-4.webp.asset.json";
+import evaluationTopic from "@/assets/research-topic-5.webp.asset.json";
 
 export const rolePortraits: Record<string, { src: string; caption: string }> = {
   "Principal AI Engineer": { src: executiveAsset.url, caption: "Agentic AI & AI Security · Palo Alto Networks" },
@@ -10,7 +30,7 @@ export const rolePortraits: Record<string, { src: string; caption: string }> = {
   Investor: { src: executiveAsset.url, caption: "Backing founders building with AI" },
   Author: { src: authorAsset.url, caption: "Two books · Coming January 2027" },
   Advisor: { src: executiveAsset.url, caption: "Startup AI strategy & governance" },
-  Researcher: { src: portraitAsset.url, caption: "27+ papers · 6 patents" },
+  Researcher: { src: portraitAsset.url, caption: "Publications · Patents · Open-source projects" },
 };
 export const portraitGallery = [
   { src: executiveAsset.url, label: "The Engineer", note: "Architecting autonomous agent systems and AI security at enterprise scale." },
@@ -28,7 +48,8 @@ export const orbitPortraits = [
 
 export const profile = {
   name: "Harsh Verma",
-  title: "Principal Software Engineer in AI",
+  title: professionalIdentity.title,
+  positioning: professionalIdentity.positioning,
   company: "Palo Alto Networks",
   email: "harshverma59@gmail.com",
   location: "San Francisco Bay Area, California",
@@ -39,7 +60,7 @@ export const profile = {
   tagline:
     "Architecting next-generation enterprise autonomous agent systems, AI security governance, and scalable intelligence.",
   quote: "Future belongs to those who see possibilities before they become obvious.",
-  bio: "Harsh Verma is a Principal Software Engineer in AI at Palo Alto Networks, focused on advancing autonomous agent systems and intelligent AI strategies. A Forbes Technology Council member, speaker, mentor, and advisor, he brings both technical depth and strategic guidance to leaders adopting next-generation AI. He drives responsible, scalable AI adoption — shaping how enterprises innovate, secure, and operationalize intelligent systems.",
+  bio: professionalIdentity.biographies.standard,
   philosophy: [
     { p: "Passion", d: "Researcher by passion — curiosity is the engine of every system worth building." },
     { p: "Persistence", d: "12+ years of turning hard problems into production systems at scale." },
@@ -47,12 +68,7 @@ export const profile = {
   ],
 };
 
-export const stats = [
-  { value: 12, suffix: "+", label: "Years AI / Tech impact" },
-  { value: 27, suffix: "+", label: "Peer-reviewed papers" },
-  { value: 6, suffix: "", label: "Enterprise patents" },
-  { value: 44, suffix: "+", label: "Global press features" },
-];
+export const stats = ownerReportedMetrics;
 
 export const aboutBackground = [
   "Based in the San Francisco Bay Area, Harsh brings an engineering mindset to the intersection of artificial intelligence, cybersecurity and enterprise strategy. His work spans machine learning, distributed systems and autonomous agents, with a focus on making intelligent systems responsible, secure and practical at scale.",
@@ -77,7 +93,7 @@ export const links = {
 };
 
 export const experience = [
-  { period: "Aug 2020 — Present", role: "Principal Software Engineer in AI | ML", org: "Palo Alto Networks", place: "Santa Clara, CA",
+  { period: "Aug 2020 — Present", role: professionalIdentity.title, org: "Palo Alto Networks", place: "Santa Clara, CA",
     points: ["Pioneering enterprise AI/ML at the intersection of cybersecurity, big data science and distributed systems.", "Architecting firewall ML models and high-throughput cloud security services.", "Building autonomous security-policy improvement and real-time recommendation engines."],
     tech: ["Security", "Machine Learning", "Spark", "Kafka", "GCP"] },
   { period: "Jan 2020 — May 2020", role: "Machine Learning Engineer", org: "Worlds Enterprises Inc.", place: "Dallas, TX",
@@ -109,16 +125,16 @@ export const memberships = [
 export const expertise = [
   { name: "Agentic AI", x: 50, y: 16, level: 96, since: 2023, role: "Founder lens",
     desc: "Designing autonomous multi-agent systems and enterprise copilots with verified decision loops, authority boundaries and human-in-the-loop guardrails.",
-    proof: ["4 pending patents on agentic AI & copilots", "ACM keynote: When Enterprises Become Multi-Agent Systems", "Book: Beyond AI Engineering"], tools: ["LLM orchestration", "Tool use", "Evals", "Guardrails"] },
+    proof: ["Patent-pending agentic AI & copilot work", "ACM keynote: When Enterprises Become Multi-Agent Systems", "Book: Beyond AI Engineering"], tools: ["LLM orchestration", "Tool use", "Evals", "Guardrails"] },
   { name: "AI Security", x: 82, y: 36, level: 95, since: 2020, role: "Engineer lens",
     desc: "Building the 'AI vs AI' defense paradigm — securing agent supply chains, prompt provenance and runtime safety at Palo Alto Networks scale.",
     proof: ["NVTC Cyber50 Honoree 2026", "SkyDeck keynote: The Era of Agentic Security", "Book: AI vs. AI"], tools: ["Threat modeling", "Zero Trust", "Red-teaming", "Policy ML"] },
   { name: "Machine Learning", x: 20, y: 34, level: 94, since: 2014, role: "Engineer lens",
     desc: "End-to-end ML for production — firewall models, recommendation engines and real-time inference on high-volume telemetry.",
-    proof: ["Firewall ML models at Palo Alto Networks", "27+ peer-reviewed papers", "IEEE Senior Member"], tools: ["TensorFlow", "PyTorch", "Spark ML", "MLOps"] },
+    proof: ["Firewall ML models at Palo Alto Networks", "Public publication bibliography", "IEEE Senior Member"], tools: ["TensorFlow", "PyTorch", "Spark ML", "MLOps"] },
   { name: "NLP", x: 12, y: 68, level: 88, since: 2018, role: "Researcher lens",
     desc: "Language understanding from classic IR pipelines to LLM-era retrieval, summarization and grounded generation.",
-    proof: ["Lexer & inverted-index retrieval pipeline", "UT Dallas M.S. NLP track"], tools: ["Transformers", "RAG", "Embeddings"] },
+    proof: ["Tokenization & Porter stemming pipeline", "UT Dallas M.S. NLP track"], tools: ["Transformers", "RAG", "Embeddings"] },
   { name: "Computer Vision", x: 44, y: 56, level: 87, since: 2018, role: "Researcher lens",
     desc: "Real-time object detection, tracking and similarity search for streaming video.",
     proof: ["MOTA benchmark pipeline at Worlds Enterprises", "FAISS similarity retrieval at Hypergiant", "IEEE CogML 2019"], tools: ["YOLO", "DeepSort", "FAISS", "CNNs"] },
@@ -126,8 +142,8 @@ export const expertise = [
     desc: "Platforms that process massive traffic logs and telemetry streams reliably and cheaply.",
     proof: ["Telemetry platforms at Palo Alto Networks", "Hadoop distributed social network"], tools: ["Spark", "Kafka", "Hadoop", "GCP"] },
   { name: "System Design", x: 38, y: 88, level: 93, since: 2015, role: "Founder lens",
-    desc: "Distributed, lock-free and high-throughput systems built for scale and maintainability.",
-    proof: ["Lock-free concurrent hash table", "Sub-ms microservice engine", "Granted load-testing patent"], tools: ["Distributed systems", "Concurrency", "APIs"] },
+    desc: "Distributed systems, data structures and architecture trade-offs for scale and maintainability.",
+    proof: ["Custom Java hash table", "Sub-ms microservice engine", "Granted load-testing patent"], tools: ["Distributed systems", "Concurrency", "APIs"] },
   { name: "Public Speaking", x: 88, y: 60, level: 90, since: 2019, role: "Speaker lens",
     desc: "Keynotes, panels and masterclasses translating deep technical work into clear strategy for leaders and builders.",
     proof: ["43+ engagements", "UC Berkeley SkyDeck & ACM keynotes", "34 judging & mentorship roles"], tools: ["Keynotes", "Panels", "Workshops"] },
@@ -150,27 +166,29 @@ export const awards: Award[] = [
 ];
 
 export type Work = { kind: "Patent" | "Paper" | "Book" | "Project"; title: string; meta: string; year: number; desc: string; href?: string; img?: string };
-export const research: Work[] = [
-  { kind: "Book", title: "AI vs. AI — Engineering the Cybersecurity Counteroffensive", meta: "Coming late Oct 2026", year: 2026, img: `${IMG}/books/ai_vs_ai_cover.jpg`, desc: "Building autonomous, real-time AI counteroffensive architectures against weaponized AI." },
-  { kind: "Book", title: "Beyond AI Engineering — From Creator to Curator", meta: "Coming 2026", year: 2026, img: `${IMG}/books/beyond_ai_engineering_cover.jpg`, desc: "Becoming a Super Engineer and leading the AI agent revolution." },
+const archiveArtwork = [architectureArt.url, distributedArt.url, thermalArt.url, securityArt.url, evaluationArt.url, hashArt.url, hadoopArt.url, tokenizerArt.url, skipArt.url];
+const researchRecords: Work[] = [
+  ...books.map(book => ({ kind: "Book" as const, title: book.title, meta: book.status, year: 2027, img: book.cover, href: book.site, desc: book.pitch })),
   { kind: "Patent", title: "Agentic AI, Enterprise Copilot Systems & Copilot Navigation", meta: "4 pending · Assignee: Palo Alto Networks", year: 2025, desc: "Foundational IP in autonomous agent orchestration and copilot reasoning loops." },
   { kind: "Patent", title: "Load Testing of a Social Networking Application", meta: "Granted · Patent No. 555747 · IP India", year: 2024, desc: "Distributed multi-tenant simulation and real-time performance analytics." },
   { kind: "Patent", title: "COVID Preventive Automated Entry Point (COPAEP)", meta: "Granted · Patent No. 606481 · IP India", year: 2022, desc: "Integrated non-contact thermal scanning and sanitization system." },
   { kind: "Paper", title: "IEEE CogML 2019 — Secure real-time streaming with deep learning", meta: "IEEE Conference", year: 2019, img: `${IMG}/blog/IEEE_cogML.png`, href: links.scholar, desc: "Research on secure real-time data management with AI and computer vision." },
-  { kind: "Paper", title: "27+ peer-reviewed publications", meta: "Google Scholar", year: 2025, href: links.scholar, desc: "Full citation list across AI security, vision, NLP and distributed systems." },
-  { kind: "Project", title: "Lock-Free Concurrent Hash Table", meta: "Systems · Atomic CAS", year: 2019, href: "https://github.com/iamharshverma/JavaHashTableCustomImplementation", desc: "Lock-free concurrent map using compare-and-swap with Robin Hood hashing." },
+  { kind: "Paper", title: "Publication bibliography", meta: "Google Scholar · external bibliography", year: 2025, href: links.scholar, desc: "Explore the externally maintained citation list; this link is not an individual scholarly paper." },
+  { kind: "Project", title: "Custom Java Hash Table", meta: "Java · Separate chaining", year: 2019, href: "https://github.com/iamharshverma/JavaHashTableCustomImplementation", desc: "Educational hash map with linked collision chains, insertion, lookup and removal. No lock-free or thread-safety guarantee." },
   { kind: "Project", title: "Hadoop Distributed Social Network", meta: "Distributed · MapReduce", year: 2019, href: "https://github.com/iamharshverma/BigData-Hadoop_SocialNetwork", desc: "Multi-terabyte social graph processing on HDFS." },
-  { kind: "Project", title: "Lexer & Inverted Index Pipeline", meta: "IR · NLP", year: 2019, href: "https://github.com/iamharshverma/TokanizeAndStemming", desc: "Porter stemming and inverted index for fast full-text retrieval." },
+  { kind: "Project", title: "Tokenization & Porter Stemming Pipeline", meta: "Text processing · Java", year: 2019, href: "https://github.com/iamharshverma/TokanizeAndStemming", desc: "Corpus tokenization, token-frequency counting and Porter stemming; this public code does not implement an inverted index." },
   { kind: "Project", title: "SkipList Probabilistic Index", meta: "Algorithms · O(log N)", year: 2018, href: "https://github.com/iamharshverma/SkipLists", desc: "Layered probabilistic index without tree rebalancing." },
 ];
+export const research: Work[] = researchRecords.map((work, index) => ({ ...work, img: work.kind === "Book" ? (work.img ?? architectureArt.url) : (archiveArtwork[index - books.length] ?? architectureArt.url) }));
 
 export const researchFocus = [
   { area: "Agentic AI systems", question: "How do autonomous agents stay reliable when they plan, call tools and act on their own?", work: "Patent-pending work on agent orchestration, copilot reasoning loops and copilot navigation (Palo Alto Networks).", finding: "Agents reach production when every action is scoped, observable and reversible, not when the model is smarter." },
   { area: "AI vs AI security", question: "How can defenders respond at machine speed to attackers who already use AI?", work: "The AI vs. AI book and RSAC writing on self-defending systems and autonomous response.", finding: "Human-in-the-loop review becomes human-on-the-loop: automation contains threats, people set the guardrails and audit trails." },
   { area: "Trustworthy enterprise copilots", question: "What makes an AI copilot safe to trust with real enterprise data and decisions?", work: "Enterprise copilot patents and Forbes Technology Council columns for CIOs and CTOs.", finding: "Trust comes from grounding, permission-aware retrieval and evaluation built into the product, not added after launch." },
-  { area: "Secure real-time AI", question: "How can deep learning process live data streams without weakening security?", work: "IEEE CogML 2019 paper on secure real-time streaming, plus 27+ peer-reviewed publications.", finding: "Security and latency can be designed together when encryption, model inference and stream processing share one architecture." },
-  { area: "Scalable distributed systems", question: "Which systems foundations let AI products scale to millions of users?", work: "Granted load-testing patent and open-source lock-free hash table, Hadoop and indexing projects.", finding: "Simulating real multi-tenant load early exposes the bottlenecks that later break AI features at scale." },
-];
+  { area: "Secure real-time AI", question: "How can deep learning process live data streams without weakening security?", work: "IEEE CogML 2019 paper on secure real-time streaming, and the external publication bibliography.", finding: "Security and latency can be designed together when encryption, model inference and stream processing share one architecture." },
+  { area: "Scalable distributed systems", question: "Which systems foundations let AI products scale to millions of users?", work: "Granted load-testing patent and public Java hash table, Hadoop and text-processing projects.", finding: "Simulating real multi-tenant load early exposes the bottlenecks that later break AI features at scale." },
+  { area: "AI evaluation & reliability", question: "How can we tell whether an AI agent completed a task safely—not just convincingly?", work: "Technical writing and personal design perspectives on agent evaluation, action traces and independent outcome checks.", finding: "Reliable evaluation checks permitted actions and external results together; a plausible answer is not proof of successful execution." },
+].map((focus, index) => ({ ...focus, image: [agentsTopic.url, securityTopic.url, copilotTopic.url, realtimeTopic.url, distributedTopic.url, evaluationTopic.url][index] ?? evaluationTopic.url }));
 
 export const communities = ["Palo Alto Networks", "Forbes Tech Council", "IEEE", "Stanford GSB", "UC Berkeley SkyDeck", "Sigma Xi", "BCS", "ODSC", "HackUTD", "Hackmakers", "SIIM", "Google Developer Experts"];
 

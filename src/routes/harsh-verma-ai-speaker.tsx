@@ -9,7 +9,7 @@ import { canonical, SITE_URL, ALT_PORTFOLIO_URL } from "@/lib/seo";
 
 const path = "/harsh-verma-ai-speaker";
 const title = "Harsh Verma - AI & Cybersecurity Engineer";
-const description = "Harsh Verma, Principal Software Engineer in AI/ML at Palo Alto Networks. Explore AI and cybersecurity engineering, secure agentic systems and keynote talks.";
+const description = `Harsh Verma, ${profile.title} at ${profile.company}. Explore AI and cybersecurity engineering, secure agentic systems and keynote talks.`;
 
 export const Route = createFileRoute("/harsh-verma-ai-speaker")({
   head: () => ({
@@ -22,6 +22,8 @@ export const Route = createFileRoute("/harsh-verma-ai-speaker")({
       { property: "og:description", content: description },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: professionalPortrait.url },
+      { name: "twitter:image", content: professionalPortrait.url },
     ],
     scripts: [{
       type: "application/ld+json",
@@ -52,12 +54,12 @@ export const Route = createFileRoute("/harsh-verma-ai-speaker")({
 function ProfessionalProfile() {
   const currentRole = experience[0];
   return <>
-    <PageHero eyebrow="// engineering · speaking · enterprise AI" title="Harsh Verma" intro="Principal Software Engineer in AI/ML at Palo Alto Networks · Artificial intelligence and cybersecurity engineer, speaker on agentic AI and trustworthy autonomous systems." />
+    <PageHero eyebrow="// engineering · speaking · enterprise AI" title="Harsh Verma" intro={`${profile.title} at ${profile.company} | AI, Cybersecurity & Agentic Systems. Speaker on trustworthy autonomous systems.`} />
     <section className="mx-auto grid max-w-6xl items-start gap-10 px-6 py-16 md:grid-cols-[0.8fr_1.2fr]">
-      <img src={professionalPortrait.url} alt="Harsh Verma, Principal AI Engineer and AI speaker" className="w-full rounded-lg" />
+      <img src={professionalPortrait.url} alt={`Harsh Verma, ${profile.title} and AI speaker`} className="w-full rounded-lg" />
       <div className="min-w-0">
         <p className="eyebrow">San Francisco Bay Area</p>
-        <h2 className="mt-4 font-display text-3xl font-bold">Principal AI Engineer. Enterprise perspective.</h2>
+        <h2 className="mt-4 font-display text-3xl font-bold">Principal Software Engineer. Enterprise perspective.</h2>
         <p className="mt-5 leading-relaxed text-muted-foreground">{profile.bio}</p>
         <p className="mt-4 leading-relaxed text-muted-foreground">Harsh’s professional role is {profile.title} at {profile.company}. His engineering work and public talks connect autonomous agents, production machine learning and cybersecurity with the practical requirements of enterprise teams.</p>
         <div className="mt-7 flex flex-wrap gap-3">

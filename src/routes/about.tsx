@@ -9,7 +9,8 @@ import { ArrowUpRight } from "lucide-react";
 import { profile, experience, education, memberships, aboutBackground, awards, stats } from "@/data/profile";
 import { Button } from "@/components/ui/button";
 import { PortraitOrbit } from "@/components/site/PortraitOrbit";
-import { Reveal } from "@/components/site/Reveal";
+import { Reveal, Counter } from "@/components/site/Reveal";
+import { professionalIdentity } from "@/data/identity";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -42,7 +43,7 @@ function About() {
           <div className="min-w-0">
             <Reveal><p className="eyebrow">The person behind the possibilities</p><h1 id="about-intro-heading" className="mt-5 font-display text-4xl font-bold leading-tight tracking-normal md:text-6xl">{profile.name}</h1></Reveal>
             <Reveal delay={0.1}><p className="mt-5 font-display text-2xl font-medium leading-snug md:text-3xl">Engineer by Passion.<br /><span className="text-brand-gradient">Entrepreneur at Heart.</span></p></Reveal>
-            <Reveal delay={0.2}><p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">{profile.bio}</p></Reveal>
+            <Reveal delay={0.2}><p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">{professionalIdentity.aboutIntroduction}</p></Reveal>
             <Reveal delay={0.3}>
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <Button asChild><a href="#who-is-harsh-verma">Know More <ChevronDown /></a></Button>
@@ -72,8 +73,7 @@ function About() {
         <PortraitOrbit headingNote="scroll to expand !!" centerLink={{ to: "/speaking", label: "See him on stage →", appearance: "button" }} />
       </section>
       <SeoSummary heading="About Harsh Verma -" paragraphs={[
-        "Harsh Verma is a Principal AI Engineer at Palo Alto Networks, where he builds agentic AI and AI security systems used by enterprises worldwide. He is an inventor on enterprise patents in agentic AI and copilots, and an author of peer-reviewed research.",
-        "Beyond engineering, Harsh is an AI keynote speaker, a Forbes Technology Council member and the author of two upcoming books, Beyond AI Engineering and AI vs AI, both coming in January 2027. He studied at Stanford Graduate School of Business and the University of Texas at Dallas.",
+        professionalIdentity.aboutSummary,
       ]} links={[{ to: "/speaking", label: "Keynotes & talks" }, { to: "/research", label: "Patents & research" }, { to: "/books", label: "Books" }]}>
       <div className="mt-6">
         <Button variant="outline" aria-expanded={backgroundOpen} aria-controls="about-background" onClick={() => setBackgroundOpen((open) => !open)}>{backgroundOpen ? "Read less" : "Read more"}{backgroundOpen ? <ChevronUp /> : <ChevronDown />}</Button>
@@ -103,7 +103,7 @@ function About() {
       <Journey />
       <section aria-labelledby="achievements-heading" className="mx-auto max-w-6xl px-6 pb-24">
         <div className="flex flex-wrap items-end justify-between gap-5"><div><p className="eyebrow">Research. Leadership. Recognition.</p><h2 id="achievements-heading" className="mt-4 font-display text-3xl font-bold md:text-5xl">Selected achievements</h2></div><Button asChild variant="outline"><Link to="/recognition">All recognition <ArrowUpRight /></Link></Button></div>
-        <dl className="mt-10 grid grid-cols-2 gap-6 border-y border-border py-8 md:grid-cols-4">{stats.map((stat) => <div key={stat.label}><dd className="font-display text-4xl font-bold text-stat-number">{stat.value}{stat.suffix}</dd><dt className="mt-2 text-sm text-stat-label">{stat.label}</dt></div>)}</dl>
+        <dl className="mt-10 grid grid-cols-2 gap-6 border-y border-border py-8 md:grid-cols-4">{stats.map((stat) => <div key={stat.label}><dd className="font-display text-4xl font-bold text-stat-number"><Counter to={stat.value} suffix={stat.suffix} /></dd><dt className="mt-2 text-sm text-stat-label">{stat.label}</dt></div>)}</dl>
         <div className="mt-8 grid gap-6 md:grid-cols-2">{awards.slice(0, 4).map((award) => <article key={award.title} className="border-l-2 border-brand pl-5"><p className="font-mono text-xs text-signal">{award.badge} · {award.cat}</p><h3 className="mt-2 font-display text-xl font-semibold">{award.title}</h3><p className="mt-2 text-sm text-muted-foreground">{award.org}</p><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{award.desc}</p></article>)}</div>
         <Button asChild variant="link" className="mt-6 px-0"><Link to="/research">Explore patents &amp; publications <ArrowUpRight /></Link></Button>
       </section>

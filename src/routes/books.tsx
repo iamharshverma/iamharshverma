@@ -8,6 +8,8 @@ import { Reveal, PageHero } from "@/components/site/Reveal";
 import { TiltCard, Modal, Magnetic } from "@/components/site/Interactive";
 import { Countdown } from "@/components/site/Countdown";
 import { Subscribe } from "@/components/site/Subscribe";
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/books")({
   head: () => ({
@@ -28,7 +30,7 @@ export const Route = createFileRoute("/books")({
       "@graph": books.map((b) => ({
         "@type": "Book", name: b.title, alternativeHeadline: b.subtitle, image: b.cover,
         author: { "@id": "https://www.iamharshverma.com/#person", "@type": "Person", name: "Harsh Verma" },
-        datePublished: "2027-01", inLanguage: "en",
+        inLanguage: "en", url: b.site,
       })),
     }) }],
   }),
@@ -53,7 +55,8 @@ function Books() {
         intro="Two books, one thesis: when AI makes output abundant, human judgment and engineered trust become the scarce advantage." />
 
       <section className="mx-auto max-w-6xl px-6 pt-4">
-        <div className="grid gap-8 rounded-2xl border border-border bg-card p-8 md:grid-cols-[auto_1fr] md:items-center">
+        <div className="mb-8 flex flex-wrap gap-3">{books.map(book => <Button asChild variant="outline" key={book.slug}><Link to="/books/$slug" params={{ slug: book.slug }}>{book.title} — details</Link></Button>)}<Button asChild variant="outline"><Link to="/resources">Reader resources</Link></Button></div>
+        <div className="grid gap-8 border-y border-border py-8 md:grid-cols-[minmax(240px,320px)_1fr] md:items-center">
           <div><p className="eyebrow">Launching January 2027</p><div className="mt-4"><Countdown /></div></div>
           <div className="grid gap-5 sm:grid-cols-2">
             <div><p className="mb-2 text-sm font-medium">Beyond AI Engineering waitlist</p><Subscribe list="book-beyond-ai-engineering" cta="Join" /></div>
@@ -79,7 +82,7 @@ function Books() {
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <Magnetic><a href={bae.site} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow">Visit the book site <ArrowUpRight className="h-4 w-4" /></a></Magnetic>
-              <a href={`${bae.site}#framework`} target="_blank" rel="noreferrer" className="inline-flex rounded-full border border-border px-6 py-3 hover:border-brand hover:text-brand">Read a free sample</a>
+              <a href={`${bae.site}#framework`} target="_blank" rel="noreferrer" className="inline-flex rounded-full border border-border px-6 py-3 hover:border-brand hover:text-brand">Explore the framework</a>
             </div>
           </Reveal>
         </div>

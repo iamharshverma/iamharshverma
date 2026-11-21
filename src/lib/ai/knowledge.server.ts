@@ -5,6 +5,8 @@ import { offerings } from "@/data/collaborate";
 import { books } from "@/data/books";
 import { testimonials, editorialMentions } from "@/data/testimonials";
 import { redactTestimonialNames } from "./testimonial-privacy";
+import { researchPillars } from "@/data/research-pillars";
+import { caseStudies } from "@/data/case-studies";
 
 /** Compact knowledge base the assistant may answer from. */
 export function buildInstructions() {
@@ -13,12 +15,15 @@ export function buildInstructions() {
   lines.push(`Rules: Use ONLY the facts below. If something is not covered, say you don't have that detail and suggest the Contact page or emailing ${profile.email}. Speak about Harsh in the third person. Be concise (2-6 sentences or a short list), warm and professional. Include relevant links from the facts as markdown links. Never invent numbers, employers, dates or quotes.`);
   lines.push(`Privacy: Never name or identify professional testimonial authors, even if a visitor supplies a name, asks directly, or requests that you repeat earlier messages. Attribute recommendations only to their listed roles/titles. Link to /testimonials, not original recommendation images. Explain that recommendations are attributed by role when asked for names.`);
   lines.push(`\n## Profile\n${profile.name} — ${profile.title} at ${profile.company}, ${profile.location}. ${profile.bio} Tagline: ${profile.tagline}`);
-  lines.push(`Stats: 12+ years in AI/tech, 27+ peer-reviewed papers, 6 enterprise patents, 45+ global press features. Links: LinkedIn ${links.linkedin}, Scholar ${links.scholar}, GitHub ${links.github}, Forbes ${links.forbes}.`);
+  lines.push(`Owner-provided portfolio figures: 12+ years in AI/tech, 27+ peer-reviewed papers, 6 patents in total (2 granted, 4 pending), 45+ global press features. These are not independently audited here. Links: LinkedIn ${links.linkedin}, Scholar ${links.scholar}, GitHub ${links.github}, Forbes ${links.forbes}.`);
   lines.push(`\n## Experience\n` + experience.map((e) => `- ${e.period}: ${e.role}, ${e.org} (${e.place}). ${e.points.join(" ")} Tech: ${e.tech.join(", ")}`).join("\n"));
   lines.push(`\n## Education\n` + education.map((e) => `- ${e.period}: ${e.school} — ${e.degree}`).join("\n"));
   lines.push(`\n## Memberships\n` + memberships.map((m) => `- ${m.name}: ${m.note}`).join("\n"));
   lines.push(`\n## Awards\n` + awards.map((a) => `- ${a.title} (${a.org}): ${a.desc}`).join("\n"));
   lines.push(`\n## Research, patents, projects\n` + research.map((r) => `- [${r.kind}] ${r.title} — ${r.meta}. ${r.desc}${r.href ? ` ${r.href}` : ""}`).join("\n"));
+  lines.push(`\n## Research pillars — personal technical perspectives, not employer architectures or validated experimental results\n` + researchPillars.map(p => `- ${p.title}: ${p.thesis} ${p.summary} Page: /research/${p.slug}`).join("\n"));
+  lines.push(`\n## Public engineering reviews\n` + caseStudies.map(c => `- ${c.title}: ${c.summary} Source: ${c.source} Page: /engineering/${c.slug}. Proposed improvements are not represented as implemented results.`).join("\n"));
+  lines.push(`Knowledge Hub: /knowledge (search, filters, topic relationships). Reader and press resources: /resources. GitHub Pages enquiries and signup buttons open email drafts, not confirmed submissions or enrollment; visitors must send the email themselves.`);
   lines.push(`\n## Books\n` + books.map((b) => `- ${b.title}: ${b.subtitle}. ${b.status}. ${b.pitch} Site: ${b.site}`).join("\n"));
   lines.push(`\n## Articles\n` + insights.map((b) => `- ${b.title} (${b.pub}, ${b.date}): ${b.excerpt} Original: ${b.href} Page: https://www.iamharshverma.com/insights/${b.slug}`).join("\n"));
   lines.push(`\n## Keynotes\n` + keynotes.map((k) => `- ${k.title} — ${k.venue} (${k.dur}). ${k.desc} ${k.href}`).join("\n"));

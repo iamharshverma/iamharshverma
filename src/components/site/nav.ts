@@ -1,12 +1,15 @@
 export const nav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/research", label: "Research" },
+  { to: "/research", label: "Research & Expertise" },
+  { to: "/engineering", label: "Engineering" },
+  { to: "/knowledge", label: "Knowledge Hub" },
   { to: "/books", label: "Books" },
   { to: "/recognition", label: "Recognition" },
   { to: "/speaking", label: "Speaking" },
   { to: "/media", label: "Media" },
   { to: "/insights", label: "Insights" },
+  { to: "/resources", label: "Resources" },
   { to: "/collaborate", label: "Collaborate" },
   { to: "/contact", label: "Contact" },
 ] as const;

@@ -1,6 +1,24 @@
 {
   "schema_version": 1,
   "events": {
+    "project.email_draft_opened": {
+      "event_schema_version": 1,
+      "description": "A visitor opened an email draft; this does not confirm delivery.",
+      "privacy": { "contains_pii": false, "purpose": "product_analytics" },
+      "properties_schema": { "type": "object", "additionalProperties": false, "required": ["kind", "target"], "properties": { "kind": { "type": "string", "enum": ["contact", "booking", "signup"] }, "target": { "type": "string" } } }
+    },
+    "project.resource_downloaded": {
+      "event_schema_version": 1,
+      "description": "A visitor requested an available professional resource download.",
+      "privacy": { "contains_pii": false, "purpose": "product_analytics" },
+      "properties_schema": { "type": "object", "additionalProperties": false, "required": ["resource"], "properties": { "resource": { "type": "string" } } }
+    },
+    "project.book_visited": {
+      "event_schema_version": 1,
+      "description": "A visitor opened an official book website.",
+      "privacy": { "contains_pii": false, "purpose": "product_analytics" },
+      "properties_schema": { "type": "object", "additionalProperties": false, "required": ["book"], "properties": { "book": { "type": "string" } } }
+    },
     "project.contact_submitted": {
       "event_schema_version": 1,
       "description": "A visitor submitted the contact inquiry form.",

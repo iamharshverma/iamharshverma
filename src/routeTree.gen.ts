@@ -17,21 +17,31 @@ import { Route as BookingRouteImport } from './routes/booking'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as CollaborateRouteImport } from './routes/collaborate'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as EngineeringRouteImport } from './routes/engineering'
 import { Route as ForbesRouteImport } from './routes/forbes'
 import { Route as HackernoonRouteImport } from './routes/hackernoon'
 import { Route as HarshVermaAiSpeakerRouteImport } from './routes/harsh-verma-ai-speaker'
+import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as MediaKitRouteImport } from './routes/media-kit'
 import { Route as PressKitRouteImport } from './routes/press-kit'
 import { Route as RecognitionRouteImport } from './routes/recognition'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as RsacRouteImport } from './routes/rsac'
 import { Route as SpeakerBioRouteImport } from './routes/speaker-bio'
 import { Route as SpeakingRouteImport } from './routes/speaking'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as BooksSlugRouteImport } from './routes/books_.$slug'
+import { Route as EngineeringIndexRouteImport } from './routes/engineering.index'
+import { Route as EngineeringSlugRouteImport } from './routes/engineering.$slug'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as MediaSlugRouteImport } from './routes/media_.$slug'
+import { Route as ResearchPillarRouteImport } from './routes/research_.$pillar'
+import { Route as TalksSlugRouteImport } from './routes/talks.$slug'
+import { Route as ResearchWorksSlugRouteImport } from './routes/research_.works.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -73,6 +83,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EngineeringRoute = EngineeringRouteImport.update({
+  id: '/engineering',
+  path: '/engineering',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForbesRoute = ForbesRouteImport.update({
   id: '/forbes',
   path: '/forbes',
@@ -86,6 +101,11 @@ const HackernoonRoute = HackernoonRouteImport.update({
 const HarshVermaAiSpeakerRoute = HarshVermaAiSpeakerRouteImport.update({
   id: '/harsh-verma-ai-speaker',
   path: '/harsh-verma-ai-speaker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KnowledgeRoute = KnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MediaRoute = MediaRouteImport.update({
@@ -113,6 +133,11 @@ const ResearchRoute = ResearchRouteImport.update({
   path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RsacRoute = RsacRouteImport.update({
   id: '/rsac',
   path: '/rsac',
@@ -138,6 +163,21 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BooksSlugRoute = BooksSlugRouteImport.update({
+  id: '/books_/$slug',
+  path: '/books/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EngineeringIndexRoute = EngineeringIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => EngineeringRoute,
+} as any)
+const EngineeringSlugRoute = EngineeringSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => EngineeringRoute,
+} as any)
 const InsightsIndexRoute = InsightsIndexRouteImport.update({
   id: '/insights/',
   path: '/insights/',
@@ -146,6 +186,26 @@ const InsightsIndexRoute = InsightsIndexRouteImport.update({
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
   id: '/insights/$slug',
   path: '/insights/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaSlugRoute = MediaSlugRouteImport.update({
+  id: '/media_/$slug',
+  path: '/media/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchPillarRoute = ResearchPillarRouteImport.update({
+  id: '/research_/$pillar',
+  path: '/research/$pillar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TalksSlugRoute = TalksSlugRouteImport.update({
+  id: '/talks/$slug',
+  path: '/talks/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchWorksSlugRoute = ResearchWorksSlugRouteImport.update({
+  id: '/research_/works/$slug',
+  path: '/research/works/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -158,21 +218,31 @@ export interface FileRoutesByFullPath {
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
   '/contact': typeof ContactRoute
+  '/engineering': typeof EngineeringRouteWithChildren
   '/forbes': typeof ForbesRoute
   '/hackernoon': typeof HackernoonRoute
   '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
+  '/knowledge': typeof KnowledgeRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/resources': typeof ResourcesRoute
   '/rsac': typeof RsacRoute
   '/speaker-bio': typeof SpeakerBioRoute
   '/speaking': typeof SpeakingRoute
   '/testimonials': typeof TestimonialsRoute
   '/api/chat': typeof ApiChatRoute
+  '/books/$slug': typeof BooksSlugRoute
+  '/engineering/$slug': typeof EngineeringSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/media/$slug': typeof MediaSlugRoute
+  '/research/$pillar': typeof ResearchPillarRoute
+  '/talks/$slug': typeof TalksSlugRoute
+  '/engineering/': typeof EngineeringIndexRoute
   '/insights/': typeof InsightsIndexRoute
+  '/research/works/$slug': typeof ResearchWorksSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -186,18 +256,27 @@ export interface FileRoutesByTo {
   '/forbes': typeof ForbesRoute
   '/hackernoon': typeof HackernoonRoute
   '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
+  '/knowledge': typeof KnowledgeRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/resources': typeof ResourcesRoute
   '/rsac': typeof RsacRoute
   '/speaker-bio': typeof SpeakerBioRoute
   '/speaking': typeof SpeakingRoute
   '/testimonials': typeof TestimonialsRoute
   '/api/chat': typeof ApiChatRoute
+  '/books/$slug': typeof BooksSlugRoute
+  '/engineering/$slug': typeof EngineeringSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/media/$slug': typeof MediaSlugRoute
+  '/research/$pillar': typeof ResearchPillarRoute
+  '/talks/$slug': typeof TalksSlugRoute
+  '/engineering': typeof EngineeringIndexRoute
   '/insights': typeof InsightsIndexRoute
+  '/research/works/$slug': typeof ResearchWorksSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -209,21 +288,31 @@ export interface FileRoutesById {
   '/books': typeof BooksRoute
   '/collaborate': typeof CollaborateRoute
   '/contact': typeof ContactRoute
+  '/engineering': typeof EngineeringRouteWithChildren
   '/forbes': typeof ForbesRoute
   '/hackernoon': typeof HackernoonRoute
   '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
+  '/knowledge': typeof KnowledgeRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/resources': typeof ResourcesRoute
   '/rsac': typeof RsacRoute
   '/speaker-bio': typeof SpeakerBioRoute
   '/speaking': typeof SpeakingRoute
   '/testimonials': typeof TestimonialsRoute
   '/api/chat': typeof ApiChatRoute
+  '/books_/$slug': typeof BooksSlugRoute
+  '/engineering/$slug': typeof EngineeringSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/media_/$slug': typeof MediaSlugRoute
+  '/research_/$pillar': typeof ResearchPillarRoute
+  '/talks/$slug': typeof TalksSlugRoute
+  '/engineering/': typeof EngineeringIndexRoute
   '/insights/': typeof InsightsIndexRoute
+  '/research_/works/$slug': typeof ResearchWorksSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -236,21 +325,31 @@ export interface FileRouteTypes {
     | '/books'
     | '/collaborate'
     | '/contact'
+    | '/engineering'
     | '/forbes'
     | '/hackernoon'
     | '/harsh-verma-ai-speaker'
+    | '/knowledge'
     | '/media'
     | '/media-kit'
     | '/press-kit'
     | '/recognition'
     | '/research'
+    | '/resources'
     | '/rsac'
     | '/speaker-bio'
     | '/speaking'
     | '/testimonials'
     | '/api/chat'
+    | '/books/$slug'
+    | '/engineering/$slug'
     | '/insights/$slug'
+    | '/media/$slug'
+    | '/research/$pillar'
+    | '/talks/$slug'
+    | '/engineering/'
     | '/insights/'
+    | '/research/works/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -264,18 +363,27 @@ export interface FileRouteTypes {
     | '/forbes'
     | '/hackernoon'
     | '/harsh-verma-ai-speaker'
+    | '/knowledge'
     | '/media'
     | '/media-kit'
     | '/press-kit'
     | '/recognition'
     | '/research'
+    | '/resources'
     | '/rsac'
     | '/speaker-bio'
     | '/speaking'
     | '/testimonials'
     | '/api/chat'
+    | '/books/$slug'
+    | '/engineering/$slug'
     | '/insights/$slug'
+    | '/media/$slug'
+    | '/research/$pillar'
+    | '/talks/$slug'
+    | '/engineering'
     | '/insights'
+    | '/research/works/$slug'
   id:
     | '__root__'
     | '/'
@@ -286,21 +394,31 @@ export interface FileRouteTypes {
     | '/books'
     | '/collaborate'
     | '/contact'
+    | '/engineering'
     | '/forbes'
     | '/hackernoon'
     | '/harsh-verma-ai-speaker'
+    | '/knowledge'
     | '/media'
     | '/media-kit'
     | '/press-kit'
     | '/recognition'
     | '/research'
+    | '/resources'
     | '/rsac'
     | '/speaker-bio'
     | '/speaking'
     | '/testimonials'
     | '/api/chat'
+    | '/books_/$slug'
+    | '/engineering/$slug'
     | '/insights/$slug'
+    | '/media_/$slug'
+    | '/research_/$pillar'
+    | '/talks/$slug'
+    | '/engineering/'
     | '/insights/'
+    | '/research_/works/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -312,21 +430,29 @@ export interface RootRouteChildren {
   BooksRoute: typeof BooksRoute
   CollaborateRoute: typeof CollaborateRoute
   ContactRoute: typeof ContactRoute
+  EngineeringRoute: typeof EngineeringRouteWithChildren
   ForbesRoute: typeof ForbesRoute
   HackernoonRoute: typeof HackernoonRoute
   HarshVermaAiSpeakerRoute: typeof HarshVermaAiSpeakerRoute
+  KnowledgeRoute: typeof KnowledgeRoute
   MediaRoute: typeof MediaRoute
   MediaKitRoute: typeof MediaKitRoute
   PressKitRoute: typeof PressKitRoute
   RecognitionRoute: typeof RecognitionRoute
   ResearchRoute: typeof ResearchRoute
+  ResourcesRoute: typeof ResourcesRoute
   RsacRoute: typeof RsacRoute
   SpeakerBioRoute: typeof SpeakerBioRoute
   SpeakingRoute: typeof SpeakingRoute
   TestimonialsRoute: typeof TestimonialsRoute
   ApiChatRoute: typeof ApiChatRoute
+  BooksSlugRoute: typeof BooksSlugRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
+  MediaSlugRoute: typeof MediaSlugRoute
+  ResearchPillarRoute: typeof ResearchPillarRoute
+  TalksSlugRoute: typeof TalksSlugRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
+  ResearchWorksSlugRoute: typeof ResearchWorksSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -387,6 +513,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/engineering': {
+      id: '/engineering'
+      path: '/engineering'
+      fullPath: '/engineering'
+      preLoaderRoute: typeof EngineeringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/forbes': {
       id: '/forbes'
       path: '/forbes'
@@ -406,6 +539,13 @@ declare module '@tanstack/react-router' {
       path: '/harsh-verma-ai-speaker'
       fullPath: '/harsh-verma-ai-speaker'
       preLoaderRoute: typeof HarshVermaAiSpeakerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/knowledge': {
+      id: '/knowledge'
+      path: '/knowledge'
+      fullPath: '/knowledge'
+      preLoaderRoute: typeof KnowledgeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/media': {
@@ -443,6 +583,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rsac': {
       id: '/rsac'
       path: '/rsac'
@@ -478,6 +625,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/books_/$slug': {
+      id: '/books_/$slug'
+      path: '/books/$slug'
+      fullPath: '/books/$slug'
+      preLoaderRoute: typeof BooksSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/engineering/': {
+      id: '/engineering/'
+      path: '/'
+      fullPath: '/engineering/'
+      preLoaderRoute: typeof EngineeringIndexRouteImport
+      parentRoute: typeof EngineeringRoute
+    }
+    '/engineering/$slug': {
+      id: '/engineering/$slug'
+      path: '/$slug'
+      fullPath: '/engineering/$slug'
+      preLoaderRoute: typeof EngineeringSlugRouteImport
+      parentRoute: typeof EngineeringRoute
+    }
     '/insights/': {
       id: '/insights/'
       path: '/insights'
@@ -492,8 +660,50 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/media_/$slug': {
+      id: '/media_/$slug'
+      path: '/media/$slug'
+      fullPath: '/media/$slug'
+      preLoaderRoute: typeof MediaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research_/$pillar': {
+      id: '/research_/$pillar'
+      path: '/research/$pillar'
+      fullPath: '/research/$pillar'
+      preLoaderRoute: typeof ResearchPillarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/talks/$slug': {
+      id: '/talks/$slug'
+      path: '/talks/$slug'
+      fullPath: '/talks/$slug'
+      preLoaderRoute: typeof TalksSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research_/works/$slug': {
+      id: '/research_/works/$slug'
+      path: '/research/works/$slug'
+      fullPath: '/research/works/$slug'
+      preLoaderRoute: typeof ResearchWorksSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
+
+interface EngineeringRouteChildren {
+  EngineeringSlugRoute: typeof EngineeringSlugRoute
+  EngineeringIndexRoute: typeof EngineeringIndexRoute
+}
+
+const EngineeringRouteChildren: EngineeringRouteChildren = {
+  EngineeringSlugRoute: EngineeringSlugRoute,
+  EngineeringIndexRoute: EngineeringIndexRoute,
+}
+
+const EngineeringRouteWithChildren = EngineeringRoute._addFileChildren(
+  EngineeringRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -504,21 +714,29 @@ const rootRouteChildren: RootRouteChildren = {
   BooksRoute: BooksRoute,
   CollaborateRoute: CollaborateRoute,
   ContactRoute: ContactRoute,
+  EngineeringRoute: EngineeringRouteWithChildren,
   ForbesRoute: ForbesRoute,
   HackernoonRoute: HackernoonRoute,
   HarshVermaAiSpeakerRoute: HarshVermaAiSpeakerRoute,
+  KnowledgeRoute: KnowledgeRoute,
   MediaRoute: MediaRoute,
   MediaKitRoute: MediaKitRoute,
   PressKitRoute: PressKitRoute,
   RecognitionRoute: RecognitionRoute,
   ResearchRoute: ResearchRoute,
+  ResourcesRoute: ResourcesRoute,
   RsacRoute: RsacRoute,
   SpeakerBioRoute: SpeakerBioRoute,
   SpeakingRoute: SpeakingRoute,
   TestimonialsRoute: TestimonialsRoute,
   ApiChatRoute: ApiChatRoute,
+  BooksSlugRoute: BooksSlugRoute,
   InsightsSlugRoute: InsightsSlugRoute,
+  MediaSlugRoute: MediaSlugRoute,
+  ResearchPillarRoute: ResearchPillarRoute,
+  TalksSlugRoute: TalksSlugRoute,
   InsightsIndexRoute: InsightsIndexRoute,
+  ResearchWorksSlugRoute: ResearchWorksSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

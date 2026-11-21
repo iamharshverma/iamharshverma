@@ -1,4 +1,4 @@
-import { links, profile } from "@/data/profile";
+import { education, links, profile } from "@/data/profile";
 
 export const SITE_URL = "https://www.iamharshverma.com";
 
@@ -53,15 +53,15 @@ export const personJsonLd = {
       "@id": `${SITE_URL}/#person`,
       name: "Harsh Verma",
       url: SITE_URL,
-      image: `${SITE_URL}${profile.portrait}`,
+      image: new URL(profile.portrait, SITE_URL).href,
       email: `mailto:${profile.email}`,
       jobTitle: profile.title,
       worksFor: { "@type": "Organization", name: "Palo Alto Networks", url: "https://www.paloaltonetworks.com" },
       address: { "@type": "PostalAddress", addressRegion: "CA", addressCountry: "US", addressLocality: "San Francisco Bay Area" },
-      alumniOf: [{ "@type": "CollegeOrUniversity", name: "Stanford University" }],
+      alumniOf: education.map(item => ({ "@type": "CollegeOrUniversity", name: item.school })),
       knowsAbout: ["Artificial Intelligence", "Agentic AI", "AI Security", "Machine Learning", "Cybersecurity", "Autonomous Agents", "Distributed Systems", "AI Governance"],
       memberOf: { "@type": "Organization", name: "Forbes Technology Council" },
-      sameAs: [ALT_PORTFOLIO_URL, ...Object.values(links)],
+      sameAs: Array.from(new Set([ALT_PORTFOLIO_URL, ...Object.values(links)])),
     },
     {
       "@type": "WebSite",

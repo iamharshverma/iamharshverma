@@ -1,7 +1,14 @@
 # Harsh Verma
-> Principal AI Engineer at Palo Alto Networks, founder-minded technologist, author and keynote speaker on agentic AI and AI security.
+> Principal Software Engineer at Palo Alto Networks | AI, Cybersecurity & Agentic Systems. Author, keynote speaker and contributor to technical research discussions.
 
 ## Pages
+- [Knowledge Hub](https://www.iamharshverma.com/knowledge): Search and filter public articles, research perspectives, engineering reviews, books, talks and media.
+- [Engineering & Architecture](https://www.iamharshverma.com/engineering): Source-based public project reviews; no confidential employer architectures or claimed production benchmarks.
+- [Resources](https://www.iamharshverma.com/resources): Download exact 50-, 100- and 250-word biographies and press/speaker/media kits.
+- [Agentic AI Architecture](https://www.iamharshverma.com/research/agentic-ai-architecture): Orchestration, coordination, evaluation and bounded tool execution.
+- [AI Security & Governance](https://www.iamharshverma.com/research/ai-security-governance): Identity, least privilege, untrusted inputs and action-bound approvals.
+- [Agent Trust & Reputation](https://www.iamharshverma.com/research/agent-trust-reputation): Personal proposed conceptual model; not a validated standard or employer architecture.
+- [Autonomous Cyber Defense](https://www.iamharshverma.com/research/autonomous-cyber-defense): Detection, scoped response and recovery with accountable oversight.
 - https://www.iamharshverma.com/
 - https://www.iamharshverma.com/about
 - [Harsh Verma — AI speaker & Principal AI Engineer](https://www.iamharshverma.com/harsh-verma-ai-speaker): Professional role at Palo Alto Networks, enterprise AI experience, keynote recordings and speaker bio.

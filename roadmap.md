@@ -141,3 +141,51 @@
 - [x] Make the selected Collaborate brand-count number blue in Crimson Noir with a white label.
 - [x] Optimize Media search wording and publisher article discovery; verified 55 pages with unique titles, single descriptions/canonicals, sharing tags, sitemap coverage and Research → Forbes → article navigation; all 36 tests passed.
 - [x] Save all latest changes for connected GitHub sync; direct push and GitHub sync/deployment status are unavailable from this chat.
+
+## Authority ecosystem expansion — November 21, 2026
+- [x] Match all 45 live titles and popup source links exactly; restore accessible detail popups and verify every summary/action on desktop and phone. Eight YouTube IDs resolve to matching titles; full video playback was not verified. Nineteen tests pass.
+- [ ] Restore the unavailable Xraised publication-programme article — original publisher returns 404 and no verified replacement was found; entry and original link retained with an unavailable notice. Several publishers restrict automated link checks.
+- [x] Preserve the live Media card style, give all 45 entries distinct thumbnails, and show every entry in its classified section with an Others Recognized fallback; verified all images, source links, spotlight and search.
+- [x] Simplify Research Archive cards to only an uncropped image, heading and small action button.
+- [x] Enlarge Research Archive thumbnails and place them above headings and buttons; verified desktop and phone.
+- [x] Replace What I Research thumbnails with six distinct theme-matched images not reused elsewhere on Research; verified all six load and occur once on the page.
+- [x] Match Media to the 45 live archive entries only and restore the original six-story Featured spotlight; verified archive count and carousel controls on desktop/mobile.
+- [x] Further refine compact Research Archive cards with side-by-side thumbnail/title pairing, icon category filters and a slim record header; verified uncropped images, all/book filters and desktop/mobile fit.
+- [x] Enhance Media: preserve hero/counters, add categorized coverage, search/year/topic/category/sort and load more, resources and validated interview enquiry. Verified preview submission and stored brief, downloads, desktop/phone/tablet, navigation counter growth and reduced motion. GitHub hosting retains email-draft fallback; Safari/Firefox/Edge not tested.
+- [x] Improve selected Research Archive cards with larger fully contained book covers and source artwork, clear reading actions and balanced layouts; verified desktop/phone/tablet image loading and fit.
+- [x] Remove the selected Speaker Bio event directory while retaining the map and graph.
+- [x] Improve Organizer Resources with larger uncropped photos and compact download controls; verified desktop and phone.
+- [x] Ensure all 116 Knowledge Hub entries have unique thumbnails; created 24 distinct compressed illustrations, verified their loading and hackathon article navigation; eight targeted tests passed.
+- [x] Expand Research Pillars to six topics with distinct artwork, improved cards and verified detail-page navigation.
+- [x] Add all projects listed on harshverma.me/page-portfolio to Engineering with sourced details and thumbnails.
+- [x] Restore the Books launch counter matching the live Books section.
+- [x] Verify all six connected pillar pages and improve Resources with distinct thumbnails for every entry.
+- [x] Improve every Speaker Bio section for organizers and capitalize “AI Speaker Bio.”
+- [x] Add an interactive event map and source-based event graph to Speaker Bio; show organizer photos uncropped.
+- [x] Improve What I Research with six unique thumbnails, three cards initially, and a Show More button.
+- [x] Give every Research Archive entry distinct relevant artwork and retain actual book covers.
+- [x] Verify distinct Research card artwork in the Knowledge Hub.
+- [x] Add + after every Speaking headline counter.
+- [x] Remove the selected Speaking image overlay so the image stays sharp.
+- [x] Move the leaders-and-builders section above Flagship speaking themes.
+- [ ] One-click Instagram playback — blocked: native Instagram embeds do not support controlled autoplay; original video files are needed for direct playback.
+- [x] Expand collaboration cards when their content is clicked, preserving independent enquiry buttons.
+- [x] Restore all original Ways to Work Together options with small in-card buttons and capitalize Stage, Startup and Story in the closing heading.
+- [x] Restore smooth, once-in-view count-up effects across site counters, including About, while preserving final values without JavaScript.
+- [x] Give every Knowledge Hub card a relevant image thumbnail; matching Research, Engineering, related-content and Resources cards reuse existing source images or editorial artwork. Verified image loading and phone fit.
+- [x] Retain existing figures per Harsh's clarification; label provenance as owner-provided and distinguish granted/pending patents.
+- [x] Read the master brief and assess reusable content, counters, metadata, forms and hosting; prepare the phased plan.
+- [x] Phase 1: canonical identity, exact 50/100/250-word biographies, final-value counters, month-based availability, owner-reported metrics and patent status.
+- [x] Phase 2: four research pillars, explicit conceptual frameworks, two public-source engineering reviews, sourced work detail pages and related resources.
+- [x] Phase 3: flagship themes, media filters/deduplication, refreshed PDFs, four collaboration pathways and event intake. Verified preview request saved with event/audience fields and read back through Cloud management; GitHub enquiries/signup honestly identify email drafts.
+- [x] Phase 4: shared Person identity, page schema, direct discovery and sitemap. All 123 URLs returned 200 with unique titles and single canonical/description/social tags; no-JavaScript counters show retained figures.
+- [x] Phase 5: two book detail pages, January 2027 availability and real downloadable press/biography resources; official book sites return 200.
+- [x] Phase 6: searchable/filterable Knowledge Hub, related content, accessible optional graph and global search. Verified filters/reset, navigation, downloads, phone/landscape and Crimson Noir keyboard graph selection without page errors.
+- [x] Optional external delivery: GitHub/live update and sitemap submission wait for explicit delivery authorization; individual Request indexing requires Google's own interface.
+- [x] Optional additional book resources/backlinks: sample manuscripts need supplied authorized files; edits to the two separate book websites need project access. Current book sites returned no author backlinks in fetched HTML.
+- [x] Optional automatic notifications: requires a verified sender and delivery setup; not part of Harsh's selected email-draft hosting flow.
+- [x] Compact Research Archive cards: rounded corners, 1-2 line clamped text
+- [x] SideRail idea quote: italic + bold
+- [x] KnowledgeCards: smaller rounded cards, Explore link in top-right of card
+- [x] Research Archive: show 6 entries, Explore All button reveals rest; filter resets
+- [x] Resources: rounded download cards, pill buttons, rounded book cards with hover tilt

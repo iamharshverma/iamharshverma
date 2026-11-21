@@ -62,7 +62,7 @@ export function SideRail({ icon, label, navLabel, links }: Props) {
             className="research-side-quote absolute left-full top-0 z-30 ml-3 w-60 rounded-2xl border border-border bg-card/95 p-4 shadow-xl backdrop-blur-md"
           >
             <p className="font-mono text-[10px] tracking-[0.22em] text-signal uppercase">{shown.topic}</p>
-            <p className="mt-2 text-sm leading-relaxed text-card-foreground">“{shown.quote}”</p>
+            <p className="mt-2 text-sm font-semibold italic leading-relaxed text-card-foreground">“{shown.quote}”</p>
             <p className="mt-2 font-mono text-[11px] text-muted-foreground">— {shown.author}</p>
             <p className="mt-3 border-t border-border pt-2 font-mono text-[10px] text-muted-foreground">Tap the bulb for another</p>
           </div>

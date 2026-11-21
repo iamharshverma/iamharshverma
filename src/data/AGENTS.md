@@ -1,0 +1,3 @@
+- Media Center derives sections and spotlight from existing media records only, without automatically merging blogs; preserve source URLs and distinguish newswire distributions from editorial coverage.
+- Media impact metrics retain their configured values, labels, suffixes and the shared Counter animation; archive inventory must never replace owner-provided reach figures.
+- Media cards open shared accessible detail dialogs; verified video destinations supplement original source links, and unavailable publishers are flagged without inventing replacement URLs.

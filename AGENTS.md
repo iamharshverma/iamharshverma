@@ -55,3 +55,9 @@ use the editor.
 - Publisher collections (RSAC, Forbes, HackerNoon) filter shared Insights records by publisher/source and reuse PublisherArticles cards linking to existing article pages, preventing duplicated content and keeping layouts consistent.
 - Publisher collection structured data uses the shared SEO helper and the same article arrays as the page, so listed counts, local URLs and original sources stay aligned.
 - Expertise artwork uses dedicated link/node/active theme tokens, separating colored SVG connections and controls from monochrome copy.
+- Authority pages share records and artwork; Media Center derives classified sections from existing sources, separating syndicated announcements from editorial coverage.
+- Records own artwork; card variants scope styling. Countdowns target months; event visuals reuse stages to avoid invented totals.
+- Public case studies separate source behavior from proposed improvements; metrics distinguish curated inventory counts from retained owner-provided career/reach figures.
+- Offline press-resource generation reads shared biography records, keeping downloadable copies consistent without adding server-side PDF dependencies.
+- Shared identity owns biographies; counters render final values in SSR, then count up once in view with reduced-motion support; static forms confirm only draft intent to avoid false delivery claims.
+- Media thumbnail overrides are keyed by original source URL and shared by classified cards and spotlight; sections render their complete category inventory so no source is omitted.

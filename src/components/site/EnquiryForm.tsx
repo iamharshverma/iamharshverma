@@ -23,6 +23,7 @@ export function EnquiryForm({ booking = false, initialTopic }: { booking?: boole
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const [reference, setReference] = useState("");
+  const [draftOpened, setDraftOpened] = useState(false);
   const submit = useServerFn(submitEnquiry);
   const input = "mt-2 w-full min-w-0 rounded-md border border-input bg-background px-3 py-3 text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring";
   async function send(e: React.FormEvent<HTMLFormElement>) {
@@ -34,8 +35,8 @@ export function EnquiryForm({ booking = false, initialTopic }: { booking?: boole
     if (STATIC_SITE) {
       const d = parsed.data as Record<string, unknown>;
       openMailto(`${booking ? "Booking request" : "Enquiry"}: ${topic}`, Object.entries(d).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join("\n"));
-      window.__lovableEvents?.track?.("project.contact_submitted", { topic });
-      if (booking) void celebrate();
+      setDraftOpened(true);
+      window.__lovableEvents?.track?.("project.email_draft_opened", { kind: booking ? "booking" : "contact", target: topic });
       return;
     }
     setPending(true);
@@ -59,6 +60,7 @@ export function EnquiryForm({ booking = false, initialTopic }: { booking?: boole
     </div>
     <label className="block text-sm">Organization<input name="organization" autoComplete="organization" maxLength={200} className={input} /></label>
     {booking && <div className="grid gap-5 sm:grid-cols-2">
+      {topic === "Keynote" && <><label className="min-w-0 text-sm">Event name<input name="event_name" maxLength={200} className={input} /></label><label className="min-w-0 text-sm">Event website<input name="event_url" type="url" className={input} /></label><label className="min-w-0 text-sm">Audience<input name="audience" maxLength={200} className={input} /></label><label className="min-w-0 text-sm">Expected audience size<input name="audience_size" type="number" min={1} max={9999999} className={input} /></label></>}
       <label className="min-w-0 text-sm">Preferred date <span className="text-muted-foreground">(optional)</span><input name="preferred_date" type="date" className={input} /></label>
       <label className="min-w-0 text-sm">Format<select name="format" className={input}><option>Virtual</option><option>In person</option><option>Hybrid</option></select></label>
       <label className="min-w-0 text-sm sm:col-span-2">Location / time zone<input name="location" maxLength={200} className={input} /></label>
@@ -66,7 +68,9 @@ export function EnquiryForm({ booking = false, initialTopic }: { booking?: boole
     <label className="block text-sm">{booking ? (topic === "Keynote" ? "Event, audience & speaking brief" : "Advisory role, goals & scope") : "Your message"}<textarea name="message" required maxLength={3000} rows={5} className={input} /></label>
     <div className="hidden" aria-hidden="true"><input name="website" tabIndex={-1} autoComplete="off" /></div>
     {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
-    <Button disabled={pending} className="h-12 w-full"><Send />{pending ? "Saving request…" : booking ? "Send booking request" : "Send enquiry"}</Button>
+    {draftOpened && <p role="status" className="text-sm text-muted-foreground">An email draft was opened. Your request is not received until you send the email.</p>}
+    <Button disabled={pending} className="h-12 w-full"><Send />{pending ? "Saving request…" : STATIC_SITE ? "Open email draft" : booking ? "Send booking request" : "Send enquiry"}</Button>
+    <p className="text-xs text-muted-foreground">Your details are used by Harsh to review and respond to this enquiry. Please do not include confidential information. Email Harsh to request deletion.</p>
     {booking && <p className="text-xs text-muted-foreground">Availability and engagement details require confirmation from Harsh.</p>}
   </form>;
 }

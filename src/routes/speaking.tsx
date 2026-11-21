@@ -12,6 +12,8 @@ import { StageMap } from "@/components/site/StageMap";
 import { ReelWall } from "@/components/site/ReelWall";
 import { speakerGuide } from "@/data/press-kit";
 import { Button } from "@/components/ui/button";
+import { flagshipTalks } from "@/data/flagship-talks";
+import { ownerReportedSpeakingMetrics } from "@/data/metrics";
 
 export const Route = createFileRoute("/speaking")({
   head: () => ({
@@ -49,7 +51,7 @@ export const Route = createFileRoute("/speaking")({
   component: Speaking,
 });
 
-const stats = [{ v: 43, l: "Total engagements" }, { v: 10, l: "Featured keynotes" }, { v: 21, l: "Judging & mentorship" }, { v: 6, l: "Panels" }];
+const stats = ownerReportedSpeakingMetrics;
 const ytId = (u: string) => u.match(/(?:v=|youtu\.be\/)([\w-]{11})/)?.[1];
 
 function Speaking() {
@@ -64,18 +66,19 @@ function Speaking() {
       <PageHero eyebrow="// keynotes · panels · judging" title={<>Harsh Verma · <span className="text-brand-gradient">AI Keynote Speaker.</span></>}
         intro="Agentic AI, enterprise security and responsible adoption — grounded in engineering practice, with keynote recordings from ACM and UC Berkeley SkyDeck." />
       <SeoSummary heading="Book Harsh Verma as an AI keynote speaker" paragraphs={[
-        "Harsh Verma speaks on agentic AI, AI security and responsible enterprise adoption. As a Principal AI Engineer at Palo Alto Networks, he brings real production experience to every keynote, panel and fireside chat, with talks delivered at ACM and UC Berkeley SkyDeck.",
+        `Harsh Verma speaks on agentic AI, AI security and responsible enterprise adoption. As a ${profile.title} at ${profile.company}, he brings an engineering perspective to keynotes, panels and fireside chats, with talks delivered at ACM and UC Berkeley SkyDeck.`,
         "Event organisers book Harsh for engineering conferences, executive summits, university programmes and hackathon judging. Talks are tailored for technical, leadership and security audiences, in person or online.",
       ]} links={[{ to: "/speaker-bio", label: "Speaker bio & PDF" }, { to: "/booking", label: "Book a keynote" }, { to: "/about", label: "About Harsh" }]} />
       <section className="border-b border-border bg-card/40">
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (
             <div key={s.l} className={`px-6 py-8 ${i ? "md:border-l" : ""} border-border`}>
-              <p className="font-display text-4xl font-bold text-stat-number md:text-5xl"><Counter to={s.v} suffix="+" /></p>
+              <p className="font-display text-4xl font-bold text-stat-number md:text-5xl"><Counter to={s.v} suffix={s.suffix} /></p>
               <p className="mt-1 text-sm text-stat-label">{s.l}</p>
             </div>
           ))}
         </div>
+        <p className="mx-auto max-w-6xl px-6 pb-5 text-xs text-muted-foreground">Career figures provided by Harsh; the archive below contains {keynotes.length} recordings and {judging.length} judging records.</p>
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pt-14">
@@ -90,6 +93,7 @@ function Speaking() {
           <Button asChild variant="outline"><Link to="/insights/$slug" params={{ slug: "enterprise-agent-security-checklist-tool-permissions-and-human-approvals" }}>Enterprise agent security checklist</Link></Button>
         </div>
       </section>
+      <section className="mx-auto max-w-6xl px-6 pt-14"><h2 className="font-display text-3xl font-semibold">Flagship speaking themes</h2><div className="mt-8 grid gap-6 md:grid-cols-3">{flagshipTalks.map(t => <article key={t.title} className="flex flex-col rounded-lg border border-border bg-card p-6"><h3 className="font-display text-2xl font-semibold">{t.title}</h3><p className="mt-4 text-sm leading-relaxed text-muted-foreground">{t.summary}</p><p className="mt-4 text-sm"><span className="font-semibold">Audience: </span>{t.audience}</p><ul className="mt-5 list-disc space-y-3 pl-4 text-sm text-muted-foreground">{t.takeaways.map(k => <li key={k}>{k}</li>)}</ul><p className="mt-5 text-xs text-muted-foreground">Proposed formats: keynote, panel or workshop; 30–60 minutes by agreement.</p><div className="mt-auto flex flex-wrap gap-2 pt-6"><Button asChild size="sm"><Link to="/booking" search={{ topic: "Keynote" }}>Discuss this theme</Link></Button><Button asChild variant="outline" size="sm"><Link to="/knowledge" search={{ topic: t.topic }}>Related work</Link></Button></div></article>)}</div></section>
       <section className="mx-auto max-w-6xl px-6 py-20">
         <Reveal><p className="eyebrow">Now on stage · <Link to="/speaker-bio" className="text-brand">Full speaker bio &amp; PDF →</Link></p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Keynote theater</h2></Reveal>
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
@@ -97,7 +101,6 @@ function Speaking() {
             <motion.div key={stage} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="overflow-hidden rounded-2xl border border-border bg-card">
               <button onClick={() => { window.__lovableEvents?.track?.("project.keynote_played", { keynote: k.title, source: "speaking" }); if (id) setPlay(id); else window.open(k.href, "_blank"); }} className="group relative block aspect-video w-full">
                 <img src={k.img} alt={k.title} className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                 <span className="absolute top-1/2 left-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-brand-gradient text-primary-foreground shadow-glow transition group-hover:scale-110"><Play className="ml-1 h-6 w-6" /></span>
                 <span className="absolute right-4 bottom-4 flex items-center gap-1 rounded-full bg-background/80 px-3 py-1 font-mono text-xs"><Clock className="h-3 w-3" />{k.dur}</span>
               </button>
@@ -152,7 +155,7 @@ function Speaking() {
             <p className="eyebrow">Invite Harsh</p>
             <h2 className="mt-4 font-display text-4xl font-bold tracking-tight">Keynote, panel, or executive masterclass.</h2>
             <p className="mt-4 text-muted-foreground">Tailored to enterprise or technical audiences, with Smart Slides and pre-event promotion included.</p>
-            <div className="mt-6 flex flex-wrap items-center gap-4"><Magnetic><Link to="/contact" className="inline-flex rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow">Book a keynote</Link></Magnetic><Link to="/speaker-bio" className="inline-flex rounded-full border border-border px-6 py-3 font-medium hover:border-brand">Speaker bio &amp; PDF</Link></div>
+            <div className="mt-6 flex flex-wrap items-center gap-4"><Magnetic><Link to="/booking" search={{ topic: "Keynote" }} className="inline-flex rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow">Book a keynote</Link></Magnetic><Link to="/speaker-bio" className="inline-flex rounded-full border border-border px-6 py-3 font-medium hover:border-brand">Speaker bio &amp; PDF</Link></div>
           </div>
         </div>
       </section>

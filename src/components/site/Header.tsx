@@ -10,6 +10,9 @@ const menuDetails = {
   "/": { icon: Home, detail: "The portfolio", group: "Explore" },
   "/about": { icon: UserRound, detail: "Story & experience", group: "Explore" },
   "/research": { icon: FlaskConical, detail: "Ideas & intellectual property", group: "Explore" },
+  "/engineering": { icon: FlaskConical, detail: "Public projects & architecture", group: "Explore" },
+  "/knowledge": { icon: Sparkles, detail: "Connected work & topics", group: "Explore" },
+  "/resources": { icon: BookOpen, detail: "Reader, speaker & press resources", group: "Explore" },
   "/books": { icon: BookOpen, detail: "Beyond AI Engineering · AI vs. AI", group: "Explore" },
   "/recognition": { icon: Trophy, detail: "Honors & recognition", group: "Explore" },
   "/insights": { icon: Sparkles, detail: "Essays & practical perspectives", group: "Explore" },
@@ -47,8 +50,8 @@ export function Header({ onPalette }: { onPalette: () => void }) {
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-6 xl:flex xl:justify-between">
         <Link to="/" aria-label="Harsh Verma home"><Logo /></Link>
         <nav className="hidden items-center gap-0.5 xl:flex">
-          {nav.slice(1, -1).map((n) => (
-            <Link key={n.to} to={n.to} className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition hover:text-foreground"
+          {nav.filter(n => ["/about", "/research", "/knowledge", "/books", "/speaking", "/collaborate"].includes(n.to)).map((n) => (
+            <Link key={n.to} to={n.to} className="rounded-full px-2 py-1.5 text-sm text-muted-foreground transition hover:text-foreground"
               activeProps={{ className: "text-brand" }}>{n.label}</Link>
           ))}
         </nav>

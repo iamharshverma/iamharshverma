@@ -3,7 +3,7 @@ const B = "https://www.harshverma.me/images/media/brands";
 export const socialStats = [
   { value: 18.1, suffix: "K+", decimals: 1, label: "LinkedIn tech network" },
   { value: 94, suffix: "/100", decimals: 0, label: "Favikon creator score" },
-  { value: 3.75, suffix: "B+", decimals: 2, label: "Aggregate media reach" },
+  { value: 3.75, suffix: "B+", decimals: 2, label: "Reported aggregate media reach" },
   { value: 1, prefix: "Top ", suffix: "%", decimals: 0, label: "ADPList global mentor" },
 ];
 
@@ -18,25 +18,25 @@ export const brands = [
 export const pressLogos = brands.slice(6);
 
 export const offerings = [
-  { tag: "Brand & Creator", badge: "High reach", title: "Brand Collaborations & Sponsored Content",
-    desc: "Co-branded technical breakdowns, sponsored LinkedIn articles, video features and authentic product launches reaching tech decision-makers.",
-    points: ["Dedicated LinkedIn feature (18.1K+ network)", "5.8% average engagement", "Authentic developer & executive framing", "Cross-amplification on Instagram (@aiwithharsh)"] },
-  { tag: "Keynote & Events", badge: "Most requested", title: "Keynote Speaking & Moderation",
-    desc: "Authoritative keynotes on Autonomous AI Systems, Zero-Trust Architecture, Agentic Cybersecurity and Engineering Culture.",
-    points: ["Smart Slide deck included (16+ slides)", "Tailored to enterprise or technical audiences", "Fireside chats & panel moderation", "Pre-event promotion & press syndication"] },
-  { tag: "Strategic Advisory", badge: "Executive", title: "Executive & Technical Board Advisory",
-    desc: "Ongoing guidance for venture-backed startups (Seed to Series C) and enterprise boards on AI governance, roadmaps and go-to-market.",
-    points: ["Monthly architecture reviews & strategy sprints", "Enterprise customer & investor intros", "Production AI risk mitigation", "Board observer & technical advisory seat"] },
-  { tag: "Education & Labs", badge: "Hands-on", title: "Corporate Masterclasses & Workshops",
-    desc: "Immersive training for engineering teams and tech leaders on building production-grade agentic AI systems.",
-    points: ["Custom engineering curriculum", "Multi-agent orchestration architectures", "Security red-teaming exercises", "Reference architecture toolkit"] },
-  { tag: "Media & Podcasts", badge: "Syndicated", title: "Podcast & Media Guest Appearances",
-    desc: "Conversations on enterprise AI breakthroughs, career journeys and frontier tech — Spotify, YouTube, TrueML, Silicon Zombies.",
-    points: ["Studio-grade audio & 4K video ready", "12+ years of Silicon Valley insight", "Post-release social promotion", "Press syndication to tier-1 wires"] },
-  { tag: "Mentorship", badge: "Top 1% global", title: "1:1 Executive Mentorship",
-    desc: "High-impact sessions for engineers, tech leads and founders navigating architecture and principal-level milestones.",
-    points: ["1,500+ mentoring minutes delivered", "100% recommended on ADPList (5.0★)", "Architecture & career deep-dives", "Book on ADPList or retainer"] },
-];
+  { tag: "Brand & Creator", badge: "Partnerships", title: "Brand Collaborations & Sponsored Content", topic: "Other",
+    desc: "Co-branded technical breakdowns, LinkedIn articles, video features and relevant product conversations for technology decision-makers.",
+    points: ["Discuss the product, audience and editorial fit", "Agree disclosure, format and timing", "Confirm scope and professional policies before collaboration"] },
+  { tag: "Keynote & Events", badge: "Speaking", title: "Keynote Speaking & Moderation", topic: "Keynote",
+    desc: "Keynotes on autonomous AI, zero-trust architecture, agentic cybersecurity and engineering culture, alongside fireside chats and panel moderation.",
+    points: ["Tailor the session to enterprise or technical audiences", "Discuss slides, duration and event format", "Agree any pre-event promotion and organizer resources"] },
+  { tag: "Strategic Advisory", badge: "Executive", title: "Executive & Technical Board Advisory", topic: "Advisory",
+    desc: "AI governance, architecture, roadmaps and go-to-market perspectives for founders and enterprise leaders, subject to professional and employer policies.",
+    points: ["Share a non-confidential strategic brief", "Discuss responsible adoption and architecture trade-offs", "Confirm scope and conflicts before any engagement"] },
+  { tag: "Education & Labs", badge: "Hands-on", title: "Corporate Masterclasses & Workshops", topic: "Other",
+    desc: "Focused learning for engineering teams and technology leaders on agentic AI architecture, evaluation and secure system design.",
+    points: ["Define team experience and learning goals", "Explore practical scenarios and discussion topics", "Agree the format, materials and availability"] },
+  { tag: "Media & Podcasts", badge: "Interviews", title: "Podcast & Media Guest Appearances", topic: "Media",
+    desc: "Conversations on enterprise AI, cybersecurity, engineering careers and frontier technology for podcasts, publications and video interviews.",
+    points: ["Provide the publication and intended audience", "Describe interview topics and timing", "Access shared biographies and official photography"] },
+  { tag: "Mentorship", badge: "1:1", title: "1:1 Executive Mentorship", topic: "Other",
+    desc: "Engineering judgment, architecture and career-development conversations for engineers, technology leads and founders.",
+    points: ["Describe your learning goals and current challenges", "Discuss engineering judgment and principal-level growth", "Confirm availability and the appropriate format"] },
+] as const;
 
 export const personas = [
   { name: "Enterprise Tech Leadership", share: 42, who: "VPs of Engineering, CTOs, Enterprise Architects & Directors",
@@ -53,7 +53,7 @@ export const personas = [
 export const audienceFacts = [
   { v: "86%", l: "Decision authority", d: "C-Suite, VPs, Directors & Principal Engineers" },
   { v: "52%", l: "North America core", d: "SF Bay Area, New York, Seattle, Austin, Boston" },
-  { v: "5.8%", l: "Verified engagement", d: "3.2× the B2B tech average" },
+  { v: "5.8%", l: "Reported engagement", d: "Owner-provided audience figure" },
 ];
 
 export const creatorBadges = [

@@ -7,6 +7,10 @@ import { Reveal, PageHero } from "@/components/site/Reveal";
 import contactImage from "@/assets/harsh-verma-contact.jpg.asset.json";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (s: Record<string, unknown>): { topic?: "Keynote" | "Advisory" | "Media" | "Other" } => {
+    const topic = s["topic"];
+    return topic === "Keynote" || topic === "Advisory" || topic === "Media" || topic === "Other" ? { topic } : {};
+  },
   head: () => ({
     links: canonical("/contact").links,
     meta: [
@@ -25,6 +29,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const { topic } = Route.useSearch();
   return (
     <>
       <PageHero eyebrow="// contact" title={<>Let's build the <span className="text-brand-gradient">Future of AI.</span></>} />
@@ -50,7 +55,7 @@ function Contact() {
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <EnquiryForm />
+          <EnquiryForm key={topic ?? "default"} initialTopic={topic} />
         </Reveal>
       </section>
     </>

@@ -2,10 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { canonical } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { Award, Check, Plus } from "lucide-react";
+import { Award, Check, Plus, ArrowUpRight } from "lucide-react";
 import { socialStats, brands, offerings, personas, audienceFacts, creatorBadges, formats } from "@/data/collaborate";
 import { Reveal, PageHero, Counter } from "@/components/site/Reveal";
 import { TiltCard, Magnetic } from "@/components/site/Interactive";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/collaborate")({
   head: () => ({
@@ -30,8 +31,10 @@ function Collaborate() {
   const [p, setP] = useState(0);
   const [fmt, setFmt] = useState(0);
   const [posts, setPosts] = useState(3);
-  const persona = personas[p]!;
-  const reach = formats[fmt]!.reach * posts;
+  const persona = personas[p] ?? personas[0];
+  const format = formats[fmt] ?? formats[0];
+  if (!persona || !format) return null;
+  const reach = format.reach * posts;
   const engaged = Math.round(reach * 0.058);
 
   return (
@@ -50,31 +53,26 @@ function Collaborate() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-20">
-        <Reveal><p className="eyebrow">Partnership models</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Ways to work together</h2></Reveal>
+      <section aria-labelledby="partnership-heading" className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <Reveal><p className="eyebrow">Partnership models</p><h2 id="partnership-heading" className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Ways to Work Together</h2></Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {offerings.map((o, i) => {
             const open = openIdx === i;
             return (
               <Reveal key={o.title} delay={i * 0.04}>
-                <button onClick={() => setOpenIdx(open ? null : i)} className={`w-full rounded-xl border p-6 text-left transition ${open ? "border-brand bg-accent shadow-glow" : "border-border bg-card hover:border-brand/50"}`}>
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="font-mono text-xs text-brand">{o.tag}</p>
-                    <span className="rounded-full border border-signal/40 px-2.5 py-0.5 font-mono text-[11px] text-signal">{o.badge}</span>
-                  </div>
-                  <div className="mt-3 flex items-start justify-between gap-4">
-                    <h3 className="font-display text-2xl font-bold">{o.title}</h3>
-                    <Plus className={`mt-1 h-5 w-5 shrink-0 transition ${open ? "rotate-45 text-brand" : ""}`} />
-                  </div>
-                  <p className="mt-2 text-sm text-muted-foreground">{o.desc}</p>
+                <article onClick={(event) => { if (event.target instanceof Element && event.target.closest("a, button")) return; setOpenIdx(open ? null : i); }} className={`cursor-pointer rounded-lg border p-5 transition sm:p-6 ${open ? "border-brand bg-accent" : "border-border bg-card hover:border-brand/50"}`}>
+                  <div className="flex flex-wrap items-center justify-between gap-3"><p className="font-mono text-xs text-brand">{o.tag}</p><span className="font-mono text-xs text-signal">{o.badge}</span></div>
+                  <div className="mt-3 flex items-start justify-between gap-4"><h3 className="min-w-0 font-display text-xl font-bold sm:text-2xl">{o.title}</h3><Button variant="ghost" size="icon" className="size-8 shrink-0" aria-label={`${open ? "Hide" : "Show"} details for ${o.title}`} aria-expanded={open} aria-controls={`offering-details-${i}`} onClick={() => setOpenIdx(open ? null : i)}><Plus className={`size-4 transition-transform ${open ? "rotate-45 text-brand" : ""}`} /></Button></div>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{o.desc}</p>
                   <AnimatePresence>
                     {open && (
-                      <motion.ul initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                      <motion.ul id={`offering-details-${i}`} initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                         {o.points.map((pt) => <li key={pt} className="mt-3 flex gap-2 text-sm"><Check className="h-4 w-4 shrink-0 text-brand" />{pt}</li>)}
                       </motion.ul>
                     )}
                   </AnimatePresence>
-                </button>
+                  <div className="mt-5"><Button asChild size="sm" variant="outline" className="h-8 px-3 text-xs">{o.topic === "Keynote" || o.topic === "Advisory" ? <Link to="/booking" search={{ topic: o.topic }}>Discuss <ArrowUpRight className="size-3" /></Link> : <Link to="/contact" search={{ topic: o.topic }}>Discuss <ArrowUpRight className="size-3" /></Link>}</Button></div>
+                </article>
               </Reveal>
             );
           })}
@@ -125,7 +123,7 @@ function Collaborate() {
               <div className="rounded-xl bg-muted p-4"><p className="font-display text-3xl font-bold text-stat-number">{reach.toLocaleString()}</p><p className="text-xs text-muted-foreground">Estimated impressions</p></div>
               <div className="rounded-xl bg-muted p-4"><p className="font-display text-3xl font-bold text-stat-number">{engaged.toLocaleString()}</p><p className="text-xs text-muted-foreground">Engaged tech leaders (5.8%)</p></div>
             </div>
-            <p className="mt-3 text-xs text-muted-foreground">Indicative only, based on average past performance.</p>
+            <p className="mt-3 text-xs text-muted-foreground">Illustrative estimate using owner-provided planning assumptions; not a guaranteed result.</p>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
@@ -143,7 +141,7 @@ function Collaborate() {
 
       <section className="mx-auto max-w-6xl px-6 pb-28 text-center">
         <Reveal>
-          <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">Have a stage, a startup, or a story?</h2>
+          <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">Have a Stage, a Startup, or a Story?</h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Magnetic><Link to="/contact" className="inline-flex rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow">Send a proposal</Link></Magnetic>
             <a href="https://adplist.org/mentors/harsh-verma" target="_blank" rel="noreferrer" className="inline-flex rounded-full border border-border px-6 py-3 hover:border-brand hover:text-brand">Book mentorship on ADPList</a>

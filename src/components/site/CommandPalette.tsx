@@ -1,60 +1,97 @@
-import { useNavigate } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import { nav } from "./nav";
-import { research, awards, links } from "@/data/profile";
-import { media, keynotes } from "@/data/media";
+import { knowledge, filterKnowledge } from "@/data/knowledge";
+import { KnowledgeLink } from "./KnowledgeCards";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
-type Item = { label: string; hint: string; go: () => void };
-
-export function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
-  const navigate = useNavigate();
+export function CommandPalette({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: (v: boolean) => void;
+}) {
   const [q, setQ] = useState("");
-  const [i, setI] = useState(0);
   useEffect(() => {
     const k = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); setOpen(!open); }
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setOpen(!open);
+      }
       if (e.key === "Escape") setOpen(false);
     };
-    window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k);
+    window.addEventListener("keydown", k);
+    return () => window.removeEventListener("keydown", k);
   }, [open, setOpen]);
-  const items: Item[] = useMemo(() => [
-    ...nav.map((n) => ({ label: n.label, hint: "Page", go: () => navigate({ to: n.to }) })),
-    ...research.map((r) => ({ label: r.title, hint: r.kind, go: () => navigate({ to: "/research" }) })),
-    ...awards.map((a) => ({ label: a.title, hint: "Award", go: () => navigate({ to: "/recognition" }) })),
-    ...keynotes.map((k) => ({ label: k.title, hint: "Keynote", go: () => navigate({ to: "/speaking" }) })),
-    ...media.map((m) => ({ label: m.title, hint: "Media", go: () => navigate({ to: "/media" }) })),
-    { label: "Google Scholar", hint: "Link", go: () => window.open(links.scholar, "_blank") },
-    { label: "LinkedIn", hint: "Link", go: () => window.open(links.linkedin, "_blank") },
-  ], [navigate]);
-  const filtered = items.filter((x) => x.label.toLowerCase().includes(q.toLowerCase())).slice(0, 9);
-  if (!open) return null;
-  const pick = (x?: Item) => { if (!x) return; x.go(); setOpen(false); setQ(""); };
+  const filtered = filterKnowledge(knowledge, { q }).slice(0, 8);
+  const pages = nav
+    .filter((n) => n.label.toLowerCase().includes(q.toLowerCase()))
+    .slice(0, q ? 3 : 6);
+  const close = () => {
+    setOpen(false);
+    setQ("");
+  };
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center bg-background/70 p-4 pt-[15vh] backdrop-blur-sm" onClick={() => setOpen(false)}>
-      <div className="w-full max-w-xl overflow-hidden rounded-2xl border border-border bg-popover shadow-glow" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center gap-3 border-b border-border px-4">
-          <Search className="h-4 w-4 text-muted-foreground" />
-          <input autoFocus value={q} onChange={(e) => { setQ(e.target.value); setI(0); }} placeholder="Search pages, research, awards…"
-            onKeyDown={(e) => {
-              if (e.key === "ArrowDown") setI((v) => Math.min(v + 1, filtered.length - 1));
-              if (e.key === "ArrowUp") setI((v) => Math.max(v - 1, 0));
-              if (e.key === "Enter") pick(filtered[i]);
-            }}
-            className="w-full bg-transparent py-4 outline-none placeholder:text-muted-foreground" />
-        </div>
-        <ul className="max-h-80 overflow-auto p-2">
-          {filtered.map((x, idx) => (
-            <li key={x.hint + x.label}>
-              <button onMouseEnter={() => setI(idx)} onClick={() => pick(x)}
-                className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm ${idx === i ? "bg-accent text-brand" : ""}`}>
-                <span className="truncate">{x.label}</span><span className="ml-3 shrink-0 font-mono text-xs text-muted-foreground">{x.hint}</span>
-              </button>
+    <Dialog
+      open={open}
+      onOpenChange={(value) => {
+        setOpen(value);
+        if (!value) setQ("");
+      }}
+    >
+      <DialogContent className="z-[100] max-w-xl">
+        <DialogTitle>Search Harsh's work</DialogTitle>
+        <DialogDescription className="sr-only">Pages and public resources</DialogDescription>
+        <label className="flex items-center gap-3 border-b border-border">
+          <Search className="size-4 text-muted-foreground" />
+          <span className="sr-only">Search pages and knowledge</span>
+          <input
+            aria-label="Search pages and knowledge"
+            autoFocus
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Articles, research, talks, books…"
+            className="w-full bg-transparent py-4 outline-none"
+          />
+        </label>
+        <ul className="max-h-[55vh] space-y-1 overflow-auto">
+          {pages.map((n) => (
+            <li key={n.to}>
+              <Link
+                to={n.to}
+                onClick={close}
+                className="block rounded-md px-3 py-2 text-sm hover:bg-accent"
+              >
+                {n.label}
+              </Link>
             </li>
           ))}
-          {!filtered.length && <li className="px-3 py-6 text-center text-sm text-muted-foreground">No results</li>}
+          {filtered.map((item) => (
+            <li key={item.id} onClick={close}>
+              <KnowledgeLink
+                item={item}
+                className="flex items-start justify-between gap-4 rounded-md px-3 py-3 text-sm hover:bg-accent"
+              >
+                <span>{item.title}</span>
+                <span className="shrink-0 text-xs text-muted-foreground">{item.kind}</span>
+              </KnowledgeLink>
+            </li>
+          ))}
+          {!filtered.length && !pages.length && (
+            <li className="py-6 text-center text-sm text-muted-foreground">No results</li>
+          )}
         </ul>
-      </div>
-    </div>
+        <Link
+          to="/knowledge"
+          search={q ? { q } : {}}
+          onClick={close}
+          className="border-t border-border pt-4 text-sm text-brand"
+        >
+          Open the full Knowledge Hub →
+        </Link>
+      </DialogContent>
+    </Dialog>
   );
 }
