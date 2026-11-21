@@ -20,15 +20,15 @@ export function StageMap() {
   const home = proj(37.77, -122.42);
 
   return (
-    <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-      <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-glow">
+    <div className="grid items-stretch gap-6 lg:grid-cols-2">
+      <div className="relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-glow">
         <div className="flex items-center justify-between px-5 pt-4">
           <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Global stage map · {total}+ engagements</p>
           <button onClick={() => setAuto((a) => !a)} className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-xs text-muted-foreground hover:border-brand hover:text-brand">
             {auto ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}{auto ? "Touring" : "Tour"}
           </button>
         </div>
-        <svg viewBox={`${VB.x} ${VB.y} ${VB.w} ${VB.h}`} className="block w-full" role="img" aria-label="World map of speaking venues">
+        <svg viewBox={`${VB.x} ${VB.y} ${VB.w} ${VB.h}`} preserveAspectRatio="xMidYMid slice" className="block min-h-[300px] w-full flex-1" role="img" aria-label="World map of speaking venues">
           <defs>
             <linearGradient id="sm-arc" x1="0" x2="1"><stop offset="0" stopColor="var(--brand)" /><stop offset="1" stopColor="var(--signal)" /></linearGradient>
             <pattern id="sm-dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.1" fill="var(--brand)" opacity="0.45" /></pattern>

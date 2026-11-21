@@ -189,3 +189,4 @@
 - [x] KnowledgeCards: smaller rounded cards, Explore link in top-right of card
 - [x] Research Archive: show 6 entries, Explore All button reveals rest; filter resets
 - [x] Resources: rounded download cards, pill buttons, rounded book cards with hover tilt
+- [x] Push all latest changes to iamharshverma/iamharshverma — commit 44ddea2 delivered, Pages deployment succeeded, live /research and /resources verified
