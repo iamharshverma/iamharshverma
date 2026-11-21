@@ -57,6 +57,16 @@ export function connectedWork(id: string, items: KnowledgeItem[] = knowledge) {
     .sort((a, b) => b.topics.length - a.topics.length || a.item.id.localeCompare(b.item.id));
 }
 
+/** Publication discovery includes other papers; shared topics are not citations. */
+export function publicationRelatedWork(id: string, items: KnowledgeItem[] = knowledge) {
+  const source = items.find(item => item.id === id);
+  if (!source) return [];
+  return items.filter(item => item.id !== id && ["Article", "Publication", "Research"].includes(item.kind))
+    .map(item => ({ item, topics: source.topics.filter(topic => item.topics.includes(topic)) }))
+    .filter(connection => connection.topics.length > 0)
+    .sort((a, b) => b.topics.length - a.topics.length || a.item.id.localeCompare(b.item.id));
+}
+
 export const knowledgeResourceEdges = (() => {
   const edges = new Map<string, { id: string; source: string; target: string; topics: string[] }>();
   for (const item of knowledge) {

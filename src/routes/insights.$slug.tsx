@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { canonical, SITE_URL } from "@/lib/seo";
+import { canonical, SITE_URL, sourcePublicationDate } from "@/lib/seo";
 import { findInsight, insights } from "@/data/insights";
 import { articleKeywords, articleSeoDescription, articleSeoImage, articleSeoTitle } from "@/lib/article-seo";
 import { Subscribe } from "@/components/site/Subscribe";
@@ -14,6 +14,7 @@ export const Route = createFileRoute("/insights/$slug")({
     if (!a) return { meta: [{ title: "Article not found — Harsh Verma" }, { name: "robots", content: "noindex" }] };
     const t = articleSeoTitle(a), d = articleSeoDescription(a), img = articleSeoImage(a), kw = articleKeywords(a);
     const c = canonical(`/insights/${params.slug}`);
+    const date = sourcePublicationDate(a.date);
     return {
       links: c.links,
       meta: [
@@ -33,7 +34,8 @@ export const Route = createFileRoute("/insights/$slug")({
       ],
       scripts: [{ type: "application/ld+json", children: JSON.stringify({
         "@context": "https://schema.org", "@type": "Article", headline: a.title, description: d, keywords: kw.join(", "), about: kw.slice(0, 3).map(name => ({ "@type": "Thing", name })), image: img,
-        ...(isNaN(Date.parse(a.date)) ? {} : { datePublished: new Date(a.date).toISOString().slice(0, 10) }), url: `${SITE_URL}/insights/${params.slug}`,
+        ...(date ? { datePublished: date } : {}), url: `${SITE_URL}/insights/${params.slug}`,
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/insights/${params.slug}` }, inLanguage: "en",
         author: { "@type": "Person", "@id": `${SITE_URL}/#person`, name: "Harsh Verma" },
         publisher: { "@type": "Person", name: "Harsh Verma" }, ...(a.href ? { sameAs: a.href } : {}),
         ...(a.sources ? { citation: a.sources.map(source => source.href) } : {}),

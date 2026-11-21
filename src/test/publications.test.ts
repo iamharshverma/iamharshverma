@@ -3,8 +3,33 @@ import { publications, filterPublications, publicationCitation } from "@/data/pu
 import { knowledge } from "@/data/knowledge";
 import { impactTopics } from "@/data/knowledge-impact";
 import { connectedWork } from "@/data/knowledge-network";
+import { publicationByNode, publicationPresentation } from '@/lib/publication-presentation';
 
 describe("Source-linked publication archive", () => {
+  it('provides the selected paper and publisher URLs without using the conflicting DOI', () => {
+    const p = publicationByNode('publication:designing-self-healing-ai-agentic-systems-a-framework-for-autonomous-detection-and-response');
+    if (!p) throw new Error('Missing selected paper');
+    expect(publicationPresentation(p).publisherUrl).toBe('https://ijsrm.net');
+    expect(publicationPresentation(p).paperUrl).toBe('https://ijsrm.net/index.php/ijsrm/article/view/6868');
+  });
+  it('keeps unavailable evidence unknown, and does not link unpublished work as a published paper', () => {
+    for (const p of publications) {
+      const display = publicationPresentation(p);
+      expect(display.citations).toBeNull();
+      expect(display.factor).toBeNull();
+      expect(display.emphasis).toBe('unknown');
+      expect(display.paperUrl).toBe(p.status === 'Published' ? p.source : null);
+    }
+  });
+  it('uses sourced citations and journal factors for emphasis while retaining journal identity', () => {
+    const p = publications.find(p => p.number === 14);
+    if (!p) throw new Error('Missing paper');
+    const measured = publicationPresentation(p, { citations: { value: 100, source: 'https://openalex.org', checked: '2026-11-21' } });
+    expect(measured.emphasis).toBe('high');
+    expect(measured.citations?.value).toBe(100);
+    expect(measured.color).toBe(publicationPresentation(p).color);
+    expect(publicationPresentation(p, { journalImpactFactor: { value: 5, year: 2025, source: 'https://clarivate.com' } }).emphasis).toBe('high');
+  });
   it("retains all 27 numbered source records and their original links", () => {
     expect(publications).toHaveLength(27);
     expect(publications.map(p => p.number)).toEqual(Array.from({ length: 27 }, (_, index) => index + 1));

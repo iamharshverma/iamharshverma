@@ -7,7 +7,7 @@ import { PageHero, Reveal } from "@/components/site/Reveal";
 import { PublicationDetails } from "@/components/site/PublicationDetails";
 import { publications, publicationCategories, publicationSource, filterPublications } from "@/data/publications";
 import { contentHead } from "@/lib/content-head";
-import { SITE_URL } from "@/lib/seo";
+import { publicationJsonLd } from "@/lib/publication-seo";
 import { links, research } from "@/data/profile";
 import { KnowledgeAtlas, type AtlasPath } from "@/components/site/KnowledgeAtlas";
 import { knowledge } from "@/data/knowledge";
@@ -15,12 +15,12 @@ const paperItems = knowledge.filter(k => k.id.startsWith("publication:"));
 
 const patentApplications: Record<string, string> = { "Load Testing of a Social Networking Application": "Application 201711003607 · Granted December 3, 2024", "COVID Preventive Automated Entry Point (COPAEP)": "Application 202011024968 · Granted" };
 const title = "Research Publications — Agentic AI, Security & Distributed Systems";
-const description = "Harsh Verma’s 27 research records: published papers, forthcoming work and a manuscript under peer review, with source abstracts, citations, DOI links and connected research.";
+const description = "Explore Harsh Verma’s 27 research records on agentic AI, AI security and distributed systems, with abstracts, publisher links and related work.";
 export const Route = createFileRoute("/publications")({
   validateSearch: (raw: Record<string, unknown>): { q?: string; category?: string; status?: string; year?: string } => Object.fromEntries(["q", "category", "status", "year"].flatMap(key => typeof raw[key] === "string" ? [[key, String(raw[key]).slice(0, 200)]] : [])),
   head: () => {
     const head = contentHead("/publications", title, description);
-    return { ...head, scripts: [...head.scripts, { type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "ItemList", numberOfItems: publications.length, itemListElement: publications.map((p, index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": p.status === "Published" ? "ScholarlyArticle" : "CreativeWork", headline: p.title, url: `${SITE_URL}/publications/${p.slug}`, sameAs: p.source, author: { "@id": `${SITE_URL}/#person` } } })) }) }] };
+    return { ...head, scripts: [...head.scripts, { type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "ItemList", numberOfItems: publications.length, itemListElement: publications.map((p, index) => ({ "@type": "ListItem", position: index + 1, item: publicationJsonLd(p) })) }) }] };
   },
   component: Publications,
 });

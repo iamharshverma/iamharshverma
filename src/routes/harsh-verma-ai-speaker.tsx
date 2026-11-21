@@ -22,8 +22,10 @@ export const Route = createFileRoute("/harsh-verma-ai-speaker")({
       { property: "og:description", content: description },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:image", content: professionalPortrait.url },
-      { name: "twitter:image", content: professionalPortrait.url },
+      ...(professionalPortrait.url.startsWith("https://") ? [
+        { property: "og:image", content: professionalPortrait.url },
+        { name: "twitter:image", content: professionalPortrait.url },
+      ] : []),
     ],
     scripts: [{
       type: "application/ld+json",

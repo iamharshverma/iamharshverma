@@ -52,9 +52,9 @@ export function Header({ onPalette }: { onPalette: () => void }) {
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-6 xl:flex xl:justify-between">
         <Link to="/" aria-label="Harsh Verma home"><Logo /></Link>
         <nav className="hidden items-center gap-0.5 xl:flex">
-          {nav.filter(n => ["/about", "/research", "/knowledge", "/knowledge-impact", "/books", "/speaking", "/collaborate"].includes(n.to)).map((n) => (
+          {nav.filter(n => ["/about", "/research", "/knowledge", "/books", "/speaking", "/media", "/collaborate"].includes(n.to)).map((n) => (
             <Link key={n.to} to={n.to} className="rounded-full px-2 py-1.5 text-sm text-muted-foreground transition hover:text-foreground"
-              activeProps={{ className: "text-brand" }}>{n.to === "/knowledge-impact" ? "Impact" : n.label}</Link>
+              activeProps={{ className: "text-brand" }}>{n.label}</Link>
           ))}
         </nav>
         <div className="flex shrink-0 items-center gap-1">

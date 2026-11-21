@@ -2,6 +2,13 @@ import { education, links, profile } from "@/data/profile";
 
 export const SITE_URL = "https://www.iamharshverma.com";
 
+/** Never turn a year or a month into an invented publication day. */
+export function sourcePublicationDate(value: string): string | undefined {
+  if (!/^(?:[A-Z][a-z]+ \d{1,2}, \d{4}|\d{4}-\d{2}-\d{2})$/.test(value)) return undefined;
+  const timestamp = Date.parse(value);
+  return Number.isNaN(timestamp) ? undefined : new Date(timestamp).toISOString().slice(0, 10);
+}
+
 /** Harsh's other portfolio — same person, declared for search engines only. */
 export const ALT_PORTFOLIO_URL = "https://www.harshverma.me/";
 

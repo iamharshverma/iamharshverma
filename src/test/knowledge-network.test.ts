@@ -11,6 +11,35 @@ import {
   focusedNetworkResources,
   focusedNetworkPositions,
 } from "@/data/knowledge-network";
+import { paperOrbit } from "@/components/site/KnowledgeAtlas";
+
+describe("publications graph home layout", () => {
+  const fits = (spots: { x: number; y: number }[], W: number, H: number, cw: number, ch: number, core: number, coreAt = { x: 50, y: 50 }) => {
+    const hw = cw / 2 / W * 100, hh = ch / 2 / H * 100;
+    const cx0 = coreAt.x - core / 2 / W * 100, cx1 = coreAt.x + core / 2 / W * 100;
+    const cy0 = coreAt.y - core / 2 / H * 100, cy1 = coreAt.y + core / 2 / H * 100;
+    for (const [i, a] of spots.entries()) {
+      expect(a.x - hw).toBeGreaterThanOrEqual(0);
+      expect(a.x + hw).toBeLessThanOrEqual(100);
+      expect(a.y - hh).toBeGreaterThanOrEqual(0);
+      expect(a.y + hh).toBeLessThanOrEqual(100);
+      expect(a.x + hw > cx0 && a.x - hw < cx1 && a.y + hh > cy0 && a.y - hh < cy1).toBe(false);
+      for (const b of spots.slice(i + 1)) {
+        expect(Math.abs(a.x - b.x) / 100 * W < cw && Math.abs(a.y - b.y) / 100 * H < ch).toBe(false);
+      }
+    }
+  };
+  it("puts all 27 papers on one ring page with no overlap", () => {
+    const spots = paperOrbit(27, 0);
+    expect(spots).toHaveLength(27);
+    fits(spots, 1104, 680, 120, 46, 120);
+  });
+  it("puts all 27 papers in one column grid per canvas width with no overlap", () => {
+    fits(paperOrbit(27, 3), 342, 660, 100, 44, 120, { x: 50, y: 8 });
+    fits(paperOrbit(27, 4), 700, 620, 120, 46, 120, { x: 50, y: 8 });
+    fits(paperOrbit(27, 5), 1050, 620, 120, 46, 120, { x: 50, y: 8 });
+  });
+});
 
 describe("Personal Knowledge Hub graph", () => {
   it("topic focus exposes the same real articles, talks and books as the collections", () => {

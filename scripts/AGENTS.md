@@ -1,0 +1,2 @@
+- Refresh sitemap and llms.txt together from validated server-rendered public pages; fail before writing on fetch/metadata errors and retain only canonical destinations, so discovery and prerendering cannot silently lose work.
+- Keep unknown-provenance sitemap lastmod values and never add generation timestamps; dates must reflect significant changes to the individual page.

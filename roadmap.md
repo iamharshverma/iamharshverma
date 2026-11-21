@@ -1,3 +1,5 @@
+- [x] Site-wide SEO: 164 canonical pages with unique titles and complete metadata; source-faithful paper schema and scholar citation tags, hierarchical breadcrumbs, concise summaries, AI discovery directory and redirect-free sitemap. 175 tests pass; publication navigation verified. Google confirms Home, Research and Speaking indexed; Publications unknown. Root-domain TLS remains blocked on the existing DNS issue.
+- [ ] Deliver all latest source changes to iamharshverma/iamharshverma using the provided token, verify Pages deployment and submit the live 164-page sitemap to Google.
 - [x] Optimize five professional search identities across Home, About, Advisory, Speaking and the engineering profile; verified all five page titles, descriptions, single canonicals and sitemap tests.
 - [x] Deliver updated professional search titles to iamharshverma/iamharshverma: GitHub Pages deployment succeeded; live Home and Speaking titles verified.
 - [x] Inspect homepage and Speaking in Search Console: homepage indexed (last crawl November 11); Speaking unknown to Google. Request indexing requires the Search Console UI.
@@ -254,3 +256,13 @@
 - [x] Re-layout the Detail View graph and Card View on phone screens so bigger nodes and cards never overlap and the page does not scroll endlessly; verified 390px card and node views on both Knowledge pages with zero overlaps and a 400px stage.
 - [x] Detail View: Node View default; node click shows popup; bigger topic cards
 - [x] Topic click expands animated category layer
+- [x] Refine publication atlas with journal colors, readable paper buttons and selected-paper publisher links; verified desktop/phone, light/dark and eight tests.
+- [ ] Populate publication citation counts and journal impact factors — blocked on verifiable paper-level counts and journal/year-specific sources.
+- [x] Enrich every publication page with full source abstracts, bibliographic details, unique artwork and linked topic diagrams; verified all 27 pages, image loading, metadata and phone fit.
+- [x] Remove Journal impact factor and Paper citations rows from the publications paper preview and detail facts.
+- [x] Show all 27 papers at once on the publications graph home (no pagination), laid out without overlap on desktop and phone.
+- [x] Add canvas zoom in/out + fit-all buttons so all papers fit and stay visible in the publications graph canvas.
+- [x] Publications explorer: stop at the paper card (no topic level) with View paper link + Out inside the card; paper preview keeps the Publisher button only.
+- [x] Improve every publication page: full paper abstract in each (18 recovered from publisher records, 9 from the author archive, each labelled), richer abstract layout; verified detail pages and phone fit.
+- [x] On /publications, show each paper's topics and related article links in the graph cards; verified topic chips, six linked works and phone fit.
+- [x] Collapse publication details behind Read More and connect all topic-related articles, papers and research as selectable graph nodes; 47 tests pass and desktop/phone flows verified without node overlaps.
