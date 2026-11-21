@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { researchScrollZoom } from "@/lib/research-motion";
+import { Reveal } from "@/components/site/Reveal";
 
 /** A two-dimensional particle fabric; no models, textures or rendering library. */
 function ParticleFabric({ paused }: { paused: boolean }) {
@@ -128,12 +129,14 @@ export function ResearchIntro() {
     <div className="research-intro relative isolate flex h-[560px] items-center overflow-hidden border-b border-border bg-background px-6 pt-24 pb-16 md:h-[680px] md:pt-28 md:pb-20">
       <ParticleFabric paused={paused} />
       <div className="relative z-10 mx-auto w-full max-w-3xl text-center">
-        <p className="eyebrow">// research · patents · writing</p>
-        <h1 className="mt-6 font-display text-4xl font-bold leading-tight md:text-6xl">Ideas,<br /><span className="text-brand-gradient">Patented and<br className="hidden md:block" /> Published.</span></h1>
-        <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">Enterprise patents, peer-reviewed papers, books and a body of open-source systems work.</p>
-        <div className="mt-7 flex justify-center gap-6 font-mono text-xs text-muted-foreground">
-          <span>Founder</span><span>Engineer</span><span>Speaker</span>
-        </div>
+        <Reveal><p className="eyebrow">// research · patents · writing</p></Reveal>
+        <Reveal delay={0.1}><h1 className="mt-6 font-display text-4xl font-bold leading-tight md:text-6xl">Ideas,<br /><span className="text-brand-gradient">Patented and<br className="hidden md:block" /> Published.</span></h1></Reveal>
+        <Reveal delay={0.2}><p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">Enterprise patents, peer-reviewed papers, books and a body of open-source systems work.</p></Reveal>
+        <Reveal delay={0.3}>
+          <div className="mt-7 flex justify-center gap-6 font-mono text-xs text-muted-foreground">
+            <span>Founder</span><span>Engineer</span><span>Speaker</span>
+          </div>
+        </Reveal>
       </div>
       <Button variant="outline" size="icon" onClick={() => setPaused(value => !value)} aria-label={paused ? "Play particle animation" : "Pause particle animation"} title={paused ? "Play animation" : "Pause animation"} aria-pressed={paused} className="absolute right-6 bottom-5 z-10 rounded-full border-border bg-background/80 motion-reduce:hidden">{paused ? <Play className="size-4" /> : <Pause className="size-4" />}</Button>
     </div>
