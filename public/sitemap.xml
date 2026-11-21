@@ -1,6 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.iamharshverma.com/knowledge-impact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.iamharshverma.com/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
@@ -517,5 +522,89 @@
   </url>
   <url>
     <loc>https://www.iamharshverma.com/research/distributed-ai-systems</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/secure-real-time-heterogeneous-data-management-tool</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/real-time-analytics-performance-load-simulation-and-scaling</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/explainable-ai-xai-for-software-engineering-decision-making</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/ethical-challenges-and-bias-mitigation-in-artificial-intelligence-systems</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/cloud-based-ai-systems-for-scalable-and-intelligent-software-applications</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/ai-driven-cybersecurity-in-software-engineering</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/future-trends-in-ai-machine-learning-and-big-data-implications-for-technical-leadership</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/agentic-workflows-for-end-to-end-software-engineering-automation</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/economic-impact-and-productivity-modeling-of-ai-agents</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/ai-agentic-architectures-for-autonomous-data-engineering-pipelines</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/autonomous-multi-agent-systems-for-enterprise-decision-making</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/security-in-multi-agent-ai-systems-modeling-emergent-vulnerabilities-via-trust-graphs</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/clean-attacks-formalizing-semantically-valid-adversarial-behavior-in-autonomous-ai-agent-systems</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/designing-self-healing-ai-agentic-systems-a-framework-for-autonomous-detection-and-response</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/intent-based-security-replacing-identity-centric-trust-in-autonomous-ai-agentic-systems</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/policy-drift-in-learning-ai-agents-a-dynamical-systems-perspective-on-security-degradation</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/toward-a-unified-security-systems-theory-for-autonomous-ai-systems</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/ai-powered-anomaly-detection-in-cloud-based-applications</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/secure-ai-systems-protecting-machine-learning-models-from-emerging-cyber-threats</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/adversarial-machine-learning-security-risks-and-defense-strategies-in-ai-driven-applications</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/blockchain-enabled-artificial-intelligence-and-ai-agents-for-secure-data-sharing-and-cybersecurity-applications</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/automated-vulnerability-patching-in-legacy-code-using-llms-and-multi-ai-agents</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/multi-agent-differential-evolution-based-trajectory-planning-ma-debtp-for-delay-sensitive-data-collection-in-intermittently-connected-delay-tolerant-wireless-sensor-networks</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/data-quality-feature-engineering-and-model-reliability-in-large-scale-ai-multi-agentic-systems</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/scalable-real-time-data-pipelines-for-ai-and-machine-learning-driven-enterprise-systems</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/beyond-models-building-trusted-ai-in-the-age-of-autonomous-agents</loc>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/publications/deica-ml-a-multi-layer-differential-evolution-based-improved-clustering-algorithm-for-iot-based-heterogeneous-wireless-sensor-networks</loc>
   </url>
 </urlset>

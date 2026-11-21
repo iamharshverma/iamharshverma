@@ -60,7 +60,7 @@ function Research() {
       <section aria-labelledby="research-pillars-heading" className="mx-auto max-w-6xl px-6 pt-12">
         <Reveal><p className="eyebrow">Research & Expertise</p><h2 id="research-pillars-heading" className="mt-4 font-display text-3xl font-semibold md:text-5xl">Six Research Pillars</h2></Reveal>
         <div className="mt-8"><KnowledgeCards variant="pillars" items={knowledge.filter(item => item.kind === "Research")} /></div>
-        <div className="mt-8 flex flex-wrap gap-5 text-sm text-brand"><Link to="/engineering">Engineering & Architecture →</Link><Link to="/knowledge">Explore the Knowledge Hub →</Link></div>
+        <div className="mt-8 flex flex-wrap gap-5 text-sm text-brand"><Link to="/publications">Research Publications →</Link><Link to="/engineering">Engineering & Architecture →</Link><Link to="/knowledge">Explore the Knowledge Hub →</Link></div>
       </section>
       <section id="writing" className="mx-auto max-w-6xl px-6 pt-16">
         <div className="flex flex-wrap items-end justify-between gap-4">

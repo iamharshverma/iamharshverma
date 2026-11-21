@@ -6,6 +6,7 @@ import { articleKeywords, articleSeoDescription, articleSeoImage, articleSeoTitl
 import { Subscribe } from "@/components/site/Subscribe";
 import { KnowledgeCards } from "@/components/site/KnowledgeCards";
 import { relatedKnowledge, topicsFor } from "@/data/knowledge";
+import { KnowledgeGraphEntry } from "@/components/site/KnowledgeGraphEntry";
 
 export const Route = createFileRoute("/insights/$slug")({
   loader: ({ params }) => { const a = findInsight(params.slug); if (!a) throw notFound(); return a; },
@@ -78,7 +79,7 @@ function Article() {
       </>)}
       <div className="mt-14 rounded-2xl border border-border bg-card p-6"><p className="font-display text-xl font-bold">Enjoyed this? Get the next one.</p><p className="mt-1 mb-4 text-sm text-muted-foreground">Occasional essays on agentic AI and security.</p><Subscribe list="newsletter" /></div>
       {more.length > 0 && <div className="mt-14"><p className="eyebrow">More on {a.topic}</p><ul className="mt-4 divide-y divide-border">{more.map((m) => <li key={m.slug}><Link to="/insights/$slug" params={{ slug: m.slug }} className="block py-4 font-display text-lg hover:text-brand">{m.title}</Link></li>)}</ul></div>}
-      <section className="mt-14 border-t border-border pt-8"><h2 className="font-display text-2xl font-semibold">Connected research & resources</h2><div className="mt-6"><KnowledgeCards items={relatedKnowledge(topicsFor(a.title + a.excerpt), `article:${a.slug}`, 3)} /></div><Link to="/knowledge" className="mt-6 inline-block text-sm text-brand">Explore the full Knowledge Hub →</Link></section>
+      <section className="mt-14 border-t border-border pt-8"><h2 className="font-display text-2xl font-semibold">Connected research & resources</h2><KnowledgeGraphEntry id={`article:${a.slug}`} /><div className="mt-6"><KnowledgeCards items={relatedKnowledge(topicsFor(a.title + a.excerpt), `article:${a.slug}`, 3)} /></div><Link to="/knowledge" className="mt-6 inline-block text-sm text-brand">Explore the full Knowledge Hub →</Link></section>
     </article>
   );
 }

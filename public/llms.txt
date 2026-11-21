@@ -2,6 +2,7 @@
 > Principal Software Engineer at Palo Alto Networks | AI, Cybersecurity & Agentic Systems. Author, keynote speaker and contributor to technical research discussions.
 
 ## Pages
+- [Knowledge Impact](https://www.iamharshverma.com/knowledge-impact): Interactive research graph, concept intersections, four deterministic educational agent simulations and an unassessed engineering radar. Personal technical perspectives; no live enterprise actions or invented adoption ratings.
 - [Knowledge Hub](https://www.iamharshverma.com/knowledge): Search and filter public articles, research perspectives, engineering reviews, books, talks and media.
 - [Engineering & Architecture](https://www.iamharshverma.com/engineering): Source-based public project reviews; no confidential employer architectures or claimed production benchmarks.
 - [Resources](https://www.iamharshverma.com/resources): Download exact 50-, 100- and 250-word biographies and press/speaker/media kits.

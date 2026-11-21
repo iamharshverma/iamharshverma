@@ -5,6 +5,7 @@ import { PageHero } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
 import { KnowledgeCards } from "@/components/site/KnowledgeCards";
 import { relatedKnowledge, topicsFor } from "@/data/knowledge";
+import { KnowledgeGraphEntry } from "@/components/site/KnowledgeGraphEntry";
 export const Route = createFileRoute("/books_/$slug")({
   loader: ({ params }) => {
     const book = books.find((b) => b.slug === params.slug);
@@ -109,6 +110,7 @@ function BookDetail() {
           </div>
         </section>
         <h2 className="mt-14 font-display text-3xl font-semibold">Related writing & talks</h2>
+        <KnowledgeGraphEntry id={`book:${b.slug}`} />
         <div className="mt-8">
           <KnowledgeCards
             items={relatedKnowledge(topicsFor(b.title + b.pitch), `book:${b.slug}`, 3)}

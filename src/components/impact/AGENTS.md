@@ -1,0 +1,3 @@
+- Agent diagrams use ReactFlow and preserve dragged positions across trace updates, so playback never rearranges the visitor's layout.
+- Radar and concept diagrams share react-zoom-pan-pinch controls; wheel scrolling stays native to protect page navigation.
+- Simulations retain deterministic domain rules; playback speed, scrubbing and pinned outcome counts are presentation-only, not external actions or scored assessments.

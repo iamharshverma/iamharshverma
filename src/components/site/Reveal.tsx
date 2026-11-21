@@ -1,11 +1,13 @@
 import { animate, motion, useInView, useReducedMotion } from "framer-motion";
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
 export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
   const reducedMotion = useReducedMotion();
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => { setHydrated(true); }, []);
   return (
-    <motion.div className={`content-reveal ${className ?? ""}`} initial={reducedMotion ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}>
+    <motion.div className={`content-reveal ${className ?? ""}`} initial={{ opacity: 0, y: 24 }} animate={hydrated && reducedMotion ? { opacity: 1, y: 0 } : false} whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }} transition={{ duration: reducedMotion && hydrated ? 0 : 0.7, delay: reducedMotion && hydrated ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}>
       {children}
     </motion.div>
   );

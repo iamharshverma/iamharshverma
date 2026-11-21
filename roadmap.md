@@ -190,3 +190,67 @@
 - [x] Research Archive: show 6 entries, Explore All button reveals rest; filter resets
 - [x] Resources: rounded download cards, pill buttons, rounded book cards with hover tilt
 - [x] Push all latest changes to iamharshverma/iamharshverma — commit 44ddea2 delivered, Pages deployment succeeded, live /research and /resources verified
+
+## Knowledge Impact
+- [x] Add graph-local topic/work search with keyboard selection, focused nodes and linked entries; verified topic and publication jumps without exiting full-screen.
+- [x] Create Publications index and 27 detail pages with source abstracts, citations, original links, unique artwork and published/forthcoming/review statuses; connect all records to Hub/Impact, navigation and sitemap. Verified filters, dialogs, graph round-trip, 27 HTTP-200 detail pages and 32 tests.
+- [x] Keep categories local with selected-entry/node highlights and full-screen retained on both pages; relocate mini-map below inspector headings, animate clickable HV, align introduction icons and verify desktop/mobile navigation.
+- [x] Refine Landscape, Playground and Radar interactions; add native/fallback full-screen exploration on both knowledge pages, move the Impact symbol inward, verify retained agent positions, permission outcomes, comparison, real book links, mobile/reduced-motion/light views and 28 tests.
+- [x] Refine Knowledge Impact workspace, context selection, four-view navigation and source discovery; verified context-to-graph synchronization, keyboard tabs, all simulation scenarios, radar comparisons, shared settings and mobile/light/noir layouts.
+- [x] Improve topic-to-content navigation, readable focused graphs, direct resource links and graph interaction; verified topic scroll, real article/talk/book and graph-node navigation, dragging/zoom/expand, reduced motion, unique thumbnails and 27 regression tests.
+- [x] Unify all 116 resource nodes across both graph pages with 848 deduplicated cross-format subject links, selectable related works and contextual entry links on all content detail pages; verified book → talk → graph, patent/article → graph, reload, mobile, thumbnail uniqueness and 25 tests. No GitHub push.
+- [x] Refine both knowledge graphs and page sections with colored domains, focus/expand/pause controls and editorial collections; eliminate repeated page thumbnails, add eight unique domain illustrations, and verify desktop/mobile, light/noir, all four lenses and 21 tests.
+- [x] Classify domain-selected Knowledge Hub results below the graph with shared collection counts and jump controls; refine focus, expand/compact, hover previews and pausable animation. Verified trust's 6 articles, 3 research, 2 keynotes and 3 media entries, defense's book, desktop/phone fit, reduced motion, no page errors and 18 related tests.
+- [x] Add shareable Knowledge Impact URLs preserving selected concept, graph view/search/clusters and all simulation settings; verified reload, clipboard links in a second page, and no automatic execution.
+- [x] Refine all /knowledge-impact sections with cohesive theme-aware visuals, source artwork and complete topic-matched portal connections; verified all four lenses, scenarios, mobile, light/noir themes, and 97 passing tests.
+- [x] Add a reference-inspired personal knowledge graph to /knowledge connecting all 116 library records with selectable topics, filtered resources and original detail-page links; verified desktop/mobile, reload, reset and article navigation.
+- [x] Audit source content and establish a connected, theme-aware observatory without replacing existing pages.
+- [x] Add research graph, concept intersections and contextual source navigation.
+- [x] Implement four deterministic simulations with adjustable permissions, trust, injection, risk and approval.
+- [x] Add searchable engineering radar, honest unassessed classifications and technology comparison.
+- [x] Connect topic state across experiences; add navigation, sitemap and crawlable metadata.
+- [x] Verify desktop/mobile, keyboard access, simulation outcomes, source links and existing pages. Chromium checks passed; other browser engines and published GitHub deployment are not verified in this request.
+- [x] Media page: fade left/right edges of the selected strip
+- [x] Layered zoom explorer (topics→categories→entries→entry→detail) on Knowledge Hub and Impact
+- [x] Atlas: mobile layer bar, Publications paper explorer, small back/forward zoom buttons, light-theme contrast
+- [x] In/Out arrow buttons on atlas center node
+- [x] Borderless floating In/Out node buttons
+- [x] HV layer highlight, animated links, labelled select button
+- [x] Draggable atlas nodes with following curved edges
+- [x] Make "Select a category" button text small and animated (KnowledgeAtlas core-nav)
+- [x] Merge Hub and Impact explorers into Graph View (Topic / Category) and layered Detail List View; verify switching, selection, full-screen and phone layouts.
+- [x] Make phone layers and floating Out/In controls usable on Hub, Impact and Publications; add a Home action returning to the HV center.
+- [x] Detail List View: animate entry focus, then show a half-screen list popup over the graph; highlight topic/category-linked nodes and edges.
+- [x] Fix entry clicks to open full details immediately and prevent competing zoom movements.
+- [x] Keep focus animation and full details together on one click; add a top-right Close button.
+- [x] Add animated zoom-in/out detail navigation with entry-targeted wheel zoom and zoom buttons.
+- [x] Keep selected entry centered in the visible graph beside its popup and dim unrelated entries.
+- [x] Verify repeated zoom-out: popup → selected node → topic/category → HV.
+- [x] Blank-area click deselects the entry and fits the graph.
+- [x] Zoom-in near a topic node (wheel or + button while hovering) opens that topic's top list view.
+- [x] Add a download button to the graph view to save the graph as a shareable image.
+- [x] Clicking anywhere outside the entry detail popup closes it and shows the graph.
+- [x] Keep Detail View filters on the connected-dot graph, focus only related nodes/edges, and verify flowing topic/category highlights on Hub and Impact.
+- [x] Enlarge and highlight standout nodes from each topic using existing portfolio connections; verified three size tiers, details, pause, reduced motion and dark/light views on Hub and Impact.
+- [x] Top Knowledge Hub filters scroll to the graph without changing the current view; verified topic clicks, repeated clicks and content filters on desktop and phone.
+- [x] Replace connection-based prominence with a disclosed combined-evidence scoring system, fixed score-based sizing, per-entry evidence and unscored status; 125 tests pass.
+- [x] Topic node clicks open readable connected entries on Hub/Impact; desktop and phone topic→entry→home verified without errors.
+- [x] Add score-dependent size transitions and timed change highlights, with pause/reduced-motion guards and increase/decrease/repeated-change tests; live evidence updates cannot be exercised until measurements are supplied.
+- [x] Polish topic nodes with colored rails, readable work counts, selection highlights and directional arrows.
+- [ ] Populate per-work impact scores and highlight biggest evidence-backed works per topic — blocked on verified citation, audience and adoption source measurements; no fabricated scores or connection-based substitutes.
+- [x] Separate Detail View into Node View (zoomed in-node details) and Card View (readable cards and popup); verified topic, entry, switching, close and home on both pages at desktop/phone widths.
+- [x] Apply shared impact sizing within topic-level Node View; actual enlargement remains blocked on the evidence task above.
+- [x] Stabilize graph inputs and camera, retain mounted nodes, remove card reveal flicker, and add score-based card dimensions; 129 tests pass, both selected-entry cameras remain stable across repeated samples.
+- [x] Verify selected-entry Node View stays stable on both pages; phone node close control remains accessible after camera adjustment.
+- [x] Remove zoom-canvas animation flicker and verify static light dotted connections in both detail modes on Hub and Impact at desktop/phone widths.
+- [x] Verify topic-level nodes and cards use the same evidence score and size bands; scoring and card-size tests pass. Actual scored highlights remain blocked on per-work evidence above.
+- [x] Add stable illustrative highlights for at least three entries per topic, share weights between nodes and cards, and verify both knowledge pages with stable desktop/phone zoom and no repeating canvas animations.
+- [ ] Detail View: empty-space click re-centres on the focused topic cluster and the topic card gains a back-to-graph-home control; verify both pages at desktop/phone widths.
+- [ ] Detail View graphs: bring Graph View's motion (flowing links, node emphasis) into Node and Card detail modes without reintroducing zoom flicker; verify both knowledge pages.
+- [ ] Move the Node View / Card View toggle below the topic row on both knowledge pages; verify desktop and phone.
+- [ ] Detail View nodes: grow and animate on hover with a larger info tip; keep the camera stable and respect reduced motion; verify both knowledge pages.
+- [ ] Detail View topic cards: grow on hover and show an info tip with the topic's own details (work count, kinds, description); verify both knowledge pages.
+- [ ] Blink the largest nodes in Detail View and in the topic layer with a cheap opacity/transform ring, gated on motion settings; re-verify zoom stability on both pages.
+- [x] Re-layout the Detail View graph and Card View on phone screens so bigger nodes and cards never overlap and the page does not scroll endlessly; verified 390px card and node views on both Knowledge pages with zero overlaps and a 400px stage.
+- [x] Detail View: Node View default; node click shows popup; bigger topic cards
+- [x] Topic click expands animated category layer

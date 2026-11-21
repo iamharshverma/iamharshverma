@@ -49,6 +49,8 @@ export function KnowledgeLink({
         {children}
       </Link>
     );
+  if (item.id.startsWith("publication:"))
+    return <Link className={className} to="/publications/$slug" params={{ slug: item.slug }}>{children}</Link>;
   if (["Patent", "Publication", "Project", "Resource"].includes(item.kind))
     return (
       <Link className={className} to="/research/works/$slug" params={{ slug: item.slug }}>

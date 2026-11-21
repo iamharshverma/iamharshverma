@@ -45,6 +45,7 @@ use the editor.
 - Home and About reuse PortraitOrbit with page-specific center text, center links and optional section links passed as props, so portrait links and scroll animation stay consistent without changing other pages.
 - PortraitOrbit measures geometry with ResizeObserver and animates numeric transforms; React state changes only at expansion boundaries to avoid per-frame layout and rerenders.
 - PageHero accepts optional side media without changing text-only pages; About owns its editorial portrait introduction and accessible background disclosure to keep both designs page-specific.
+- Knowledge pages select their own unlabeled SVG symbol from KnowledgeHeroIcons; animations pause offscreen, on hidden tabs and with reduced motion to keep shared introductions unchanged.
 - Press resources and sourced recommendations live in src/data; the press PDF is prebuilt from the same biography and topics and served as a same-origin static download.
 - GitHub Pages static build: `vite.pages.config.ts` + `.github/workflows/github-pages.yml`, toggled by `deploy.config.json`; server features fall back via `src/lib/site-mode.ts` (STATIC_SITE). Why: Pages has no server. Uploaded photos are mirrored in `github-pages/__l5e` because Lovable asset URLs only resolve on Lovable hosting — re-copy when adding assets.
 - Preserve the existing static sitemap and domain; GitHub Pages prerenders every sitemap URL with link crawling disabled and fails on rendering errors so crawlers receive page-specific HTML without attempting asset downloads. Omit lastmod unless a page-specific significant-change timestamp is authoritative.
@@ -61,3 +62,11 @@ use the editor.
 - Offline press-resource generation reads shared biography records, keeping downloadable copies consistent without adding server-side PDF dependencies.
 - Shared identity owns biographies; counters render final values in SSR, then count up once in view with reduced-motion support; static forms confirm only draft intent to avoid false delivery claims.
 - Media thumbnail overrides are keyed by original source URL and shared by classified cards and spotlight; sections render their complete category inventory so no source is omitted.
+- Knowledge Impact shares explicit topic relationships and existing resource records; URL search preserves context across graph, concepts, deterministic browser-only simulations and an unassessed radar, avoiding duplicate archives and unsupported adoption claims.
+- The Knowledge Hub graph derives every resource and subject edge from the shared library, with a deterministic d3-force layout and ReactFlow interaction; filters remain URL-backed and untagged records use a portfolio domain so no records disappear.
+- Focused graphs use readable resource nodes and direct KnowledgeLink actions; topic clicks reach collections, inspector categories filter locally without exiting full-screen, and the same graph context powers the inspector mini-map.
+- Both knowledge pages reuse one full-portfolio graph; cross-format edges derive shared subjects, not citations. Content detail pages link to URL-selected resource nodes for contextual exploration.
+- Knowledge Hub results and graph collection shortcuts use one content-kind classifier; motion stays on visual elements with pause, visibility and reduced-motion guards to avoid per-frame React updates.
+- Knowledge Impact shares full topic-matched portal resources across every lens; its validated URL owns graph and simulation configuration, while running progress remains local so shared links never execute automatically.
+- Knowledge pages reserve thumbnails for resource collections and dedicated domain artwork; inspectors and source anchors use text to prevent duplicate covers on a page. Domain artwork is centralized and mirrored for static hosting.
+- KnowledgeExplorer shares selection/fullscreen; details are exclusive.

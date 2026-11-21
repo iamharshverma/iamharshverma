@@ -1,3 +1,7 @@
 - Media Center derives sections and spotlight from existing media records only, without automatically merging blogs; preserve source URLs and distinguish newswire distributions from editorial coverage.
 - Media impact metrics retain their configured values, labels, suffixes and the shared Counter animation; archive inventory must never replace owner-provided reach figures.
 - Media cards open shared accessible detail dialogs; verified video destinations supplement original source links, and unavailable publishers are flagged without inventing replacement URLs.
+- Publication records preserve source-reported status and abstracts; DOI conflicts are flagged rather than corrected by guesswork, and each record owns unique editorial artwork.
+- Publications own their collection/detail routes and feed the shared knowledge library once; the legacy IEEE reference redirects to the canonical paper to avoid duplicate nodes.
+- Per-work impact uses source-dated measurements in work-impact.ts and fixed disclosed equal-weight log benchmarks; unknown evidence stays null so graph connectivity cannot masquerade as measured impact.
+- Illustrative graph weights are deterministic per-work visual emphasis, distinct from evidence scores; nodes and cards share weights across topics to prevent resizing or false impact claims.

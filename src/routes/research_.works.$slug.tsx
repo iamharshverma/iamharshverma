@@ -1,11 +1,17 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
+import { publications } from "@/data/publications";
 import { knowledge, relatedKnowledge } from "@/data/knowledge";
 import { contentHead } from "@/lib/content-head";
 import { PageHero } from "@/components/site/Reveal";
 import { KnowledgeCards } from "@/components/site/KnowledgeCards";
 import { Button } from "@/components/ui/button";
+import { KnowledgeGraphEntry } from "@/components/site/KnowledgeGraphEntry";
 export const Route = createFileRoute("/research_/works/$slug")({
   loader: ({ params }) => {
+    if (params.slug === "ieee-cogml-2019-secure-real-time-streaming-with-deep-learning") {
+      const first = publications[0];
+      if (first) throw redirect({ to: "/publications/$slug", params: { slug: first.slug }, statusCode: 301 });
+    }
     const item = knowledge.find(
       (i) =>
         ["Patent", "Publication", "Project", "Resource"].includes(i.kind) && i.slug === params.slug,
@@ -60,6 +66,7 @@ function WorkDetail() {
           </Button>
         )}
         <h2 className="mt-14 font-display text-3xl font-semibold">Related research & writing</h2>
+        <KnowledgeGraphEntry id={i.id} />
         <div className="mt-8">
           <KnowledgeCards items={relatedKnowledge(i.topics, i.id, 6)} />
         </div>

@@ -5,6 +5,7 @@ import { PageHero } from "@/components/site/Reveal";
 import { ArchitectureFlow } from "@/components/site/ArchitectureFlow";
 import { KnowledgeCards } from "@/components/site/KnowledgeCards";
 import { relatedKnowledge, topicsFor } from "@/data/knowledge";
+import { KnowledgeGraphEntry } from "@/components/site/KnowledgeGraphEntry";
 export const Route = createFileRoute("/engineering/$slug")({
   loader: ({ params }) => {
     const study = caseStudies.find((s) => s.slug === params.slug);
@@ -64,6 +65,7 @@ function CaseStudy() {
           </p>
         </section>
         <h2 className="mt-14 font-display text-3xl font-semibold">Related perspectives</h2>
+        <KnowledgeGraphEntry id={`case:${study.slug}`} />
         <div className="mt-8">
           <KnowledgeCards
             items={relatedKnowledge(topicsFor(study.title + study.topic), `case:${study.slug}`, 3)}

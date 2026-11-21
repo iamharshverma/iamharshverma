@@ -6,6 +6,7 @@ import { PageHero } from "@/components/site/Reveal";
 import { ArchitectureFlow } from "@/components/site/ArchitectureFlow";
 import { KnowledgeCards } from "@/components/site/KnowledgeCards";
 import { Button } from "@/components/ui/button";
+import { KnowledgeGraphEntry } from "@/components/site/KnowledgeGraphEntry";
 export const Route = createFileRoute("/research_/$pillar")({
   loader: ({ params }) => {
     const pillar = researchPillars.find((p) => p.slug === params.pillar);
@@ -87,6 +88,7 @@ function Pillar() {
           ))}
         </ul>
         <h2 className="mt-16 font-display text-3xl font-semibold">Connected work</h2>
+        <KnowledgeGraphEntry id={`research:${p.slug}`} />
         <div className="mt-8">
           <KnowledgeCards
             items={relatedKnowledge(topicsFor(p.title + p.summary), `research:${p.slug}`, 6)}

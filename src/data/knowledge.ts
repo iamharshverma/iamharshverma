@@ -6,6 +6,7 @@ import { researchPillars } from "./research-pillars";
 import { caseStudies } from "./case-studies";
 import { contentImage } from "./content-images";
 import { resourceImages } from "./resource-images";
+import { publications } from "./publications";
 import { knowledgeImages } from "./knowledge-images";
 
 export const knowledgeTopics = [
@@ -37,7 +38,7 @@ export const topicsFor = (text: string): string[] => {
     ["Agent trust", /trust|reputation|evidence|accountab/],
     ["Autonomous defense", /defen|counteroff|incident|threat|self-healing/],
     ["Distributed systems", /distribut|hash|concurr|data orchestrat|hadoop/],
-    ["AI engineering", /engineer|evaluation|machine learning|token|stem|vision/],
+    ["AI engineering", /engineer|evaluation|machine learning|token|stem|vision|physical ai|production gap|reliab/],
   ];
   return rules.filter(([, pattern]) => pattern.test(t)).map(([topic]) => topic);
 };
@@ -178,7 +179,8 @@ export const knowledge: KnowledgeItem[] = [
       publisher: r.meta,
       year: r.year,
       source: r.href ?? "",
-    })),
+    })).filter(item => item.title !== "IEEE CogML 2019 — Secure real-time streaming with deep learning"),
+  ...publications.map(p => ({ id: `publication:${p.slug}`, slug: p.slug, kind: "Publication", title: p.title, summary: `${p.status} · ${p.abstract}`, topics: p.topics, technology: [], publisher: p.publisher, year: p.year, source: p.source, image: p.image })),
   ...resources.map((r) => ({
     id: `resource:${r.slug}`,
     slug: r.slug,
@@ -194,6 +196,7 @@ export const knowledge: KnowledgeItem[] = [
   })),
 ].map((item) => ({ ...item, image: knowledgeImages[item.title] ?? contentImage(item.title, item.kind, "image" in item ? item.image : undefined) }));
 export type KnowledgeFilters = {
+  resource?: string;
   q?: string;
   kind?: string;
   topic?: string;

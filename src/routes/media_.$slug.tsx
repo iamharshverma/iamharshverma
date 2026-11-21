@@ -4,6 +4,7 @@ import { contentHead } from "@/lib/content-head";
 import { PageHero } from "@/components/site/Reveal";
 import { KnowledgeCards } from "@/components/site/KnowledgeCards";
 import { Button } from "@/components/ui/button";
+import { KnowledgeGraphEntry } from "@/components/site/KnowledgeGraphEntry";
 export const Route = createFileRoute("/media_/$slug")({
   loader: ({ params }) => {
     const item = knowledge.find((i) => i.kind === "Media" && i.slug === params.slug);
@@ -55,6 +56,7 @@ function MediaDetail() {
           imply an independent editorial classification that has not been verified.
         </p>
         <h2 className="mt-14 font-display text-3xl font-semibold">Related work</h2>
+        <KnowledgeGraphEntry id={i.id} />
         <div className="mt-8">
           <KnowledgeCards items={relatedKnowledge(i.topics, i.id, 3)} />
         </div>

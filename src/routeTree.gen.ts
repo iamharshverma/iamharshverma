@@ -22,9 +22,11 @@ import { Route as ForbesRouteImport } from './routes/forbes'
 import { Route as HackernoonRouteImport } from './routes/hackernoon'
 import { Route as HarshVermaAiSpeakerRouteImport } from './routes/harsh-verma-ai-speaker'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
+import { Route as KnowledgeImpactRouteImport } from './routes/knowledge-impact'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as MediaKitRouteImport } from './routes/media-kit'
 import { Route as PressKitRouteImport } from './routes/press-kit'
+import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as RecognitionRouteImport } from './routes/recognition'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ResourcesRouteImport } from './routes/resources'
@@ -39,6 +41,7 @@ import { Route as EngineeringSlugRouteImport } from './routes/engineering.$slug'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as MediaSlugRouteImport } from './routes/media_.$slug'
+import { Route as PublicationsSlugRouteImport } from './routes/publications_.$slug'
 import { Route as ResearchPillarRouteImport } from './routes/research_.$pillar'
 import { Route as TalksSlugRouteImport } from './routes/talks.$slug'
 import { Route as ResearchWorksSlugRouteImport } from './routes/research_.works.$slug'
@@ -108,6 +111,11 @@ const KnowledgeRoute = KnowledgeRouteImport.update({
   path: '/knowledge',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KnowledgeImpactRoute = KnowledgeImpactRouteImport.update({
+  id: '/knowledge-impact',
+  path: '/knowledge-impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MediaRoute = MediaRouteImport.update({
   id: '/media',
   path: '/media',
@@ -121,6 +129,11 @@ const MediaKitRoute = MediaKitRouteImport.update({
 const PressKitRoute = PressKitRouteImport.update({
   id: '/press-kit',
   path: '/press-kit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicationsRoute = PublicationsRouteImport.update({
+  id: '/publications',
+  path: '/publications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecognitionRoute = RecognitionRouteImport.update({
@@ -193,6 +206,11 @@ const MediaSlugRoute = MediaSlugRouteImport.update({
   path: '/media/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicationsSlugRoute = PublicationsSlugRouteImport.update({
+  id: '/publications_/$slug',
+  path: '/publications/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResearchPillarRoute = ResearchPillarRouteImport.update({
   id: '/research_/$pillar',
   path: '/research/$pillar',
@@ -223,9 +241,11 @@ export interface FileRoutesByFullPath {
   '/hackernoon': typeof HackernoonRoute
   '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
   '/knowledge': typeof KnowledgeRoute
+  '/knowledge-impact': typeof KnowledgeImpactRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
+  '/publications': typeof PublicationsRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
@@ -238,6 +258,7 @@ export interface FileRoutesByFullPath {
   '/engineering/$slug': typeof EngineeringSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/media/$slug': typeof MediaSlugRoute
+  '/publications/$slug': typeof PublicationsSlugRoute
   '/research/$pillar': typeof ResearchPillarRoute
   '/talks/$slug': typeof TalksSlugRoute
   '/engineering/': typeof EngineeringIndexRoute
@@ -257,9 +278,11 @@ export interface FileRoutesByTo {
   '/hackernoon': typeof HackernoonRoute
   '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
   '/knowledge': typeof KnowledgeRoute
+  '/knowledge-impact': typeof KnowledgeImpactRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
+  '/publications': typeof PublicationsRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
@@ -272,6 +295,7 @@ export interface FileRoutesByTo {
   '/engineering/$slug': typeof EngineeringSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/media/$slug': typeof MediaSlugRoute
+  '/publications/$slug': typeof PublicationsSlugRoute
   '/research/$pillar': typeof ResearchPillarRoute
   '/talks/$slug': typeof TalksSlugRoute
   '/engineering': typeof EngineeringIndexRoute
@@ -293,9 +317,11 @@ export interface FileRoutesById {
   '/hackernoon': typeof HackernoonRoute
   '/harsh-verma-ai-speaker': typeof HarshVermaAiSpeakerRoute
   '/knowledge': typeof KnowledgeRoute
+  '/knowledge-impact': typeof KnowledgeImpactRoute
   '/media': typeof MediaRoute
   '/media-kit': typeof MediaKitRoute
   '/press-kit': typeof PressKitRoute
+  '/publications': typeof PublicationsRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
@@ -308,6 +334,7 @@ export interface FileRoutesById {
   '/engineering/$slug': typeof EngineeringSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/media_/$slug': typeof MediaSlugRoute
+  '/publications_/$slug': typeof PublicationsSlugRoute
   '/research_/$pillar': typeof ResearchPillarRoute
   '/talks/$slug': typeof TalksSlugRoute
   '/engineering/': typeof EngineeringIndexRoute
@@ -330,9 +357,11 @@ export interface FileRouteTypes {
     | '/hackernoon'
     | '/harsh-verma-ai-speaker'
     | '/knowledge'
+    | '/knowledge-impact'
     | '/media'
     | '/media-kit'
     | '/press-kit'
+    | '/publications'
     | '/recognition'
     | '/research'
     | '/resources'
@@ -345,6 +374,7 @@ export interface FileRouteTypes {
     | '/engineering/$slug'
     | '/insights/$slug'
     | '/media/$slug'
+    | '/publications/$slug'
     | '/research/$pillar'
     | '/talks/$slug'
     | '/engineering/'
@@ -364,9 +394,11 @@ export interface FileRouteTypes {
     | '/hackernoon'
     | '/harsh-verma-ai-speaker'
     | '/knowledge'
+    | '/knowledge-impact'
     | '/media'
     | '/media-kit'
     | '/press-kit'
+    | '/publications'
     | '/recognition'
     | '/research'
     | '/resources'
@@ -379,6 +411,7 @@ export interface FileRouteTypes {
     | '/engineering/$slug'
     | '/insights/$slug'
     | '/media/$slug'
+    | '/publications/$slug'
     | '/research/$pillar'
     | '/talks/$slug'
     | '/engineering'
@@ -399,9 +432,11 @@ export interface FileRouteTypes {
     | '/hackernoon'
     | '/harsh-verma-ai-speaker'
     | '/knowledge'
+    | '/knowledge-impact'
     | '/media'
     | '/media-kit'
     | '/press-kit'
+    | '/publications'
     | '/recognition'
     | '/research'
     | '/resources'
@@ -414,6 +449,7 @@ export interface FileRouteTypes {
     | '/engineering/$slug'
     | '/insights/$slug'
     | '/media_/$slug'
+    | '/publications_/$slug'
     | '/research_/$pillar'
     | '/talks/$slug'
     | '/engineering/'
@@ -435,9 +471,11 @@ export interface RootRouteChildren {
   HackernoonRoute: typeof HackernoonRoute
   HarshVermaAiSpeakerRoute: typeof HarshVermaAiSpeakerRoute
   KnowledgeRoute: typeof KnowledgeRoute
+  KnowledgeImpactRoute: typeof KnowledgeImpactRoute
   MediaRoute: typeof MediaRoute
   MediaKitRoute: typeof MediaKitRoute
   PressKitRoute: typeof PressKitRoute
+  PublicationsRoute: typeof PublicationsRoute
   RecognitionRoute: typeof RecognitionRoute
   ResearchRoute: typeof ResearchRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -449,6 +487,7 @@ export interface RootRouteChildren {
   BooksSlugRoute: typeof BooksSlugRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
   MediaSlugRoute: typeof MediaSlugRoute
+  PublicationsSlugRoute: typeof PublicationsSlugRoute
   ResearchPillarRoute: typeof ResearchPillarRoute
   TalksSlugRoute: typeof TalksSlugRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
@@ -548,6 +587,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KnowledgeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/knowledge-impact': {
+      id: '/knowledge-impact'
+      path: '/knowledge-impact'
+      fullPath: '/knowledge-impact'
+      preLoaderRoute: typeof KnowledgeImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/media': {
       id: '/media'
       path: '/media'
@@ -567,6 +613,13 @@ declare module '@tanstack/react-router' {
       path: '/press-kit'
       fullPath: '/press-kit'
       preLoaderRoute: typeof PressKitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/publications': {
+      id: '/publications'
+      path: '/publications'
+      fullPath: '/publications'
+      preLoaderRoute: typeof PublicationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recognition': {
@@ -667,6 +720,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MediaSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/publications_/$slug': {
+      id: '/publications_/$slug'
+      path: '/publications/$slug'
+      fullPath: '/publications/$slug'
+      preLoaderRoute: typeof PublicationsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/research_/$pillar': {
       id: '/research_/$pillar'
       path: '/research/$pillar'
@@ -719,9 +779,11 @@ const rootRouteChildren: RootRouteChildren = {
   HackernoonRoute: HackernoonRoute,
   HarshVermaAiSpeakerRoute: HarshVermaAiSpeakerRoute,
   KnowledgeRoute: KnowledgeRoute,
+  KnowledgeImpactRoute: KnowledgeImpactRoute,
   MediaRoute: MediaRoute,
   MediaKitRoute: MediaKitRoute,
   PressKitRoute: PressKitRoute,
+  PublicationsRoute: PublicationsRoute,
   RecognitionRoute: RecognitionRoute,
   ResearchRoute: ResearchRoute,
   ResourcesRoute: ResourcesRoute,
@@ -733,6 +795,7 @@ const rootRouteChildren: RootRouteChildren = {
   BooksSlugRoute: BooksSlugRoute,
   InsightsSlugRoute: InsightsSlugRoute,
   MediaSlugRoute: MediaSlugRoute,
+  PublicationsSlugRoute: PublicationsSlugRoute,
   ResearchPillarRoute: ResearchPillarRoute,
   TalksSlugRoute: TalksSlugRoute,
   InsightsIndexRoute: InsightsIndexRoute,
