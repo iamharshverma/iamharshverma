@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, ArrowLeft, GitMerge, ShieldCheck } from "lucide-react";
-import { ZoomableDiagram } from "./ZoomableDiagram";
+import { ConceptLandscapeGraph } from "./ConceptLandscapeGraph";
 import { Button } from "@/components/ui/button";
 import { KnowledgeLink } from "@/components/site/KnowledgeCards";
 import { impactTopics, getImpactTopic, conceptIntersection } from "@/data/knowledge-impact";
@@ -16,7 +16,8 @@ export default function ConceptLandscape({
 }) {
   const [other, setOther] = useState("security");
   const [stage, setStage] = useState(0);
-  const [hot, setHot] = useState<string | null>(null);
+  const [focused, setFocused] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const active = getImpactTopic(topic);
   const comparison = getImpactTopic(other === topic ? "distributed" : other);
   const intersections = conceptIntersection(topic, comparison?.id ?? "");
@@ -32,47 +33,10 @@ export default function ConceptLandscape({
         </div>
         <GitMerge className="size-8 text-brand" />
       </div>
-      <div className="impact-landscape-map mt-6">
-        <ZoomableDiagram label="intelligence landscape">
-          <svg viewBox="0 0 960 400" role="img" aria-label="Connected intelligence domains">
-            {impactTopics.filter(t => t.id !== topic).map((t, index) => {
-              const angle = (index / 7) * Math.PI * 2 - Math.PI / 2;
-              const x = 480 + Math.cos(angle) * 340; const y = 200 + Math.sin(angle) * 143;
-              const linked = conceptIntersection(topic, t.id).length > 0;
-              return <g key={t.id}>
-                {linked && <path className={`impact-landscape-link impact-tone-${impactTopics.indexOf(t)} ${t.id === comparison?.id ? "is-active" : ""} ${hot === t.id ? "is-hot" : ""}`} d={`M 480 200 Q ${(480+x)/2} 200 ${x} ${y}`} />}
-                <g role="button" tabIndex={0} aria-label={`Explore landscape ${t.title}`} className={`impact-landscape-node impact-tone-${impactTopics.indexOf(t)} ${t.id === comparison?.id ? "is-comparison" : ""}`} transform={`translate(${x - 92},${y - 28})`} onMouseEnter={() => setHot(t.id)} onMouseLeave={() => setHot(null)} onFocus={() => setHot(t.id)} onBlur={() => setHot(null)} onClick={() => { onTopic(t.id); setStage(0); }} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onTopic(t.id); setStage(0); } }}>
-                  <g className="ls-inner"><rect width="184" height="56" rx="7"/><text x="92" y="24" textAnchor="middle">{t.short}</text><text className="impact-svg-label" x="92" y="42" textAnchor="middle">{t.resources.length} sources</text></g>
-                </g>
-              </g>;
-            })}
-            <g className="impact-landscape-center"><rect x="370" y="159" width="220" height="82" rx="8"/><text x="480" y="190" textAnchor="middle">{active.short}</text><text className="impact-svg-label" x="480" y="215" textAnchor="middle">{active.resources.length} CONNECTED SOURCES</text></g>
-          </svg>
-        </ZoomableDiagram>
-      </div>
-      <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+      <ConceptLandscapeGraph focused={focused ? active : undefined} active={active} expanded={expanded} stage={stage} onFocus={id => { onTopic(id); setFocused(true); setExpanded(false); setStage(0); }} onStage={index => { setStage(index); setExpanded(true); }} onBack={() => { if (expanded) setExpanded(false); else { setFocused(false); setStage(0); } }} onReset={() => { setFocused(false); setExpanded(false); setStage(0); }} />
+      {focused && <><div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <div className="min-w-0">
           <p className="max-w-2xl text-lg leading-relaxed">{active.why}</p>
-          <div className="impact-concept-flow mt-8 border-y border-border py-4">
-            <ol className="impact-flow-track grid gap-2">
-              {active.flow.map((step, i) => (
-                <li key={step}>
-                  <Button
-                    variant={i === stage ? "secondary" : "ghost"}
-                    className={`impact-flow-step h-auto min-h-16 w-full justify-start gap-4 whitespace-normal text-left ${i === stage ? "is-active" : ""}`}
-                    aria-pressed={i === stage}
-                    onClick={() => setStage(i)}
-                  >
-                    <span className="font-mono text-stat-number">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span>{step}</span>
-                    <ArrowRight className="ml-auto" />
-                  </Button>
-                </li>
-              ))}
-            </ol>
-          </div>
           <div className="impact-principle mt-5" aria-live="polite">
             <div className="mb-4 flex items-center justify-between gap-3"><span className="font-mono text-xs text-muted-foreground">STAGE {stage + 1} / {active.flow.length}</span><div className="flex gap-1"><Button variant="ghost" size="icon-sm" title="Previous concept stage" aria-label="Previous concept stage" disabled={stage === 0} onClick={() => setStage(s => Math.max(0, s - 1))}><ArrowLeft /></Button><Button variant="ghost" size="icon-sm" title="Next concept stage" aria-label="Next concept stage" disabled={stage >= active.flow.length - 1} onClick={() => setStage(s => Math.min(active.flow.length - 1, s + 1))}><ArrowRight /></Button></div></div>
             <p className="impact-kicker">{active.flow[stage]}</p>
@@ -156,7 +120,7 @@ export default function ConceptLandscape({
             </div>
           ))}
         </div>
-      </div>
+      </div></>}
     </div>
   );
 }

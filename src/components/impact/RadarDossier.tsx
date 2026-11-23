@@ -42,7 +42,7 @@ export function RadarTechnologyBrief({ entry, compact = false, artwork }: { entr
     <div className={artwork ? "radar-dossier-layout" : ""}>
       <div><h2 className={`font-display font-semibold ${compact ? "text-base" : "text-2xl"}`}>How {entry.title} works</h2>
       <p className="mt-4 text-sm leading-relaxed text-muted-foreground"><GlossaryText text={brief.definition} /></p></div>
-      {artwork && <figure className="radar-dossier-figure"><img src={artwork.url} alt={artwork.alt} width={artwork.width} height={artwork.height} fetchPriority="high" className="radar-dossier-art" /><figcaption className="mt-3 font-mono text-xs text-muted-foreground">{entry.sector} · Conceptual illustration</figcaption></figure>}
+      {artwork && <figure className="radar-dossier-figure"><img src={artwork.url} alt={artwork.alt} width={artwork.width} height={artwork.height} fetchPriority="high" className="radar-dossier-art" /><figcaption className="mt-3 font-mono text-xs text-muted-foreground">{entry.title} · Conceptual illustration</figcaption></figure>}
     </div>
     <RadarReferences citations={technologyCitations(entry.id)} compact={compact} />
     <div className="radar-technology-loop my-6 border-y border-border py-5">

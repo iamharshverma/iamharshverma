@@ -1176,6 +1176,9 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 @keyframes impact-radar-ping { 0%,100% { opacity:.8; } 50% { opacity:.12; } }
 .impact-radar-inspector > div, .impact-radar-inspector > h3 { animation:impact-enter .2s ease-out; }
 .impact-radar-panel { animation:impact-enter .35s cubic-bezier(.2,.8,.2,1); }
+.radar-summary-heading { display:grid; grid-template-columns:minmax(0,1fr) 104px; align-items:center; gap:16px; padding-bottom:20px; margin-bottom:20px; border-bottom:1px solid var(--border); }
+.radar-summary-art { display:block; width:104px; max-width:100%; height:132px; object-fit:contain; }
+@media (max-width:480px) { .radar-summary-heading { grid-template-columns:minmax(0,1fr) 80px; gap:12px; } .radar-summary-heading h3 { font-size:20px; overflow-wrap:anywhere; } .radar-summary-art { width:80px; height:112px; } }
 .impact-radar-wedge { transform-box:fill-box; transform-origin:center; }
 .impact-radar-wedge.is-selected { animation:impact-radar-wedge-pop .45s cubic-bezier(.2,.8,.2,1); }
 @keyframes impact-radar-wedge-pop { 0% { transform:scale(.96); opacity:.6; } 60% { transform:scale(1.015); } 100% { transform:scale(1); opacity:1; } }
@@ -1185,6 +1188,40 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 .impact-radar [aria-label="Radar technologies"] button:hover { transform:translateX(2px); }
 .impact-radar [aria-label="Radar technologies"] button.is-active-tech { box-shadow:inset 3px 0 0 var(--impact-accent); animation:impact-enter .3s ease-out; }
 .impact-landscape-map .impact-diagram { padding-block:12px 48px; }
+.knowledge-impact .impact-landscape-map .impact-diagram { border-radius:8px; background:transparent; }
+.landscape-edge { fill:none; stroke:var(--impact-node-tone); stroke-width:1; opacity:.3; }
+.landscape-edge-flow { fill:none; stroke:var(--impact-node-tone); stroke-width:1.5; stroke-dasharray:4 10; opacity:.6; animation:landscape-edge-flow 3.6s linear infinite; }
+.landscape-travel-arrow { fill:none; stroke:var(--impact-node-tone); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; offset-rotate:auto; animation:landscape-arrow-travel 3.6s linear infinite; }
+.landscape-topic-button { position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; padding:14px 14px 18px; white-space:normal; border-radius:18px; border:1px solid color-mix(in oklab,var(--impact-node-tone) 55%,var(--border)); background:var(--background); color:var(--foreground); transition:border-color .25s, background .25s, box-shadow .25s; }
+.landscape-topic-button:hover, .landscape-topic-button:focus-visible { color:var(--foreground); background:color-mix(in oklab,var(--impact-node-tone) 8%,var(--background)); border-color:var(--impact-node-tone); }
+.landscape-topic-button.is-selected { border:2px solid var(--impact-node-tone); background:color-mix(in oklab,var(--impact-node-tone) 10%,var(--background)); box-shadow:inset 0 -3px 0 var(--impact-node-tone), 0 10px 28px -16px var(--impact-node-tone); }
+.landscape-node-title { font-family:var(--font-display); font-size:14px; line-height:1.3; font-weight:600; text-align:center; overflow-wrap:anywhere; }
+.landscape-node-caption { font-family:var(--font-mono); font-size:10px; line-height:1.2; font-weight:500; color:var(--muted-foreground); }
+.landscape-node-arrow { position:absolute; right:calc(50% - 6px); bottom:12px; width:12px; height:12px; color:var(--impact-node-tone); }
+.landscape-detail-node { height:100%; padding:18px; border:1px solid var(--impact-node-tone); border-radius:8px; background:var(--background); color:var(--foreground); display:flex; flex-direction:column; gap:12px; overflow:auto; }
+.landscape-detail-node p { font-size:13px; line-height:1.65; color:var(--muted-foreground); }
+.landscape-detail-node .landscape-node-title { font-size:16px; }
+.landscape-insight-card { text-align:left; border:1px solid color-mix(in oklab,var(--impact-node-tone) 35%,var(--border)); border-radius:16px; background:var(--background); padding:16px 18px; cursor:pointer; transition:border-color .25s, background .25s, box-shadow .25s, transform .25s; }
+.landscape-insight-card:hover, .landscape-insight-card:focus-visible { border-color:var(--impact-node-tone); background:color-mix(in oklab,var(--impact-node-tone) 6%,var(--background)); transform:translateY(-2px); }
+.landscape-insight-card.is-selected { border:2px solid var(--impact-node-tone); background:color-mix(in oklab,var(--impact-node-tone) 10%,var(--background)); box-shadow:inset 0 -3px 0 var(--impact-node-tone), 0 10px 28px -16px var(--impact-node-tone); }
+@media (prefers-reduced-motion:reduce) { .landscape-insight-card { transition:none; } .landscape-insight-card:hover { transform:none; } }
+.landscape-center-controls { display:flex; flex-shrink:0; justify-content:center; gap:8px; color:var(--foreground); }
+.landscape-center-controls button { width:28px; height:28px; border:0; background:transparent; box-shadow:none; }
+.landscape-hub-box { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; padding:8px 14px 12px; background:var(--background); border-radius:50%; overflow:hidden; }
+.landscape-hub-box.is-focused { padding:22px 18px 18px; }
+.landscape-hub-ring { fill:none; stroke:var(--impact-node-tone); stroke-width:1.5; transform-box:fill-box; transform-origin:center; animation:landscape-hub-pulse 2.8s ease-out infinite; }
+.landscape-hub-disc { fill:var(--background); stroke:var(--impact-node-tone); stroke-width:2; animation:landscape-hub-glow 2.8s ease-in-out infinite; }
+.landscape-hub-button { width:100%; height:auto; min-height:0; flex:1; padding:0; border-radius:50%; background:transparent; color:var(--foreground); }
+.landscape-hub-button:hover { background:var(--background); color:var(--foreground); }
+.landscape-hub-button > svg { width:56px !important; height:56px !important; animation:landscape-logo-blink 2.8s ease-in-out infinite; }
+.landscape-hub-button.is-focused { border:0; border-radius:50%; display:flex; flex-direction:column; white-space:normal; gap:7px; font-family:var(--font-display); font-size:14px; line-height:1.25; }
+.impact-landscape-map:not(.is-motion-active) .landscape-edge-flow, .impact-landscape-map:not(.is-motion-active) .landscape-travel-arrow, .impact-landscape-map:not(.is-motion-active) .landscape-hub-ring, .impact-landscape-map:not(.is-motion-active) .landscape-hub-disc, .impact-landscape-map:not(.is-motion-active) .landscape-hub-button > svg { animation-play-state:paused; }
+@keyframes landscape-arrow-travel { from { offset-distance:0%; opacity:0; } 12%,85% { opacity:1; } to { offset-distance:100%; opacity:0; } }
+@keyframes landscape-edge-flow { to { stroke-dashoffset:-28; } }
+@keyframes landscape-hub-pulse { 0% { transform:scale(.88); opacity:.8; } 100% { transform:scale(1.2); opacity:.08; } }
+@keyframes landscape-hub-glow { 0%,100% { filter:drop-shadow(0 0 3px var(--impact-node-tone)); } 50% { filter:drop-shadow(0 0 14px var(--impact-node-tone)); } }
+@keyframes landscape-logo-blink { 0%,100% { opacity:1; } 50% { opacity:.55; } }
+@media (prefers-reduced-motion:reduce) { .landscape-edge-flow, .landscape-travel-arrow, .landscape-hub-disc, .landscape-hub-ring, .landscape-hub-button > svg { animation:none !important; } .landscape-travel-arrow { offset-distance:65%; opacity:.8; } .landscape-topic-button { transition:none; } }
 .impact-landscape-link { fill:none; stroke:var(--impact-edge); stroke-width:1.5; }
 .impact-landscape-link { stroke-dasharray:3 6; opacity:.55; transition:opacity .3s, stroke .3s, stroke-width .3s; }
 .impact-landscape-link.is-hot, .impact-landscape-link.is-active { stroke:var(--impact-node-tone, var(--impact-accent)); stroke-width:2.5; opacity:1; animation:impact-ls-flow 1.2s linear infinite; }
@@ -1239,8 +1276,8 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
   .impact-hero-symbol { margin-left:0; }
   .impact-architecture-canvas { height:480px; }
   .impact-diagram-tools { left:8px; bottom:8px; }
-  .impact-landscape-map .impact-diagram-content { min-width:620px; }
-  .impact-landscape-map .impact-diagram-viewport { height:300px; }
+  .impact-landscape-map .impact-diagram-content { min-width:0; }
+  .impact-landscape-map .impact-diagram-viewport { height:auto; }
   .kn-stage-caption { max-width:calc(100% - 165px); }
   .kn-minimap { width:90px; height:65px; }
   .kn-fullscreen .kn-stage { height:calc(100dvh - 145px); min-height:380px; }
@@ -1613,6 +1650,7 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 .impact-radar-home .impact-radar-core { animation:impact-core-light 3s ease-in-out infinite; }
 .impact-radar-marker.is-blinking .impact-radar-dot { animation:impact-node-blink 2.8s ease-in-out infinite; animation-delay:calc(var(--marker-i) * 45ms); }
 .impact-radar-marker .impact-radar-dot { fill:var(--impact-node-tone); }
+.impact-radar-marker .impact-radar-hit { fill:transparent !important; stroke:none !important; pointer-events:all; }
 .impact-radar-marker.is-dim { opacity:.5; }
 .impact-radar-marker text { font-size:8px; font-weight:700; }
 @keyframes impact-node-blink { 0%,100% { opacity:1; } 50% { opacity:.55; } }
@@ -1633,7 +1671,7 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 .radar-topic-action { border-color:var(--impact-accent); color:var(--foreground); background:transparent; box-shadow:inset 0 -2px 0 var(--impact-accent); }
 .radar-topic-action svg { color:var(--impact-accent); }
 .radar-topic-action:hover { border-color:var(--impact-accent); background:color-mix(in oklab,var(--impact-accent) 8%,transparent); }
-.radar-dossier-art { display:block; width:100%; height:360px; object-fit:contain; border-radius:8px; }
+.radar-dossier-art { display:block; width:100%; height:auto; aspect-ratio:11/9; max-height:360px; object-fit:contain; border-radius:8px; }
 .radar-dossier-figure { width:100%; max-width:440px; margin-inline:auto; }
 .radar-dossier-figure figcaption { text-align:center; }
 .radar-dossier-layout { display:grid; align-items:center; gap:32px; }
@@ -1647,7 +1685,7 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 .radar-dossier-lines path { fill:none; stroke:var(--impact-node-tone); stroke-width:1.5; stroke-dasharray:4 5; opacity:.7; vector-effect:non-scaling-stroke; }
 .radar-dossier-target { transition:border-color .2s,transform .2s; }
 .radar-dossier-target:hover,.radar-dossier-target:focus-visible { border-color:var(--impact-node-tone); transform:translateX(3px); }
-@media (max-width:639px) { .radar-dossier-graph { grid-template-columns:minmax(0,.9fr) 24px minmax(0,1.2fr); } .radar-dossier-origin { padding:12px; } .radar-dossier-origin strong { font-size:14px; } .radar-dossier-target { padding:10px; } .radar-dossier-art { height:320px; } }
+@media (max-width:639px) { .radar-dossier-graph { grid-template-columns:minmax(0,.9fr) 24px minmax(0,1.2fr); } .radar-dossier-origin { padding:12px; } .radar-dossier-origin strong { font-size:14px; } .radar-dossier-target { padding:10px; } .radar-dossier-art { max-height:320px; } .impact-radar, #panel-landscape > div { padding-inline:12px; } .impact-radar-sector { font-size:16px !important; } .impact-radar-sector.is-selected { font-size:17px !important; } }
 @media (prefers-reduced-motion:reduce) { .radar-dossier-target { transition:none; transform:none !important; } }
 .radar-guide-cover { width:100%; aspect-ratio:1672/941; object-fit:contain; border-radius:8px; }
 .radar-guide-topic-art { width:100%; aspect-ratio:4/3; object-fit:contain; border-radius:8px; }

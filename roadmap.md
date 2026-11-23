@@ -194,6 +194,12 @@
 - [x] Push all latest changes to iamharshverma/iamharshverma — commit 44ddea2 delivered, Pages deployment succeeded, live /research and /resources verified
 
 ## Knowledge Impact
+- [x] Give expanded stages circular connected diagrams with selectable details; refine radar touch targets, text and image sizing. Verified detail selection, graph home, all 29 radar markers, technology images and no overflow at 390px, 768px and desktop; six geometry tests pass.
+- [x] Add a Home icon to the landscape graph toolbar that restores the HV overview; verified from expanded stages on desktop and phone.
+- [x] Move landscape In/Out icons inside the center box and remove their borders; verified navigation and phone layout.
+- [x] Give all 29 technologies their own artwork, distinct from the five topic illustrations and radar overview; verified all 34 detail covers and all 29 inspector images on desktop/phone, with binary-distinct static-hosting copies.
+- [x] Expand clicked landscape stages into connected principle, friction and workflow details with center In/Out icon controls; verified all five stages, another topic, back navigation and desktop/phone fit.
+- [x] Refine Intelligence Landscape with a pulsing HV overview, outward animated arrows, topic-centered stage nodes and accessible desktop/phone interactions; verified overview, selection, reset, phone fit and reduced motion.
 - [x] Add a linked 41-term radar glossary with sourced definitions and conceptual diagrams; verified claim-specific primary-source coverage for all five topics and 29 technologies, search/topic filters, linked definitions and navigation. All 196 tests pass; all 34 detail pages verified.
 - [x] Resize and tightly frame all five topic illustrations without clipping subjects; use a balanced introduction and full-width references/workflows on all topic and technology pages. Verified image loading and desktop/phone fit.
 - [x] Deliver the glossary, citations, refined images and all outstanding radar changes to iamharshverma/iamharshverma; verified main at e750b2a. Include the follow-up torch animation in the final delivery.

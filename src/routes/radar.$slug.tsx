@@ -7,7 +7,8 @@ import { contentHead } from "@/lib/content-head";
 import { radarEntries, getImpactTopic, impactTopicTags } from "@/data/knowledge-impact";
 import { knowledge, type KnowledgeItem } from "@/data/knowledge";
 import { radarSectors } from "@/data/radar-sectors";
-import { radarTopicArtwork, radarTechnologyGuides } from "@/data/radar-technology-guide";
+import { radarTechnologyGuides } from "@/data/radar-technology-guide";
+import { radarTechnologyArtwork } from "@/data/radar-technology-artwork";
 import { RadarTechnologyBrief, RadarRelationshipGraph } from "@/components/impact/RadarDossier";
 import { GlossaryText } from "@/components/impact/GlossaryText";
 
@@ -41,7 +42,7 @@ export const Route = createFileRoute("/radar/$slug")({
         ? `${loaderData.title} on Harsh Verma's AI Engineering Radar: ${radarTechnologyGuides[loaderData.id]?.definition ?? loaderData.implication}`
         : "Technologies and patterns connected to Harsh Verma's technical perspectives.",
       "TechArticle",
-      radarTopicArtwork[radarSectors.find(sector => sector.title === loaderData?.sector)?.id ?? ""]?.url,
+      radarTechnologyArtwork[loaderData?.id ?? ""]?.url,
     ),
   component: RadarTechnology,
 });
@@ -53,7 +54,7 @@ function RadarTechnology() {
   const siblings = radarEntries.filter((r) => r.sector === entry.sector && r.id !== entry.id);
   const sector = radarSectors.find((item) => item.title === entry.sector);
   const brief = radarTechnologyGuides[entry.id];
-  const art = radarTopicArtwork[sector?.id ?? ""];
+  const art = radarTechnologyArtwork[entry.id];
   const details = [
     ["Engineering implication", entry.implication],
     ["Security consideration", entry.security],

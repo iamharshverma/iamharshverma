@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { radarEntries } from "@/data/knowledge-impact";
 import { radarSectors } from "@/data/radar-sectors";
 import { radarTechnologyGuides, radarTopicArtwork, relatedRadarTechnologies } from "@/data/radar-technology-guide";
+import { radarTechnologyArtwork } from "@/data/radar-technology-artwork";
+import { radarGuideImage } from "@/data/radar-guide";
 
 describe("complete educational radar guides", () => {
   it("covers all 29 technologies without inventing inventory entries", () => {
@@ -22,6 +24,11 @@ describe("complete educational radar guides", () => {
   it("gives each of the five topics a separate illustration", () => {
     expect(Object.keys(radarTopicArtwork).sort()).toEqual(radarSectors.map(sector => sector.id).sort());
     expect(new Set(Object.values(radarTopicArtwork).map(art => art.url)).size).toBe(5);
+  });
+  it("gives all 29 technologies unique artwork distinct from topics and the overview", () => {
+    expect(Object.keys(radarTechnologyArtwork).sort()).toEqual(radarEntries.map(entry => entry.id).sort());
+    const urls = [...Object.values(radarTechnologyArtwork), ...Object.values(radarTopicArtwork)].map(art => art.url);
+    expect(new Set([...urls, radarGuideImage]).size).toBe(35);
   });
 
   it("educational enrichment does not assign an adoption rating", () => {

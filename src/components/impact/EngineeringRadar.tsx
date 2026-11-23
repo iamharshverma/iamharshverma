@@ -10,6 +10,9 @@ import { RadarSectorContent } from "./RadarSectorContent";
 import { RadarOverview } from "./RadarOverview";
 import { radarMarkerState, radarSweepDelay } from "./radar-selection";
 import { LogoMark } from "@/components/site/Logo";
+import { radarTopicArtwork } from "@/data/radar-technology-guide";
+import { radarTechnologyArtwork } from "@/data/radar-technology-artwork";
+import { RadarSummaryHeading } from "./RadarSummaryHeading";
 
 const rings: RadarRing[] = ["ADOPT", "EXPERIMENT", "ASSESS", "WATCH", "UNASSESSED"];
 const sectors = [...new Set(radarEntries.map((r) => r.sector))];
@@ -67,14 +70,14 @@ export default function EngineeringRadar({
   };
   return (
     <div ref={radarRef} data-motion-active={motionActive} className="impact-radar p-5 sm:p-8">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:flex sm:justify-between">
+        <div className="min-w-0">
           <p className="impact-kicker">01 / Foresight</p>
           <h2 className="mt-2 font-display text-2xl sm:text-3xl font-semibold">
             AI Engineering Radar.
           </h2>
         </div>
-        <Radar className="size-8 text-brand" />
+        <Radar className="size-8 shrink-0 text-brand" />
       </div>
       <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
         Technologies and patterns connected to the portfolio’s technical perspectives. All entries
@@ -162,7 +165,7 @@ export default function EngineeringRadar({
                     textAnchor="middle"
                     className={`impact-radar-sector impact-tone-${i} ${sector === s ? "is-selected" : ""}`} onClick={() => openSector(s)}
                   >
-                    {s}
+                    {s.split(" ").map((word, wordIndex, words) => <tspan key={wordIndex} x={330 + Math.cos(a + 0.5) * 170} dy={wordIndex === 0 ? -(words.length - 1) * 8 : 16}>{word}</tspan>)}
                   </text>
                 </g>
               );
@@ -199,6 +202,7 @@ export default function EngineeringRadar({
                 >
                   <title>{`${r.title} · Unassessed`}</title>
                   <g transform={`translate(${x} ${y})`}>
+                  <circle cx="0" cy="0" r="22" className="impact-radar-hit" />
                   <g className="impact-radar-lit-node" style={{ ["--sweep-delay" as string]: `${radarSweepDelay(a)}s` }}>
                   {marker.blinking && <circle className="impact-radar-ping" cx="0" cy="0" r={marker.radius + 2} />}
                   <circle className="impact-radar-dot" cx="0" cy="0" r={marker.radius} />
@@ -255,19 +259,25 @@ export default function EngineeringRadar({
         </div>
         <aside ref={inspectorRef} aria-label="Radar details" className="impact-radar-inspector min-w-0 scroll-mt-24 border-t border-border pt-6 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
           {arc && <div key={arc.id} className="impact-radar-panel">
-            <p className="impact-kicker">Radar topic</p>
-            <h3 className="mt-3 font-display text-2xl font-semibold">{arc.title}</h3>
-            <Button asChild variant="outline" size="sm" className="radar-topic-action my-5">
-              <Link to="/radar/topics/$slug" params={{ slug: arc.id }}>Open topic page<ArrowRight /></Link>
-            </Button>
+            <RadarSummaryHeading eyebrow="Radar topic" title={arc.title} artwork={radarTopicArtwork[arc.id]}>
+              <Button asChild variant="outline" size="sm" className="radar-topic-action mt-4 h-auto whitespace-normal py-2">
+                <Link to="/radar/topics/$slug" params={{ slug: arc.id }}>Open topic page<ArrowRight /></Link>
+              </Button>
+            </RadarSummaryHeading>
             <RadarSectorContent sector={arc} />
           </div>}
           {!arc && !active && <RadarOverview />}
           {!arc && active && (
             <div key={active.id} className="impact-radar-panel">
               {sector && <Button variant="ghost" size="sm" className="mb-4 px-0 text-brand" onClick={() => openSector(sector)}>Back to {sector}</Button>}
-              <p className="impact-kicker">{active.sector}</p>
-              <h3 className="mt-3 font-display text-2xl font-semibold">{active.title}</h3>
+              <RadarSummaryHeading eyebrow={active.sector} title={active.title} artwork={radarTechnologyArtwork[active.id]}>
+              <Button asChild variant="outline" size="sm" className="radar-topic-action mt-4 h-auto whitespace-normal py-2">
+                <Link to="/radar/$slug" params={{ slug: active.id }}>
+                  Open technology page
+                  <ArrowRight />
+                </Link>
+              </Button>
+              </RadarSummaryHeading>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 {active.rationale}
               </p>
@@ -284,28 +294,6 @@ export default function EngineeringRadar({
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{value}</p>
                 </div>
               ))}
-              <Button asChild variant="outline" size="sm" className="mt-6">
-                <Link to="/radar/$slug" params={{ slug: active.id }}>
-                  Open technology page
-                  <ArrowRight />
-                </Link>
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="mt-6 ml-2"
-                disabled={compare.length >= 2 && !compare.includes(active.id)}
-                onClick={() =>
-                  setCompare((ids) =>
-                    ids.includes(active.id)
-                      ? ids.filter((id) => id !== active.id)
-                      : [...ids, active.id],
-                  )
-                }
-              >
-                <GitCompareArrows />
-                {compare.includes(active.id) ? "Remove comparison" : "Compare technology"}
-              </Button>
               <div className="mt-6 border-t border-border pt-5">
                 <p className="impact-kicker">Related perspective</p>
                 {getImpactTopic(active.topic)
