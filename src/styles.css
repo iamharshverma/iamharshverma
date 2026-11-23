@@ -1162,6 +1162,8 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 .impact-radar-wedge.is-selected { fill:color-mix(in oklab,var(--impact-accent) 18%,var(--background)); stroke-width:2.5; }
 .impact-radar-sweep { transform-origin:330px 330px; animation:impact-radar-spin 9s linear infinite; pointer-events:none; }
 .impact-radar-sweep path { opacity:.5; }
+.impact-radar-lit-node { transform-origin:0 0; animation:impact-radar-torch-node 9s linear infinite; animation-delay:var(--sweep-delay); }
+@keyframes impact-radar-torch-node { 0%,100% { transform:scale(1.65); } 3% { transform:scale(1.4); } 10%,94% { transform:scale(1); } 98% { transform:scale(1.4); } }
 @keyframes impact-radar-spin { to { transform:rotate(360deg); } }
 .impact-radar-core { animation:impact-ls-glow 3s ease-in-out infinite; }
 .impact-radar-marker { transition:opacity .3s; animation:impact-agent-in .5s cubic-bezier(.2,.8,.2,1) both; animation-delay:calc(var(--marker-i) * 25ms); }
@@ -1616,8 +1618,8 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 @keyframes impact-node-blink { 0%,100% { opacity:1; } 50% { opacity:.55; } }
 @keyframes impact-core-breathe { 0%,100% { opacity:.3; transform:scale(1); } 50% { opacity:.6; transform:scale(1.15); } }
 @keyframes impact-core-light { 0%,100% { stroke-opacity:.75; filter:drop-shadow(0 0 3px var(--impact-accent)); } 50% { stroke-opacity:1; filter:drop-shadow(0 0 10px var(--impact-accent)); } }
-.impact-radar[data-motion-active="false"] .impact-radar-sweep, .impact-radar[data-motion-active="false"] .impact-radar-core, .impact-radar[data-motion-active="false"] .impact-radar-core-halo, .impact-radar[data-motion-active="false"] .impact-radar-dot, .impact-radar[data-motion-active="false"] .impact-radar-ping { animation-play-state:paused; }
-@media (prefers-reduced-motion:reduce) { .impact-radar-core-halo, .impact-radar-marker .impact-radar-dot { animation:none !important; } }
+.impact-radar[data-motion-active="false"] .impact-radar-sweep, .impact-radar[data-motion-active="false"] .impact-radar-lit-node, .impact-radar[data-motion-active="false"] .impact-radar-core, .impact-radar[data-motion-active="false"] .impact-radar-core-halo, .impact-radar[data-motion-active="false"] .impact-radar-dot, .impact-radar[data-motion-active="false"] .impact-radar-ping { animation-play-state:paused; }
+@media (prefers-reduced-motion:reduce) { .impact-radar-lit-node, .impact-radar-core-halo, .impact-radar-marker .impact-radar-dot { animation:none !important; } }
 @media (prefers-reduced-motion:reduce) { .impact-radar-wedge { animation:none !important; transition:none !important; } }
 
 /* Radar guide: educational diagrams use topic colors, never maturity scores. */

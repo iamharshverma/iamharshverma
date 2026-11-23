@@ -196,7 +196,8 @@
 ## Knowledge Impact
 - [x] Add a linked 41-term radar glossary with sourced definitions and conceptual diagrams; verified claim-specific primary-source coverage for all five topics and 29 technologies, search/topic filters, linked definitions and navigation. All 196 tests pass; all 34 detail pages verified.
 - [x] Resize and tightly frame all five topic illustrations without clipping subjects; use a balanced introduction and full-width references/workflows on all topic and technology pages. Verified image loading and desktop/phone fit.
-- [ ] Deliver all completed changes to iamharshverma/iamharshverma after verification.
+- [x] Deliver the glossary, citations, refined images and all outstanding radar changes to iamharshverma/iamharshverma; verified main at e750b2a. Include the follow-up torch animation in the final delivery.
+- [x] Animate radar nodes growing as the rotating torch passes over them; verified 1.65× enlargement at beam contact, return to normal, retained arc/technology selection, phone fit and reduced-motion behavior.
 - [x] Highlight the radar topic-page action and enrich all five topic pages and 29 technology pages with distinct educational briefs, five compressed topic illustrations, interactive workflows and conceptual relationship graphs. Verified every page, images, metadata, navigation, accordion/workflow close controls and phone fit; all 190 tests pass. Saved locally, not pushed.
 - [x] Keep the HV center continuously glowing across radar selections; enrich the radar guide with five topic explanations, six images, inventory charts and interactive conceptual workflows; verified desktop, phone, all images, technology navigation and reduced motion; 10 radar tests passed.
 - [x] Move Knowledge Impact topic navigation, topic summary and exploration context directly above Idea → Evidence → Exploration; verified order and topic changes.

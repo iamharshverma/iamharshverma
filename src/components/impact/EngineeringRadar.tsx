@@ -8,7 +8,7 @@ import { radarEntries, getImpactTopic, type RadarRing } from "@/data/knowledge-i
 import { radarSectors } from "@/data/radar-sectors";
 import { RadarSectorContent } from "./RadarSectorContent";
 import { RadarOverview } from "./RadarOverview";
-import { radarMarkerState } from "./radar-selection";
+import { radarMarkerState, radarSweepDelay } from "./radar-selection";
 import { LogoMark } from "@/components/site/Logo";
 
 const rings: RadarRing[] = ["ADOPT", "EXPERIMENT", "ASSESS", "WATCH", "UNASSESSED"];
@@ -198,11 +198,15 @@ export default function EngineeringRadar({
                   style={{ ["--marker-i" as string]: radarEntries.indexOf(r) }} className={`impact-radar-marker impact-tone-${s} ${sector && !marker.focused ? "is-dim" : ""} ${marker.blinking ? "is-blinking" : ""} ${marker.active ? "is-active" : ""}`}
                 >
                   <title>{`${r.title} · Unassessed`}</title>
-                  {marker.blinking && <circle className="impact-radar-ping" cx={x} cy={y} r={marker.radius + 2} />}
-                  <circle className="impact-radar-dot" cx={x} cy={y} r={marker.radius} style={{ transformOrigin: `${x}px ${y}px` }} />
-                  <text x={x} y={y + 3} textAnchor="middle">
+                  <g transform={`translate(${x} ${y})`}>
+                  <g className="impact-radar-lit-node" style={{ ["--sweep-delay" as string]: `${radarSweepDelay(a)}s` }}>
+                  {marker.blinking && <circle className="impact-radar-ping" cx="0" cy="0" r={marker.radius + 2} />}
+                  <circle className="impact-radar-dot" cx="0" cy="0" r={marker.radius} />
+                  <text x="0" y="3" textAnchor="middle">
                     {radarEntries.indexOf(r) + 1}
                   </text>
+                  </g>
+                  </g>
                 </g>
               );
             })}
