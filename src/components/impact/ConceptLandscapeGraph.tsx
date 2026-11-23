@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { Pause, Play, ArrowLeft, ArrowRight, ArrowUpRight, Lightbulb, TriangleAlert, GitBranch } from "lucide-react";
+import { Pause, Play, ArrowLeft, ArrowRight, ArrowUpRight, Lightbulb, TriangleAlert, GitBranch, Check, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { LogoMark } from "@/components/site/Logo";
-import { impactTopics, type ImpactTopic } from "@/data/knowledge-impact";
+import { impactTopics, stageChecklist, type ImpactTopic } from "@/data/knowledge-impact";
 import { ZoomableDiagram } from "./ZoomableDiagram";
 import { landscapeLayout, landscapeSpoke } from "./landscape-layout";
 
@@ -108,6 +108,19 @@ export function ConceptLandscapeGraph({ focused, active, expanded, stage, onFocu
           </button>;
         })}
       </div>
+    </section>}
+    {details && focused && <section className="landscape-checklist mt-6" aria-label={`${focused.flow[stage]} stage checklist`}>
+      <p className="impact-kicker">Stage checklist</p>
+      <ul className="mt-4 space-y-3">
+        {stageChecklist(focused, stage).map((item, index) => <li key={index} className={`landscape-checklist-item impact-tone-${impactTopics.indexOf(focused)}`}>
+          <span className="landscape-checklist-check" aria-hidden="true"><Check className="size-4" /></span>
+          <span className="landscape-checklist-body min-w-0 flex-1">
+            <span className="block text-sm font-medium leading-snug">{item.task}</span>
+            <span className="mt-1.5 flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground"><TriangleAlert className="mt-0.5 size-3 shrink-0" />Watch for: {item.watch}</span>
+          </span>
+          <span className="landscape-checklist-owner"><UserRound className="size-3" />{item.owner}</span>
+        </li>)}
+      </ul>
     </section>}
     <Dialog open={Boolean(popupDetail)} onOpenChange={open => { if (!open) setPopupId(null); }}>
       <DialogContent className="landscape-insight-dialog">

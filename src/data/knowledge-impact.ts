@@ -127,6 +127,35 @@ impactTopics.push(
 );
 export const getImpactTopic = (id: string) =>
   impactTopics.find((t) => t.id === id) ?? impactTopics[0];
+export type StageChecklistItem = { task: string; watch: string; owner: string };
+export const stageChecklist = (topic: ImpactTopic, stage: number): StageChecklistItem[] => {
+  const current = topic.flow[stage] ?? topic.short;
+  const previous = topic.flow[stage - 1];
+  const next = topic.flow[stage + 1];
+  const principle = topic.principles[stage % topic.principles.length] ?? topic.why;
+  const challenge = topic.challenges[stage % topic.challenges.length] ?? topic.summary;
+  return [
+    {
+      task: `Apply the guiding principle: ${principle}`,
+      watch: challenge,
+      owner: "Engineering lead",
+    },
+    {
+      task: `Complete "${current}" and record its evidence before moving on.`,
+      watch: previous
+        ? `Unverified output from "${previous}" can carry errors forward.`
+        : "Starting without a defined scope hides assumptions.",
+      owner: "Stage owner",
+    },
+    {
+      task: next ? `Prepare the handoff to "${next}".` : "Close out the workflow and archive the outcome.",
+      watch: next
+        ? `Handing off without trace context forces "${next}" to re-derive state.`
+        : "Closing without archived evidence blocks later review.",
+      owner: next ? "Next stage owner" : "Accountable owner",
+    },
+  ];
+};
 export type ImpactRelationship = {
   source: string;
   target: string;
