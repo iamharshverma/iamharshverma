@@ -1171,8 +1171,17 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 .impact-radar-marker.is-active .impact-radar-dot { fill:var(--impact-node-tone); stroke:var(--foreground); }
 .impact-radar-marker.is-dim { opacity:.2; }
 .impact-radar-ping { fill:none !important; stroke:var(--impact-node-tone) !important; stroke-width:2 !important; transform-box:fill-box; transform-origin:center; animation:impact-radar-ping 1.6s ease-out infinite; pointer-events:none; }
-@keyframes impact-radar-ping { from { transform:scale(1); opacity:.9; } to { transform:scale(2.4); opacity:0; } }
+@keyframes impact-radar-ping { 0%,100% { opacity:.8; } 50% { opacity:.12; } }
 .impact-radar-inspector > div, .impact-radar-inspector > h3 { animation:impact-enter .2s ease-out; }
+.impact-radar-panel { animation:impact-enter .35s cubic-bezier(.2,.8,.2,1); }
+.impact-radar-wedge { transform-box:fill-box; transform-origin:center; }
+.impact-radar-wedge.is-selected { animation:impact-radar-wedge-pop .45s cubic-bezier(.2,.8,.2,1); }
+@keyframes impact-radar-wedge-pop { 0% { transform:scale(.96); opacity:.6; } 60% { transform:scale(1.015); } 100% { transform:scale(1); opacity:1; } }
+.impact-radar-sector { cursor:pointer; transition:fill .25s; }
+.impact-radar-sector.is-selected { fill:var(--impact-accent); font-weight:700; }
+.impact-radar [aria-label="Radar technologies"] button { transition:background-color .25s, box-shadow .25s, transform .25s; }
+.impact-radar [aria-label="Radar technologies"] button:hover { transform:translateX(2px); }
+.impact-radar [aria-label="Radar technologies"] button.is-active-tech { box-shadow:inset 3px 0 0 var(--impact-accent); animation:impact-enter .3s ease-out; }
 .impact-landscape-map .impact-diagram { padding-block:12px 48px; }
 .impact-landscape-link { fill:none; stroke:var(--impact-edge); stroke-width:1.5; }
 .impact-landscape-link { stroke-dasharray:3 6; opacity:.55; transition:opacity .3s, stroke .3s, stroke-width .3s; }
@@ -1238,15 +1247,16 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
   .impact-fullscreen .kn-stage { min-height:420px; }
   .impact-flow-track { grid-template-columns:1fr; }
 }
-@media (prefers-reduced-motion:reduce) { .impact-radar-sweep, .impact-radar-core, .impact-radar-marker, .impact-radar-ping, .impact-agent-edge path, .impact-agent-node, .impact-agent-dot, .impact-landscape-link, .impact-landscape-node > .ls-inner, .impact-landscape-center rect, .impact-radar-inspector > * { animation:none !important; transition:none; } }
+@media (prefers-reduced-motion:reduce) { .impact-radar-sweep, .impact-radar-core, .impact-radar-marker, .impact-radar-ping, .impact-agent-edge path, .impact-agent-node, .impact-agent-dot, .impact-landscape-link, .impact-landscape-node > .ls-inner, .impact-landscape-center rect, .impact-radar-inspector > *, .impact-radar-panel, .impact-radar-wedge, .impact-radar [aria-label="Radar technologies"] button { animation:none !important; transition:none; } }
 
 /* Inspector categories stay inside the explorer, including immersive mode. */
 .kn-panel-overview { position:relative; height:130px; width:100%; overflow:hidden; border:1px solid var(--border); border-radius:6px; background:transparent; }
 .kn-panel-overview .kn-panel-minimap { position:relative; inset:auto; margin:0; width:100%; height:130px; border:0; background:transparent !important; }
 .kn-panel-overview .react-flow__minimap-svg { width:100%; height:130px; background:transparent; }
-.kn-category-index button[aria-pressed="true"] { background:var(--expertise-node); border-color:transparent; color:var(--background); }
-.kn-category-index button[aria-pressed="true"]:hover { background:var(--expertise-node); color:var(--background); }
-.kn-category-index button[aria-pressed="true"] .text-stat-number { color:inherit; }
+.kn-category-index button[aria-pressed="true"] { position:relative; background:transparent; border:1px solid var(--expertise-node); border-radius:6px; color:var(--foreground); }
+.kn-category-index button[aria-pressed="true"]::after { content:""; position:absolute; left:8px; right:8px; bottom:3px; height:2px; border-radius:2px; background:var(--expertise-node); }
+.kn-category-index button[aria-pressed="true"]:hover { background:transparent; color:var(--foreground); }
+.kn-category-index button[aria-pressed="true"] .text-stat-number { color:var(--expertise-node); }
 .kn-panel-group { transition:border-color .25s; }
 .kn-panel-group.is-selected { border-left:2px solid var(--expertise-node); padding-left:10px; }
 .kn-motion .kn-panel-group.is-selected { animation:kn-detail-enter .35s ease-out; }
@@ -1590,9 +1600,71 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 .impact-radar-wedge.is-selected { fill:color-mix(in oklab,var(--impact-node-tone) 28%,var(--background)) !important; stroke:var(--impact-node-tone) !important; stroke-width:2.5 !important; transform:scale(1.03); animation:impact-arc-select .7s cubic-bezier(.2,.8,.2,1); }
 .impact-radar-wedge.is-faded { opacity:.45; }
 @keyframes impact-arc-select { 0% { transform:scale(.96); fill-opacity:.4; } 60% { transform:scale(1.05); } 100% { transform:scale(1.03); } }
-.impact-radar-sector { cursor:pointer; fill:var(--impact-node-tone) !important; font-family:var(--font-display) !important; font-size:12px !important; font-weight:700; letter-spacing:.02em; paint-order:stroke; stroke:var(--background); stroke-width:4px; transition:font-size .25s; }
+.impact-radar-sector { cursor:pointer; fill:color-mix(in oklab,var(--impact-node-tone) 65%,var(--foreground)) !important; font-family:var(--font-display) !important; font-size:13px !important; font-weight:700; letter-spacing:0; paint-order:stroke; stroke:var(--background); stroke-width:5px; stroke-linejoin:round; transition:font-size .25s; }
 .impact-radar-sector.is-selected { font-size:14px !important; }
+.radar-overview-title { color:color-mix(in oklab,var(--impact-node-tone) 65%,var(--foreground)); }
+.impact-radar-home { cursor:pointer; outline:none; }
+.impact-radar-home .impact-radar-core { fill:var(--background); animation:none; stroke-width:2; }
+.impact-radar-home:focus-visible .impact-radar-core, .impact-radar-home:hover .impact-radar-core { stroke:var(--foreground); stroke-width:3; }
+.impact-radar-core-halo { fill:var(--impact-highlight); stroke:var(--impact-accent); stroke-width:1; opacity:.35; pointer-events:none; transform-origin:330px 330px; }
+.impact-radar-home .impact-radar-core-halo { animation:impact-core-breathe 3s ease-in-out infinite; }
+.impact-radar-home .impact-radar-core { animation:impact-core-light 3s ease-in-out infinite; }
+.impact-radar-marker.is-blinking .impact-radar-dot { animation:impact-node-blink 2.8s ease-in-out infinite; animation-delay:calc(var(--marker-i) * 45ms); }
+.impact-radar-marker .impact-radar-dot { fill:var(--impact-node-tone); }
+.impact-radar-marker.is-dim { opacity:.5; }
+.impact-radar-marker text { font-size:8px; font-weight:700; }
+@keyframes impact-node-blink { 0%,100% { opacity:1; } 50% { opacity:.55; } }
+@keyframes impact-core-breathe { 0%,100% { opacity:.3; transform:scale(1); } 50% { opacity:.6; transform:scale(1.15); } }
+@keyframes impact-core-light { 0%,100% { stroke-opacity:.75; filter:drop-shadow(0 0 3px var(--impact-accent)); } 50% { stroke-opacity:1; filter:drop-shadow(0 0 10px var(--impact-accent)); } }
+.impact-radar[data-motion-active="false"] .impact-radar-sweep, .impact-radar[data-motion-active="false"] .impact-radar-core, .impact-radar[data-motion-active="false"] .impact-radar-core-halo, .impact-radar[data-motion-active="false"] .impact-radar-dot, .impact-radar[data-motion-active="false"] .impact-radar-ping { animation-play-state:paused; }
+@media (prefers-reduced-motion:reduce) { .impact-radar-core-halo, .impact-radar-marker .impact-radar-dot { animation:none !important; } }
 @media (prefers-reduced-motion:reduce) { .impact-radar-wedge { animation:none !important; transition:none !important; } }
+
+/* Radar guide: educational diagrams use topic colors, never maturity scores. */
+.radar-technology-accordion [data-state="open"] > h3 > button { color:var(--foreground); box-shadow:inset 0 -2px 0 var(--impact-accent); }
+.radar-technology-accordion [data-state="open"] > h3 > button > svg { color:var(--impact-accent); }
+.radar-technology-accordion [data-state="open"] > h3 > button > span:first-child > span:first-child, .radar-technology-open-label { color:var(--impact-accent); }
+.radar-technology-accordion [data-state="open"] > h3 { margin-bottom:14px; }
+.radar-technology-accordion > [data-state="open"] { border-color:var(--impact-accent); }
+/* Current item inside radar sibling/topic pill lists: highlighted border + underline, not clickable */
+.radar-current-pill { border-color:var(--impact-accent) !important; color:var(--impact-accent) !important; box-shadow:inset 0 -2px 0 var(--impact-accent); pointer-events:none; }
+.radar-topic-action { border-color:var(--impact-accent); color:var(--foreground); background:transparent; box-shadow:inset 0 -2px 0 var(--impact-accent); }
+.radar-topic-action svg { color:var(--impact-accent); }
+.radar-topic-action:hover { border-color:var(--impact-accent); background:color-mix(in oklab,var(--impact-accent) 8%,transparent); }
+.radar-dossier-art { display:block; width:100%; height:360px; object-fit:contain; border-radius:8px; }
+.radar-dossier-figure { width:100%; max-width:440px; margin-inline:auto; }
+.radar-dossier-figure figcaption { text-align:center; }
+.radar-dossier-layout { display:grid; align-items:center; gap:32px; }
+@media (min-width:768px) { .radar-dossier-layout { grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); } }
+.radar-glossary-card { scroll-margin-top:110px; }
+.radar-glossary-card:target { border-color:var(--brand); box-shadow:inset 0 -3px 0 var(--brand); }
+.radar-glossary-filters button[aria-pressed="true"] { background:transparent; color:var(--foreground); border-color:var(--brand); box-shadow:inset 0 -2px 0 var(--brand); }
+.radar-dossier-graph { display:grid; grid-template-columns:minmax(0,1fr) 80px minmax(0,1.4fr); align-items:center; }
+.radar-dossier-origin { display:flex; flex-direction:column; align-items:flex-start; gap:12px; border-left:3px solid var(--impact-node-tone); padding:20px; overflow-wrap:anywhere; }
+.radar-dossier-lines { width:100%; height:100%; overflow:visible; }
+.radar-dossier-lines path { fill:none; stroke:var(--impact-node-tone); stroke-width:1.5; stroke-dasharray:4 5; opacity:.7; vector-effect:non-scaling-stroke; }
+.radar-dossier-target { transition:border-color .2s,transform .2s; }
+.radar-dossier-target:hover,.radar-dossier-target:focus-visible { border-color:var(--impact-node-tone); transform:translateX(3px); }
+@media (max-width:639px) { .radar-dossier-graph { grid-template-columns:minmax(0,.9fr) 24px minmax(0,1.2fr); } .radar-dossier-origin { padding:12px; } .radar-dossier-origin strong { font-size:14px; } .radar-dossier-target { padding:10px; } .radar-dossier-art { height:320px; } }
+@media (prefers-reduced-motion:reduce) { .radar-dossier-target { transition:none; transform:none !important; } }
+.radar-guide-cover { width:100%; aspect-ratio:1672/941; object-fit:contain; border-radius:8px; }
+.radar-guide-topic-art { width:100%; aspect-ratio:4/3; object-fit:contain; border-radius:8px; }
+.radar-guide-map-edge { fill:none; stroke:var(--impact-node-tone); stroke-width:2; opacity:.3; transition:opacity .25s,stroke-width .25s; }
+.radar-guide-map .is-selected .radar-guide-map-edge { opacity:1; stroke-width:3; }
+.radar-guide-map-node { cursor:pointer; outline:none; }
+.radar-guide-map-node rect { fill:var(--background); stroke:color-mix(in oklab,var(--impact-node-tone) 45%,var(--border)); stroke-width:1.5; transition:stroke .25s,fill .25s; }
+.radar-guide-map-node:hover rect, .radar-guide-map-node:focus-visible rect, .is-selected .radar-guide-map-node rect { stroke:var(--impact-node-tone); stroke-width:2.5; fill:color-mix(in oklab,var(--impact-node-tone) 7%,var(--background)); }
+.radar-guide-map-node text { fill:var(--foreground); font-family:var(--font-display); font-size:15px; font-weight:600; pointer-events:none; }
+.radar-guide-map-node .radar-guide-map-count { fill:var(--muted-foreground); font-family:var(--font-mono); font-size:11px; font-weight:400; }
+.radar-guide-map-core { fill:var(--background); stroke:var(--brand); stroke-width:2; }
+.radar-guide-bar-track { fill:var(--border); }
+.radar-guide-bar { fill:var(--impact-node-tone); }
+.radar-guide-inventory:hover { color:var(--brand); }
+.radar-guide-stages button { transition:border-color .25s, transform .25s; }
+.radar-guide-stages button:hover { transform:translateY(-2px); }
+.radar-guide-stages button[aria-pressed="true"] { background:transparent; border-color:var(--impact-node-tone); color:var(--foreground); box-shadow:inset 0 -2px 0 var(--impact-node-tone); }
+.radar-guide-stages button[aria-pressed="true"] > span:first-child { color:var(--impact-node-tone); }
+@media (prefers-reduced-motion:reduce) { .radar-guide-stages button { transition:none; transform:none; } }
 
 /* Publication atlas: journal identity stays separate from verified citation emphasis. */
 .atlas-journal-key { display:flex; flex-wrap:wrap; gap:8px 16px; padding:14px 18px; border-bottom:1px solid var(--border); background:var(--card); }

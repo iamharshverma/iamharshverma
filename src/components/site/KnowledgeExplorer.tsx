@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Network, ListTree } from "lucide-react";
+import { ListTree } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { KnowledgeAtlas, type AtlasPath } from "./KnowledgeAtlas";
 import { PersonalKnowledgeGraph } from "./PersonalKnowledgeGraph";
@@ -67,7 +67,7 @@ export function KnowledgeExplorer({ selected = "", selectedResource = "", items 
       </div>
       </ExplorerFullscreenProvider>
       <div className="knowledge-view-switch" role="group" aria-label="Knowledge presentation">
-        <Button variant="ghost" aria-pressed={presentation === "graph"} onClick={() => setPresentation("graph")}><Network />Graph View</Button>
+        <Button variant="ghost" aria-pressed={presentation === "graph"} onClick={() => setPresentation("graph")}>Graph View</Button>
         <Button variant="ghost" aria-pressed={presentation === "list"} onClick={() => setPresentation("list")}><ListTree />Detail View</Button>
       </div>
     </div>

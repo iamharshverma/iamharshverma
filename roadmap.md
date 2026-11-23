@@ -194,6 +194,16 @@
 - [x] Push all latest changes to iamharshverma/iamharshverma — commit 44ddea2 delivered, Pages deployment succeeded, live /research and /resources verified
 
 ## Knowledge Impact
+- [x] Add a linked 41-term radar glossary with sourced definitions and conceptual diagrams; verified claim-specific primary-source coverage for all five topics and 29 technologies, search/topic filters, linked definitions and navigation. All 196 tests pass; all 34 detail pages verified.
+- [x] Resize and tightly frame all five topic illustrations without clipping subjects; use a balanced introduction and full-width references/workflows on all topic and technology pages. Verified image loading and desktop/phone fit.
+- [ ] Deliver all completed changes to iamharshverma/iamharshverma after verification.
+- [x] Highlight the radar topic-page action and enrich all five topic pages and 29 technology pages with distinct educational briefs, five compressed topic illustrations, interactive workflows and conceptual relationship graphs. Verified every page, images, metadata, navigation, accordion/workflow close controls and phone fit; all 190 tests pass. Saved locally, not pushed.
+- [x] Keep the HV center continuously glowing across radar selections; enrich the radar guide with five topic explanations, six images, inventory charts and interactive conceptual workflows; verified desktop, phone, all images, technology navigation and reduced motion; 10 radar tests passed.
+- [x] Move Knowledge Impact topic navigation, topic summary and exploration context directly above Idea → Evidence → Exploration; verified order and topic changes.
+- [x] Highlight expanded radar technology buttons with borders and underlines, plus explicit close controls; verified open/close on desktop and phone.
+- [x] Add HV radar reset, animated all-topic overview and focused technology highlights; complete guide includes five topics and 29 expandable technologies. Verified desktop/phone arc, node, reset, guide navigation and reduced motion; 10 tests passed.
+- [x] Open all five radar arcs as right-side topic panels and dedicated topic pages with all 29 technologies expandable; verified every arc/page, technology navigation, metadata and phone fit; 18 tests passed.
+- [x] Remove the selected Knowledge Impact observatory Full screen button without changing other fullscreen controls; verified the selected header contains no button.
 - [x] Add graph-local topic/work search with keyboard selection, focused nodes and linked entries; verified topic and publication jumps without exiting full-screen.
 - [x] Create Publications index and 27 detail pages with source abstracts, citations, original links, unique artwork and published/forthcoming/review statuses; connect all records to Hub/Impact, navigation and sitemap. Verified filters, dialogs, graph round-trip, 27 HTTP-200 detail pages and 32 tests.
 - [x] Keep categories local with selected-entry/node highlights and full-screen retained on both pages; relocate mini-map below inspector headings, animate clickable HV, align introduction icons and verify desktop/mobile navigation.

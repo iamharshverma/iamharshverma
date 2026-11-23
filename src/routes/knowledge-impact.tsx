@@ -17,7 +17,7 @@ import { contentHead } from "@/lib/content-head";
 import { impactTopics, getImpactTopic, impactTopicTags } from "@/data/knowledge-impact";
 import { PageHero, Reveal } from "@/components/site/Reveal";
 import { KnowledgeHeroIcons } from "@/components/site/KnowledgeHeroIcons";
-import { useExplorerFullscreen, ExplorerFullscreenButton } from "@/components/site/ExplorerFullscreen";
+import { useExplorerFullscreen } from "@/components/site/ExplorerFullscreen";
 import ConceptLandscape from "@/components/impact/ConceptLandscape";
 import AgentPlayground from "@/components/impact/AgentPlayground";
 import EngineeringRadar from "@/components/impact/EngineeringRadar";
@@ -180,7 +180,6 @@ function KnowledgeImpact() {
         >
           <div className="impact-workspace-heading flex items-center justify-between gap-3 border-t border-border py-3 px-3">
             <p className="impact-kicker">Observatory / {modes.find(m => m.id === mode)?.title}</p>
-            <ExplorerFullscreenButton fullscreen={explorer.fullscreen} toggle={() => void explorer.toggle()} />
           </div>
           <div
             className="impact-experience-tabs grid grid-cols-2 border-y border-border sm:grid-cols-4"
@@ -219,66 +218,6 @@ function KnowledgeImpact() {
                 </span>
               </Button>
             ))}
-          </div>
-          <nav aria-label="Impact domains" className="impact-domain-nav flex flex-wrap gap-2 border-b border-border py-4">
-            {impactTopics.map(domain => (
-              <Button key={domain.id} asChild variant={topic === domain.id ? "secondary" : "ghost"} size="sm">
-                <Link to="/knowledge-impact" search={previous => ({ ...previous, topic: domain.id, networkTopic: impactTopicTags[domain.id]?.[0] ?? "", resource: "" })} resetScroll={false}>
-                  {domain.short}
-                </Link>
-              </Button>
-            ))}
-          </nav>
-          <div className="impact-domain-banner flex min-w-0 items-center gap-5 border-b border-border px-5 py-5 sm:px-8">
-            <div className="impact-domain-symbol shrink-0" aria-hidden="true"><Network className="size-8" /></div>
-            <div className="min-w-0 flex-1">
-              <p className="impact-kicker">
-                {modes.find((m) => m.id === mode)?.short} / {active?.resources.length} connected
-                sources
-              </p>
-              <h2 className="mt-2 font-display text-lg font-semibold sm:text-2xl">
-                {active?.title}
-              </h2>
-              <p className="mt-2 hidden max-w-2xl text-xs leading-relaxed text-muted-foreground sm:block">
-                {active?.summary}
-              </p>
-            </div>
-            <Button asChild variant="outline" size="sm" className="shrink-0">
-              <Link to="/knowledge" search={{ topic: impactTopicTags[topic]?.[0] ?? "" }}><span className="hidden sm:inline">Related work</span><ArrowRight /><span className="sr-only sm:hidden">Related work</span></Link>
-            </Button>
-          </div>
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
-            <p className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-              <span className="impact-context-dot" />
-              Exploration context
-              <span className="font-semibold text-foreground">{active?.title}</span>
-            </p>
-            <div className="flex items-center gap-2">
-              <label>
-                <span className="sr-only">Change exploration topic</span>
-                <select
-                  aria-label="Change exploration topic"
-                  className="max-w-44 rounded-md border border-input bg-background px-2 py-1.5 text-xs"
-                  value={topic}
-                  onChange={(e) => setTopic(e.target.value)}
-                >
-                  {impactTopics.map((t) => (
-                    <option key={t.id} value={t.id}>
-                      {t.short}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <Button
-                variant="ghost"
-                size="icon-xs"
-                title="Reset exploration"
-                aria-label="Reset exploration"
-                onClick={() => void navigate({ search: {}, replace: true, resetScroll: false })}
-              >
-                <RotateCcw />
-              </Button>
-            </div>
           </div>
           {guide && (
             <div className="flex items-start justify-between gap-3 border-b border-border impact-insight px-5 py-4">
@@ -348,6 +287,66 @@ function KnowledgeImpact() {
             {mode === "radar" && (
               <EngineeringRadar topic={topic} onTopic={setTopic} onGraph={() => setMode("graph")} />
             )}
+          </div>
+          <nav aria-label="Impact domains" className="impact-domain-nav flex flex-wrap gap-2 border-y border-border py-4">
+            {impactTopics.map(domain => (
+              <Button key={domain.id} asChild variant={topic === domain.id ? "secondary" : "ghost"} size="sm">
+                <Link to="/knowledge-impact" search={previous => ({ ...previous, topic: domain.id, networkTopic: impactTopicTags[domain.id]?.[0] ?? "", resource: "" })} resetScroll={false}>
+                  {domain.short}
+                </Link>
+              </Button>
+            ))}
+          </nav>
+          <div className="impact-domain-banner flex min-w-0 items-center gap-5 border-b border-border px-5 py-5 sm:px-8">
+            <div className="impact-domain-symbol shrink-0" aria-hidden="true"><Network className="size-8" /></div>
+            <div className="min-w-0 flex-1">
+              <p className="impact-kicker">
+                {modes.find((m) => m.id === mode)?.short} / {active?.resources.length} connected
+                sources
+              </p>
+              <h2 className="mt-2 font-display text-lg font-semibold sm:text-2xl">
+                {active?.title}
+              </h2>
+              <p className="mt-2 hidden max-w-2xl text-xs leading-relaxed text-muted-foreground sm:block">
+                {active?.summary}
+              </p>
+            </div>
+            <Button asChild variant="outline" size="sm" className="shrink-0">
+              <Link to="/knowledge" search={{ topic: impactTopicTags[topic]?.[0] ?? "" }}><span className="hidden sm:inline">Related work</span><ArrowRight /><span className="sr-only sm:hidden">Related work</span></Link>
+            </Button>
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
+            <p className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+              <span className="impact-context-dot" />
+              Exploration context
+              <span className="font-semibold text-foreground">{active?.title}</span>
+            </p>
+            <div className="flex items-center gap-2">
+              <label>
+                <span className="sr-only">Change exploration topic</span>
+                <select
+                  aria-label="Change exploration topic"
+                  className="max-w-44 rounded-md border border-input bg-background px-2 py-1.5 text-xs"
+                  value={topic}
+                  onChange={(e) => setTopic(e.target.value)}
+                >
+                  {impactTopics.map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.short}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <Button
+                variant="ghost"
+                size="icon-xs"
+                title="Reset exploration"
+                aria-label="Reset exploration"
+                onClick={() => void navigate({ search: {}, replace: true, resetScroll: false })}
+              >
+                <RotateCcw />
+              </Button>
+            </div>
           </div>
           <SourceConnections key={topic} topic={topic} />
         </div>

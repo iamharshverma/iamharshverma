@@ -5,3 +5,4 @@
 - Publications own their collection/detail routes and feed the shared knowledge library once; the legacy IEEE reference redirects to the canonical paper to avoid duplicate nodes.
 - Per-work impact uses source-dated measurements in work-impact.ts and fixed disclosed equal-weight log benchmarks; unknown evidence stays null so graph connectivity cannot masquerade as measured impact.
 - Illustrative graph weights are deterministic per-work visual emphasis, distinct from evidence scores; nodes and cards share weights across topics to prevent resizing or false impact claims.
+- Radar glossary terms derive technology definitions from shared briefs; a primary-source catalog maps specific supported claims to every topic, technology and supporting term, keeping editorial examples distinct from evidence.

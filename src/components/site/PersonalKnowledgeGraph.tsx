@@ -51,6 +51,7 @@ import {
   Scale,
   Briefcase,
   FolderGit2,
+  LayoutGrid,
   Download,
   type LucideIcon,
 } from "lucide-react";
@@ -707,8 +708,8 @@ export function PersonalKnowledgeGraph({
           else if (index === 3) setEntryExpanded(false);
         }}><span className="font-mono">0{index + 1}</span><span>{label}</span></Button>)}
       </nav>}
-      <div className="kn-search-toolbar relative border-b border-border px-5 py-3">
-        <div className="relative max-w-xl">
+      <div className="kn-search-toolbar relative flex items-start justify-between gap-3 border-b border-border px-5 py-3">
+        <div className="relative w-full max-w-xl">
           <Search className="pointer-events-none absolute left-3 top-3 size-4 text-muted-foreground" />
           <input role="combobox" aria-label="Search graph topics and work" aria-autocomplete="list" aria-expanded={searchOpen && Boolean(graphSearch)} aria-controls="graph-search-results" aria-activedescendant={searchOpen && searchMatches[searchIndex] ? `graph-search-${searchIndex}` : ""} value={graphSearch} placeholder="Jump to a topic, article, talk or publication…" className="impact-input pl-10 pr-10" onFocus={() => setSearchOpen(true)} onBlur={() => setSearchOpen(false)} onChange={event => { setGraphSearch(event.target.value); setSearchOpen(true); setSearchIndex(0); }} onKeyDown={event => {
             if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); setSearchOpen(true); setSearchIndex(index => Math.max(0, Math.min(searchMatches.length - 1, index + (event.key === "ArrowDown" ? 1 : -1)))); }
@@ -721,6 +722,7 @@ export function PersonalKnowledgeGraph({
             {!searchMatches.length && <p role="status" className="p-3 text-sm text-muted-foreground">No matching topics or work.</p>}
           </div>}
         </div>
+        <Button variant="ghost" size="sm" className="shrink-0" aria-label={fullscreenOwner.fullscreen ? "Exit full screen" : "Enter full screen"} title={fullscreenOwner.fullscreen ? "Exit full screen" : "Enter full screen"} aria-pressed={fullscreenOwner.fullscreen} onClick={() => fullscreenOwner.toggle()}>{fullscreenOwner.fullscreen ? <Minimize2 /> : <Maximize2 />}<span>{fullscreenOwner.fullscreen ? "Exit Full Screen" : "Full Screen"}</span></Button>
       </div>
       <div className="grid min-w-0 lg:grid-cols-[minmax(0,1fr)_300px]">
         <div className="min-w-0">
@@ -752,7 +754,6 @@ export function PersonalKnowledgeGraph({
             </div>
             <div className="absolute right-4 top-4 z-10 flex gap-1 rounded-xl border border-border bg-background p-1">
               <GraphDownloadButton svg getElement={() => stageRef.current} filename={`harsh-verma-detail-graph${selected ? `-${selected}` : ""}`} prepare={prepareDownload} />
-              <Button variant="ghost" size="icon-sm" aria-label={fullscreenOwner.fullscreen ? "Exit full screen" : "Enter full screen"} title={fullscreenOwner.fullscreen ? "Exit full screen" : "Enter full screen"} aria-pressed={fullscreenOwner.fullscreen} onClick={() => fullscreenOwner.toggle()}>{fullscreenOwner.fullscreen ? <Minimize2 /> : <Maximize2 />}</Button>
               {!detailList && <Button variant="ghost" size="icon-sm" title="Readable resource map" aria-label="Readable resource map" aria-pressed={readable} onClick={() => setReadable(value => !value)}><ListTree /></Button>}
               <Button variant="ghost" size="icon-sm" title="Cross-format connections" aria-label="Cross-format connections" aria-pressed={crossFormat} onClick={() => setCrossFormat(value => !value)}><Link2 /></Button>
               <Button
@@ -997,6 +998,16 @@ export function PersonalKnowledgeGraph({
                 className="kn-category-index mt-5 flex flex-wrap gap-1.5"
                 aria-label="Browse connected collections"
               >
+                <Button
+                  variant={category ? "ghost" : "secondary"}
+                  size="sm"
+                  aria-pressed={!category}
+                  onClick={() => setCategory("")}
+                >
+                  <LayoutGrid className="size-3.5 shrink-0" aria-hidden />
+                  <span>Show All</span>
+                  <span className="font-mono text-xs text-stat-number">{resources.length}</span>
+                </Button>
                 {grouped.map((group) => {
                   const KindIcon = kindIcons[group.kind] ?? Link2;
                   return (

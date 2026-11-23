@@ -1,6 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.iamharshverma.com/glossary</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/ai-engineering-radar</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.iamharshverma.com/knowledge-impact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -633,4 +643,9 @@
   <url><loc>https://www.iamharshverma.com/radar/privacy-engineering</loc></url>
   <url><loc>https://www.iamharshverma.com/radar/risk-management</loc></url>
   <url><loc>https://www.iamharshverma.com/radar/accountability</loc></url>
+  <url><loc>https://www.iamharshverma.com/radar/topics/agentic-systems</loc></url>
+  <url><loc>https://www.iamharshverma.com/radar/topics/ai-security</loc></url>
+  <url><loc>https://www.iamharshverma.com/radar/topics/enterprise-ai</loc></url>
+  <url><loc>https://www.iamharshverma.com/radar/topics/ai-engineering</loc></url>
+  <url><loc>https://www.iamharshverma.com/radar/topics/responsible-ai</loc></url>
 </urlset>

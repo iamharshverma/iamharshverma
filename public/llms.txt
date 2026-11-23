@@ -4,6 +4,8 @@
 Public source-linked portfolio. Personal perspectives are not employer endorsements. Publication statuses and abstracts are source-reported; forthcoming and under-review works are not published papers. Illustrative graph emphasis is not measured impact. Simulations are educational, not live enterprise actions.
 
 ## Pages
+- [AI Engineering Glossary](https://www.iamharshverma.com/glossary): Definitions, conceptual diagrams and primary-source references for radar technologies and supporting engineering terms.
+- [AI Engineering Radar Guide](https://www.iamharshverma.com/ai-engineering-radar): Five connected topics and 29 technology guides with educational workflows and source-backed explanations.
 - [Harsh Verma - Principal Software Engineer AI/ML](https://www.iamharshverma.com/): Harsh Verma, Principal Software Engineer at Palo Alto Networks, speaker and author. Explore AI, cybersecurity, agentic systems and AI advisory for founders.
 - [Harsh Verma - Artificial Intelligence Engineer | About](https://www.iamharshverma.com/about): Meet Harsh Verma, artificial intelligence engineer at Palo Alto Networks, speaker and author. Explore his AI/ML career, education and achievements.
 - [Harsh Verma - Agentic AI & AI Advisory for Founders](https://www.iamharshverma.com/advisory): Agentic AI and AI advisory for founders and enterprises with Harsh Verma: strategy, secure architecture, governance, executive briefings and engineer mentoring.

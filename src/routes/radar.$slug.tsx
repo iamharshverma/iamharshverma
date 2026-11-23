@@ -6,6 +6,10 @@ import { KnowledgeCards } from "@/components/site/KnowledgeCards";
 import { contentHead } from "@/lib/content-head";
 import { radarEntries, getImpactTopic, impactTopicTags } from "@/data/knowledge-impact";
 import { knowledge, type KnowledgeItem } from "@/data/knowledge";
+import { radarSectors } from "@/data/radar-sectors";
+import { radarTopicArtwork, radarTechnologyGuides } from "@/data/radar-technology-guide";
+import { RadarTechnologyBrief, RadarRelationshipGraph } from "@/components/impact/RadarDossier";
+import { GlossaryText } from "@/components/impact/GlossaryText";
 
 const RELATED_KINDS = new Set(["Article", "Publication", "Research", "Keynote"]);
 
@@ -34,9 +38,10 @@ export const Route = createFileRoute("/radar/$slug")({
       `/radar/${loaderData?.id ?? ""}`,
       loaderData ? `${loaderData.title} — AI Engineering Radar` : "Technology unavailable",
       loaderData
-        ? `${loaderData.title} on Harsh Verma's AI Engineering Radar: ${loaderData.implication}`
+        ? `${loaderData.title} on Harsh Verma's AI Engineering Radar: ${radarTechnologyGuides[loaderData.id]?.definition ?? loaderData.implication}`
         : "Technologies and patterns connected to Harsh Verma's technical perspectives.",
       "TechArticle",
+      radarTopicArtwork[radarSectors.find(sector => sector.title === loaderData?.sector)?.id ?? ""]?.url,
     ),
   component: RadarTechnology,
 });
@@ -46,6 +51,9 @@ function RadarTechnology() {
   const domain = getImpactTopic(entry.topic);
   const related = radarRelatedWork(entry.id);
   const siblings = radarEntries.filter((r) => r.sector === entry.sector && r.id !== entry.id);
+  const sector = radarSectors.find((item) => item.title === entry.sector);
+  const brief = radarTechnologyGuides[entry.id];
+  const art = radarTopicArtwork[sector?.id ?? ""];
   const details = [
     ["Engineering implication", entry.implication],
     ["Security consideration", entry.security],
@@ -57,15 +65,16 @@ function RadarTechnology() {
       <PageHero
         eyebrow={`// engineering radar · ${entry.sector}`}
         title={entry.title}
-        intro={entry.rationale}
+        intro={brief?.definition.split(". ")[0] ? `${brief.definition.split(". ")[0]}.` : entry.rationale}
       />
-      <section className="knowledge-refined mx-auto max-w-5xl px-6 py-12">
+      <section className={`knowledge-impact knowledge-refined impact-tone-${radarSectors.findIndex(item => item.id === sector?.id)} mx-auto max-w-5xl px-6 py-12`}>
         <Button asChild variant="ghost" size="sm" className="px-0 text-brand">
           <Link to="/knowledge-impact" search={{ mode: "radar", topic: entry.topic }}>
             <ArrowLeft />
             Back to the Engineering Radar
           </Link>
         </Button>
+        <Button asChild variant="outline" size="sm" className="ml-3"><Link to="/glossary" hash={entry.id}>Glossary definition<ArrowRight /></Link></Button>
         <dl className="mt-8 grid gap-5 border-y border-border py-6 sm:grid-cols-3">
           <div>
             <dt className="text-xs text-muted-foreground">Radar sector</dt>
@@ -80,14 +89,19 @@ function RadarTechnology() {
             <dd className="mt-2 font-mono text-stat-number">Unassessed</dd>
           </div>
         </dl>
+        <div className="mt-10">
+          <RadarTechnologyBrief key={entry.id} entry={entry} {...(art ? { artwork: art } : {})} />
+        </div>
+        {sector && <RadarRelationshipGraph sector={sector} entry={entry} />}
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          <p className="text-xs text-muted-foreground sm:col-span-2">Independent implementation perspectives · illustrative, not findings reported by the cited sources.</p>
           {details.map(([label, value]) => (
             <article
               key={label}
               className="rounded-xl border border-border bg-card p-6 transition-shadow duration-300 motion-safe:hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg"
             >
               <h2 className="font-display text-base font-semibold">{label}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{value}</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground"><GlossaryText text={value} /></p>
             </article>
           ))}
         </div>
@@ -110,7 +124,13 @@ function RadarTechnology() {
             <h2 className="font-display text-xl font-semibold">
               More in {entry.sector}
             </h2>
+            {sector && <Button asChild variant="link" size="sm" className="mt-3 px-0">
+              <Link to="/radar/topics/$slug" params={{ slug: sector.id }}>Explore {sector.title}<ArrowRight /></Link>
+            </Button>}
             <div className="mt-5 flex flex-wrap gap-2">
+              <Button variant="outline" size="sm" className="radar-current-pill rounded-full" aria-current="page" title={`${entry.title} — you are here`}>
+                {entry.title}
+              </Button>
               {siblings.map((r) => (
                 <Button key={r.id} asChild variant="outline" size="sm" className="rounded-full">
                   <Link to="/radar/$slug" params={{ slug: r.id }}>

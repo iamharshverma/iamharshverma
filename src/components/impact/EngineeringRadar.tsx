@@ -1,10 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, GitCompareArrows, Radar, X } from "lucide-react";
 import { ZoomableDiagram } from "./ZoomableDiagram";
 import { Button } from "@/components/ui/button";
 import { KnowledgeLink } from "@/components/site/KnowledgeCards";
 import { radarEntries, getImpactTopic, type RadarRing } from "@/data/knowledge-impact";
+import { radarSectors } from "@/data/radar-sectors";
+import { RadarSectorContent } from "./RadarSectorContent";
+import { RadarOverview } from "./RadarOverview";
+import { radarMarkerState } from "./radar-selection";
+import { LogoMark } from "@/components/site/Logo";
 
 const rings: RadarRing[] = ["ADOPT", "EXPERIMENT", "ASSESS", "WATCH", "UNASSESSED"];
 const sectors = [...new Set(radarEntries.map((r) => r.sector))];
@@ -18,33 +23,50 @@ export default function EngineeringRadar({
   onGraph: () => void;
 }) {
   const [sector, setSector] = useState("");
+  const [sectorOverview, setSectorOverview] = useState(false);
+  const [selected, setSelected] = useState("");
+  const [resetVersion, setResetVersion] = useState(0);
+  const [motionActive, setMotionActive] = useState(false);
+  const radarRef = useRef<HTMLDivElement>(null);
+  const inspectorRef = useRef<HTMLElement>(null);
+  const arc = sectorOverview ? radarSectors.find((item) => item.title === sector) : undefined;
+  const openSector = (title: string) => {
+    setSector(title);
+    setSelected("");
+    setSectorOverview(Boolean(title));
+    if (title && window.matchMedia("(max-width: 1023px)").matches) {
+      requestAnimationFrame(() => inspectorRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" }));
+    }
+  };
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  const [selected, setSelected] = useState(
-    radarEntries.find((r) => r.relatedTopics.includes(topic))?.id ?? radarEntries[0]?.id ?? "",
-  );
+  useEffect(() => {
+    const element = radarRef.current;
+    if (!element) return;
+    let visible = false;
+    const update = () => setMotionActive(visible && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => { visible = Boolean(entry?.isIntersecting); update(); });
+    observer.observe(element);
+    document.addEventListener("visibilitychange", update);
+    return () => { observer.disconnect(); document.removeEventListener("visibilitychange", update); };
+  }, []);
+  const reset = () => { openSector(""); setCompare([]); setResetVersion(value => value + 1); };
   const [compare, setCompare] = useState<string[]>([]);
   const list = useMemo(
     () => radarEntries.filter((r) => !sector || r.sector === sector),
     [sector],
   );
-  const active = list.find((r) => r.id === selected) ?? list[0];
-  const activeId = active?.id ?? "";
-  useEffect(() => {
-    setSelected((current) => {
-      const entry = radarEntries.find((r) => r.id === current);
-      return entry?.relatedTopics.includes(topic)
-        ? current
-        : (radarEntries.find((r) => r.relatedTopics.includes(topic))?.id ?? current);
-    });
-  }, [topic]);
+  const active = radarEntries.find((r) => r.id === selected);
+  const activeId = arc ? "" : active?.id ?? "";
   const select = (id: string) => {
+    setSectorOverview(false);
     setSelected(id);
     const r = radarEntries.find((e) => e.id === id);
+    if (r) setSector(r.sector);
     if (r && !r.relatedTopics.includes(topic)) onTopic(r.topic);
   };
   return (
-    <div className="impact-radar p-5 sm:p-8">
+    <div ref={radarRef} data-motion-active={motionActive} className="impact-radar p-5 sm:p-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="impact-kicker">01 / Foresight</p>
@@ -65,23 +87,23 @@ export default function EngineeringRadar({
             aria-label="Radar sector"
             className="impact-input sm:max-w-48"
             value={sector}
-            onChange={(e) => setSector(e.target.value)}
+            onChange={(e) => openSector(e.target.value)}
           >
             <option value="">All sectors</option>
             {sectors.map((s) => (
               <option key={s}>{s}</option>
             ))}
           </select>
-          {sector && <Button variant="ghost" size="sm" onClick={() => setSector("")}><X />Clear filters</Button>}
+          {sector && <Button variant="ghost" size="sm" onClick={() => openSector("")}><X />Clear filters</Button>}
         </div>
       )}
       <div className="mt-4 grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
         <div className="min-w-0">
-          <ZoomableDiagram label="engineering radar">
+          <ZoomableDiagram key={resetVersion} label="engineering radar">
           <svg
             viewBox="0 0 660 660"
             className="w-full"
-            role="img"
+            role="group"
             aria-label="Five-sector radar; technologies in the unassessed outer band"
           >
             <defs>
@@ -102,9 +124,9 @@ export default function EngineeringRadar({
               return (
                 <path
                   key={s}
-                  role="button" tabIndex={0} aria-label={`Filter radar ${s}`}
-                  onClick={() => setSector(value => value === s ? "" : s)}
-                  onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setSector(value => value === s ? "" : s); } }}
+                  role="button" tabIndex={0} aria-label={`Open radar topic ${s}`} aria-pressed={sector === s}
+                  onClick={() => openSector(s)}
+                  onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openSector(s); } }}
                   className={`impact-radar-wedge impact-sector-${i} impact-tone-${i} ${sector === s ? "is-selected" : sector ? "is-faded" : ""}`}
                   d={`M 330 330 L ${330 + Math.cos(start) * 303} ${330 + Math.sin(start) * 303} A 303 303 0 0 1 ${330 + Math.cos(end) * 303} ${330 + Math.sin(end) * 303} Z`}
                 />
@@ -138,7 +160,7 @@ export default function EngineeringRadar({
                     x={330 + Math.cos(a + 0.5) * 170}
                     y={330 + Math.sin(a + 0.5) * 170}
                     textAnchor="middle"
-                    className={`impact-radar-sector impact-tone-${i} ${sector === s ? "is-selected" : ""}`} onClick={() => setSector(value => value === s ? "" : s)}
+                    className={`impact-radar-sector impact-tone-${i} ${sector === s ? "is-selected" : ""}`} onClick={() => openSector(s)}
                   >
                     {s}
                   </text>
@@ -146,12 +168,14 @@ export default function EngineeringRadar({
               );
             })}
             <g className="impact-radar-sweep" aria-hidden="true"><path d="M 330 330 L 330 27 A 303 303 0 0 1 508 85 Z" fill="url(#impact-radar-sweep-fill)" /></g>
-            <circle cx="330" cy="330" r="32" className="impact-radar-core" />
-            <text x="330" y="333" textAnchor="middle" className="impact-svg-label">
-              KI
-            </text>
+            <g className={`impact-radar-home ${!sector && !selected ? "is-overview" : ""}`} role="button" tabIndex={0} aria-label="HV logo — reset radar overview" onClick={reset} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); reset(); } }}>
+              <title>HV — All topics</title>
+              <circle cx="330" cy="330" r="43" className="impact-radar-core-halo" />
+              <circle cx="330" cy="330" r="34" className="impact-radar-core" />
+              <svg x="306" y="306" width="48" height="48" viewBox="0 0 48 48"><LogoMark className="h-full w-full" /></svg>
+            </g>
             {radarEntries.map((r) => {
-              if (!list.includes(r)) return null;
+              const marker = radarMarkerState(sector, selected, r);
               const s = sectors.indexOf(r.sector);
               const group = radarEntries.filter((e) => e.sector === r.sector);
               const i = group.indexOf(r);
@@ -171,11 +195,11 @@ export default function EngineeringRadar({
                       select(r.id);
                     }
                   }}
-                  style={{ ["--marker-i" as string]: radarEntries.indexOf(r) }} className={`impact-radar-marker impact-tone-${s} ${sector && sector !== r.sector ? "is-dim" : ""} ${r.relatedTopics.includes(topic) ? "is-related" : ""} ${r.id === activeId ? "is-active" : ""}`}
+                  style={{ ["--marker-i" as string]: radarEntries.indexOf(r) }} className={`impact-radar-marker impact-tone-${s} ${sector && !marker.focused ? "is-dim" : ""} ${marker.blinking ? "is-blinking" : ""} ${marker.active ? "is-active" : ""}`}
                 >
                   <title>{`${r.title} · Unassessed`}</title>
-                  {r.id === activeId && <circle className="impact-radar-ping" cx={x} cy={y} r={11} />}
-                  <circle className="impact-radar-dot" cx={x} cy={y} r={r.id === activeId ? 11 : 7} style={{ transformOrigin: `${x}px ${y}px` }} />
+                  {marker.blinking && <circle className="impact-radar-ping" cx={x} cy={y} r={marker.radius + 2} />}
+                  <circle className="impact-radar-dot" cx={x} cy={y} r={marker.radius} style={{ transformOrigin: `${x}px ${y}px` }} />
                   <text x={x} y={y + 3} textAnchor="middle">
                     {radarEntries.indexOf(r) + 1}
                   </text>
@@ -198,7 +222,7 @@ export default function EngineeringRadar({
               <Button
                 key={r.id}
                 variant={r.id === activeId ? "secondary" : "ghost"}
-                className="h-auto min-h-10 justify-start whitespace-normal text-left text-xs"
+                className={`h-auto min-h-10 justify-start whitespace-normal text-left text-xs ${r.id === activeId ? "is-active-tech" : ""}`}
                 onClick={() => select(r.id)}
               >
                 <span className="font-mono text-stat-number">
@@ -225,10 +249,19 @@ export default function EngineeringRadar({
             </div>
           )}
         </div>
-        <aside className="impact-radar-inspector min-w-0 border-t border-border pt-6 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
-          {!active && <div className="py-6"><Radar className="size-8 text-muted-foreground" /><h3 className="mt-4 font-display text-xl">No matching technologies</h3><p className="mt-2 text-sm text-muted-foreground">No adoption position is implied by an empty result.</p></div>}
-          {active && (
-            <>
+        <aside ref={inspectorRef} aria-label="Radar details" className="impact-radar-inspector min-w-0 scroll-mt-24 border-t border-border pt-6 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
+          {arc && <div key={arc.id} className="impact-radar-panel">
+            <p className="impact-kicker">Radar topic</p>
+            <h3 className="mt-3 font-display text-2xl font-semibold">{arc.title}</h3>
+            <Button asChild variant="outline" size="sm" className="radar-topic-action my-5">
+              <Link to="/radar/topics/$slug" params={{ slug: arc.id }}>Open topic page<ArrowRight /></Link>
+            </Button>
+            <RadarSectorContent sector={arc} />
+          </div>}
+          {!arc && !active && <RadarOverview />}
+          {!arc && active && (
+            <div key={active.id} className="impact-radar-panel">
+              {sector && <Button variant="ghost" size="sm" className="mb-4 px-0 text-brand" onClick={() => openSector(sector)}>Back to {sector}</Button>}
               <p className="impact-kicker">{active.sector}</p>
               <h3 className="mt-3 font-display text-2xl font-semibold">{active.title}</h3>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
@@ -287,7 +320,7 @@ export default function EngineeringRadar({
                   <ArrowRight />
                 </Button>
               </div>
-            </>
+            </div>
           )}
         </aside>
       </div>

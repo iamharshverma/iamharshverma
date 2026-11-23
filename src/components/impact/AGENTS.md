@@ -1,3 +1,7 @@
 - Agent diagrams use ReactFlow and preserve dragged positions across trace updates, so playback never rearranges the visitor's layout.
 - Radar and concept diagrams share react-zoom-pan-pinch controls; wheel scrolling stays native to protect page navigation.
+- Radar arc panels and topic pages reuse RadarSectorContent and collections derived from radar entries, so every arc retains the complete technology inventory and details.
+- The radar guide reuses all sector collections; radar selection keeps every marker mounted and uses one tested focus predicate, so overview, arc and individual-node emphasis remain exclusive.
+- Radar guides share topic artwork and explicit per-technology briefs through RadarDossier; only full topic pages enrich accordions, keeping inspectors compact. Workflows and graphs illustrate concepts, never adoption or performance; the center pulse stays selection-independent with motion guards.
 - Simulations retain deterministic domain rules; playback speed, scrubbing and pinned outcome counts are presentation-only, not external actions or scored assessments.
+- Radar passages link shared glossary terms; RadarReferences renders claim-specific citations while scenarios and conceptual diagrams remain explicitly illustrative, preventing related portfolio work from being presented as supporting research.
