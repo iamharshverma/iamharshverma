@@ -42,6 +42,7 @@ import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as MediaSlugRouteImport } from './routes/media_.$slug'
 import { Route as PublicationsSlugRouteImport } from './routes/publications_.$slug'
+import { Route as RadarSlugRouteImport } from './routes/radar.$slug'
 import { Route as ResearchPillarRouteImport } from './routes/research_.$pillar'
 import { Route as TalksSlugRouteImport } from './routes/talks.$slug'
 import { Route as ResearchWorksSlugRouteImport } from './routes/research_.works.$slug'
@@ -211,6 +212,11 @@ const PublicationsSlugRoute = PublicationsSlugRouteImport.update({
   path: '/publications/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RadarSlugRoute = RadarSlugRouteImport.update({
+  id: '/radar/$slug',
+  path: '/radar/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResearchPillarRoute = ResearchPillarRouteImport.update({
   id: '/research_/$pillar',
   path: '/research/$pillar',
@@ -259,6 +265,7 @@ export interface FileRoutesByFullPath {
   '/insights/$slug': typeof InsightsSlugRoute
   '/media/$slug': typeof MediaSlugRoute
   '/publications/$slug': typeof PublicationsSlugRoute
+  '/radar/$slug': typeof RadarSlugRoute
   '/research/$pillar': typeof ResearchPillarRoute
   '/talks/$slug': typeof TalksSlugRoute
   '/engineering/': typeof EngineeringIndexRoute
@@ -296,6 +303,7 @@ export interface FileRoutesByTo {
   '/insights/$slug': typeof InsightsSlugRoute
   '/media/$slug': typeof MediaSlugRoute
   '/publications/$slug': typeof PublicationsSlugRoute
+  '/radar/$slug': typeof RadarSlugRoute
   '/research/$pillar': typeof ResearchPillarRoute
   '/talks/$slug': typeof TalksSlugRoute
   '/engineering': typeof EngineeringIndexRoute
@@ -335,6 +343,7 @@ export interface FileRoutesById {
   '/insights/$slug': typeof InsightsSlugRoute
   '/media_/$slug': typeof MediaSlugRoute
   '/publications_/$slug': typeof PublicationsSlugRoute
+  '/radar/$slug': typeof RadarSlugRoute
   '/research_/$pillar': typeof ResearchPillarRoute
   '/talks/$slug': typeof TalksSlugRoute
   '/engineering/': typeof EngineeringIndexRoute
@@ -375,6 +384,7 @@ export interface FileRouteTypes {
     | '/insights/$slug'
     | '/media/$slug'
     | '/publications/$slug'
+    | '/radar/$slug'
     | '/research/$pillar'
     | '/talks/$slug'
     | '/engineering/'
@@ -412,6 +422,7 @@ export interface FileRouteTypes {
     | '/insights/$slug'
     | '/media/$slug'
     | '/publications/$slug'
+    | '/radar/$slug'
     | '/research/$pillar'
     | '/talks/$slug'
     | '/engineering'
@@ -450,6 +461,7 @@ export interface FileRouteTypes {
     | '/insights/$slug'
     | '/media_/$slug'
     | '/publications_/$slug'
+    | '/radar/$slug'
     | '/research_/$pillar'
     | '/talks/$slug'
     | '/engineering/'
@@ -488,6 +500,7 @@ export interface RootRouteChildren {
   InsightsSlugRoute: typeof InsightsSlugRoute
   MediaSlugRoute: typeof MediaSlugRoute
   PublicationsSlugRoute: typeof PublicationsSlugRoute
+  RadarSlugRoute: typeof RadarSlugRoute
   ResearchPillarRoute: typeof ResearchPillarRoute
   TalksSlugRoute: typeof TalksSlugRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
@@ -727,6 +740,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicationsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/radar/$slug': {
+      id: '/radar/$slug'
+      path: '/radar/$slug'
+      fullPath: '/radar/$slug'
+      preLoaderRoute: typeof RadarSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/research_/$pillar': {
       id: '/research_/$pillar'
       path: '/research/$pillar'
@@ -796,6 +816,7 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsSlugRoute: InsightsSlugRoute,
   MediaSlugRoute: MediaSlugRoute,
   PublicationsSlugRoute: PublicationsSlugRoute,
+  RadarSlugRoute: RadarSlugRoute,
   ResearchPillarRoute: ResearchPillarRoute,
   TalksSlugRoute: TalksSlugRoute,
   InsightsIndexRoute: InsightsIndexRoute,

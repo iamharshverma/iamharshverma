@@ -100,7 +100,7 @@ export default function AgentPlayground({
             Inside the Agentic System.
           </h2>
         </div>
-        <span className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 font-mono text-[10px] text-muted-foreground">
+        <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-2 font-mono text-[10px] text-muted-foreground">
           <ShieldCheck className="size-4" />
           ILLUSTRATIVE · BROWSER-LOCAL
         </span>
@@ -219,7 +219,7 @@ export default function AgentPlayground({
             />
           </div>
         </div>
-        <div className="impact-lab-controls min-w-0 border-t border-border pt-6 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
+        <div className="impact-lab-controls min-w-0">
           <h3 className="font-display text-xl font-semibold">Change the Outcome</h3>
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
             Lab values only. Changes reset execution; no real security assessment or external action
@@ -355,7 +355,7 @@ export default function AgentPlayground({
               </li>
             ))}
           </ol>
-          <div className="border-l border-border pl-5">
+          <div className="impact-lab-inspector min-w-0">
             <p className="impact-kicker">Tool & decision inspector</p>
             <h4 className="mt-3 font-semibold">
               {cursor ? inspectedEvent?.title : "No action yet"}
@@ -366,7 +366,7 @@ export default function AgentPlayground({
                 : "Execution evidence appears when the simulation advances."}
             </p>
             {cursor > 0 && inspectedEvent?.tool && (
-              <code className="mt-4 block break-words rounded-md bg-muted p-3 text-xs">
+              <code className="mt-4 block break-words rounded-xl bg-muted p-3 text-xs">
                 {inspectedEvent.tool}
               </code>
             )}

@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef, useMemo } from "react";
 import { Search, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PageHero, Reveal } from "@/components/site/Reveal";
+import { PageHero } from "@/components/site/Reveal";
 import { KnowledgeHeroIcons } from "@/components/site/KnowledgeHeroIcons";
 import { GroupedKnowledgeResults } from "@/components/site/GroupedKnowledgeResults";
 import { KnowledgeExplorer } from "@/components/site/KnowledgeExplorer";
@@ -71,7 +71,30 @@ function KnowledgeHub() {
         sideImage={<KnowledgeHeroIcons variant="hub" />}
       />
       <section className="knowledge-hub-content knowledge-refined mx-auto max-w-7xl px-5 pb-12 pt-6 sm:px-8">
-        <Reveal>
+        <nav aria-label="Explore topics" className="mt-5 flex flex-wrap gap-2">
+          {networkTopics.map(topic => (
+            <Button key={topic.id} asChild variant={filters.topic === topic.id ? "secondary" : "outline"} size="sm">
+              <Link to="/knowledge" search={previous => ({ ...previous, topic: topic.id, resource: "" })} resetScroll={false}
+                onClick={(event) => {
+                  if (!event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && event.button === 0) scrollToGraph();
+                }}>
+                {topic.title}
+                <span className="font-mono text-[10px] text-stat-number">{networkResources(topic.id).length}</span>
+              </Link>
+            </Button>
+          ))}
+        </nav>
+        <div ref={graphRef} className="knowledge-hub-graph mt-6 scroll-mt-24">
+            <KnowledgeExplorer
+              selected={filters.topic ?? ""}
+              selectedResource={filters.resource ?? ""}
+              onResource={(resource) => set("resource", resource)}
+              onSelect={chooseTopic}
+              items={list}
+              onReset={() => void navigate({ search: {}, replace: true, resetScroll: false })}
+            />
+        </div>
+        <div className="mt-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <label className="relative w-full max-w-xl">
               <Search
@@ -88,7 +111,7 @@ function KnowledgeHub() {
               />
             </label>
           </div>
-          <div className="knowledge-filter-bar mt-6 grid gap-4 border-y border-border py-5 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="knowledge-filter-bar mt-6 grid gap-4 p-5 sm:grid-cols-2 lg:grid-cols-5">
             {(
               [
                 ["kind", "Content type", [...new Set(knowledge.map((i) => i.kind))].sort()],
@@ -121,7 +144,6 @@ function KnowledgeHub() {
                   onChange={(e) => {
                     if (key === "topic") chooseTopic(e.target.value);
                     else set(key, e.target.value);
-                    scrollToGraph();
                   }}
                 >
                   <option value="">All</option>
@@ -132,32 +154,9 @@ function KnowledgeHub() {
               </label>
             ))}
           </div>
-        </Reveal>
-        <nav aria-label="Explore topics" className="mt-5 flex flex-wrap gap-2">
-          {networkTopics.map(topic => (
-            <Button key={topic.id} asChild variant={filters.topic === topic.id ? "secondary" : "outline"} size="sm">
-              <Link to="/knowledge" search={previous => ({ ...previous, topic: topic.id, resource: "" })} resetScroll={false}
-                onClick={(event) => {
-                  if (!event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && event.button === 0) scrollToGraph();
-                }}>
-                {topic.title}
-                <span className="font-mono text-[10px] text-stat-number">{networkResources(topic.id).length}</span>
-              </Link>
-            </Button>
-          ))}
-        </nav>
-        <div ref={graphRef} className="mt-6 scroll-mt-24">
-            <KnowledgeExplorer
-              selected={filters.topic ?? ""}
-              selectedResource={filters.resource ?? ""}
-              onResource={(resource) => set("resource", resource)}
-              onSelect={chooseTopic}
-              items={list}
-              onReset={() => void navigate({ search: {}, replace: true, resetScroll: false })}
-            />
         </div>
         <div id="knowledge-results" className="scroll-mt-24">
-        <div className="my-8 flex items-center justify-between border-y border-border py-4">
+        <div className="knowledge-hub-results-bar my-8 flex items-center justify-between px-5 py-4">
           <p role="status" className="text-sm text-muted-foreground">
             <span className="font-mono font-semibold text-stat-number">{list.length}</span>{" "}
             resources
@@ -180,7 +179,7 @@ function KnowledgeHub() {
           </div>
         )}
         </div>
-        <div className="mt-12 flex flex-wrap gap-5 border-t border-border pt-8 text-sm text-brand">
+        <div className="knowledge-hub-links mt-12 flex flex-wrap gap-3 border-t border-border pt-8 text-sm">
           <Link to="/research">Research & Expertise →</Link>
           <Link to="/engineering">Engineering & Architecture →</Link>
           <Link to="/resources">Reader & press resources →</Link>

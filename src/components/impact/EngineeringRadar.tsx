@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, ArrowRight, GitCompareArrows, Radar, X, Focus } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, GitCompareArrows, Radar, X } from "lucide-react";
 import { ZoomableDiagram } from "./ZoomableDiagram";
 import { Button } from "@/components/ui/button";
 import { KnowledgeLink } from "@/components/site/KnowledgeCards";
@@ -17,23 +18,15 @@ export default function EngineeringRadar({
   onGraph: () => void;
 }) {
   const [sector, setSector] = useState("");
-  const [ring, setRing] = useState("");
-  const [relatedOnly, setRelatedOnly] = useState(false);
-  const [q, setQ] = useState("");
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const [selected, setSelected] = useState(
     radarEntries.find((r) => r.relatedTopics.includes(topic))?.id ?? radarEntries[0]?.id ?? "",
   );
   const [compare, setCompare] = useState<string[]>([]);
   const list = useMemo(
-    () =>
-      radarEntries.filter(
-        (r) =>
-          (!sector || r.sector === sector) &&
-          (!ring || r.ring === ring) &&
-          (!relatedOnly || r.relatedTopics.includes(topic)) &&
-          `${r.title} ${r.sector} ${r.implication} ${r.security}`.toLowerCase().includes(q.toLowerCase()),
-      ),
-    [sector, ring, q, relatedOnly, topic],
+    () => radarEntries.filter((r) => !sector || r.sector === sector),
+    [sector],
   );
   const active = list.find((r) => r.id === selected) ?? list[0];
   const activeId = active?.id ?? "";
@@ -54,7 +47,7 @@ export default function EngineeringRadar({
     <div className="impact-radar p-5 sm:p-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="impact-kicker">04 / Foresight</p>
+          <p className="impact-kicker">01 / Foresight</p>
           <h2 className="mt-2 font-display text-2xl sm:text-3xl font-semibold">
             AI Engineering Radar.
           </h2>
@@ -66,43 +59,22 @@ export default function EngineeringRadar({
         are unassessed until a documented adoption position is published; no scores, review dates or
         historical movement are invented.
       </p>
-      <div className="impact-toolbar mt-6 px-0">
-        <label className="relative min-w-0 flex-1">
-          <Search className="absolute left-3 top-3 size-4 text-muted-foreground" />
-          <span className="sr-only">Search radar</span>
-          <input
-            type="search"
-            className="impact-input pl-10"
-            aria-label="Search radar"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Find a technology…"
-          />
-        </label>
-        <select
-          aria-label="Radar sector"
-          className="impact-input sm:max-w-48"
-          value={sector}
-          onChange={(e) => setSector(e.target.value)}
-        >
-          <option value="">All sectors</option>
-          {sectors.map((s) => (
-            <option key={s}>{s}</option>
-          ))}
-        </select>
-        <select
-          aria-label="Radar ring"
-          className="impact-input sm:max-w-44"
-          value={ring}
-          onChange={(e) => setRing(e.target.value)}
-        >
-          <option value="">All positions</option>
-          {rings.map((r) => (
-            <option key={r}>{r}</option>
-          ))}
-        </select>
-      </div>
-      <div className="mt-3 flex flex-wrap items-center gap-2"><Button variant={relatedOnly ? "secondary" : "outline"} size="sm" aria-pressed={relatedOnly} onClick={() => setRelatedOnly(value => !value)}><Focus />Current domain</Button><span className="font-mono text-xs text-muted-foreground">{list.length} / {radarEntries.length} technologies</span>{(q || sector || ring || relatedOnly) && <Button variant="ghost" size="sm" onClick={() => { setQ(""); setSector(""); setRing(""); setRelatedOnly(false); }}><X />Clear filters</Button>}</div>
+      {mounted && (
+        <div className="impact-toolbar mt-6 px-0">
+          <select
+            aria-label="Radar sector"
+            className="impact-input sm:max-w-48"
+            value={sector}
+            onChange={(e) => setSector(e.target.value)}
+          >
+            <option value="">All sectors</option>
+            {sectors.map((s) => (
+              <option key={s}>{s}</option>
+            ))}
+          </select>
+          {sector && <Button variant="ghost" size="sm" onClick={() => setSector("")}><X />Clear filters</Button>}
+        </div>
+      )}
       <div className="mt-4 grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
         <div className="min-w-0">
           <ZoomableDiagram label="engineering radar">
@@ -238,7 +210,7 @@ export default function EngineeringRadar({
           </div>
           {!list.length && (
             <div className="py-8">
-              <h3 className="font-display font-semibold">No published positions in this ring.</h3>
+              <h3 className="font-display font-semibold">No matching technologies.</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 Clear filters to explore unassessed entries.
               </p>
@@ -246,11 +218,7 @@ export default function EngineeringRadar({
                 className="mt-4"
                 variant="outline"
                 size="sm"
-                onClick={() => {
-                  setRing("");
-                  setSector("");
-                  setQ("");
-                }}
+                onClick={() => setSector("")}
               >
                 Clear filters
               </Button>
@@ -263,9 +231,6 @@ export default function EngineeringRadar({
             <>
               <p className="impact-kicker">{active.sector}</p>
               <h3 className="mt-3 font-display text-2xl font-semibold">{active.title}</h3>
-              <span className="mt-4 inline-block rounded-md border border-border px-3 py-1.5 font-mono text-[10px]">
-                UNASSESSED · NO PUBLISHED REVIEW DATE
-              </span>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 {active.rationale}
               </p>
@@ -282,10 +247,16 @@ export default function EngineeringRadar({
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{value}</p>
                 </div>
               ))}
+              <Button asChild variant="outline" size="sm" className="mt-6">
+                <Link to="/radar/$slug" params={{ slug: active.id }}>
+                  Open technology page
+                  <ArrowRight />
+                </Link>
+              </Button>
               <Button
                 variant="outline"
                 size="sm"
-                className="mt-6"
+                className="mt-6 ml-2"
                 disabled={compare.length >= 2 && !compare.includes(active.id)}
                 onClick={() =>
                   setCompare((ids) =>

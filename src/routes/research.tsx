@@ -1,7 +1,7 @@
 import { SeoSummary } from "@/components/site/SeoSummary";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { canonical } from "@/lib/seo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowUpRight, Lightbulb, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { research, researchFocus, links } from "@/data/profile";
@@ -38,6 +38,22 @@ function Research() {
   const [k, setK] = useState<(typeof kinds)[number]>("All");
   const [showAllFocus, setShowAllFocus] = useState(false);
   const [showAllArchive, setShowAllArchive] = useState(false);
+  const [showAllWriting, setShowAllWriting] = useState(false);
+  const [writingCols, setWritingCols] = useState(4);
+  useEffect(() => {
+    const wide = window.matchMedia("(min-width: 1024px)");
+    const medium = window.matchMedia("(min-width: 768px)");
+    const sync = () => setWritingCols(wide.matches ? 4 : medium.matches ? 2 : 1);
+    sync();
+    wide.addEventListener("change", sync);
+    medium.addEventListener("change", sync);
+    return () => {
+      wide.removeEventListener("change", sync);
+      medium.removeEventListener("change", sync);
+    };
+  }, []);
+  const writingLimit = 3 * writingCols;
+  const writingVisible = showAllWriting ? blogs : blogs.slice(0, writingLimit);
   const list = research.filter((r) => k === "All" || r.kind === k);
   const visible = showAllArchive ? list : list.slice(0, 6);
   return (
@@ -68,7 +84,7 @@ function Research() {
           <div className="flex flex-wrap gap-4 text-sm"><Link to="/forbes" className="text-brand">Forbes articles →</Link><Link to="/hackernoon" className="text-brand">HackerNoon articles →</Link><Link to="/rsac" className="text-brand">RSAC articles →</Link></div>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {blogs.map((b, i) => (
+          {writingVisible.map((b, i) => (
             <Reveal key={b.title} delay={i * 0.04}>
               <a href={b.href} target="_blank" rel="noreferrer" className="block h-full">
                 <TiltCard>
@@ -83,6 +99,14 @@ function Research() {
             </Reveal>
           ))}
         </div>
+        {blogs.length > writingLimit && (
+          <div className="mt-8 flex justify-center">
+            <Button variant="outline" size="sm" aria-expanded={showAllWriting} onClick={() => setShowAllWriting(!showAllWriting)}>
+              {showAllWriting ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
+              {showAllWriting ? "Show Less" : `Show More ${blogs.length - writingLimit}`}
+            </Button>
+          </div>
+        )}
       </section>
       <section id="focus" className="mx-auto max-w-6xl px-6 pt-16">
         <Reveal><p className="eyebrow">Research topics · questions · findings</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">What I Research</h2></Reveal>

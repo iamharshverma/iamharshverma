@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useRef, useState, type PointerEvent as RPointerEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, ChevronRight, Layers, Maximize2, ZoomIn, ZoomOut, Home } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, ChevronRight, Layers, Maximize2, Minimize2, ZoomIn, ZoomOut, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { KnowledgeLink } from "./KnowledgeCards";
 import { LogoMark } from "./Logo";
-import { useExplorerFullscreen, ExplorerFullscreenButton } from "./ExplorerFullscreen";
+import { useExplorerFullscreen, ExplorerFullscreenButton, useEmbeddedExplorerFullscreen } from "./ExplorerFullscreen";
+import { GraphDownloadButton } from "./GraphDownloadButton";
 import { knowledge, type KnowledgeItem } from "@/data/knowledge";
 import { networkTopics, networkResources, groupKnowledge, connectedWork, publicationRelatedWork } from "@/data/knowledge-network";
 import { publicationByNode, publicationPresentation } from "@/lib/publication-presentation";
@@ -73,9 +74,10 @@ export function paperOrbit(count: number, cols: number) {
   return out.slice(0, count);
 }
 
-export function KnowledgeAtlas({ path, onPath, title = "Layered knowledge atlas", papers, embedded = false }: { path: AtlasPath; onPath: (p: AtlasPath) => void; title?: string; papers?: KnowledgeItem[] | undefined; embedded?: boolean }) {
+export function KnowledgeAtlas({ path, onPath, title = "Layered knowledge atlas", papers, embedded = false, onHome }: { path: AtlasPath; onPath: (p: AtlasPath) => void; title?: string; papers?: KnowledgeItem[] | undefined; embedded?: boolean; onHome?: () => void }) {
   const reduced = useReducedMotion();
   const explorer = useExplorerFullscreen();
+  const embeddedOwner = useEmbeddedExplorerFullscreen();
   const [dir, setDir] = useState(1);
   const [origin, setOrigin] = useState({ x: 50, y: 50 });
   const [hover, setHover] = useState<number | null>(null);
@@ -227,16 +229,6 @@ export function KnowledgeAtlas({ path, onPath, title = "Layered knowledge atlas"
 
   return (
     <div ref={explorer.ref} className={`atlas ${paperMode ? "atlas-papers" : ""} ${explorer.fullscreen ? "explorer-fullscreen atlas-full" : ""}`} aria-label={title} role="region">
-      {!paperMode && (
-        <div className="mb-3 flex flex-wrap items-center gap-2" role="group" aria-label="Explorer view">
-          {([["topic", "Topic view", "HV → topics → categories"], ["category", "Category view", "HV → categories → topics"]] as const).map(([v, label, hint]) => {
-            const on = (path.view ?? "topic") === v;
-            return <Button key={v} variant="ghost" size="sm" aria-pressed={on} onClick={() => { if (!on) { setDir(-1); setOrigin({ x: 50, y: 50 }); onPath(v === "category" ? { view: "category" } : {}); } }}
-              className="knowledge-subview">
-              {label} <span className="hidden text-muted-foreground sm:inline">· {hint}</span></Button>;
-          })}
-        </div>
-      )}
       <div className="atlas-bar">
         <div className="flex min-w-0 items-center gap-2">
           {!embedded && <Button variant="ghost" size="icon-sm" aria-label="Home: return to HV" title="Home: return to HV" onClick={() => go({ ...(catMode ? { view: "category" as const } : {}), paper: undefined })}><Home /></Button>}
@@ -251,6 +243,7 @@ export function KnowledgeAtlas({ path, onPath, title = "Layered knowledge atlas"
           </nav>
         </div>
         <div className="flex items-center gap-2">
+          <GraphDownloadButton getElement={() => stage.current} filename="harsh-verma-graph-view" />
           <ol className="atlas-depth" aria-label={`Layer ${layer} of ${layerNames.length}`}>
             {layerNames.map((n, i) => <li key={n} className={`${i + 1 <= layer ? "is-on" : ""} ${i + 1 === layer ? "is-now" : ""}`}>
               <button type="button" disabled={i + 1 >= layer || !crumbs[i]} onClick={() => crumbs[i] && go(crumbs[i]!.p)} title={`Layer ${i + 1}: ${n}`} aria-label={`Layer ${i + 1}: ${n}`}><span className="atlas-depth-n">{i + 1}</span><span className="atlas-depth-name">{n}</span></button>
@@ -260,11 +253,15 @@ export function KnowledgeAtlas({ path, onPath, title = "Layered knowledge atlas"
             onClick={() => base === 4 ? go({ ...path, deep: true }) : scene.sats[hover ?? 0] && go(scene.sats[hover ?? 0]!.go, satellitePosition(scene.sats.length, hover ?? 0))}><ZoomIn /></Button>
           <Button variant="outline" size="sm" aria-label="Zoom out" disabled={layer === 1} onClick={() => go(atlasParent(path))}><ZoomOut /></Button>
           {!embedded && <ExplorerFullscreenButton fullscreen={explorer.fullscreen} toggle={explorer.toggle} />}
+          {embedded && onHome && <Button variant="outline" size="sm" aria-label="Home: return to HV" title="Home: return to HV" onClick={onHome}><Home /><span className="hidden sm:inline">Home</span></Button>}
+          {embedded && embeddedOwner && <Button variant="outline" size="sm" aria-label={embeddedOwner.fullscreen ? "Exit full screen" : "Enter full screen"} title={embeddedOwner.fullscreen ? "Exit full screen" : "Enter full screen"} onClick={embeddedOwner.toggle}>
+            {embeddedOwner.fullscreen ? <Minimize2 /> : <Maximize2 />}<span className="hidden sm:inline">{embeddedOwner.fullscreen ? "Exit full screen" : "Full screen"}</span>
+          </Button>}
         </div>
       </div>
       {paperMode && <div className="atlas-journal-key" aria-label="Journal colors">{[...new Map((papers ?? []).flatMap(k => { const p = publicationByNode(k.id); return p ? [[p.publisher, p] as const] : []; })).values()].map(p => <span key={p.publisher} style={{ ["--c" as string]: publicationPresentation(p).color }}><i aria-hidden />{p.publisher}</span>)}</div>}
       <div ref={stage} className="atlas-stage" onKeyDown={e => { if ((e.key === "Backspace" || e.key === "-") && layer > 1) { e.preventDefault(); go(atlasParent(path)); } }}>
-        <p className="atlas-layer-tag"><Layers className="size-3.5" aria-hidden /> Layer {layer} · {layerNames[layer - 1]}</p>
+        <p className="atlas-layer-tag" data-graph-export-ignore><Layers className="size-3.5" aria-hidden /> Layer {layer} · {layerNames[layer - 1]}</p>
         <div className="atlas-zoom" style={{ transform: `scale(${zoom})` }}>
         <AnimatePresence initial={false} custom={dir} mode="wait">
           <motion.div key={JSON.stringify(path)} className={`atlas-scene ${layer === 1 ? "is-root" : ""} ${base >= 4 ? "is-detail" : ""}`} custom={dir} variants={variants} initial="enter" animate="center" exit="exit"
@@ -276,8 +273,8 @@ export function KnowledgeAtlas({ path, onPath, title = "Layered knowledge atlas"
                 const cx = mx + (p.y - corePos.y) * 0.18, cy = my - (p.x - corePos.x) * 0.18;
                 const d = `M${corePos.x} ${corePos.y} Q${cx} ${cy} ${p.x} ${p.y}`;
                 return <g key={s.key} className={hover === i ? "is-hot" : ""} style={{ ["--c" as string]: s.color }}>
-                  <path d={d} className="atlas-edge-glow" style={{ stroke: s.color }} />
-                  <path d={d} className="atlas-edge" style={{ stroke: s.color }} />
+                  <path d={d} vectorEffect="non-scaling-stroke" className="atlas-edge-glow" style={{ stroke: s.color }} />
+                  <path d={d} vectorEffect="non-scaling-stroke" className="atlas-edge" style={{ stroke: s.color }} />
                 </g>;
               })}
             </svg>
@@ -332,19 +329,29 @@ export function KnowledgeAtlas({ path, onPath, title = "Layered knowledge atlas"
           </motion.div>
         </AnimatePresence>
         </div>
-        <div className="atlas-zoombar" role="group" aria-label="Canvas zoom">
+        <div className="atlas-zoombar" role="group" aria-label="Canvas zoom" data-graph-export-ignore>
           <button type="button" aria-label="Zoom canvas in" title="Zoom canvas in" onClick={() => setZoom(z => Math.min(2.4, +(z * 1.25).toFixed(3)))}><ZoomIn className="size-3.5" aria-hidden /></button>
           <button type="button" aria-label="Zoom canvas out" title="Zoom canvas out" onClick={() => setZoom(z => Math.max(0.5, +(z / 1.25).toFixed(3)))}><ZoomOut className="size-3.5" aria-hidden /></button>
           <button type="button" aria-label="Fit all papers" title="Fit all papers" disabled={zoom === 1} onClick={() => setZoom(1)}><Maximize2 className="size-3.5" aria-hidden /></button>
         </div>
         {scene.pages > 1 && <button type="button" className="atlas-more" onClick={() => { setHover(null); setPage(p => p + 1); }}>Next {scene.sats.length} of {scene.total} <ChevronRight className="size-3" aria-hidden /></button>}
-        <div className="atlas-step" role="group" aria-label="Move between layers">
+        <div className="atlas-step" role="group" aria-label="Move between layers" data-graph-export-ignore>
           <button type="button" onClick={() => go(atlasParent(path))} disabled={layer === 1} aria-label="Back: zoom out one layer"><ArrowLeft className="size-3" aria-hidden /><span>Back</span></button>
           <span className="atlas-step-n">L{layer}</span>
           <button type="button" disabled={(paperMode && !!path.paper) || layer === layerNames.length || (base < 4 && !scene.sats.length)} onClick={() => base === 4 ? go({ ...path, deep: true }) : scene.sats[hover ?? 0] && go(scene.sats[hover ?? 0]!.go, satellitePosition(scene.sats.length, hover ?? 0))} aria-label="Forward: zoom in one layer"><span>In</span><ChevronRight className="size-3" aria-hidden /></button>
         </div>
-        <p className="atlas-hint">Drag nodes to rearrange · click to zoom in · {explorer.fullscreen ? "scroll" : "pinch or Ctrl + scroll"} to zoom · Backspace to zoom out</p>
+        <p className="atlas-hint" data-graph-export-ignore>Drag nodes to rearrange · click to zoom in · {explorer.fullscreen ? "scroll" : "pinch or Ctrl + scroll"} to zoom · Backspace to zoom out</p>
       </div>
+      {!paperMode && (
+        <div className="atlas-viewbar" role="group" aria-label="Explorer view">
+          {([["topic", "Topic view", "HV → topics → categories"], ["category", "Category view", "HV → categories → topics"]] as const).map(([v, label, hint]) => {
+            const on = (path.view ?? "topic") === v;
+            return <Button key={v} variant="ghost" size="sm" aria-pressed={on} onClick={() => { if (!on) { setDir(-1); setOrigin({ x: 50, y: 50 }); onPath(v === "category" ? { view: "category" } : {}); } }}
+              className="knowledge-subview">
+              {label} <span className="hidden text-muted-foreground sm:inline">· {hint}</span></Button>;
+          })}
+        </div>
+      )}
       <Dialog open={!!relatedEntry} onOpenChange={open => { if (!open) setRelatedEntry(null); }}>
         <DialogContent className="max-h-[85vh] w-[calc(100%-2rem)] overflow-y-auto">
           {relatedEntry && <><p className="text-xs text-muted-foreground">{relatedEntry.kind} · {relatedEntry.publisher}</p><DialogTitle className="pr-6 leading-snug">{relatedEntry.title}</DialogTitle><DialogDescription>{relatedEntry.summary}</DialogDescription><p className="text-xs text-muted-foreground">Shared topics · {paper?.topics.filter(t => relatedEntry.topics.includes(t)).join(" · ")}</p><Button asChild variant="outline"><KnowledgeLink item={relatedEntry}>Read {relatedEntry.kind === "Publication" ? "paper" : relatedEntry.kind.toLowerCase()} <ArrowUpRight /></KnowledgeLink></Button>{relatedEntry.kind === "Publication" && <Button variant="ghost" onClick={() => { go({ paper: relatedEntry.id }); setRelatedEntry(null); }}>Explore paper connections <ChevronRight /></Button>}</>}

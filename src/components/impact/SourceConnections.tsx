@@ -63,7 +63,7 @@ export default function SourceConnections({ topic }: { topic: string }) {
           <KnowledgeLink
             key={item.id}
             item={item}
-            className="impact-source-row group relative flex min-w-0 flex-col items-start overflow-hidden rounded-lg border border-border bg-card"
+            className="impact-source-row group relative flex min-w-0 flex-col items-start overflow-hidden rounded-2xl border border-border"
           >
             {item.image && (
               <img
@@ -74,7 +74,7 @@ export default function SourceConnections({ topic }: { topic: string }) {
               />
             )}
             <span className="min-w-0 flex-1 p-4 pr-8">
-              <span className="block font-mono text-[9px] uppercase text-muted-foreground">
+              <span className="impact-source-chip inline-flex w-fit items-center rounded-full border border-border px-2 py-0.5 font-mono text-[9px] uppercase text-muted-foreground">
                 {item.kind} {item.year ? ` / ${item.year}` : ""}
               </span>
               <span className="mt-1 line-clamp-2 block text-xs font-semibold leading-relaxed group-hover:text-brand">

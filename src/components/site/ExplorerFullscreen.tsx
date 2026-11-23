@@ -1,16 +1,26 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+type ExplorerFullscreenOwner = { fullscreen: boolean; toggle: () => void };
+const ExplorerFullscreenContext = createContext<ExplorerFullscreenOwner | null>(null);
+
+/** Lets an embedded graph drive the full-screen boundary that already wraps it. */
+export const ExplorerFullscreenProvider = ExplorerFullscreenContext.Provider;
+export function useEmbeddedExplorerFullscreen() { return useContext(ExplorerFullscreenContext); }
 
 // Keep the mounted explorer and its live selection intact when changing viewport.
 export function useExplorerFullscreen() {
   const ref = useRef<HTMLDivElement>(null);
   const [fullscreen, setFullscreen] = useState(false);
   const returnFocus = useRef<HTMLElement | null>(null);
+  const wasFullscreen = useRef(false);
   const exit = useCallback(() => {
-    if (document.fullscreenElement === ref.current) void document.exitFullscreen().catch(() => {});
-    setFullscreen(false);
-    returnFocus.current?.focus();
+    void (async () => {
+      if (document.fullscreenElement === ref.current) await document.exitFullscreen().catch(() => {});
+      setFullscreen(false);
+      returnFocus.current?.focus({ preventScroll: true });
+    })();
   }, []);
   const toggle = useCallback(async () => {
     if (fullscreen) { exit(); return; }
@@ -46,6 +56,22 @@ export function useExplorerFullscreen() {
       document.removeEventListener("keydown", keyboard);
     };
   }, [fullscreen, exit]);
+  // Leaving full screen: bring the graph back to the middle of the page view.
+  useEffect(() => {
+    if (fullscreen) { wasFullscreen.current = true; return; }
+    if (!wasFullscreen.current) return;
+    wasFullscreen.current = false;
+    // Native fullscreen restores its old page scroll asynchronously. Wait for that
+    // restoration and the normal layout, then center the complete graph region.
+    const timer = window.setTimeout(() => {
+      const element = ref.current;
+      if (!element || document.fullscreenElement) return;
+      const bounds = element.getBoundingClientRect();
+      const top = window.scrollY + bounds.top + bounds.height / 2 - window.innerHeight / 2;
+      window.scrollTo({ top: Math.max(0, top), behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    }, 250);
+    return () => window.clearTimeout(timer);
+  }, [fullscreen]);
   return { ref, fullscreen, toggle };
 }
 

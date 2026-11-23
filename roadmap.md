@@ -266,3 +266,23 @@
 - [x] Improve every publication page: full paper abstract in each (18 recovered from publisher records, 9 from the author archive, each labelled), richer abstract layout; verified detail pages and phone fit.
 - [x] On /publications, show each paper's topics and related article links in the graph cards; verified topic chips, six linked works and phone fit.
 - [x] Collapse publication details behind Read More and connect all topic-related articles, papers and research as selectable graph nodes; 47 tests pass and desktop/phone flows verified without node overlaps.
+- [x] Polish Knowledge Hub to match Knowledge Impact: rounded cards, theme colors, hover states across all sections
+- [x] Give each Engineering Radar technology its own page with details, related papers and a link back to the radar
+- [x] Move Graph/Detail and Topic/Category toggles below the graph on Knowledge Hub and Impact; verified below-canvas placement, both switches still work, desktop and phone.
+- [x] Fit the entry detail popup inside the graph screen with no internal scrolling on desktop and phone; compacted heading, summary, facts and impact rows, and gave the phone sheet enough height.
+- [x] Give Detail View the Graph View background treatment and improve its look, feel and UX without losing any current functionality.
+- [x] Check the fullscreen icon on the graph actually enters and exits full screen; the Detail View canvas now grows to fill the screen.
+- [x] Give the Research Graph and Agentic Playground the same polished look as Knowledge Impact: rounded cards, theme colors, hover states.
+- [x] Add a full-screen icon inside the Detail View graph toolbar that enters and exits full screen on computer and phone.
+- [x] Fix selected Node View / Card View toggle contrast (reads as black, not visible) across all themes
+- [x] Improve Detail View graph background — currently gray, match Graph View's background or improve further
+- [x] Make selected Node View / Card View toggle and the details side panel transparent like other page buttons (theme-aware)
+- [x] On exiting full screen, scroll the page so the graph view is centered on screen — verified native fullscreen exit on desktop and phone.
+- [x] Polish Detail View topic strip and node colors across themes.
+- [x] Add PNG/SVG downloads to Research Graph and Detail View, plus PNG download to Graph View — downloaded and validated each format.
+- [x] Add colored HV/topic edges and lightweight directional motion on selected standout connections; pause and reduced-motion guards remain intact.
+- [x] Fix the full-screen button that is not working on the Knowledge page
+- [x] Detail View canvas must grow to fill the screen in full screen (match Research Graph / Agentic Playground)
+- [x] Detail View side panel: remove gray background, use theme-tinted glass effect
+- [x] Finish verifying Graph View fullscreen enter/exit + exit centering (flaky click timing in tests)
+- [x] Knowledge Impact SourceConnections section: rounded cards, improved look and feel

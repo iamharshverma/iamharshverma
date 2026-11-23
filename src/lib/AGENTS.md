@@ -1,2 +1,3 @@
 - Shared content heads own concise summaries, article types and hierarchical breadcrumbs; publication metadata retains source status/abstracts and omits conflicted DOIs, so search cannot imply stronger evidence than the visible record.
 - Publish date metadata only from explicit full source dates; year/month-only dates cannot imply a day of publication.
+- Graph edge motion uses a shared selection predicate and SVG-only directional motion; exports share GraphDownloadButton and restore the graph viewport so capture never changes navigation state.

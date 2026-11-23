@@ -25,6 +25,8 @@ import {
 import {
   ArrowUpRight,
   Maximize,
+  Maximize2,
+  Minimize2,
   Minus,
   Plus,
   House as GraphHome,
@@ -40,15 +42,27 @@ import {
   Search,
   X,
   ArrowLeft,
+  Newspaper,
+  FlaskConical,
+  Mic,
+  BookOpen,
+  Clapperboard,
+  ScrollText,
+  Scale,
+  Briefcase,
+  FolderGit2,
   Download,
+  type LucideIcon,
 } from "lucide-react";
-import { useExplorerFullscreen, ExplorerFullscreenButton } from "./ExplorerFullscreen";
+import { GraphDownloadButton } from "./GraphDownloadButton";
+import { KnowledgeFlowEdge } from "./KnowledgeFlowEdge";
+import { graphEdgeFlows } from "@/lib/graph-edge-motion";
+import { useExplorerFullscreen, useEmbeddedExplorerFullscreen, ExplorerFullscreenButton } from "./ExplorerFullscreen";
 import { Button } from "@/components/ui/button";
 import { KnowledgeLink } from "./KnowledgeCards";
 import { knowledge, type KnowledgeItem } from "@/data/knowledge";
 import { workImpact, impactSizeTier, impactMethodology } from "@/data/work-impact";
 import { graphVisualWeight } from "@/data/graph-emphasis";
-import { WorkImpactFacts } from "./WorkImpactFacts";
 import { useImpactChange } from "@/hooks/use-impact-change";
 import { detailPresentation, impactCardDimensions, paneFocusNodeIds, type KnowledgeDetailView } from "@/lib/knowledge-detail-view";
 import {
@@ -62,6 +76,21 @@ import {
   focusedNetworkResources,
   focusedNetworkPositions,
 } from "@/data/knowledge-network";
+
+/** One recognizable icon per resource kind in the collection browser. */
+const kindIcons: Record<string, LucideIcon> = {
+  Article: Newspaper,
+  Research: FlaskConical,
+  Keynote: Mic,
+  Book: BookOpen,
+  Media: Clapperboard,
+  Publication: ScrollText,
+  Patent: Scale,
+  "Case study": Briefcase,
+  Project: FolderGit2,
+  Download: Download,
+  Resource: Link2,
+};
 
 type GraphNode = Node<
   {
@@ -106,7 +135,6 @@ const KnowledgeNode = memo(function KnowledgeNode({ data }: NodeProps<GraphNode>
             <h3 className="mt-3 font-display text-lg font-semibold leading-snug">{data.title}</h3>
             <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{data.item.summary}</p>
             <dl className="mt-4 space-y-2 text-xs"><dt className="text-muted-foreground">Source</dt><dd>{data.item.publisher}</dd><dt className="text-muted-foreground">Topics</dt><dd>{data.item.topics.join(" · ") || "Across the portfolio"}</dd>{data.item.technology.length > 0 && <><dt className="text-muted-foreground">Technology</dt><dd>{data.item.technology.join(" · ")}</dd></>}</dl>
-            <WorkImpactFacts id={data.item.id} />
             <KnowledgeLink item={data.item} className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-brand">Open original work<ArrowUpRight className="size-4" /></KnowledgeLink>
           </article>
         ) : data.detail && data.item ? (
@@ -161,6 +189,7 @@ const KnowledgeNode = memo(function KnowledgeNode({ data }: NodeProps<GraphNode>
   );
 });
 const nodeTypes = { knowledge: KnowledgeNode };
+const edgeTypes = { knowledgeFlow: KnowledgeFlowEdge };
 export function graphFilterNodes(selected: string, items: KnowledgeItem[], category = "") {
   const resources = networkResources(selected, items);
   const records = category ? groupKnowledge(resources).find(group => group.id === category)?.items ?? [] : resources;
@@ -239,6 +268,8 @@ export function PersonalKnowledgeGraph({
   onCollection?: (id: string) => void;
 }) {
   const explorer = useExplorerFullscreen();
+  const embeddedExplorer = useEmbeddedExplorerFullscreen();
+  const fullscreenOwner = embeddedExplorer ?? { fullscreen: explorer.fullscreen, toggle: () => void explorer.toggle() };
   const [readable, setReadable] = useState(false);
   const [detailView, setDetailView] = useState<KnowledgeDetailView>("nodes");
   const nodeView = detailList && detailView === "nodes";
@@ -481,13 +512,20 @@ export function PersonalKnowledgeGraph({
         className: `kn-edge kn-spoke kn-tone-${topic.tone} ${overview && filtering || selected === topic.id ? "is-active" : selected || category ? "is-dim" : ""}`,
       })),
     ].filter(edge => ids.has(edge.source) && ids.has(edge.target));
-      if (categoryLayer) return grouped.flatMap((group, gi) => [
+      const output: Edge[] = categoryLayer ? grouped.flatMap((group, gi) => [
         { id: `tc:${group.id}`, source: selected, target: `cat:${group.id}`, type: "straight", className: `kn-edge kn-layer-edge kn-tone-${(gi + 1) % 6} ${!category || category === group.id ? "is-active" : "is-dim"}` },
         ...group.items.filter(item => ids.has(item.id)).map(item => ({ id: `ce:${group.id}:${item.id}`, source: `cat:${group.id}`, target: item.id, type: "straight", className: `kn-edge kn-layer-edge ${category === group.id ? "is-active" : category ? "is-dim" : ""}` })),
-      ]);
-      return base;
+      ]) : base;
+      return output.map(edge => {
+        const target = initial.find(node => node.id === edge.target);
+        const highlighted = edge.className?.includes("is-active") === true;
+        const standout = target?.data.type === "resource" && impactSizeTier(target.data.impact?.score ?? target.data.visualWeight) > 0;
+        const spoke = edge.source === "identity";
+        return { ...edge, type: "knowledgeFlow", data: { flowing: !paused && visible && !reducedMotion && graphEdgeFlows({ spoke, dimmed: edge.className?.includes("is-dim") === true, highlighted, standout }) },
+          className: `${edge.className ?? ""} kn-directional ${spoke ? "kn-colored-spoke" : ""} ${target ? `kn-tone-${target.data.tone}` : ""}` };
+      });
     },
-    [categoryLayer, grouped, focusId, resource, crossFormat, initial, category, categoryIds, selected, overview, filtering],
+    [categoryLayer, grouped, focusId, resource, crossFormat, initial, category, categoryIds, selected, overview, filtering, paused, visible, reducedMotion],
   );
   const chooseTopic = (topic: string) => {
     setResourceId("");
@@ -536,28 +574,11 @@ export function PersonalKnowledgeGraph({
     }, 320);
     return () => window.clearTimeout(timer);
   }, [resourceId, flow, detailList, reducedMotion, nodeView, presentation.inline]);
-  const [downloading, setDownloading] = useState(false);
-  const downloadGraph = async () => {
-    const element = stageRef.current?.querySelector<HTMLElement>(".react-flow");
-    if (!element || downloading) return;
-    setDownloading(true);
-    try {
-      const { toPng } = await import("html-to-image");
-      const background = getComputedStyle(document.documentElement).getPropertyValue("--background").trim() || undefined;
-      const viewport = flow?.getViewport();
-      if (flow) await flow.fitView({ padding: 0.12, duration: 0 });
-      await new Promise(resolve => window.setTimeout(resolve, 120));
-      const url = await toPng(element, { ...(background ? { backgroundColor: background } : {}), pixelRatio: 2, cacheBust: true });
-      if (flow && viewport) await flow.setViewport(viewport, { duration: 0 });
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `harsh-verma-knowledge-graph${selected ? `-${selected.toLowerCase().replace(/[^a-z0-9]+/g, "-")}` : ""}.png`;
-      link.click();
-    } catch {
-      /* export is best-effort; the graph stays interactive */
-    } finally {
-      setDownloading(false);
-    }
+  const prepareDownload = async () => {
+    const viewport = flow?.getViewport();
+    if (flow) await flow.fitView({ padding: .12, duration: 0 });
+    await new Promise(resolve => window.setTimeout(resolve, 120));
+    return async () => { if (flow && viewport) await flow.setViewport(viewport, { duration: 0 }); };
   };
   const focusCluster = () => {
     const ids = resource
@@ -662,7 +683,7 @@ export function PersonalKnowledgeGraph({
         setEntryExpanded(false);
       }}
     >
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-4">
+      <div className="kn-header flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-4">
         <div>
           <p className="font-mono text-[10px] text-muted-foreground">
             HARSH VERMA / CONNECTED KNOWLEDGE
@@ -710,19 +731,18 @@ export function PersonalKnowledgeGraph({
                   <Button variant="ghost" size="sm" onClick={() => setEntryExpanded(false)}><ArrowLeft />Back to entry</Button>
                   <Button variant="ghost" size="icon-sm" aria-label="Close entry details" title="Close entry details" onClick={() => setEntryExpanded(false)}><X /></Button>
                 </div>
-                <p className="mt-5 font-mono text-xs text-brand">{resource.kind}{resource.year ? ` · ${resource.year}` : ""}</p>
-                <h3 className="mt-3 font-display text-2xl font-semibold text-foreground sm:text-3xl">{resource.title}</h3>
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{resource.summary}</p>
-                <dl className="kn-detail-facts mt-6 text-sm">
+                <p className="mt-2 font-mono text-[11px] text-brand">{resource.kind}{resource.year ? ` · ${resource.year}` : ""}</p>
+                <h3 className="mt-1 line-clamp-3 font-display text-lg font-semibold leading-snug text-foreground sm:text-xl">{resource.title}</h3>
+                <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted-foreground">{resource.summary}</p>
+                <dl className="kn-detail-facts mt-3 text-xs">
                   <dt>Source</dt><dd>{resource.publisher}</dd>
                   <dt>Topics</dt><dd>{resource.topics.join(" · ") || "Across the portfolio"}</dd>
                   {resource.technology.length > 0 && <><dt>Technology</dt><dd>{resource.technology.join(" · ")}</dd></>}
                 </dl>
-                <WorkImpactFacts id={resource.id} />
-                <KnowledgeLink item={resource} className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand">Open original work<ArrowUpRight className="size-4" /></KnowledgeLink>
+                <KnowledgeLink item={resource} className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand">Open original work<ArrowUpRight className="size-3.5" /></KnowledgeLink>
               </motion.article>}
             </AnimatePresence>
-            <div className="kn-stage-caption pointer-events-none absolute left-5 top-5 z-10 rounded-md border border-border bg-background/85 px-3 py-2 backdrop-blur-sm">
+            <div className="kn-stage-caption pointer-events-none absolute left-5 top-5 z-10 rounded-xl border border-border bg-background/85 px-3 py-2 backdrop-blur-sm">
               <p className="font-mono text-[9px] uppercase text-muted-foreground">
                 {activeTopic || category ? "DOMAIN IN FOCUS" : "THE CONNECTED PORTFOLIO"}
               </p>
@@ -730,8 +750,9 @@ export function PersonalKnowledgeGraph({
                 {resource ? resource.kind + " / Connected work" : [activeTopic?.title, shownGroups.find(group => group.id === category)?.title].filter(Boolean).join(" / ") || "Ideas without silos."}
               </p>
             </div>
-            <div className="absolute right-4 top-4 z-10 flex gap-1 rounded-md border border-border bg-background p-1">
-              <Button variant="ghost" size="icon-sm" title="Download graph as image" aria-label="Download graph as image" disabled={downloading} onClick={() => void downloadGraph()}><Download /></Button>
+            <div className="absolute right-4 top-4 z-10 flex gap-1 rounded-xl border border-border bg-background p-1">
+              <GraphDownloadButton svg getElement={() => stageRef.current} filename={`harsh-verma-detail-graph${selected ? `-${selected}` : ""}`} prepare={prepareDownload} />
+              <Button variant="ghost" size="icon-sm" aria-label={fullscreenOwner.fullscreen ? "Exit full screen" : "Enter full screen"} title={fullscreenOwner.fullscreen ? "Exit full screen" : "Enter full screen"} aria-pressed={fullscreenOwner.fullscreen} onClick={() => fullscreenOwner.toggle()}>{fullscreenOwner.fullscreen ? <Minimize2 /> : <Maximize2 />}</Button>
               {!detailList && <Button variant="ghost" size="icon-sm" title="Readable resource map" aria-label="Readable resource map" aria-pressed={readable} onClick={() => setReadable(value => !value)}><ListTree /></Button>}
               <Button variant="ghost" size="icon-sm" title="Cross-format connections" aria-label="Cross-format connections" aria-pressed={crossFormat} onClick={() => setCrossFormat(value => !value)}><Link2 /></Button>
               <Button
@@ -758,6 +779,7 @@ export function PersonalKnowledgeGraph({
               nodes={nodes}
               edges={edges}
               nodeTypes={nodeTypes}
+              edgeTypes={edgeTypes}
               onNodesChange={onNodesChange}
               onPaneClick={() => {
                 setEntryExpanded(false);
@@ -823,7 +845,7 @@ export function PersonalKnowledgeGraph({
               <Background gap={28} size={1} />
               {miniMapTarget && createPortal(<MiniMap className="kn-minimap kn-panel-minimap" pannable zoomable ariaLabel="Graph overview" nodeClassName={node => `kn-map-tone-${node.data['tone']}`} />, miniMapTarget)}
             </ReactFlow>
-            <div className="absolute bottom-4 right-4 z-30 flex gap-1 rounded-md border border-border bg-background p-1">
+            <div className="absolute bottom-4 right-4 z-30 flex gap-1 rounded-xl border border-border bg-background p-1">
               <Button
                 variant="ghost"
                 size="icon-sm"
@@ -876,7 +898,7 @@ export function PersonalKnowledgeGraph({
             </div>
           </div>
           <div
-            className="flex flex-wrap gap-1.5 border-t border-border p-4"
+            className="kn-topic-strip flex flex-wrap gap-1.5 border-t border-border p-4"
             aria-label="Knowledge graph topics"
           >
             {networkTopics.map((topic) => (
@@ -893,7 +915,7 @@ export function PersonalKnowledgeGraph({
               </Button>
             ))}
           </div>
-          {detailList && <div className="flex flex-wrap items-center gap-1 px-5 pb-4 pt-1" role="group" aria-label="Detail View presentation">
+          {detailList && <div className="kn-viewbar flex flex-wrap items-center gap-1 px-5 pb-4 pt-1" role="group" aria-label="Detail View presentation">
             {(["nodes", "cards"] as const).map(view => <Button key={view} variant={detailView === view ? "secondary" : "ghost"} size="sm" aria-pressed={detailView === view} onClick={() => { setDetailView(view); setReadable(view === "cards" && Boolean(selected || category || resourceId)); }}>{view === "nodes" ? <Network /> : <ListTree />}{view === "nodes" ? "Node View" : "Card View"}</Button>)}
           </div>}
         </div>
@@ -920,7 +942,6 @@ export function PersonalKnowledgeGraph({
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {resource.summary}
               </p>
-              <WorkImpactFacts id={resource.id} />
               <KnowledgeLink
                 item={resource}
                 className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand"
@@ -973,28 +994,32 @@ export function PersonalKnowledgeGraph({
                 resources
               </p>
               <div
-                className="kn-category-index mt-5 grid grid-cols-2 gap-2"
+                className="kn-category-index mt-5 flex flex-wrap gap-1.5"
                 aria-label="Browse connected collections"
               >
-                {grouped.map((group) => (
-                  <Button
-                    key={group.id}
-                    variant={category === group.id ? "secondary" : "outline"}
-                    aria-pressed={category === group.id}
-                    className="h-auto min-h-12 justify-between gap-2 whitespace-normal px-3 py-2 text-left"
-                    onClick={() => browseCategory(group.id)}
-                  >
-                    <span className="min-w-0 text-[11px]">{group.title}</span>
-                    <span className="font-mono text-xs text-stat-number">{group.items.length}</span>
-                  </Button>
-                ))}
+                {grouped.map((group) => {
+                  const KindIcon = kindIcons[group.kind] ?? Link2;
+                  return (
+                    <Button
+                      key={group.id}
+                      variant={category === group.id ? "secondary" : "ghost"}
+                      size="sm"
+                      aria-pressed={category === group.id}
+                      onClick={() => browseCategory(group.id)}
+                    >
+                      <KindIcon className="size-3.5 shrink-0" aria-hidden />
+                      <span>{group.title}</span>
+                      <span className="font-mono text-xs text-stat-number">{group.items.length}</span>
+                    </Button>
+                  );
+                })}
               </div>
-              {category && <div className="mt-4 flex items-center justify-between gap-2"><p role="status" className="font-mono text-[10px] text-muted-foreground">{shownGroups[0]?.title} / {shownGroups[0]?.items.length} entries</p><Button variant="ghost" size="sm" onClick={() => setCategory("")}>All categories</Button></div>}
-              {(!detailList || selected || category) && <div ref={sourceListRef} className="kn-source-list mt-5 space-y-5" aria-label="Category entries">
+              <div className="mt-4 flex items-center justify-between gap-2"><p role="status" className="font-mono text-[10px] text-muted-foreground">{category ? `${shownGroups[0]?.title} / ${shownGroups[0]?.items.length} entries` : `All categories / ${resources.length} entries`}</p>{category && <Button variant="ghost" size="sm" onClick={() => setCategory("")}>All categories</Button>}</div>
+              <div ref={sourceListRef} className="kn-source-list mt-5 space-y-5" aria-label="Category entries">
                 {shownGroups.map((group) => (
                   <div key={group.kind} className={category === group.id ? "kn-panel-group is-selected" : "kn-panel-group"}>
                     <p className="mb-2 flex items-center justify-between border-b border-border pb-2 font-mono text-[10px] uppercase text-muted-foreground">
-                      <span>{group.title}</span>
+                      <span className="flex items-center gap-1.5 font-bold text-brand">{group.title}{(() => { const KindIcon = kindIcons[group.kind] ?? Link2; return <KindIcon className="size-3.5 shrink-0" aria-hidden />; })()}</span>
                       <Button
                         variant="ghost"
                         size="icon-xs"
@@ -1024,7 +1049,7 @@ export function PersonalKnowledgeGraph({
                     No matching resources in this domain.
                   </p>
                 )}
-              </div>}
+              </div>
             </>
           )}
         </aside>

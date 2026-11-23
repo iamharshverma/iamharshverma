@@ -202,7 +202,7 @@ function ConceptResearchGraph({ topic, onTopic, onExplore, settings, onSettings 
     <div className={`impact-research-graph ${moving ? "impact-graph-moving" : ""} ${enlarged ? "impact-graph-expanded" : ""}`}>
       <div className="impact-section-heading flex flex-wrap items-center justify-between gap-3 px-5 pt-6 sm:px-8">
         <div>
-          <p className="impact-kicker">01 / CONNECTIONS</p>
+          <p className="impact-kicker">04 / Connections</p>
           <h2 className="mt-2 font-display text-2xl font-semibold">
             Trace the Architecture of an Idea.
           </h2>
@@ -256,7 +256,7 @@ function ConceptResearchGraph({ topic, onTopic, onExplore, settings, onSettings 
       <div className="grid min-w-0 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="min-w-0 border-b border-border lg:border-b-0 lg:border-r">
           <div ref={stageRef} className="impact-graph-stage relative" aria-label="Interactive research graph">
-            <div className="absolute right-4 top-4 z-10 flex gap-1 rounded-md border border-border bg-background p-1">
+            <div className="absolute right-4 top-4 z-10 flex gap-1 rounded-xl border border-border bg-background p-1">
               <Button variant="ghost" size="icon-sm" title={enlarged ? "Compact graph" : "Expand graph"} aria-label={enlarged ? "Compact graph" : "Expand graph"} onClick={() => setEnlarged(value => !value)}>{enlarged ? <Shrink /> : <Expand />}</Button>
               <Button variant="ghost" size="icon-sm" title={paused ? "Resume graph animation" : "Pause graph animation"} aria-label={paused ? "Resume graph animation" : "Pause graph animation"} aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? <Play /> : <Pause />}</Button>
             </div>
@@ -282,7 +282,7 @@ function ConceptResearchGraph({ topic, onTopic, onExplore, settings, onSettings 
             >
               <Background variant={BackgroundVariant.Dots} gap={26} size={1} />
             </ReactFlow>
-            <div className="absolute bottom-4 left-4 flex gap-1 rounded-md border border-border bg-background p-1">
+            <div className="absolute bottom-4 left-4 flex gap-1 rounded-xl border border-border bg-background p-1">
               <Button
                 variant="ghost"
                 size="icon-sm"

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { Network, ListTree, Home } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Network, ListTree } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { KnowledgeAtlas, type AtlasPath } from "./KnowledgeAtlas";
 import { PersonalKnowledgeGraph } from "./PersonalKnowledgeGraph";
-import { useExplorerFullscreen, ExplorerFullscreenButton } from "./ExplorerFullscreen";
+import { useExplorerFullscreen, ExplorerFullscreenProvider } from "./ExplorerFullscreen";
 import { knowledge, type KnowledgeItem } from "@/data/knowledge";
 import { groupKnowledge } from "@/data/knowledge-network";
 
@@ -17,6 +17,7 @@ export function KnowledgeExplorer({ selected = "", selectedResource = "", items 
   onReset: () => void;
 }) {
   const explorer = useExplorerFullscreen();
+  const fullscreenOwner = useMemo(() => ({ fullscreen: explorer.fullscreen, toggle: () => void explorer.toggle() }), [explorer.fullscreen, explorer.toggle]);
   const [presentation, setPresentation] = useState<"graph" | "list">("graph");
   const [path, setPath] = useState<AtlasPath>(() => ({
     ...(selected ? { topic: selected } : {}),
@@ -52,24 +53,22 @@ export function KnowledgeExplorer({ selected = "", selectedResource = "", items 
           <p className="font-mono text-[10px] uppercase text-muted-foreground">Harsh Verma / Connected knowledge</p>
           <h2 className="mt-1 font-display text-xl font-semibold text-foreground">One portfolio. Connected perspectives.</h2>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" aria-label="Home: return to HV" title="Home: return to HV" onClick={() => { setPath({}); setCategory(""); setPresentation("graph"); onReset(); }}><Home /><span>Home</span></Button>
-          <ExplorerFullscreenButton fullscreen={explorer.fullscreen} toggle={() => void explorer.toggle()} />
-        </div>
-        <div className="knowledge-view-switch" role="group" aria-label="Knowledge presentation">
-          <Button variant="ghost" aria-pressed={presentation === "graph"} onClick={() => setPresentation("graph")}><Network />Graph View</Button>
-          <Button variant="ghost" aria-pressed={presentation === "list"} onClick={() => setPresentation("list")}><ListTree />Detail View</Button>
-        </div>
       </header>
+      <ExplorerFullscreenProvider value={fullscreenOwner}>
       <div className="knowledge-explorer-body">
         {presentation === "graph" ? (
-          <KnowledgeAtlas path={path} onPath={choosePath} embedded title="Graph View" />
+          <KnowledgeAtlas path={path} onPath={choosePath} embedded title="Graph View" onHome={() => { setPath({}); setCategory(""); setPresentation("graph"); onReset(); }} />
         ) : (
           <PersonalKnowledgeGraph embedded detailList selected={selected} selectedResource={selectedResource} items={items}
             collection={category} onCollection={chooseCategory} onResource={chooseResource}
             onSelect={topic => { setPath(previous => ({ view: previous.view, ...(topic ? { topic } : {}) })); setCategory(""); onSelect(topic); onResource(""); }}
             onReset={() => { setPath({}); setCategory(""); onReset(); }} onBrowseKind={() => {}} />
         )}
+      </div>
+      </ExplorerFullscreenProvider>
+      <div className="knowledge-view-switch" role="group" aria-label="Knowledge presentation">
+        <Button variant="ghost" aria-pressed={presentation === "graph"} onClick={() => setPresentation("graph")}><Network />Graph View</Button>
+        <Button variant="ghost" aria-pressed={presentation === "list"} onClick={() => setPresentation("list")}><ListTree />Detail View</Button>
       </div>
     </div>
   );

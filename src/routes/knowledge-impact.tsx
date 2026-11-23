@@ -47,7 +47,7 @@ function KnowledgeImpact() {
   const explorer = useExplorerFullscreen();
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
-  const mode = search.mode ?? "graph";
+  const mode = search.mode ?? "radar";
   const topic = search.topic ?? "trust";
   const active = getImpactTopic(topic);
   const [guide, setGuide] = useState(false);
@@ -77,10 +77,10 @@ function KnowledgeImpact() {
     });
   };
   const modes = [
-    { id: "graph", title: "Research Graph", short: "Explore", icon: Network },
+    { id: "radar", title: "Engineering Radar", short: "Anticipate", icon: Radar },
     { id: "landscape", title: "Intelligence Landscape", short: "Understand", icon: GitMerge },
     { id: "playground", title: "Agentic Playground", short: "Experiment", icon: Workflow },
-    { id: "radar", title: "Engineering Radar", short: "Anticipate", icon: Radar },
+    { id: "graph", title: "Research Graph", short: "Explore", icon: Network },
   ] as const;
   return (
     <div className="knowledge-impact knowledge-refined pb-10">
@@ -281,7 +281,7 @@ function KnowledgeImpact() {
             </div>
           </div>
           {guide && (
-            <div className="flex items-start justify-between gap-3 border-b border-border bg-muted px-5 py-4">
+            <div className="flex items-start justify-between gap-3 border-b border-border impact-insight px-5 py-4">
               <div>
                 <p className="font-display font-semibold">
                   Agent Trust → Policy → Experiment → Perspective
