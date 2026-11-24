@@ -15,6 +15,8 @@ import { Button } from "@/components/ui/button";
 import { flagshipTalks } from "@/data/flagship-talks";
 import { ownerReportedSpeakingMetrics } from "@/data/metrics";
 import { upcomingTalks } from "@/data/upcoming-talks";
+import { speakerProfiles } from "@/data/speaker-profiles";
+import speakerPhoto from "@/assets/harsh-verma-speaker.jpg.asset.json";
 
 export const Route = createFileRoute("/speaking")({
   head: () => ({
@@ -66,10 +68,10 @@ function Speaking() {
     <>
       <PageHero eyebrow="// keynotes · panels · judging" title={<>Harsh Verma · <span className="text-brand-gradient">AI Keynote Speaker.</span></>}
         intro="Agentic AI, enterprise security and responsible adoption — grounded in engineering practice, with keynote recordings from ACM and UC Berkeley SkyDeck." />
-      <SeoSummary heading="Book Harsh Verma as an AI keynote speaker" paragraphs={[
+      <SeoSummary linksBelowMedia sideMedia={<img src={profile.stagePhoto} alt="Harsh Verma holding a microphone on stage" className="mx-auto h-72 w-full object-contain object-bottom md:h-80" />} heading="Book Harsh Verma as an AI keynote speaker" paragraphs={[
         `Harsh Verma speaks on agentic AI, AI security and responsible enterprise adoption. As a ${profile.title} at ${profile.company}, he brings an engineering perspective to keynotes, panels and fireside chats, with talks delivered at ACM and UC Berkeley SkyDeck.`,
         "Event organisers book Harsh for engineering conferences, executive summits, university programmes and hackathon judging. Talks are tailored for technical, leadership and security audiences, in person or online.",
-      ]} links={[{ to: "/speaker-bio", label: "Speaker bio & PDF" }, { to: "/booking", label: "Book a keynote" }, { to: "/about", label: "About Harsh" }]} />
+      ]} links={[{ to: "/speaker-bio", label: "Speaker Bio" }, { to: "/booking", label: "Book Keynote" }, { to: "/about", label: "About Harsh" }]} />
       <section className="border-b border-border bg-card/40">
         <div className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (
@@ -96,17 +98,20 @@ function Speaking() {
                     <p className="mt-1 flex items-center gap-1.5 font-mono text-xs text-muted-foreground"><MapPin className="h-3 w-3" />{talk.location}</p>
                   </div>
                 </div>
-                <div>
+                <div className={`grid min-w-0 gap-5 ${talk.thumbnail ? "lg:grid-cols-[minmax(0,1fr)_208px]" : ""}`}>
+                  <div className="min-w-0">
                   <p className="font-mono text-xs text-signal">{talk.role} · {talk.event}</p>
                   <h3 className="mt-2 font-display text-2xl font-bold md:text-3xl">{talk.title}</h3>
                   <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{talk.summary}</p>
-                  <div className="mt-6 flex flex-wrap gap-2">
+                  <div className="mt-6 flex flex-wrap gap-2 lg:flex-nowrap">
                     {talk.links.map((link, i) => (
-                      <Button key={link.href} asChild size="sm" variant={i === 0 ? "default" : "outline"}>
+                      <Button key={link.href} asChild size="sm" variant={i === 0 ? "default" : "outline"} className="whitespace-nowrap px-3 text-xs">
                         <a href={link.href} target="_blank" rel="noreferrer">{link.label}<ArrowUpRight className="ml-1 h-3.5 w-3.5" /></a>
                       </Button>
                     ))}
                   </div>
+                  </div>
+                  {talk.thumbnail && <a href={talk.thumbnail.href} target="_blank" rel="noreferrer" className="block w-52 max-w-full self-stretch justify-self-end overflow-hidden rounded-lg border border-border transition-colors hover:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label={`View ${talk.event} on Luma`}><img src={talk.thumbnail.src} alt={talk.thumbnail.alt} loading="lazy" className="h-full w-full object-cover" /></a>}
                 </div>
               </div>
             </article>
@@ -157,6 +162,22 @@ function Speaking() {
         </div>
       </section>
       <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">Reels</p><h2 className="mb-8 mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Backstage in 60 seconds</h2></Reveal><ReelWall /></section>
+      <section className="mx-auto max-w-6xl px-6 pb-20" aria-labelledby="speaker-listings-heading">
+        <Reveal><p className="eyebrow">Featured speaker profiles</p><h2 id="speaker-listings-heading" className="mt-4 font-display text-3xl font-bold md:text-4xl">Listed on leading speaker platforms</h2></Reveal>
+        <div className="mt-8 grid gap-6 lg:grid-cols-[220px_1fr]">
+          <img src={speakerPhoto.url} alt="Harsh Verma speaking on stage" loading="lazy" className="aspect-[4/5] w-full rounded-lg object-cover object-top sm:max-h-96 lg:h-full lg:max-h-none" />
+          <div className="grid gap-4 sm:grid-cols-2">
+            {speakerProfiles.map((listing) => (
+              <article key={listing.href} className="group flex min-w-0 flex-col rounded-lg border border-border bg-card p-6 transition-colors hover:border-brand">
+                <div className="flex flex-wrap items-center justify-between gap-3"><span className="grid h-14 w-28 shrink-0 place-items-center rounded-md bg-primary-foreground p-2"><img src={listing.logo} alt={`${listing.name} logo`} loading="lazy" className="max-h-full w-full object-contain" /></span><p className="text-xs text-muted-foreground">{listing.label}</p></div>
+                <h3 className="mt-5 font-display text-2xl font-semibold">{listing.name}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{listing.description}</p>
+                <div className="mt-auto pt-6"><Button asChild variant="outline" size="sm" className="border-brand/40 text-brand"><a href={listing.href} target="_blank" rel="noopener noreferrer" aria-label={`View Harsh Verma’s profile on ${listing.name}`}>View speaker profile<ArrowUpRight className="h-4 w-4" /></a></Button><p className="mt-3 break-all text-xs text-muted-foreground">{listing.domain}</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">On stage</p><h2 className="mb-8 mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Where Harsh has spoken</h2></Reveal><StageMap /></section>
 
       <section className="mx-auto max-w-6xl px-6 pb-20">
@@ -168,7 +189,7 @@ function Speaking() {
           {(more ? judging : judging.slice(0, 9)).map((j, i) => (
             <Reveal key={j.title} delay={(i % 9) * 0.03}>
               <TiltCard>
-                <div className="aspect-[16/9] overflow-hidden bg-muted"><img src={j.img} alt="" loading="lazy" className="h-full w-full object-contain transition duration-500 group-hover:scale-105" /></div>
+                <div className="aspect-[16/9] overflow-hidden bg-muted"><img src={j.img} alt="" loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" /></div>
                 <div className="p-5">
                   <p className="flex items-center gap-1.5 font-mono text-[11px] text-signal"><Gavel className="h-3 w-3" />{j.role}</p>
                   <h3 className="mt-2 font-display text-lg leading-snug font-semibold">{j.title}</h3>
