@@ -1,89 +1,146 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Gavel, Globe2, MapPin, Mic, Pause, Play, Users, Presentation } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, Gavel, Globe2, MapPin, Mic, Pause, Play, Users, Presentation, ZoomIn, ZoomOut, RotateCcw, Flag } from "lucide-react";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { Button } from "@/components/ui/button";
 import { stages, onlineEvents, type StageEvent } from "@/data/stages";
 import { LAND } from "@/data/world-land";
 
 const proj = (lat: number, lng: number) => ({ x: 500 + (lng * 1000) / 360, y: 250 - (lat * 1000) / 360 });
-// Crop to populated latitudes (~75N to ~-55S)
-const VB = { x: 20, y: 45, w: 940, h: 300 };
 const icon = (k: StageEvent["kind"]) => (k === "Judge" ? Gavel : k === "Mentor" ? Users : k === "Keynote" ? Mic : Presentation);
 const ONLINE = -1;
 
 export function StageMap() {
   const [sel, setSel] = useState(0);
-  const [auto, setAuto] = useState(true);
-  useEffect(() => { if (!auto) return; const t = setInterval(() => setSel((s) => (s + 1 >= stages.length ? ONLINE : s === ONLINE ? 0 : s + 1)), 4000); return () => clearInterval(t); }, [auto]);
+  const [auto, setAuto] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { amount: 0.2 });
+  const reduced = useReducedMotion();
+  useEffect(() => {
+    const update = () => setVisible(!document.hidden);
+    document.addEventListener("visibilitychange", update);
+    return () => document.removeEventListener("visibilitychange", update);
+  }, []);
+  useEffect(() => {
+    if (!auto || !inView || !visible || reduced) return;
+    const timer = setInterval(() => setSel(s => s === ONLINE ? 0 : s + 1 >= stages.length ? ONLINE : s + 1), 6000);
+    return () => clearInterval(timer);
+  }, [auto, inView, visible, reduced]);
   const choose = (i: number) => { setSel(i); setAuto(false); };
-  const cur = sel === ONLINE ? null : stages[sel] ?? stages[0]!;
+  const cur = sel === ONLINE ? null : stages[sel] ?? stages[0];
   const total = stages.reduce((n, s) => n + s.events.length, 0) + onlineEvents.length;
+  const keynoteCount = stages.reduce((n, s) => n + s.events.filter(e => e.kind === "Keynote").length, 0);
+  const regions = new Set(stages.map(s => s.region)).size;
   const home = proj(37.77, -122.42);
+  const pins = [
+    { city: "California", x: home.x, y: home.y, index: 0, active: sel >= 0 && sel <= 2, labelX: -22, labelY: 42 },
+    ...stages.flatMap((stage, index) => index < 3 ? [] : [{ city: stage.city, ...proj(stage.lat, stage.lng), index, active: sel === index, labelX: 14, labelY: -14 }]),
+  ];
+  const stats = [
+    { icon: Globe2, value: `${total}+`, label: "engagements" },
+    { icon: MapPin, value: `${stages.length}`, label: "cities" },
+    { icon: Flag, value: `${regions}`, label: "regions" },
+    { icon: Mic, value: `${keynoteCount}`, label: "keynotes" },
+  ];
 
   return (
-    <div className="grid items-stretch gap-6 lg:grid-cols-2">
-      <div className="relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-glow">
-        <div className="flex items-center justify-between px-5 pt-4">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Global stage map · {total}+ engagements</p>
-          <button onClick={() => setAuto((a) => !a)} className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-xs text-muted-foreground hover:border-brand hover:text-brand">
-            {auto ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}{auto ? "Touring" : "Tour"}
-          </button>
+    <div ref={ref} className="min-w-0">
+      <div className="flex flex-wrap items-end justify-between gap-4 pb-6">
+        <div className="flex items-center gap-3">
+          <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-gradient text-primary-foreground shadow-glow"><Globe2 className="h-5 w-5" /></span>
+          <div>
+            <p className="font-display text-lg font-semibold leading-tight">Global stage map</p>
+            <p className="text-xs text-muted-foreground">Follow the tour or pick a city</p>
+          </div>
         </div>
-        <svg viewBox={`${VB.x} ${VB.y} ${VB.w} ${VB.h}`} preserveAspectRatio="xMidYMid slice" className="block min-h-[300px] w-full flex-1" role="img" aria-label="World map of speaking venues">
-          <defs>
-            <linearGradient id="sm-arc" x1="0" x2="1"><stop offset="0" stopColor="var(--brand)" /><stop offset="1" stopColor="var(--signal)" /></linearGradient>
-            <pattern id="sm-dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.1" fill="var(--brand)" opacity="0.45" /></pattern>
-          </defs>
-          <path d={LAND} fill="url(#sm-dots)" />
-          <path d={LAND} fill="none" stroke="var(--brand)" strokeOpacity="0.15" strokeWidth="0.6" />
-          {stages.map((s, i) => {
-            const p = proj(s.lat, s.lng);
-            if (Math.hypot(p.x - home.x, p.y - home.y) < 5) return null;
-            const mx = (home.x + p.x) / 2, my = Math.min(home.y, p.y) - Math.abs(p.x - home.x) * 0.22;
-            return <motion.path key={s.city} d={`M${home.x},${home.y} Q${mx},${my} ${p.x},${p.y}`} fill="none" stroke="url(#sm-arc)" strokeWidth={sel === i ? 2 : 1} strokeOpacity={sel === i ? 1 : 0.5} strokeDasharray="5 4"
-              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 1.4, delay: i * 0.2 }} />;
-          })}
-          {stages.map((s, i) => {
-            const p = proj(s.lat, s.lng); const active = i === sel; const bay = ["San Francisco", "Berkeley", "Sacramento"].includes(s.city);
-            const off = s.city === "Berkeley" ? { x: 3, y: -2 } : s.city === "Sacramento" ? { x: 5, y: -6 } : { x: 0, y: 0 };
-            return (
-              <g key={s.city} transform={`translate(${p.x + off.x},${p.y + off.y})`} onClick={() => choose(i)} className="cursor-pointer">
-                <title>{`${s.city} · ${s.events.length} events`}</title>
-                {active && <motion.circle fill="var(--brand)" initial={{ r: 4, opacity: 0.6 }} animate={{ r: 20, opacity: 0 }} transition={{ duration: 1.6, repeat: Infinity }} />}
-                <circle r={active ? 5.5 : 3.5 + Math.min(s.events.length, 6) * 0.3} fill={active ? "var(--brand)" : "var(--card)"} stroke="var(--brand)" strokeWidth="1.6" />
-                {(active || !bay) && <text x="8" y="3" fontSize="11" className="fill-foreground font-mono">{s.city}</text>}
-              </g>
-            );
-          })}
-        </svg>
-        <div className="flex gap-2 overflow-x-auto border-t border-border p-3">
-          {stages.map((s, i) => (
-            <button key={s.city} onClick={() => choose(i)} className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-1.5 text-xs transition ${i === sel ? "bg-brand-gradient text-primary-foreground" : "border border-border text-muted-foreground hover:text-foreground"}`}>
-              {s.city}<span className={`rounded-full px-1.5 font-mono text-[10px] ${i === sel ? "bg-background/25" : "bg-muted"}`}>{s.events.length}</span>
-            </button>
+        <div className="flex flex-wrap items-center gap-2">
+          {stats.map(s => (
+            <span key={s.label} className="flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs">
+              <s.icon className="h-3.5 w-3.5 text-brand" />
+              <span className="font-display font-semibold text-foreground">{s.value}</span>
+              <span className="text-muted-foreground">{s.label}</span>
+            </span>
           ))}
-          <button onClick={() => choose(ONLINE)} className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-1.5 text-xs transition ${sel === ONLINE ? "bg-brand-gradient text-primary-foreground" : "border border-border text-muted-foreground hover:text-foreground"}`}>
-            <Globe2 className="h-3 w-3" />Online & global<span className={`rounded-full px-1.5 font-mono text-[10px] ${sel === ONLINE ? "bg-background/25" : "bg-muted"}`}>{onlineEvents.length}</span>
-          </button>
+          <Button variant="ghost" size="sm" aria-pressed={auto} disabled={!!reduced} onClick={() => setAuto(a => !a)} className={`rounded-full border ${auto ? "border-brand bg-brand/10 text-brand" : "border-border text-muted-foreground"}`}>{auto ? <Pause /> : <Play />}{auto ? "Pause tour" : "Start tour"}</Button>
         </div>
       </div>
-
-      <div className="relative max-h-[480px] overflow-y-auto rounded-3xl border border-border bg-card p-7">
-        <AnimatePresence mode="wait">
-          <motion.div key={cur?.city ?? "online"} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
-            <p className="flex items-center gap-2 font-mono text-xs text-signal">{cur ? <MapPin className="h-3.5 w-3.5" /> : <Globe2 className="h-3.5 w-3.5" />}{cur ? `${cur.city}, ${cur.region}` : "Virtual & international"}</p>
-            <h3 className="mt-2 font-display text-3xl font-bold">{cur ? `${cur.events.length} ${cur.events.length === 1 ? "engagement" : "engagements"}` : "Reaching audiences worldwide"}</h3>
-            <ul className="mt-5 space-y-3">
-              {cur ? cur.events.map((e, j) => { const I = icon(e.kind); return (
-                <motion.li key={e.title} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: j * 0.05 }} className="flex gap-3 rounded-xl border border-border bg-background/40 p-3">
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand/15 text-brand"><I className="h-4 w-4" /></span>
-                  <span className="min-w-0"><span className="block text-sm font-medium leading-snug">{e.title}</span><span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{e.kind}</span>
-                    {e.href && <a href={e.href} target="_blank" rel="noreferrer" className="ml-2 inline-flex items-center gap-0.5 text-xs text-brand">Watch<ArrowUpRight className="h-3 w-3" /></a>}</span>
-                </motion.li>); })
-              : onlineEvents.map((e, j) => (
-                <motion.li key={e} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: j * 0.04 }} className="flex gap-3 text-sm"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />{e}</motion.li>))}
+      <div className="grid min-w-0 gap-6 lg:grid-cols-[1.7fr_1fr] lg:gap-8">
+        <div className="min-w-0">
+          <TransformWrapper minScale={1} maxScale={3} wheel={{ disabled: true }} doubleClick={{ disabled: true }} onPanningStart={() => setAuto(false)}>
+            {({ zoomIn, zoomOut, resetTransform }) => (
+              <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-transparent">
+                <div className="absolute right-3 top-3 z-10 flex gap-1 rounded-full border border-border bg-background/90 p-1 backdrop-blur">
+                  <Button size="icon-sm" variant="ghost" aria-label="Zoom in on stage map" title="Zoom in" onClick={() => zoomIn()}><ZoomIn /></Button>
+                  <Button size="icon-sm" variant="ghost" aria-label="Zoom out on stage map" title="Zoom out" onClick={() => zoomOut()}><ZoomOut /></Button>
+                  <Button size="icon-sm" variant="ghost" aria-label="Reset stage map" title="Reset map" onClick={() => resetTransform()}><RotateCcw /></Button>
+                </div>
+                <TransformComponent wrapperStyle={{ width: "100%" }} contentStyle={{ width: "100%" }}>
+                  <svg viewBox="0 25 1000 410" preserveAspectRatio="xMidYMid meet" className="block h-[260px] w-full sm:h-[360px] lg:h-[390px]" role="group" aria-label="Interactive map of speaking venues">
+                    <title>Speaking venues in California, New York and India</title>
+                    {[100, 200, 300, 400].map(y => <path key={y} d={`M0 ${y} H1000`} stroke="var(--brand)" strokeOpacity="0.08" />)}
+                    <path d={LAND} fill="var(--brand)" fillOpacity="0.16" stroke="var(--brand)" strokeOpacity="0.5" strokeWidth="0.9" />
+                    {pins.slice(1).map(pin => (
+                      <motion.path key={pin.city} d={`M${home.x},${home.y} Q${(home.x + pin.x) / 2},${Math.min(home.y, pin.y) - Math.abs(pin.x - home.x) * 0.18} ${pin.x},${pin.y}`} fill="none" stroke={pin.active ? "var(--signal)" : "var(--brand)"} strokeWidth={pin.active ? 2.8 : 1.8} strokeOpacity={sel === ONLINE ? 0.3 : 0.75} strokeDasharray="7 5"
+                        animate={pin.active && !reduced && inView && visible ? { strokeDashoffset: [0, -48] } : { strokeDashoffset: 0 }}
+                        transition={pin.active ? { duration: 2.4, repeat: Infinity, ease: "linear" } : { duration: 0.3 }} />
+                    ))}
+                    {pins.map(pin => (
+                      <g key={pin.city} transform={`translate(${pin.x},${pin.y})`} role="button" tabIndex={0} aria-label={`Select ${pin.city} speaking venues`} aria-pressed={pin.active} onClick={() => choose(pin.index)} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); choose(pin.index); } }} className="cursor-pointer outline-none focus-visible:stroke-foreground">
+                        <title>{pin.city}</title>
+                        {pin.active && <motion.circle r="18" fill="var(--signal)" fillOpacity="0.2" animate={!reduced && inView && visible ? { r: [12, 25, 12], opacity: [0.45, 0.1, 0.45] } : { r: 18, opacity: 0.3 }} transition={{ duration: 3, repeat: Infinity }} />}
+                        <circle r="20" fill="transparent" />
+                        <circle r={pin.active ? 8 : 6} fill={pin.active ? "var(--signal)" : "var(--brand)"} stroke="var(--background)" strokeWidth="3" />
+                        <text x={pin.labelX} y={pin.labelY} fontSize="20" fontWeight="600" fill="var(--foreground)" stroke="var(--background)" strokeWidth="5" paintOrder="stroke" className="font-display">{pin.city}</text>
+                      </g>
+                    ))}
+                  </svg>
+                </TransformComponent>
+                <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border bg-background/60 px-4 py-3 text-xs text-muted-foreground backdrop-blur">
+                  <span className="flex items-center gap-2"><span className="h-2 w-2 animate-pulse rounded-full bg-signal" /><span className="font-medium text-foreground">{cur ? `${cur.city}, ${cur.region}` : "Online & global"}</span></span>
+                  <span>California · New York · India</span>
+                </div>
+              </div>
+            )}
+          </TransformWrapper>
+          <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3" aria-label="Speaking locations">
+            {stages.map((s, i) => (
+              <Button key={s.city} variant="ghost" aria-pressed={sel === i} onClick={() => choose(i)} className={`h-11 min-w-0 justify-between rounded-xl border px-3 transition-all ${sel === i ? "border-brand bg-brand/10 text-foreground shadow-glow underline decoration-brand decoration-2 underline-offset-8" : "border-border text-muted-foreground hover:border-brand/50 hover:text-foreground"}`}>
+                <span className="flex min-w-0 items-center gap-1.5"><MapPin className="shrink-0 text-brand" /><span className="truncate text-xs">{s.city}</span></span>
+                <span className={`rounded-full px-2 py-0.5 font-mono text-[10px] ${sel === i ? "bg-brand text-primary-foreground" : "bg-muted text-muted-foreground"}`}>{s.events.length}</span>
+              </Button>
+            ))}
+            <Button variant="ghost" aria-pressed={sel === ONLINE} onClick={() => choose(ONLINE)} className={`h-11 justify-between rounded-xl border px-3 transition-all ${sel === ONLINE ? "border-brand bg-brand/10 text-foreground shadow-glow underline decoration-brand decoration-2 underline-offset-8" : "border-border text-muted-foreground hover:border-brand/50 hover:text-foreground"}`}>
+              <span className="flex items-center gap-1.5 text-xs"><Globe2 className="text-brand" />Online & global</span>
+              <span className={`rounded-full px-2 py-0.5 font-mono text-[10px] ${sel === ONLINE ? "bg-brand text-primary-foreground" : "bg-muted text-muted-foreground"}`}>{onlineEvents.length}</span>
+            </Button>
+          </div>
+        </div>
+        <div className="min-w-0 rounded-2xl border border-border bg-card/60 p-5 lg:p-6">
+          <div className="mb-5 border-b border-border pb-5">
+            <p className="flex items-center gap-2 text-sm font-medium text-brand">{cur ? <MapPin className="h-4 w-4" /> : <Globe2 className="h-4 w-4" />}{cur ? cur.region : "Virtual & international"}</p>
+            <h3 className="mt-2 font-display text-3xl font-bold">{cur?.city ?? "Online & global"}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{cur ? cur.events.length : onlineEvents.length} {(cur ? cur.events.length : onlineEvents.length) === 1 ? "engagement" : "engagements"}</p>
+          </div>
+          <div className="max-h-[380px] overflow-y-auto pr-2 lg:max-h-[400px]" tabIndex={0} role="region" aria-label={`${cur?.city ?? "Online"} engagements`}>
+            <ul className="space-y-3">
+              {cur ? cur.events.map(e => { const I = icon(e.kind); return (
+                <li key={e.title} className="group flex gap-3 rounded-xl border border-border bg-card p-4 transition-all hover:-translate-y-0.5 hover:border-brand/60 hover:shadow-glow">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-primary-foreground"><I className="h-4 w-4" /></span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium leading-relaxed">{e.title}</p>
+                    <div className="mt-2 flex flex-wrap items-center gap-3">
+                      <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">{e.kind}</span>
+                      {e.href && <a href={e.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-medium text-brand underline-offset-4 hover:underline">Watch talk<ArrowUpRight className="h-3 w-3" /></a>}
+                    </div>
+                  </div>
+                </li>
+              ); }) : onlineEvents.map(e => (
+                <li key={e} className="flex gap-3 rounded-xl border border-border bg-card p-4 text-sm leading-relaxed transition-all hover:-translate-y-0.5 hover:border-brand/60 hover:shadow-glow"><Globe2 className="mt-0.5 h-4 w-4 shrink-0 text-brand" />{e}</li>
+              ))}
             </ul>
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        </div>
       </div>
     </div>
   );
