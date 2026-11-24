@@ -119,6 +119,35 @@ function Speaking() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-6 pt-14" aria-label="Speaking calendar">
+        <Reveal><p className="eyebrow">Calendar</p><h2 className="mt-4 font-display text-3xl font-bold tracking-tight md:text-4xl">Speaking calendar</h2></Reveal>
+        <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">Every confirmed date on the calendar, with direct links to each event, registration and speaker listing.</p>
+        <ul className="mt-8 grid gap-3">
+          {upcomingTalks.map((talk) => (
+            <li key={talk.event} className="group grid gap-4 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-brand sm:grid-cols-[auto_minmax(0,1fr)] sm:items-center sm:gap-6 sm:p-6">
+              <div className="flex items-center gap-3 sm:w-40 sm:flex-col sm:items-start sm:gap-1 sm:border-r sm:border-border sm:pr-6">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-gradient text-primary-foreground shadow-glow"><CalendarDays className="h-5 w-5" /></span>
+                <div>
+                  <p className="font-display text-lg font-bold leading-tight text-stat-number">{talk.date}</p>
+                  <p className="mt-0.5 flex items-center gap-1 font-mono text-[11px] text-muted-foreground"><MapPin className="h-3 w-3" />{talk.location}</p>
+                </div>
+              </div>
+              <div className="min-w-0">
+                <p className="font-mono text-xs text-signal">{talk.role}</p>
+                <h3 className="mt-1 font-display text-xl font-semibold">{talk.event} — {talk.title}</h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {talk.links.map((link) => (
+                    <a key={link.href} href={link.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-brand hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                      {link.label}<ArrowUpRight className="h-3 w-3" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section className="mx-auto max-w-6xl px-6 pt-14">
         <h2 className="font-display text-3xl font-bold">AI keynotes for leaders and builders</h2>
         <p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">{speakerGuide.introduction}</p>
