@@ -27,3 +27,10 @@ export function landscapeSpoke(center: { x: number; y: number }, node: { x: numb
   const start = hubRadius / length;
   return `M ${center.x + dx * start} ${center.y + dy * start} L ${node.x - dx * inset} ${node.y - dy * inset}`;
 }
+// Recommendation nodes added beneath the expanded stage diagram.
+export function landscapeRecommendationSlots(compact: boolean, count: number) {
+  const nodes = compact
+    ? [{ x: 100, y: 780 }, { x: 300, y: 780 }, { x: 100, y: 920 }, { x: 300, y: 920 }]
+    : [{ x: 150, y: 430 }, { x: 810, y: 430 }, { x: 200, y: 680 }, { x: 760, y: 680 }];
+  return { nodes: nodes.slice(0, count), height: compact ? (count > 2 ? 1000 : 860) : (count > 2 ? 760 : 680) };
+}

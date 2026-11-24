@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { Pause, Play, ArrowLeft, ArrowRight, ArrowUpRight, Lightbulb, TriangleAlert, GitBranch, Check, UserRound } from "lucide-react";
+import { Pause, Play, Newspaper, ArrowLeft, ArrowRight, ArrowUpRight, Lightbulb, TriangleAlert, GitBranch, Check, UserRound, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { LogoMark } from "@/components/site/Logo";
 import { impactTopics, stageChecklist, type ImpactTopic } from "@/data/knowledge-impact";
 import { ZoomableDiagram } from "./ZoomableDiagram";
-import { landscapeLayout, landscapeSpoke } from "./landscape-layout";
+import { landscapeLayout, landscapeSpoke, landscapeRecommendationSlots } from "./landscape-layout";
+import { KnowledgeLink } from "@/components/site/KnowledgeCards";
+import type { KnowledgeItem } from "@/data/knowledge";
 
 export function ConceptLandscapeGraph({ focused, active, expanded, stage, onFocus, onStage, onBack, onReset }: {
   focused: ImpactTopic | undefined;
@@ -23,6 +25,7 @@ export function ConceptLandscapeGraph({ focused, active, expanded, stage, onFocu
   const [paused, setPaused] = useState(false);
   const [detailId, setDetailId] = useState("principle");
   const [popupId, setPopupId] = useState<string | null>(null);
+  const [article, setArticle] = useState<KnowledgeItem | null>(null);
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
@@ -45,7 +48,10 @@ export function ConceptLandscapeGraph({ focused, active, expanded, stage, onFocu
     : focused
     ? focused.flow.map((label, index) => ({ id: `${focused.id}-${index}`, label, caption: `STAGE ${String(index + 1).padStart(2, "0")}`, tone: impactTopics.indexOf(focused) }))
     : impactTopics.map((item, index) => ({ id: item.id, label: item.short, caption: `${item.resources.length} sources`, tone: index }));
-  const layout = landscapeLayout(items.length, compact, Boolean(details));
+  const baseLayout = landscapeLayout(items.length, compact, Boolean(details));
+  const recommendations = details ? stageRecommendations(focused.resources, stage) : [];
+  const recSlots = details ? landscapeRecommendationSlots(compact, recommendations.length) : undefined;
+  const layout = recSlots ? { ...baseLayout, height: recSlots.height } : baseLayout;
   const nodeWidth = compact ? 168 : 188;
   const nodeHeight = compact ? 104 : 108;
   const selectedDetail = details ? items.find(item => item.id === detailId) ?? items[0] : undefined;
@@ -74,6 +80,24 @@ export function ConceptLandscapeGraph({ focused, active, expanded, stage, onFocu
                 <span className="landscape-node-caption">{item.caption}</span>
                 <span className="landscape-node-title">{item.label}</span>
                 {!focused && <ArrowUpRight className="landscape-node-arrow" />}
+              </Button>
+            </foreignObject>
+          </g>;
+        })}
+        {recSlots && recommendations.map((rec, index) => {
+          const position = recSlots.nodes[index];
+          if (!position) return null;
+          const origin = compact ? baseLayout.nodes[2] ?? layout.center : layout.center;
+          const path = landscapeSpoke(origin, position, nodeWidth, nodeHeight, compact ? nodeHeight / 2 : 92, false);
+          return <g key={rec.id} className={`landscape-spoke landscape-rec ${article?.id === rec.id ? "is-selected" : ""}`}>
+            <path d={path} className="landscape-edge landscape-rec-edge" />
+            <path d={path} className="landscape-edge-flow landscape-rec-flow" />
+            {[0, 1].map(arrow => <path key={arrow} d="M -8 -4 L 0 0 L -8 4" className="landscape-travel-arrow" style={{ offsetPath: `path('${path}')`, animationDelay: `${index * -0.22 - arrow * 1.8}s` } as CSSProperties} />)}
+            <foreignObject x={position.x - nodeWidth / 2} y={position.y - nodeHeight / 2} width={nodeWidth} height={nodeHeight}>
+              <Button variant="ghost" className={`landscape-topic-button landscape-rec-button ${article?.id === rec.id ? "is-selected" : ""}`} aria-label={`Recommended ${rec.kind.toLowerCase()}: ${rec.title}`} onClick={() => setArticle(rec)}>
+                <span className="landscape-rec-tag"><Sparkles className="size-2.5" />Recommendation</span>
+                <span className="landscape-node-title line-clamp-2">{rec.title}</span>
+                <span className="landscape-rec-meta"><Newspaper className="size-2.5" />{rec.kind}{rec.publisher ? ` · ${rec.publisher}` : ""}</span>
               </Button>
             </foreignObject>
           </g>;
@@ -122,6 +146,19 @@ export function ConceptLandscapeGraph({ focused, active, expanded, stage, onFocu
         </li>)}
       </ul>
     </section>}
+    <Dialog open={Boolean(article)} onOpenChange={open => { if (!open) setArticle(null); }}>
+      <DialogContent className="landscape-insight-dialog landscape-rec-dialog">
+        {article && <>
+          {article.image && <img src={article.image} alt="" className="aspect-[16/9] w-full rounded-xl object-cover" loading="lazy" />}
+          <span className="landscape-rec-tag mt-3 self-start"><Sparkles className="size-2.5" />Recommendation</span>
+          <p className="impact-kicker mt-3">{article.kind} · {article.publisher}{article.year ? ` · ${article.year}` : ""}</p>
+          <DialogTitle className="mt-2 font-display text-xl font-semibold">{article.title}</DialogTitle>
+          <DialogDescription className="mt-3 text-sm leading-relaxed text-muted-foreground">{article.summary}</DialogDescription>
+          {article.topics.length > 0 && <div className="mt-3 flex flex-wrap gap-1.5">{article.topics.slice(0, 4).map(t => <span key={t} className="rounded-full border border-border px-2 py-0.5 text-[11px] text-muted-foreground">{t}</span>)}</div>}
+          <div className="mt-5"><Button asChild size="sm"><KnowledgeLink item={article}>Read {article.kind.toLowerCase()} <ArrowUpRight /></KnowledgeLink></Button></div>
+        </>}
+      </DialogContent>
+    </Dialog>
     <Dialog open={Boolean(popupDetail)} onOpenChange={open => { if (!open) setPopupId(null); }}>
       <DialogContent className="landscape-insight-dialog">
         {popupDetail && focused && <>
@@ -135,4 +172,13 @@ export function ConceptLandscapeGraph({ focused, active, expanded, stage, onFocu
       </DialogContent>
     </Dialog>
   </div>;
+}
+
+/** Up to four related works for a stage, preferring articles and rotating per stage. */
+export function stageRecommendations(resources: KnowledgeItem[], stage: number, limit = 4): KnowledgeItem[] {
+  const articles = resources.filter(item => item.kind === "Article");
+  const pool = articles.length >= limit ? articles : [...articles, ...resources.filter(item => item.kind !== "Article")];
+  if (!pool.length) return [];
+  const start = (stage * limit) % pool.length;
+  return Array.from({ length: Math.min(limit, pool.length) }, (_, i) => pool[(start + i) % pool.length]!);
 }

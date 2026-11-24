@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { canonical, SITE_URL } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { Clock, Play, Gavel, CalendarDays, MapPin, ArrowUpRight } from "lucide-react";
+import { Clock, Play, Gavel, CalendarDays, MapPin, ArrowUpRight, BadgeCheck } from "lucide-react";
 import { profile } from "@/data/profile";
 import { keynotes, judging } from "@/data/media";
 import { Reveal, PageHero, Counter } from "@/components/site/Reveal";
@@ -194,6 +194,12 @@ function Speaking() {
                   <p className="flex items-center gap-1.5 font-mono text-[11px] text-signal"><Gavel className="h-3 w-3" />{j.role}</p>
                   <h3 className="mt-2 font-display text-lg leading-snug font-semibold">{j.title}</h3>
                   <p className="mt-1 text-xs text-muted-foreground">{j.org}</p>
+                  {(j.href || j.verifiedHref) && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {j.href && <a href={j.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-full border border-brand/40 px-3 py-1 font-mono text-[10px] text-brand transition hover:bg-accent">Judge profile<ArrowUpRight className="h-3 w-3" /></a>}
+                      {j.verifiedHref && <a href={j.verifiedHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-full border border-signal/40 px-3 py-1 font-mono text-[10px] text-signal transition hover:bg-accent"><BadgeCheck className="h-3 w-3" />Verified judge</a>}
+                    </div>
+                  )}
                 </div>
               </TiltCard>
             </Reveal>

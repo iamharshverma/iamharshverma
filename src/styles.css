@@ -1955,3 +1955,25 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 .graph-download-menu > button { justify-content:flex-start; }
 .graph-download-message { position:absolute; top:calc(100% + 8px); right:0; z-index:60; width:180px; padding:10px; border:1px solid var(--border); border-radius:8px; background:var(--popover); color:var(--popover-foreground); font-size:12px; }
 @media (max-width:639px) { .knowledge-network .kn-topic-strip { flex-wrap:nowrap; overflow-x:auto; padding:10px; } .kn-topic-strip .kn-legend { flex-shrink:0; font-size:11px; } }
+
+/* Stage recommendation nodes carry their own hue so they never read as stage nodes. */
+:root { --landscape-rec-tone: oklch(0.78 0.16 345); --landscape-rec-ink: oklch(0.18 0.04 345); --landscape-rec-tag-tone: oklch(0.82 0.15 85); --landscape-rec-tag-ink: oklch(0.22 0.05 85); }
+:root[data-theme="light"] { --landscape-rec-tone: oklch(0.52 0.18 340); --landscape-rec-ink: oklch(0.99 0 0); --landscape-rec-tag-tone: oklch(0.74 0.14 80); --landscape-rec-tag-ink: oklch(0.24 0.05 80); }
+:root[data-theme="glass"] { --landscape-rec-tone: oklch(0.5 0.16 340); --landscape-rec-ink: oklch(0.99 0 0); --landscape-rec-tag-tone: oklch(0.74 0.14 80); --landscape-rec-tag-ink: oklch(0.24 0.05 80); }
+:root[data-theme="sky"] { --landscape-rec-tone: oklch(0.5 0.17 340); --landscape-rec-ink: oklch(0.99 0 0); --landscape-rec-tag-tone: oklch(0.74 0.14 80); --landscape-rec-tag-ink: oklch(0.24 0.05 80); }
+:root[data-theme="signal"] { --landscape-rec-tone: oklch(0.76 0.19 350); --landscape-rec-ink: oklch(0.14 0.02 350); --landscape-rec-tag-tone: oklch(0.8 0.16 85); --landscape-rec-tag-ink: oklch(0.2 0.05 85); }
+:root[data-theme="noir"] { --landscape-rec-tone: oklch(0.76 0.17 345); --landscape-rec-ink: oklch(0.16 0.02 345); --landscape-rec-tag-tone: oklch(0.8 0.16 85); --landscape-rec-tag-ink: oklch(0.2 0.05 85); }
+.landscape-rec { --impact-node-tone: var(--landscape-rec-tone); }
+.landscape-rec-edge { stroke-dasharray: 5 5; stroke-width: 1.4; opacity: .55; }
+.landscape-rec-flow { stroke-dasharray: 3 9; }
+.landscape-rec-button { border-style: dashed !important; border-color: color-mix(in oklab, var(--landscape-rec-tone) 60%, var(--border)) !important; background: color-mix(in oklab, var(--landscape-rec-tone) 7%, var(--background)); padding: 10px 12px 12px; gap: 6px; }
+.landscape-rec-button:hover, .landscape-rec-button:focus-visible { background: color-mix(in oklab, var(--landscape-rec-tone) 14%, var(--background)); border-color: var(--landscape-rec-tone); }
+.landscape-rec-button.is-selected { border: 2px dashed var(--landscape-rec-tone); background: color-mix(in oklab, var(--landscape-rec-tone) 15%, var(--background)); box-shadow: inset 0 -3px 0 var(--landscape-rec-tone), 0 10px 28px -16px var(--landscape-rec-tone); }
+.landscape-rec-tag { display: inline-flex; align-items: center; gap: 3px; flex-shrink: 0; border-radius: 999px; background: var(--landscape-rec-tag-tone); color: var(--landscape-rec-tag-ink); padding: 1px 6px; font-family: var(--font-mono); font-size: 7px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.landscape-rec-tag > svg { width: 8px; height: 8px; }
+.landscape-rec-button .landscape-node-title { font-size: 11px; line-height: 1.3; }
+.landscape-rec-meta { display: block; max-width: 100%; overflow: hidden; font-family: var(--font-mono); font-size: 8px; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; text-overflow: ellipsis; color: color-mix(in oklab, var(--landscape-rec-tone) 72%, var(--muted-foreground)); }
+.landscape-rec-meta > svg { display: inline; vertical-align: -1px; }
+.landscape-rec-dialog { border-color: color-mix(in oklab, var(--landscape-rec-tone) 45%, var(--border)); }
+.landscape-rec-dialog .landscape-rec-tag { font-size: 8px; padding: 2px 8px; }
+.landscape-rec-dialog .landscape-rec-tag > svg { width: 9px; height: 9px; }

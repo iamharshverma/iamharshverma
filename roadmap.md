@@ -311,3 +311,4 @@
 - [x] Capitalize S in "Where Harsh has spoken"
 - [x] Capitalize N and B in "Shaping the next builders"
 - [x] Capitalize headings site-wide (title case, frozen user-approved exceptions)
+- [x] Recommendation cards in the landscape stage view: smaller article text, tiny tag in its own color; verified desktop, phone and themes.

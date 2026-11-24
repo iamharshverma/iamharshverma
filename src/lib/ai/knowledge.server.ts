@@ -28,7 +28,7 @@ export function buildInstructions() {
   lines.push(`\n## Articles\n` + insights.map((b) => `- ${b.title} (${b.pub}, ${b.date}): ${b.excerpt} Original: ${b.href} Page: https://www.iamharshverma.com/insights/${b.slug}`).join("\n"));
   lines.push(`\n## Keynotes\n` + keynotes.map((k) => `- ${k.title} — ${k.venue} (${k.dur}). ${k.desc} ${k.href}`).join("\n"));
   lines.push(`Speaking topics: ` + speaking.map((s) => `${s.title} (${s.type})`).join("; "));
-  lines.push(`\n## Judging & mentorship\n` + judging.map((j) => `- ${j.title} — ${j.org}, ${j.role}`).join("\n"));
+  lines.push(`\n## Judging & mentorship\n` + judging.map((j) => `- ${j.title} — ${j.org}, ${j.role}${j.href ? ` Profile: ${j.href}` : ""}${j.verifiedHref ? ` Verified: ${j.verifiedHref}` : ""}`).join("\n"));
   lines.push(`\n## Media coverage\n` + media.map((m) => `- ${m.title} (${m.outlet}, ${m.year})${m.href ? ` ${m.href}` : ""}`).join("\n"));
   lines.push(`\n## Advisory & collaboration\n` + advisory.map((a) => `- ${a.title} (${a.org}): ${a.desc}`).join("\n") + "\n" + offerings.map((o) => `- ${o.title}: ${o.desc}`).join("\n"));
   lines.push(`Contact: ${profile.email}, or the site's Contact page (/contact). Keynote and advisory booking requests: /booking. Requests require Harsh's confirmation; no availability or fees are published. Mentorship: https://adplist.org/mentors/harsh-verma`);

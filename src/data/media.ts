@@ -2135,13 +2135,15 @@ export const blogs: Blog[] = [
  }
 ];
 
-export type Judging = { title: string; img: string; org: string; role: string; desc: string };
+export type Judging = { title: string; img: string; org: string; role: string; desc: string; href?: string; verifiedHref?: string };
 export const judging: Judging[] = [
  {
   "title": "2026 BIG Awards for Business Judge",
   "img": "https://www.harshverma.me/images/judging/big_awards_judge.png",
   "org": "Business Intelligence Group",
   "role": "Official Awards Judge",
+  "href": "https://judges.bintelligence.com/harsh-verma",
+  "verifiedHref": "https://judges.bintelligence.com/verify/big-awards-for-business-2026/harsh-verma",
   "desc": "Appointed as an official judge for the prestigious 2026 BIG Awards for Business hosted by Business Intelligence Group. Serving on the executive judging panel evaluating global enterprise innovations, market-defining soft"
  },
  {
