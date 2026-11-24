@@ -55,7 +55,7 @@ function TalkDetail() {
             <Link to="/speaking">All talks</Link>
           </Button>
         </div>
-        <h2 className="mt-14 font-display text-3xl font-semibold">Connected perspectives</h2>
+        <h2 className="mt-14 font-display text-3xl font-semibold">Connected Perspectives</h2>
         <KnowledgeGraphEntry id={i.id} />
         <div className="mt-8">
           <KnowledgeCards items={relatedKnowledge(i.topics, i.id, 6)} />

@@ -16,5 +16,5 @@ export const Route = createFileRoute("/publications_/$slug")({
 });
 function PublicationPage() {
   const p = Route.useLoaderData();
-  return <article className="publication-dossier mx-auto max-w-5xl px-6 pb-14 pt-28 sm:pt-36" style={{ ['--paper-tone' as string]: publicationPresentation(p).color }}><Link to="/publications" className="text-sm text-brand">← Publications index</Link><div className="mt-7"><PublicationDetails publication={p} page /></div><PublicationTopicDiagram publication={p}/><KnowledgeGraphEntry id={`publication:${p.slug}`} /><h2 className="mt-10 mb-6 font-display text-2xl font-semibold">Connected research & perspectives</h2><KnowledgeCards items={relatedKnowledge(p.topics, `publication:${p.slug}`, 6)} /></article>;
+  return <article className="publication-dossier mx-auto max-w-5xl px-6 pb-14 pt-28 sm:pt-36" style={{ ['--paper-tone' as string]: publicationPresentation(p).color }}><Link to="/publications" className="text-sm text-brand">← Publications index</Link><div className="mt-7"><PublicationDetails publication={p} page /></div><PublicationTopicDiagram publication={p}/><KnowledgeGraphEntry id={`publication:${p.slug}`} /><h2 className="mt-10 mb-6 font-display text-2xl font-semibold">Connected Research & Perspectives</h2><KnowledgeCards items={relatedKnowledge(p.topics, `publication:${p.slug}`, 6)} /></article>;
 }

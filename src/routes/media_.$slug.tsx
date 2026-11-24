@@ -55,7 +55,7 @@ function MediaDetail() {
           This entry references the original publisher. It does not reproduce the full article or
           imply an independent editorial classification that has not been verified.
         </p>
-        <h2 className="mt-14 font-display text-3xl font-semibold">Related work</h2>
+        <h2 className="mt-14 font-display text-3xl font-semibold">Related Work</h2>
         <KnowledgeGraphEntry id={i.id} />
         <div className="mt-8">
           <KnowledgeCards items={relatedKnowledge(i.topics, i.id, 3)} />

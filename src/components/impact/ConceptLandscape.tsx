@@ -45,7 +45,7 @@ export default function ConceptLandscape({
             </p>
           </div>
           <div className="mt-7">
-            <h3 className="font-display text-lg font-semibold">Engineering friction</h3>
+            <h3 className="font-display text-lg font-semibold">Engineering Friction</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               {active.challenges[stage % active.challenges.length]}
             </p>

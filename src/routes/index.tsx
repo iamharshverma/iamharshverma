@@ -120,7 +120,7 @@ function Home() {
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <div className="mb-10 flex items-end justify-between">
-          <Reveal><p className="eyebrow">Highlights</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Recent recognition</h2></Reveal>
+          <Reveal><p className="eyebrow">Highlights</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Recent Recognition</h2></Reveal>
           <Link to="/recognition" className="hidden items-center gap-1 text-sm text-brand md:flex">All honors <ArrowUpRight className="h-4 w-4" /></Link>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
@@ -141,7 +141,7 @@ function Home() {
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <div className="mb-10 flex items-end justify-between">
-          <Reveal><p className="eyebrow">On stage</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Featured keynotes</h2></Reveal>
+          <Reveal><p className="eyebrow">On stage</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Featured Keynotes</h2></Reveal>
           <Link to="/speaking" className="hidden items-center gap-1 text-sm text-brand md:flex">Keynote theater <ArrowUpRight className="h-4 w-4" /></Link>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
@@ -161,7 +161,7 @@ function Home() {
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <div className="mb-10 flex items-end justify-between">
-          <Reveal><p className="eyebrow">In the press</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Recent headlines</h2></Reveal>
+          <Reveal><p className="eyebrow">In the press</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Recent Headlines</h2></Reveal>
           <Link to="/media" className="hidden items-center gap-1 text-sm text-brand md:flex">All {media.length} features <ArrowUpRight className="h-4 w-4" /></Link>
         </div>
         <div className="divide-y divide-border border-y border-border">
@@ -176,7 +176,7 @@ function Home() {
 
       <section className="mx-auto max-w-6xl px-6 pb-12">
         <div className="mb-10 flex items-end justify-between">
-          <Reveal><p className="eyebrow">Coming January 2027</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Authored books</h2></Reveal>
+          <Reveal><p className="eyebrow">Coming January 2027</p><h2 className="mt-4 font-display text-5xl font-bold tracking-tight">Authored Books</h2></Reveal>
           <Link to="/books" className="hidden items-center gap-1 text-sm text-brand md:flex">Explore the books <ArrowUpRight className="h-4 w-4" /></Link>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
@@ -197,7 +197,7 @@ function Home() {
       </section>
       <section aria-labelledby="recent-articles-heading" className="mx-auto max-w-6xl px-6 py-20">
         <div className="mb-8 grid min-w-0 gap-4 sm:flex sm:items-end sm:justify-between md:mb-10">
-          <Reveal className="min-w-0"><p className="eyebrow">Ideas into impact</p><h2 id="recent-articles-heading" className="mt-4 font-display text-3xl font-bold tracking-normal md:text-5xl">Recent articles</h2></Reveal>
+          <Reveal className="min-w-0"><p className="eyebrow">Ideas into impact</p><h2 id="recent-articles-heading" className="mt-4 font-display text-3xl font-bold tracking-normal md:text-5xl">Recent Articles</h2></Reveal>
           <Button asChild variant="outline" className="w-fit shrink-0"><Link to="/insights">Explore the blog <ArrowUpRight /></Link></Button>
         </div>
         <div className="grid min-w-0 grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">

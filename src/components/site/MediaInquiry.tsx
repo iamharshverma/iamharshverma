@@ -27,7 +27,7 @@ export function MediaInquiry() {
     catch { setError("Your request wasn't saved. Please try again or contact Harsh by email."); }
     finally { setPending(false); }
   }
-  if (reference) return <div role="status" className="py-8"><CheckCircle2 className="size-8 text-brand" /><h3 className="mt-4 font-display text-2xl">Interview request received</h3><p className="mt-3 text-muted-foreground">Your brief has been saved. The interview and timing still require confirmation.</p><p className="mt-4 font-mono text-xs">Reference: {reference.slice(0, 8)}</p><Button className="mt-6" variant="outline" onClick={() => setReference("")}>Send another request</Button></div>;
+  if (reference) return <div role="status" className="py-8"><CheckCircle2 className="size-8 text-brand" /><h3 className="mt-4 font-display text-2xl">Interview Request Received</h3><p className="mt-3 text-muted-foreground">Your brief has been saved. The interview and timing still require confirmation.</p><p className="mt-4 font-mono text-xs">Reference: {reference.slice(0, 8)}</p><Button className="mt-6" variant="outline" onClick={() => setReference("")}>Send another request</Button></div>;
   return <form onSubmit={send} className="grid min-w-0 gap-5 sm:grid-cols-2" aria-label="Media interview request">
     <label className="min-w-0 text-sm">Journalist or host name<input className={input} name="name" required maxLength={100} autoComplete="name" /></label>
     <label className="min-w-0 text-sm">Professional email<input className={input} name="email" required type="email" maxLength={255} autoComplete="email" /></label>

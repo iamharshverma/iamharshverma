@@ -102,6 +102,9 @@ export const experience = [
   { period: "Sept 2019 — Jan 2020", role: "Machine Learning Engineer", org: "Hypergiant Sensory Science", place: "Austin, TX",
     points: ["Facial detection and verification modules for vision pipelines.", "Video and image similarity retrieval with FAISS vector embeddings."],
     tech: ["Computer Vision", "FAISS", "Deep Learning"] },
+  { period: "May 2015 — July 2018", role: "Software Engineer", org: "Hike Limited (Hike Messenger)",
+    points: ["Worked across AI, data science, infrastructure and automation teams.", "Built and scaled systems for one of India's largest messaging platforms."],
+    tech: ["AI", "Data Science", "Infrastructure", "Automation"] },
 ];
 
 export const education = [

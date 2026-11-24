@@ -317,7 +317,7 @@ export default function AgentPlayground({
       </div>
       <div className="mt-7 border-t border-border pt-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h3 className="font-display text-xl font-semibold">Execution evidence</h3>
+          <h3 className="font-display text-xl font-semibold">Execution Evidence</h3>
           <span className="font-mono text-xs text-muted-foreground">
             {cursor} / {events.length} events ·{" "}
             {complete ? "FINISHED" : running ? "RUNNING" : "PAUSED"}

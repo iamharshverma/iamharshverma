@@ -109,8 +109,7 @@ function RadarTechnology() {
         {related.length > 0 && (
           <>
             <h2 className="mt-14 font-display text-3xl font-semibold">
-              Related papers, articles & research
-            </h2>
+              Related Papers, Articles & Research            </h2>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
               Portfolio work sharing this technology’s domains. Shared subjects indicate editorial
               relationships, not citations.

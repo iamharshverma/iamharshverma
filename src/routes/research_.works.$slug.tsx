@@ -65,7 +65,7 @@ function WorkDetail() {
             </a>
           </Button>
         )}
-        <h2 className="mt-14 font-display text-3xl font-semibold">Related research & writing</h2>
+        <h2 className="mt-14 font-display text-3xl font-semibold">Related Research & Writing</h2>
         <KnowledgeGraphEntry id={i.id} />
         <div className="mt-8">
           <KnowledgeCards items={relatedKnowledge(i.topics, i.id, 6)} />

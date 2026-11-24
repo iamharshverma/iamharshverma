@@ -55,7 +55,7 @@ function Insights() {
         </div>
         {list.length === 0 && <p className="mt-10 text-muted-foreground">No articles match.</p>}
       </section>
-      <section className="mx-auto max-w-6xl px-6 pb-24"><div className="rounded-2xl border border-border bg-card p-8"><h2 className="font-display text-2xl font-bold">Get new essays in your inbox</h2><p className="mt-2 mb-5 text-muted-foreground">Occasional notes on agentic AI and security. No spam.</p><Subscribe list="newsletter" /></div></section>
+      <section className="mx-auto max-w-6xl px-6 pb-24"><div className="rounded-2xl border border-border bg-card p-8"><h2 className="font-display text-2xl font-bold">Get New Essays in Your Inbox</h2><p className="mt-2 mb-5 text-muted-foreground">Occasional notes on agentic AI and security. No spam.</p><Subscribe list="newsletter" /></div></section>
     </>
   );
 }

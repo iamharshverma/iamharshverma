@@ -61,7 +61,7 @@ export function RadarTechnologyBrief({ entry, compact = false, artwork }: { entr
       <div className="border-l-2 border-brand pl-4"><h3 className="flex items-center gap-2 text-sm font-semibold"><ShieldAlert className="size-4 text-brand" />The failure to design for</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{brief.failure}</p></div>
     </div>
     <div className="mt-7">
-      <h3 className="text-sm font-semibold">Implementation review</h3>
+      <h3 className="text-sm font-semibold">Implementation Review</h3>
       <ul className="mt-3 space-y-3">{brief.checks.map(check => <li key={check} className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground"><CheckCircle2 className="mt-0.5 size-4 shrink-0 text-brand" /><span>{check}</span></li>)}</ul>
     </div>
   </div>;

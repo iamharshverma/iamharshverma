@@ -51,7 +51,7 @@ function CaseStudy() {
           ))}
         </div>
         <section className="mt-12 border-t border-border pt-8">
-          <h2 className="font-display text-2xl font-semibold">Source and reproducibility</h2>
+          <h2 className="font-display text-2xl font-semibold">Source and Reproducibility</h2>
           <a
             className="mt-5 inline-block break-all text-brand underline underline-offset-4"
             href={study.source}
@@ -64,7 +64,7 @@ function CaseStudy() {
             {study.reviewBasis === "portfolio" ? "Listed on the author’s public portfolio. Architecture descriptions and original thumbnails are owner-provided; implementation details and performance are not independently verified." : "Reviewed November 21, 2026. HEAD follows the repository's current version; subsequent code changes may differ from this review."}
           </p>
         </section>
-        <h2 className="mt-14 font-display text-3xl font-semibold">Related perspectives</h2>
+        <h2 className="mt-14 font-display text-3xl font-semibold">Related Perspectives</h2>
         <KnowledgeGraphEntry id={`case:${study.slug}`} />
         <div className="mt-8">
           <KnowledgeCards

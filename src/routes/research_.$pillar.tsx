@@ -49,7 +49,7 @@ function Pillar() {
             <h2 className="mt-4 font-display text-3xl font-semibold leading-snug">{p.thesis}</h2>
           </div>
           <div>
-            <h2 className="font-display text-2xl font-semibold">The problem</h2>
+            <h2 className="font-display text-2xl font-semibold">The Problem</h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">{p.problem}</p>
             <p className="mt-5 border-l-2 border-brand pl-4 text-sm text-muted-foreground">
               These are personal technical perspectives and proposed design patterns, not
@@ -61,7 +61,7 @@ function Pillar() {
           steps={p.flow}
           caption="Conceptual architecture; each handoff requires an explicit trust boundary."
         />
-        <h2 className="mt-12 font-display text-3xl font-semibold">Core technical concepts</h2>
+        <h2 className="mt-12 font-display text-3xl font-semibold">Core Technical Concepts</h2>
         <div className="mt-8 grid gap-x-10 md:grid-cols-2">
           {p.concepts.map((c) => (
             <div key={c.title} className="border-t border-border py-6">
@@ -70,7 +70,7 @@ function Pillar() {
             </div>
           ))}
         </div>
-        <h2 className="mt-12 font-display text-3xl font-semibold">Threat & failure scenarios</h2>
+        <h2 className="mt-12 font-display text-3xl font-semibold">Threat & Failure Scenarios</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           {p.scenarios.map((s) => (
             <article key={s.title} className="rounded-lg border border-border bg-card p-6">
@@ -79,7 +79,7 @@ function Pillar() {
             </article>
           ))}
         </div>
-        <h2 className="mt-12 font-display text-3xl font-semibold">Engineering principles</h2>
+        <h2 className="mt-12 font-display text-3xl font-semibold">Engineering Principles</h2>
         <ul className="mt-6 space-y-4">
           {p.principles.map((s) => (
             <li key={s} className="border-l-2 border-brand pl-4 leading-relaxed">
@@ -87,14 +87,14 @@ function Pillar() {
             </li>
           ))}
         </ul>
-        <h2 className="mt-16 font-display text-3xl font-semibold">Connected work</h2>
+        <h2 className="mt-16 font-display text-3xl font-semibold">Connected Work</h2>
         <KnowledgeGraphEntry id={`research:${p.slug}`} />
         <div className="mt-8">
           <KnowledgeCards
             items={relatedKnowledge(topicsFor(p.title + p.summary), `research:${p.slug}`, 6)}
           />
         </div>
-        <h2 className="mt-14 font-display text-2xl font-semibold">Further reading</h2>
+        <h2 className="mt-14 font-display text-2xl font-semibold">Further Reading</h2>
         <ul className="mt-5 space-y-3">
           {p.sources.map((s) => (
             <li key={s.href}>

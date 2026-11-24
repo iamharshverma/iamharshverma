@@ -71,7 +71,7 @@ function Article() {
               {sec.checklist && <ul className="divide-y divide-border">{sec.checklist.map(item => <li key={item}><label className="flex cursor-pointer items-start gap-3 py-4 text-base leading-relaxed"><input type="checkbox" className="mt-1 h-5 w-5 shrink-0 accent-brand" /><span>{item}</span></label></li>)}</ul>}
             </section>
           ))}
-          {a.sources && <section className="border-t border-border pt-6"><h2 className="font-display text-2xl font-bold">Sources and further reading</h2><ul className="mt-4 space-y-3 text-base">{a.sources.map(source => <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer" className="text-brand underline underline-offset-4">{source.title}</a></li>)}</ul></section>}
+          {a.sources && <section className="border-t border-border pt-6"><h2 className="font-display text-2xl font-bold">Sources and Further Reading</h2><ul className="mt-4 space-y-3 text-base">{a.sources.map(source => <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer" className="text-brand underline underline-offset-4">{source.title}</a></li>)}</ul></section>}
           <div className="rounded-2xl border border-border bg-card p-6"><p className="font-display text-lg font-bold">Building with agentic AI?</p><p className="mt-1 text-sm text-muted-foreground">Harsh advises {a.topic === "Enterprise Security" ? "enterprises" : "founders"} on AI strategy, architecture and trust.</p><Link to="/booking" search={{ topic: "Advisory" }} className="mt-4 inline-flex rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-medium text-primary-foreground">Book an advisory call</Link></div>
         </div>
       ) : (<>
@@ -81,7 +81,7 @@ function Article() {
       </>)}
       <div className="mt-14 rounded-2xl border border-border bg-card p-6"><p className="font-display text-xl font-bold">Enjoyed this? Get the next one.</p><p className="mt-1 mb-4 text-sm text-muted-foreground">Occasional essays on agentic AI and security.</p><Subscribe list="newsletter" /></div>
       {more.length > 0 && <div className="mt-14"><p className="eyebrow">More on {a.topic}</p><ul className="mt-4 divide-y divide-border">{more.map((m) => <li key={m.slug}><Link to="/insights/$slug" params={{ slug: m.slug }} className="block py-4 font-display text-lg hover:text-brand">{m.title}</Link></li>)}</ul></div>}
-      <section className="mt-14 border-t border-border pt-8"><h2 className="font-display text-2xl font-semibold">Connected research & resources</h2><KnowledgeGraphEntry id={`article:${a.slug}`} /><div className="mt-6"><KnowledgeCards items={relatedKnowledge(topicsFor(a.title + a.excerpt), `article:${a.slug}`, 3)} /></div><Link to="/knowledge" className="mt-6 inline-block text-sm text-brand">Explore the full Knowledge Hub →</Link></section>
+      <section className="mt-14 border-t border-border pt-8"><h2 className="font-display text-2xl font-semibold">Connected Research & Resources</h2><KnowledgeGraphEntry id={`article:${a.slug}`} /><div className="mt-6"><KnowledgeCards items={relatedKnowledge(topicsFor(a.title + a.excerpt), `article:${a.slug}`, 3)} /></div><Link to="/knowledge" className="mt-6 inline-block text-sm text-brand">Explore the full Knowledge Hub →</Link></section>
     </article>
   );
 }

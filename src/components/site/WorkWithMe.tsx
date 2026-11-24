@@ -11,7 +11,7 @@ const paths = [
 export function WorkWithMe() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <Reveal><p className="eyebrow">// work with me</p><h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">How we can work together</h2></Reveal>
+      <Reveal><p className="eyebrow">// work with me</p><h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">How We Can Work Together</h2></Reveal>
       <div className="mt-10 grid gap-5 md:grid-cols-3">
         {paths.map((p, i) => (
           <Reveal key={p.label} delay={i * 0.06}>

@@ -12,7 +12,7 @@ export function MediaSpotlight() {
   if (!item) return null;
   return <section id="featured" className="scroll-mt-28 border-b border-border pb-16">
     <div className="mx-auto max-w-6xl px-6">
-      <Reveal><h2 className="eyebrow">Featured spotlight</h2></Reveal>
+      <Reveal><h2 className="eyebrow">Featured Spotlight</h2></Reveal>
       <div className="relative mt-6 overflow-hidden rounded-lg border border-border bg-card" aria-roledescription="carousel" aria-label="Featured media spotlight">
         <AnimatePresence mode="wait">
           <motion.div key={item.id} initial={reduced ? false : { opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={reduced ? { opacity: 1 } : { opacity: 0, x: -40 }} transition={{ duration: reduced ? 0 : 0.4 }} className="grid gap-6 p-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] md:gap-8 md:p-10">

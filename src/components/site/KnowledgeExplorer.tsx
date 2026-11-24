@@ -51,7 +51,7 @@ export function KnowledgeExplorer({ selected = "", selectedResource = "", items 
       <header className="knowledge-explorer-header">
         <div>
           <p className="font-mono text-[10px] uppercase text-muted-foreground">Harsh Verma / Connected knowledge</p>
-          <h2 className="mt-1 font-display text-xl font-semibold text-foreground">One portfolio. Connected perspectives.</h2>
+          <h2 className="mt-1 font-display text-xl font-semibold text-foreground">One Portfolio. Connected Perspectives.</h2>
         </div>
       </header>
       <ExplorerFullscreenProvider value={fullscreenOwner}>

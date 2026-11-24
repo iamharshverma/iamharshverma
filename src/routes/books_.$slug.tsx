@@ -42,15 +42,15 @@ function BookDetail() {
           <img src={b.cover} alt={b.title} className="w-full max-w-md rounded-lg" />
           <div>
             <p className="font-mono text-xs text-stat-number">{b.status}</p>
-            <h2 className="mt-5 font-display text-3xl font-semibold">About the book</h2>
+            <h2 className="mt-5 font-display text-3xl font-semibold">About the Book</h2>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{b.pitch}</p>
-            <h2 className="mt-10 font-display text-2xl font-semibold">Author's perspective</h2>
+            <h2 className="mt-10 font-display text-2xl font-semibold">Author's Perspective</h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
               {beyond
                 ? "The central perspective is a shift from generating implementation to exercising judgment: deciding what to build, designing boundaries and orchestrating human and AI work responsibly."
                 : "The central perspective is that autonomous security requires engineered trust: evidence, permission boundaries, human accountability and bounded defensive action."}
             </p>
-            <h2 className="mt-10 font-display text-2xl font-semibold">Intended readers</h2>
+            <h2 className="mt-10 font-display text-2xl font-semibold">Intended Readers</h2>
             <ul className="mt-4 space-y-3 text-muted-foreground">
               {(beyond ? audiences.map((a) => a[0]) : aiSecurityAudiences).map((a) => (
                 <li key={a}>{a}</li>
@@ -85,7 +85,7 @@ function BookDetail() {
           </div>
         </div>
         <section className="mt-14 border-t border-border pt-8">
-          <h2 className="font-display text-3xl font-semibold">Core topics</h2>
+          <h2 className="font-display text-3xl font-semibold">Core Topics</h2>
           <div className="mt-6 grid gap-6 md:grid-cols-2">
             {(beyond
               ? [
@@ -109,7 +109,7 @@ function BookDetail() {
             ))}
           </div>
         </section>
-        <h2 className="mt-14 font-display text-3xl font-semibold">Related writing & talks</h2>
+        <h2 className="mt-14 font-display text-3xl font-semibold">Related Writing & Talks</h2>
         <KnowledgeGraphEntry id={`book:${b.slug}`} />
         <div className="mt-8">
           <KnowledgeCards

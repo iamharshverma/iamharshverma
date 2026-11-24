@@ -121,7 +121,7 @@ function Books() {
         <div className="mt-6 grid gap-6 rounded-2xl border border-border bg-card p-8 md:grid-cols-[1.2fr_1fr]">
           <div>
             <p className="eyebrow">Interactive diagnostic</p>
-            <h3 className="mt-3 font-display text-3xl font-bold">Where are you today?</h3>
+            <h3 className="mt-3 font-display text-3xl font-bold">Where Are You Today?</h3>
             <p className="mt-2 text-sm text-muted-foreground">Most engineers are a blend. Slide to describe how you spend your week.</p>
             <div className="mt-6 space-y-5">
               {(Object.keys(mix) as (keyof typeof mix)[]).map((k) => (
@@ -155,7 +155,7 @@ function Books() {
         <Reveal delay={0.1}>
           <div className="h-full rounded-2xl border border-border bg-card p-8">
             <p className="eyebrow">Build evidence, not notes</p>
-            <h3 className="mt-3 font-display text-2xl font-bold">9 career artifacts you'll create</h3>
+            <h3 className="mt-3 font-display text-2xl font-bold">9 Career Artifacts You'll Create</h3>
             <div className="mt-5 flex flex-wrap gap-2">{artifacts.map((a) => <span key={a} className="rounded-full border border-border px-3 py-1.5 text-xs">{a}</span>)}</div>
           </div>
         </Reveal>

@@ -80,7 +80,7 @@ function Collaborate() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-20">
-        <Reveal><p className="eyebrow">Audience</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Who you'll reach</h2></Reveal>
+        <Reveal><p className="eyebrow">Audience</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Who You'll Reach</h2></Reveal>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {audienceFacts.map((f) => (
             <div key={f.l} className="rounded-xl border border-border bg-card p-6"><p className="font-display text-4xl font-bold text-stat-number">{f.v}</p><p className="mt-2 font-semibold">{f.l}</p><p className="text-sm text-muted-foreground">{f.d}</p></div>
@@ -112,7 +112,7 @@ function Collaborate() {
         <Reveal>
           <div className="h-full rounded-2xl border border-border bg-card p-8">
             <p className="eyebrow">Impact estimator</p>
-            <h3 className="mt-3 font-display text-3xl font-bold">Estimate your campaign reach</h3>
+            <h3 className="mt-3 font-display text-3xl font-bold">Estimate Your Campaign Reach</h3>
             <div className="mt-6 flex flex-wrap gap-2">
               {formats.map((x, i) => <button key={x.name} onClick={() => setFmt(i)} className={`rounded-full border px-3 py-1.5 text-sm ${fmt === i ? "border-brand text-brand" : "border-border text-muted-foreground"}`}>{x.name}</button>)}
             </div>
@@ -129,7 +129,7 @@ function Collaborate() {
         <Reveal delay={0.1}>
           <div className="h-full rounded-2xl border border-border bg-card p-8">
             <p className="eyebrow">Creator authority</p>
-            <h3 className="mt-3 font-display text-3xl font-bold">Favikon badges</h3>
+            <h3 className="mt-3 font-display text-3xl font-bold">Favikon Badges</h3>
             <div className="mt-6 grid grid-cols-2 gap-3">
               {creatorBadges.map((b) => (
                 <TiltCard key={b.name} className="p-4"><Award className="h-6 w-6 text-signal" /><p className="mt-3 font-semibold">{b.name}</p><p className="font-mono text-xs text-muted-foreground">{b.tier}</p></TiltCard>

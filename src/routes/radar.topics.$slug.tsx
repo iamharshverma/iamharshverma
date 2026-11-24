@@ -37,7 +37,7 @@ function RadarTopicPage() {
       <RadarRelationshipGraph sector={sector} />
       <RadarSectorContent key={sector.id} sector={sector} enriched />
       <nav aria-label="Other radar topics" className="mt-10 border-t border-border pt-6">
-        <h2 className="font-display text-xl font-semibold">More radar topics</h2>
+        <h2 className="font-display text-xl font-semibold">More Radar Topics</h2>
         <div className="mt-4 flex flex-wrap gap-2">
           <Button variant="outline" size="sm" className="radar-current-pill h-auto whitespace-normal py-2" aria-current="page" title={`${sector.title} — you are here`}>
             <Radar />{sector.title}

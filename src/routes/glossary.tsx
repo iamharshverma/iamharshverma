@@ -67,7 +67,7 @@ function GlossaryPage() {
             </nav>
           </article>;
         })}
-      </div> : <div className="border-b border-border py-12 text-center"><h2 className="font-display text-xl font-semibold">No matching terms</h2><Button variant="outline" className="mt-4" onClick={() => update("", "")}>Show all terms</Button></div>}
+      </div> : <div className="border-b border-border py-12 text-center"><h2 className="font-display text-xl font-semibold">No Matching Terms</h2><Button variant="outline" className="mt-4" onClick={() => update("", "")}>Show all terms</Button></div>}
     </section>
   </>;
 }

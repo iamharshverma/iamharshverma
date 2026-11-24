@@ -80,7 +80,7 @@ function About() {
       </div>
       </SeoSummary>
       <section id="about-background" hidden={!backgroundOpen} aria-labelledby="background-heading" className={backgroundOpen ? "mx-auto grid max-w-6xl gap-10 px-6 pt-10 md:grid-cols-[1fr_2fr]" : "hidden"}>
-        <div><p className="eyebrow">The person behind the work</p><h2 id="background-heading" className="mt-4 font-display text-3xl font-bold md:text-4xl">Background &amp; purpose</h2><p className="mt-5 text-sm text-muted-foreground">{profile.location}</p></div>
+        <div><p className="eyebrow">The person behind the work</p><h2 id="background-heading" className="mt-4 font-display text-3xl font-bold md:text-4xl">Background &amp; Purpose</h2><p className="mt-5 text-sm text-muted-foreground">{profile.location}</p></div>
         <div className="space-y-5 text-base leading-relaxed text-muted-foreground">{aboutBackground.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
       </section>
       <section className="mx-auto grid max-w-6xl gap-6 px-6 py-20 md:grid-cols-3">
@@ -94,15 +94,9 @@ function About() {
           </Reveal>
         ))}
       </section>
-      <section aria-labelledby="education-heading" className="mx-auto max-w-6xl px-6 pb-20">
-        <p className="eyebrow">Foundations for impact</p><h2 id="education-heading" className="mt-4 font-display text-3xl font-bold md:text-5xl">Education</h2>
-        <div className="mt-8 divide-y divide-border border-y border-border">
-          {education.map((item) => <div key={item.school} className="grid gap-3 py-6 md:grid-cols-[180px_1fr]"><p className="font-mono text-sm text-signal">{item.period}</p><div><h3 className="font-display text-xl font-semibold">{item.school}</h3><p className="mt-2 leading-relaxed text-muted-foreground">{item.degree}</p></div></div>)}
-        </div>
-      </section>
       <Journey />
       <section aria-labelledby="achievements-heading" className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="flex flex-wrap items-end justify-between gap-5"><div><p className="eyebrow">Research. Leadership. Recognition.</p><h2 id="achievements-heading" className="mt-4 font-display text-3xl font-bold md:text-5xl">Selected achievements</h2></div><Button asChild variant="outline"><Link to="/recognition">All recognition <ArrowUpRight /></Link></Button></div>
+        <div className="flex flex-wrap items-end justify-between gap-5"><div><p className="eyebrow">Research. Leadership. Recognition.</p><h2 id="achievements-heading" className="mt-4 font-display text-3xl font-bold md:text-5xl">Selected Achievements</h2></div><Button asChild variant="outline"><Link to="/recognition">All recognition <ArrowUpRight /></Link></Button></div>
         <dl className="mt-10 grid grid-cols-2 gap-6 border-y border-border py-8 md:grid-cols-4">{stats.map((stat) => <div key={stat.label}><dd className="font-display text-4xl font-bold text-stat-number"><Counter to={stat.value} suffix={stat.suffix} /></dd><dt className="mt-2 text-sm text-stat-label">{stat.label}</dt></div>)}</dl>
         <div className="mt-8 grid gap-6 md:grid-cols-2">{awards.slice(0, 4).map((award) => <article key={award.title} className="border-l-2 border-brand pl-5"><p className="font-mono text-xs text-signal">{award.badge} · {award.cat}</p><h3 className="mt-2 font-display text-xl font-semibold">{award.title}</h3><p className="mt-2 text-sm text-muted-foreground">{award.org}</p><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{award.desc}</p></article>)}</div>
         <Button asChild variant="link" className="mt-6 px-0"><Link to="/research">Explore patents &amp; publications <ArrowUpRight /></Link></Button>
@@ -126,7 +120,7 @@ function About() {
 
 type Stop = { kind: "work" | "edu"; period: string; title: string; org: string; place?: string; points: string[]; tech: string[]; logo?: string };
 const stops: Stop[] = [
-  ...experience.map((e) => ({ kind: "work" as const, period: e.period, title: e.role, org: e.org, place: e.place, points: e.points, tech: e.tech })),
+  ...experience.map((e) => ({ kind: "work" as const, period: e.period, title: e.role, org: e.org, ...(e.place ? { place: e.place } : {}), points: e.points, tech: e.tech })),
   ...education.map((e) => ({ kind: "edu" as const, period: e.period, title: e.degree.split(" — ")[0] ?? e.degree, org: e.school, points: e.degree.split(" — ").slice(1), tech: [], logo: e.logo })),
 ].sort((x, y) => parseInt(y.period.match(/\d{4}/)?.[0] ?? "0") - parseInt(x.period.match(/\d{4}/)?.[0] ?? "0"));
 
@@ -157,7 +151,7 @@ function Journey() {
   return (
     <section className="mx-auto max-w-6xl px-6 pb-24">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <Reveal><p className="eyebrow">Journey</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">From code to boardroom</h2>
+        <Reveal><p className="eyebrow">Journey</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">From Code to Boardroom</h2>
           <p className="mt-3 max-w-xl text-muted-foreground">Pick a milestone to explore the work, the place and the tools behind it.</p></Reveal>
         <div className="flex rounded-full border border-border bg-card p-1 shadow-sm">
           {([["work", "Experience", Briefcase], ["edu", "Education", GraduationCap]] as const).map(([k, l, I]) => (

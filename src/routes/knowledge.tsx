@@ -174,7 +174,7 @@ function KnowledgeHub() {
           <GroupedKnowledgeResults items={list} topic={filters.topic ?? ""} />
         ) : (
           <div className="py-12 text-center">
-            <h2 className="font-display text-2xl">No matching resources</h2>
+            <h2 className="font-display text-2xl">No Matching Resources</h2>
             <p className="mt-3 text-muted-foreground">Try a broader topic or clear the filters.</p>
           </div>
         )}

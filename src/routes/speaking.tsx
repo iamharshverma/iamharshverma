@@ -120,7 +120,7 @@ function Speaking() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pt-14">
-        <h2 className="font-display text-3xl font-bold">AI keynotes for leaders and builders</h2>
+        <h2 className="font-display text-3xl font-bold">AI Keynotes for Leaders and Builders</h2>
         <p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">{speakerGuide.introduction}</p>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {speakerGuide.audiences.map(a => <div key={a.title} className="border-l-2 border-brand pl-5"><h3 className="font-display text-xl font-semibold">{a.title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{a.detail}</p></div>)}
@@ -131,9 +131,9 @@ function Speaking() {
           <Button asChild variant="outline"><Link to="/insights/$slug" params={{ slug: "enterprise-agent-security-checklist-tool-permissions-and-human-approvals" }}>Enterprise agent security checklist</Link></Button>
         </div>
       </section>
-      <section className="mx-auto max-w-6xl px-6 pt-14"><h2 className="font-display text-3xl font-semibold">Flagship speaking themes</h2><div className="mt-8 grid gap-6 md:grid-cols-3">{flagshipTalks.map(t => <article key={t.title} className="flex flex-col rounded-lg border border-border bg-card p-6"><h3 className="font-display text-2xl font-semibold">{t.title}</h3><p className="mt-4 text-sm leading-relaxed text-muted-foreground">{t.summary}</p><p className="mt-4 text-sm"><span className="font-semibold">Audience: </span>{t.audience}</p><ul className="mt-5 list-disc space-y-3 pl-4 text-sm text-muted-foreground">{t.takeaways.map(k => <li key={k}>{k}</li>)}</ul><p className="mt-5 text-xs text-muted-foreground">Proposed formats: keynote, panel or workshop; 30–60 minutes by agreement.</p><div className="mt-auto flex flex-wrap gap-2 pt-6"><Button asChild size="sm"><Link to="/booking" search={{ topic: "Keynote" }}>Discuss this theme</Link></Button></div></article>)}</div></section>
+      <section className="mx-auto max-w-6xl px-6 pt-14"><h2 className="font-display text-3xl font-semibold">Flagship Speaking Themes</h2><div className="mt-8 grid gap-6 md:grid-cols-3">{flagshipTalks.map(t => <article key={t.title} className="flex flex-col rounded-lg border border-border bg-card p-6"><h3 className="font-display text-2xl font-semibold">{t.title}</h3><p className="mt-4 text-sm leading-relaxed text-muted-foreground">{t.summary}</p><p className="mt-4 text-sm"><span className="font-semibold">Audience: </span>{t.audience}</p><ul className="mt-5 list-disc space-y-3 pl-4 text-sm text-muted-foreground">{t.takeaways.map(k => <li key={k}>{k}</li>)}</ul><p className="mt-5 text-xs text-muted-foreground">Proposed formats: keynote, panel or workshop; 30–60 minutes by agreement.</p><div className="mt-auto flex flex-wrap gap-2 pt-6"><Button asChild size="sm"><Link to="/booking" search={{ topic: "Keynote" }}>Discuss this theme</Link></Button></div></article>)}</div></section>
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <Reveal><p className="eyebrow">Now on stage · <Link to="/speaker-bio" className="text-brand">Full speaker bio &amp; PDF →</Link></p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Keynote theater</h2></Reveal>
+        <Reveal><p className="eyebrow">Now on stage · <Link to="/speaker-bio" className="text-brand">Full speaker bio &amp; PDF →</Link></p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Keynote Theater</h2></Reveal>
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
           <AnimatePresence mode="wait">
             <motion.div key={stage} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="overflow-hidden rounded-2xl border border-border bg-card">
@@ -161,9 +161,9 @@ function Speaking() {
           </ul>
         </div>
       </section>
-      <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">Reels</p><h2 className="mb-8 mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Backstage in 60 seconds</h2></Reveal><ReelWall /></section>
+      <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">Reels</p><h2 className="mb-8 mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Backstage in 60 Seconds</h2></Reveal><ReelWall /></section>
       <section className="mx-auto max-w-6xl px-6 pb-20" aria-labelledby="speaker-listings-heading">
-        <Reveal><p className="eyebrow">Featured speaker profiles</p><h2 id="speaker-listings-heading" className="mt-4 font-display text-3xl font-bold md:text-4xl">Listed on leading speaker platforms</h2></Reveal>
+        <Reveal><p className="eyebrow">Featured speaker profiles</p><h2 id="speaker-listings-heading" className="mt-4 font-display text-3xl font-bold md:text-4xl">Listed on Leading Speaker Platforms</h2></Reveal>
         <div className="mt-8 grid gap-6 lg:grid-cols-[220px_1fr]">
           <img src={speakerPhoto.url} alt="Harsh Verma speaking on stage" loading="lazy" className="aspect-[4/5] w-full rounded-lg object-cover object-top sm:max-h-96 lg:h-full lg:max-h-none" />
           <div className="grid gap-4 sm:grid-cols-2">
@@ -178,11 +178,11 @@ function Speaking() {
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">On stage</p><h2 className="mb-8 mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Where Harsh has spoken</h2></Reveal><StageMap /></section>
+      <section className="mx-auto max-w-6xl px-6 pb-20"><Reveal><p className="eyebrow">On stage</p><h2 className="mb-8 mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Where Harsh has Spoken</h2></Reveal><StageMap /></section>
 
       <section className="mx-auto max-w-6xl px-6 pb-20">
         <div className="flex items-end justify-between gap-4">
-          <Reveal><p className="eyebrow">Judging & mentorship</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Shaping the next builders</h2></Reveal>
+          <Reveal><p className="eyebrow">Judging & mentorship</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Shaping the Next Builders</h2></Reveal>
           <p className="hidden font-mono text-xs text-muted-foreground md:block">{judging.length} roles</p>
         </div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -207,7 +207,7 @@ function Speaking() {
           <img src={profile.stagePhoto} alt="Harsh Verma speaking on stage" loading="lazy" className="h-full max-h-[460px] w-full object-cover object-top" />
           <div className="p-8">
             <p className="eyebrow">Invite Harsh</p>
-            <h2 className="mt-4 font-display text-4xl font-bold tracking-tight">Keynote, panel, or executive masterclass.</h2>
+            <h2 className="mt-4 font-display text-4xl font-bold tracking-tight">Keynote, Panel, or Executive Masterclass.</h2>
             <p className="mt-4 text-muted-foreground">Tailored to enterprise or technical audiences, with Smart Slides and pre-event promotion included.</p>
             <div className="mt-6 flex flex-wrap items-center gap-4"><Magnetic><Link to="/booking" search={{ topic: "Keynote" }} className="inline-flex rounded-full bg-brand-gradient px-6 py-3 font-medium text-primary-foreground shadow-glow">Book a keynote</Link></Magnetic><Link to="/speaker-bio" className="inline-flex rounded-full border border-border px-6 py-3 font-medium hover:border-brand">Speaker bio &amp; PDF</Link></div>
           </div>

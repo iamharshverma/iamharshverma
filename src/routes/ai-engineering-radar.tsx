@@ -27,7 +27,7 @@ function RadarGuide() {
         <figcaption className="mt-3 font-mono text-xs text-muted-foreground">Conceptual architecture · Five connected engineering domains</figcaption>
       </figure>
       <div className="grid gap-6 border-b border-border py-10 md:grid-cols-[1fr_1.2fr]">
-        <div><p className="impact-kicker">The engineering perspective</p><h2 className="mt-3 font-display text-3xl font-semibold">Beyond the model.</h2></div>
+        <div><p className="impact-kicker">The engineering perspective</p><h2 className="mt-3 font-display text-3xl font-semibold">Beyond the Model.</h2></div>
         <div><p className="text-sm leading-relaxed">An intelligent system must coordinate actions, protect access, use reliable context, survive failure and remain accountable. These five topics frame those concerns as a connected engineering discipline, rather than a list of isolated tools.</p><p className="mt-4 text-sm leading-relaxed text-muted-foreground">These perspectives connect to Harsh Verma’s existing research and writing. Examples and diagrams are illustrative. All technologies remain unassessed: inclusion is not an adoption recommendation or a claim of deployment.</p></div>
       </div>
       <div className="py-10"><RadarGuideMap /></div>

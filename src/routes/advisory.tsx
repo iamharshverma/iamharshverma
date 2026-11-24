@@ -45,7 +45,7 @@ function Advisory() {
         intro="Helping founders and enterprises build agentic AI that customers trust — strategy, secure architecture, governance and the people who ship it." />
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <Reveal><p className="eyebrow">Choose a focus</p><h2 className="mt-3 font-display text-4xl font-bold tracking-tight">How I can help</h2></Reveal>
+        <Reveal><p className="eyebrow">Choose a focus</p><h2 className="mt-3 font-display text-4xl font-bold tracking-tight">How I Can Help</h2></Reveal>
         <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
           <div role="tablist" aria-label="Advisory services" className="grid gap-3">
             {advisory.map((s, i) => (
@@ -77,7 +77,7 @@ function Advisory() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <Reveal><p className="eyebrow">The process</p><h2 className="mt-3 font-display text-4xl font-bold tracking-tight">From idea to trusted production</h2></Reveal>
+        <Reveal><p className="eyebrow">The process</p><h2 className="mt-3 font-display text-4xl font-bold tracking-tight">From Idea to Trusted Production</h2></Reveal>
         <ol className="mt-10 grid gap-4 md:grid-cols-4">
           {advisoryProcess.map((p, i) => (
             <Reveal key={p.step} delay={i * 0.08}>

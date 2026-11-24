@@ -39,7 +39,7 @@ export function RadarGuideMap() {
     </div>
     <div>
       <p className="impact-kicker">Technology inventory / by topic</p>
-      <h3 className="mt-3 font-display text-2xl font-semibold">Five lenses. One system.</h3>
+      <h3 className="mt-3 font-display text-2xl font-semibold">Five Lenses. One System.</h3>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">The bars count technologies in this guide, not maturity, adoption or performance. Each topic contributes a different constraint to the same engineering workflow.</p>
       <div className="mt-6 space-y-5" aria-label="Technology counts by topic">
         {radarSectors.map((item, index) => <a key={item.id} href={`#${item.id}`} className={`impact-tone-${index} radar-guide-inventory block`}>

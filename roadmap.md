@@ -307,3 +307,7 @@
 - [x] Finish verifying Graph View fullscreen enter/exit + exit centering (flaky click timing in tests)
 - [x] Knowledge Impact SourceConnections section: rounded cards, improved look and feel
 - [x] Make Intelligence Landscape canvas background animation match Research Graph's blinking dotted canvas
+- [x] Fix about.tsx typecheck error
+- [x] Capitalize S in "Where Harsh has spoken"
+- [x] Capitalize N and B in "Shaping the next builders"
+- [x] Capitalize headings site-wide (title case, frozen user-approved exceptions)

@@ -7,7 +7,7 @@ export function Faq() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20" aria-labelledby="faq-title">
       <p className="eyebrow">// frequently asked</p>
-      <h2 id="faq-title" className="mt-3 font-display text-3xl md:text-4xl">About Harsh's work</h2>
+      <h2 id="faq-title" className="mt-3 font-display text-3xl md:text-4xl">About Harsh's Work</h2>
       <div className="mt-8 divide-y divide-border border-y border-border">
         {faqs.map((f, i) => (
           <div key={f.q}>

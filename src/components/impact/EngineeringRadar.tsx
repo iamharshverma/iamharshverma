@@ -242,7 +242,7 @@ export default function EngineeringRadar({
           </div>
           {!list.length && (
             <div className="py-8">
-              <h3 className="font-display font-semibold">No matching technologies.</h3>
+              <h3 className="font-display font-semibold">No Matching Technologies.</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 Clear filters to explore unassessed entries.
               </p>
@@ -319,7 +319,7 @@ export default function EngineeringRadar({
       {compare.length > 0 && (
         <section className="mt-8 border-t border-border pt-6" aria-label="Technology comparison">
           <div className="flex items-center justify-between">
-            <h3 className="font-display text-xl font-semibold">Compare perspectives</h3>
+            <h3 className="font-display text-xl font-semibold">Compare Perspectives</h3>
             <Button
               variant="ghost"
               size="icon-sm"

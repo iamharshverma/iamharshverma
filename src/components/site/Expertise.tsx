@@ -26,7 +26,7 @@ export function Expertise() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <Reveal>
           <p className="eyebrow">Expertise</p>
-          <h2 className="mt-4 font-display text-5xl font-bold tracking-tight">A constellation of disciplines.</h2>
+          <h2 className="mt-4 font-display text-5xl font-bold tracking-tight">A Constellation of Disciplines.</h2>
           <p className="mt-4 max-w-xl text-muted-foreground">Twelve years connecting research, engineering and the stage. Pick a star, or filter by lens.</p>
         </Reveal>
         <div className="flex flex-wrap gap-2">
