@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { canonical, SITE_URL } from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { Clock, Play, Gavel } from "lucide-react";
+import { Clock, Play, Gavel, CalendarDays, MapPin, ArrowUpRight } from "lucide-react";
 import { profile } from "@/data/profile";
 import { keynotes, judging } from "@/data/media";
 import { Reveal, PageHero, Counter } from "@/components/site/Reveal";
@@ -14,6 +14,7 @@ import { speakerGuide } from "@/data/press-kit";
 import { Button } from "@/components/ui/button";
 import { flagshipTalks } from "@/data/flagship-talks";
 import { ownerReportedSpeakingMetrics } from "@/data/metrics";
+import { upcomingTalks } from "@/data/upcoming-talks";
 
 export const Route = createFileRoute("/speaking")({
   head: () => ({
@@ -79,6 +80,38 @@ function Speaking() {
           ))}
         </div>
         <p className="mx-auto max-w-6xl px-6 pb-5 text-xs text-muted-foreground">Career figures provided by Harsh; the archive below contains {keynotes.length} recordings and {judging.length} judging records.</p>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pt-14">
+        <Reveal><p className="eyebrow">Upcoming</p><h2 className="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Where Harsh is speaking next</h2></Reveal>
+        <div className="mt-10 grid gap-6">
+          {upcomingTalks.map((talk) => (
+            <article key={talk.title} className="relative overflow-hidden rounded-2xl border border-border bg-card">
+              <div className="absolute inset-y-0 left-0 w-1 bg-brand-gradient" aria-hidden />
+              <div className="grid gap-8 p-8 md:grid-cols-[auto_1fr] md:p-10">
+                <div className="flex flex-row items-center gap-4 md:flex-col md:items-start md:gap-3 md:border-r md:border-border md:pr-10">
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-brand-gradient text-primary-foreground shadow-glow"><CalendarDays className="h-6 w-6" /></span>
+                  <div>
+                    <p className="font-display text-2xl font-bold text-stat-number">{talk.date}</p>
+                    <p className="mt-1 flex items-center gap-1.5 font-mono text-xs text-muted-foreground"><MapPin className="h-3 w-3" />{talk.location}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-mono text-xs text-signal">{talk.role} · {talk.event}</p>
+                  <h3 className="mt-2 font-display text-2xl font-bold md:text-3xl">{talk.title}</h3>
+                  <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{talk.summary}</p>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {talk.links.map((link, i) => (
+                      <Button key={link.href} asChild size="sm" variant={i === 0 ? "default" : "outline"}>
+                        <a href={link.href} target="_blank" rel="noreferrer">{link.label}<ArrowUpRight className="ml-1 h-3.5 w-3.5" /></a>
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pt-14">

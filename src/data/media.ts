@@ -637,7 +637,7 @@ export const homeKeynotes = [
   "https://www.youtube.com/watch?v=E6kA_o57DrM",
 ].flatMap(href => keynotes.filter(keynote => keynote.href === href));
 
-export type BodyImage = { src: string; alt: string; caption?: string; portrait?: boolean };
+export type BodyImage = { src: string; alt: string; caption?: string; portrait?: boolean; small?: boolean };
 export type Blog = { title: string; img: string; pub: string; topic: string; date: string; read: string; href: string; excerpt: string; seo?: { title: string; description: string; image: string; keywords: string[] }; body?: { h?: string; p: string[]; checklist?: string[]; img?: BodyImage }[]; sources?: { title: string; href: string }[] };
 export const blogs: Blog[] = [
  {

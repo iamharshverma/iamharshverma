@@ -70,7 +70,7 @@ export const metricsInventory = [
 export const publicMetrics = metricsInventory.filter((metric) => metric.public);
 /** Retained career totals; archive sizes are separate and do not independently verify them. */
 export const ownerReportedSpeakingMetrics = [
-  { v: 43, suffix: "+", l: "Total engagements" },
+  { v: 44, suffix: "+", l: "Total engagements" },
   { v: 10, suffix: "+", l: "Featured keynotes" },
   { v: 21, suffix: "+", l: "Judging & mentorship" },
   { v: 6, suffix: "+", l: "Panels" },

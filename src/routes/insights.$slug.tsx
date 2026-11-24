@@ -67,7 +67,7 @@ function Article() {
             <section key={i} className="space-y-4">
               {sec.h && <h2 className="pt-4 font-display text-2xl font-bold">{sec.h}</h2>}
               {sec.p.map((t) => <p key={t.slice(0, 40)} className="text-muted-foreground">{t}</p>)}
-              {sec.img && <figure className="pt-2"><img src={sec.img.src} alt={sec.img.alt} loading="lazy" className={sec.img.portrait ? "mx-auto h-auto max-h-[640px] w-auto max-w-full rounded-2xl border border-border object-contain" : "h-auto w-full rounded-2xl border border-border object-cover"} />{sec.img.caption && <figcaption className="mt-3 text-center font-mono text-xs text-muted-foreground">{sec.img.caption}</figcaption>}</figure>}
+              {sec.img && <figure className="pt-2"><img src={sec.img.src} alt={sec.img.alt} loading="lazy" className={sec.img.small ? "mx-auto h-auto max-h-[160px] w-auto max-w-[220px] rounded-xl border border-border object-contain" : sec.img.portrait ? "mx-auto h-auto max-h-[640px] w-auto max-w-full rounded-2xl border border-border object-contain" : "h-auto w-full rounded-2xl border border-border object-cover"} />{sec.img.caption && <figcaption className="mt-3 text-center font-mono text-xs text-muted-foreground">{sec.img.caption}</figcaption>}</figure>}
               {sec.checklist && <ul className="divide-y divide-border">{sec.checklist.map(item => <li key={item}><label className="flex cursor-pointer items-start gap-3 py-4 text-base leading-relaxed"><input type="checkbox" className="mt-1 h-5 w-5 shrink-0 accent-brand" /><span>{item}</span></label></li>)}</ul>}
             </section>
           ))}

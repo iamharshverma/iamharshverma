@@ -5,11 +5,135 @@ import a4iHall from "@/assets/a4i-hackathon-hall.jpg.asset.json";
 import a4iTeams from "@/assets/a4i-hackathon-teams-building.jpg.asset.json";
 import a4iJudge from "@/assets/harsh-verma-a4i-hackathon-judge.jpg.asset.json";
 import a4iShare from "@/assets/google-agents-for-impact-share.jpg.asset.json";
+import bwgSession from "@/assets/bwg-track2-session.jpg.asset.json";
+import bwgHarsh from "@/assets/harsh-verma-build-with-gemini.jpg.asset.json";
+import mvBadge from "@/assets/bwg-platform-builder-badge.png.asset.json";
+import svlCover from "@/assets/bwg-sunnyvale-app-builders.jpg.asset.json";
+import svlBadge from "@/assets/bwg-app-builder-badge.png.asset.json";
+import gdeLogo from "@/assets/google-developer-experts-logo.jpg.asset.json";
 
 export type OriginalPost = Blog & { body: { h?: string; p: string[]; checklist?: string[]; img?: BodyImage }[]; sources?: { title: string; href: string }[] };
 
 // Essays published first on this site. href is empty: the page itself is the original.
 export const originalPosts: OriginalPost[] = [
+  {
+    title: "Build with Gemini, Mountain View: Leading Track 2 for Platform Builders",
+    img: bwgSession.url,
+    seo: {
+      title: "Build with Gemini Mountain View Track 2 | Harsh Verma",
+      description: "Harsh Verma, Track Lead and TA for Build with Gemini Track 2: how Platform Builders governed an AI agent estate with Gemini, identity and gateways.",
+      image: bwgSession.url,
+      keywords: ["Build with Gemini", "Gemini", "Google Cloud", "Platform Builders", "Agent Registry", "Agent Identity", "Agent Gateway", "AI governance", "Harsh Verma"],
+    },
+    pub: "iamharshverma.com",
+    topic: "Agentic AI",
+    date: "August 28, 2026",
+    read: "9 min read",
+    href: "",
+    excerpt: "Track Lead and TA notes from Build with Gemini in Mountain View: what Platform Builders built with Gemini, how the lab wove it into a real governance workflow, the before-and-after for engineers, and the impact I saw in the room.",
+    sources: [
+      { title: "Google Cloud: Build with Gemini, Mountain View", href: "https://cloud.google.com/events/build-with-gemini-mountain-view" },
+      { title: "Track 2 lab guide: Govern Your AI Estate (NovaSmart Control Center)", href: "https://storage.googleapis.com/bwg-track2-demo-guide/lab_instructions.html" },
+      { title: "My post on X about the event", href: "https://x.com/harshverma59/status/2093123019430601189" },
+    ],
+    body: [
+      { p: [
+        "On Thursday, August 27, Google's Mountain View campus turned into a workshop floor for Build with Gemini. I had the privilege of serving as a Track Lead and TA for Track 2, Platform Builders: the track for engineers who don't just call a model, but have to run, secure and answer for dozens of AI agents at once.",
+        "The room was full of builders with laptops open and Google Cloud lanyards on, and one shared question on everyone's mind: once agents are everywhere in a company, who is actually in control of them?",
+      ], img: { src: bwgHarsh.url, alt: "Harsh Verma wearing a Google Cloud lanyard at Build with Gemini in Mountain View", caption: "Track Lead and TA badge on, ready for Platform Builders.", portrait: true } },
+      { h: "Your build: what we built with Gemini, and the problem it solves", p: [
+        "Track 2's mission was called Govern Your AI Estate: Your First Week as Global Head of AI. Every participant stepped into the shoes of the new head of AI at a fictional company, NovaSmart, and inherited a messy reality: agents shipped by different teams, a shadow agent nobody had registered, shared credentials, open connections to the back office and no proof any of it was safe.",
+        "Using Gemini and Google Cloud's agent platform, participants built a working control center for that estate. The problem it solves is the one I see in nearly every enterprise conversation: AI adoption moves faster than governance, and nobody can confidently answer what agents exist, what they can reach and whether they can be talked into breaking their rules.",
+      ], img: { src: mvBadge.url, alt: "Google Cloud Build with Gemini Platform Builder badge", caption: "The Platform Builder badge for governing a real AI estate.", small: true } },
+      { h: "Your process: how Gemini fit into the workflow", p: [
+        "The lab was designed as missions, each ending with a scorecard, so Gemini worked as a teammate through a real governance loop rather than a chat window on the side:",
+      ], checklist: [
+        "See everything: check the environment, meet the estate and inventory every agent, model and tool.",
+        "Take action: register the shadow agent in the Agent Registry and give each agent its own identity with only the access it needs.",
+        "Control the connections: see who can call the back office, preview the fix before applying it, then prove the rogue caller is out through the Agent Gateway.",
+        "Protect the content: test whether agents can be talked into breaking their rules, turn on screening and prove the attacks are blocked.",
+        "Evaluate and decide: run evaluations, build a tougher test set, check cost and decide, with evidence, whether to launch.",
+      ], img: { src: bwgSession.url, alt: "Build with Gemini Track 2 session with Agent Registry, Agent Identity, Agent Gateway and Agent Evaluation on screen", caption: "Track 2 in session: registry, identity, gateway and evaluation as one platform story." } },
+      { h: "As a TA: where people got stuck, and unstuck", p: [
+        "Most of my day was spent table to table. The sticking points were rarely the model itself. They were the platform questions: why a least-privilege identity broke a tool call, how to read a gateway policy, why an evaluation score dropped after a harder test set. Those are exactly the moments where learning sticks, because they mirror production.",
+        "My favorite moment was watching someone 'see the fix before making it', preview a policy change, apply it, and immediately prove the rogue caller was blocked. That shift from hoping to proving is what platform engineering for AI should feel like.",
+      ] },
+      { h: "Before vs. after: how the workflow changes", p: [
+        "Before: governance was a spreadsheet and a meeting. Agent inventories lived in tribal knowledge, credentials were shared, security reviews happened after launch, and 'is it safe?' was answered with an opinion.",
+        "After: governance becomes an engineering workflow. Every agent is registered and has its own identity, connections pass through a gateway with policies you can preview, content is screened by default, and launch decisions come from evaluation scorecards instead of gut feel. Gemini speeds up each step, from reading configuration to drafting policies and summarizing what you can actually claim.",
+      ] },
+      { h: "The impact: tangible benefits", p: [
+        "For participants, the takeaway was concrete: a repeatable playbook they can bring back to their own estate on Monday. For me, leading the track reinforced how I approach AI and security work every day.",
+      ], checklist: [
+        "Visibility first: you cannot secure agents you have not inventoried.",
+        "Least privilege per agent: one identity, only the permissions it needs, makes failures contained and explainable.",
+        "Proof over promises: every control ended with a verification step and a scorecard.",
+        "Faster, safer launches: evaluation and cost checks turn the go/no-go into a data-backed decision.",
+      ], img: { src: gdeLogo.url, alt: "Google Developer Experts logo", caption: "Supporting the builder community as a Google Developer Expert.", small: true } },
+      { h: "Thank you", p: [
+        "Thank you to the Google Cloud team for building such a thoughtful, hands-on track, and to every Platform Builder who showed up curious and left with a governed AI estate. Agents are becoming infrastructure, and infrastructure deserves the same rigor we give everything else in production.",
+      ] },
+    ],
+  },
+  {
+    title: "Build with Gemini, Sunnyvale: Leading Track 3 for App Builders",
+    img: svlCover.url,
+    seo: {
+      title: "Build with Gemini Sunnyvale Track 3 | Harsh Verma",
+      description: "Harsh Verma, Track Lead and TA for Build with Gemini Sunnyvale Track 3: how App Builders shipped live apps with agent-first workflows and Gemini.",
+      image: svlCover.url,
+      keywords: ["Build with Gemini", "Gemini", "Google Antigravity", "App Builders", "agent-first development", "Google Developer Expert", "Harsh Verma"],
+    },
+    pub: "iamharshverma.com",
+    topic: "Agentic AI",
+    date: "August 14, 2026",
+    read: "8 min read",
+    href: "",
+    excerpt: "Track Lead and TA notes from Build with Gemini in Sunnyvale: how App Builders skipped the boilerplate, orchestrated agents in plain language and shipped a live app from scratch in one hands-on, code-first lab.",
+    sources: [
+      { title: "Google Cloud: Build with Gemini, Sunnyvale", href: "https://cloud.google.com/events/build-with-gemini-sunnyvale-1" },
+      { title: "Google Antigravity", href: "https://antigravity.google/" },
+      { title: "Google Developer Experts program", href: "https://developers.google.com/community/experts" },
+    ],
+    body: [
+      { p: [
+        "Thursday, August 13, Sunnyvale. Lights down, screens up, and one promise on the agenda: skip the boilerplate and get straight to building. I served as a Track Lead and TA for Track 3, App Builders, the hands-on, code-first track for software developers at Build with Gemini.",
+        "The theme was Building Applications with Agent-First Workflows. The tagline we kept repeating in the room: Antigravity can cook. With caveats, of course. Our loop for the day was simple: observe, build, verify, ship, repeat.",
+      ], img: { src: svlBadge.url, alt: "Google Cloud Build with Gemini App Builder badge", caption: "The App Builder badge every participant earned by shipping.", small: true } },
+      { h: "Your build: what we built with Gemini, and the problem it solves", p: [
+        "Every developer knows the first hours of a project are rarely about the idea. They go to setting up the workspace, wiring dependencies, writing requirements nobody reads and scaffolding code that looks the same every time.",
+        "In Track 3, participants used AI developer tools to set up their workspace automatically, draft project requirements and safely write application logic. Then they orchestrated their own intelligent agents with natural-language prompts to handle multi-turn conversations, and shipped a live, working application from scratch before the day ended. The problem it solves: the distance between an idea and a running app collapses from weeks to hours.",
+      ] },
+      { h: "Your process: how Gemini fit into the workflow", p: [
+        "The lab treated Gemini as a teammate across the whole lifecycle, not a code autocomplete:",
+      ], checklist: [
+        "Observe: describe the app in plain language and let the agent propose requirements and a plan you review before any code exists.",
+        "Build: let agents set up the workspace and scaffold the project, while you steer architecture and naming.",
+        "Verify: read every diff, run the app, and ask the agent to explain and test what it wrote.",
+        "Ship: deploy a live application with multi-turn agent conversations working end to end.",
+        "Repeat: iterate with new prompts, keeping humans in charge of judgment and agents in charge of toil.",
+      ], img: { src: svlCover.url, alt: "Build with Gemini Sunnyvale App Builders track stage with Prototype, Evaluate and Deploy screens", caption: "Prototype, evaluate, deploy: the App Builders loop on stage in Sunnyvale." } },
+      { h: "As a TA: the caveats are the lesson", p: [
+        "Walking the room, the most valuable moments were not when agents got everything right. They were when an agent confidently wrote something subtly wrong, and a developer caught it in review. That is the real skill of agent-first development: knowing when to trust, when to verify and how to give an agent better context.",
+        "I saw developers who had never built an agent ship one, and seasoned engineers rethink how much of their day is really design versus typing.",
+      ] },
+      { h: "Before vs. after", p: [
+        "Before: start from an empty folder, copy boilerplate from an old repo, write requirements after the code, and spend the first day on setup instead of the product.",
+        "After: start from intent. The agent drafts requirements and scaffolding in minutes, the developer reviews and directs, and the first working version arrives the same afternoon. The job shifts from writing every line to designing, reviewing and verifying, which is where engineering judgment matters most.",
+      ] },
+      { h: "The impact", p: [
+        "For me, as a Google Developer Expert and an engineer building AI systems every day, this track sharpened what I tell teams adopting AI coding tools:",
+      ], checklist: [
+        "Time to first working app drops from days to hours.",
+        "Requirements become a living artifact the agent and the team both use.",
+        "Review discipline matters more, not less: verify every change before it ships.",
+        "Developers spend their energy on product decisions instead of boilerplate.",
+      ], img: { src: gdeLogo.url, alt: "Google Developer Experts logo", caption: "Proud to support the community as a Google Developer Expert.", small: true } },
+      { h: "Thank you", p: [
+        "Thank you to the Google Cloud team and every App Builder in Sunnyvale. Real people build with AI, and watching a room full of developers ship live apps in a single day is a reminder of how fast this craft is changing.",
+      ] },
+    ],
+  },
   {
     title: "Judging Google Cloud's Agents for Impact Hackathon as a Google Developer Expert",
     img: a4iHall.url,
@@ -32,6 +156,7 @@ export const originalPosts: OriginalPost[] = [
       { title: "Agent Development Kit (ADK) documentation", href: "https://google.github.io/adk-docs/" },
       { title: "BigQuery ML introduction", href: "https://cloud.google.com/bigquery/docs/bqml-introduction" },
       { title: "Google Antigravity", href: "https://antigravity.google/" },
+      { title: "Google Cloud Skills Boost: Agents for Impact game", href: "https://explore.qwiklabs.com/games/190" },
     ],
     body: [
       { p: [

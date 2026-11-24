@@ -126,6 +126,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.iamharshverma.com/insights/build-with-gemini-mountain-view-leading-track-2-for-platform-builders</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.iamharshverma.com/insights/build-with-gemini-sunnyvale-leading-track-3-for-app-builders</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.iamharshverma.com/insights/judging-google-cloud-s-agents-for-impact-hackathon-as-a-google-developer-expert</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
