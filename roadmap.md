@@ -1,3 +1,6 @@
+- [x] Replace listing photo with Speaker Bio photo and add official platform logo thumbnails; verified all three images load and phone fit.
+- [x] Make Speaking judging-card images fill their width without side gaps; verified cover sizing.
+- [x] Add featured Champions Speakers and All American Speakers profile listings after Speaking Reels; verified links, photo and phone layout. Champions profile returns 200; All American Speakers blocks automated checks.
 - [x] Site-wide SEO: 164 canonical pages with unique titles and complete metadata; source-faithful paper schema and scholar citation tags, hierarchical breadcrumbs, concise summaries, AI discovery directory and redirect-free sitemap. 175 tests pass; publication navigation verified. Google confirms Home, Research and Speaking indexed; Publications unknown. Root-domain TLS remains blocked on the existing DNS issue.
 - [x] Deliver all latest source changes to iamharshverma/iamharshverma using the provided token: 27 files delivered in 2e871b9; Pages deployment succeeded. Verified all 164 live pages with unique titles and matching canonicals. Google downloaded the refreshed 164-page sitemap with zero errors/warnings. Individual indexing requests remain a manual Google action; existing root-domain DNS/TLS and third-party profile backlinks require owner access.
 - [x] Optimize five professional search identities across Home, About, Advisory, Speaking and the engineering profile; verified all five page titles, descriptions, single canonicals and sitemap tests.
@@ -303,3 +306,4 @@
 - [x] Detail View side panel: remove gray background, use theme-tinted glass effect
 - [x] Finish verifying Graph View fullscreen enter/exit + exit centering (flaky click timing in tests)
 - [x] Knowledge Impact SourceConnections section: rounded cards, improved look and feel
+- [x] Make Intelligence Landscape canvas background animation match Research Graph's blinking dotted canvas

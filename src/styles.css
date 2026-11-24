@@ -1189,6 +1189,11 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
 .impact-radar [aria-label="Radar technologies"] button.is-active-tech { box-shadow:inset 3px 0 0 var(--impact-accent); animation:impact-enter .3s ease-out; }
 .impact-landscape-map .impact-diagram { padding-block:12px 48px; }
 .knowledge-impact .impact-landscape-map .impact-diagram { border-radius:8px; background:transparent; }
+/* Same dotted canvas as the Research Graph stage, with a gentle blink. */
+.impact-landscape-map .impact-diagram-viewport { position:relative; background-image:radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--impact-accent) 12%, transparent), transparent 65%); background-size:100% 100%; background-repeat:no-repeat; }
+.impact-landscape-map .impact-diagram-viewport::before { content:''; position:absolute; inset:0; pointer-events:none; background-image:radial-gradient(color-mix(in oklab, var(--foreground) 13%, transparent) 1px, transparent 1px); background-size:22px 22px; animation:landscape-dots-blink 3.2s ease-in-out infinite; }
+@keyframes landscape-dots-blink { 0%,100% { opacity:.4; } 50% { opacity:1; } }
+.impact-landscape-map:not(.is-motion-active) .impact-diagram-viewport::before { animation-play-state:paused; }
 .landscape-edge { fill:none; stroke:var(--impact-node-tone); stroke-width:1; opacity:.3; }
 .landscape-edge-flow { fill:none; stroke:var(--impact-node-tone); stroke-width:1.5; stroke-dasharray:4 10; opacity:.6; animation:landscape-edge-flow 3.6s linear infinite; }
 .landscape-travel-arrow { fill:none; stroke:var(--impact-node-tone); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; offset-rotate:auto; animation:landscape-arrow-travel 3.6s linear infinite; }
@@ -1290,7 +1295,7 @@ body:has(.explorer-fullscreen) > #root main, body:has(.explorer-fullscreen) main
   .impact-fullscreen .kn-stage { min-height:420px; }
   .impact-flow-track { grid-template-columns:1fr; }
 }
-@media (prefers-reduced-motion:reduce) { .impact-radar-sweep, .impact-radar-core, .impact-radar-marker, .impact-radar-ping, .impact-agent-edge path, .impact-agent-node, .impact-agent-dot, .impact-landscape-link, .impact-landscape-node > .ls-inner, .impact-landscape-center rect, .impact-radar-inspector > *, .impact-radar-panel, .impact-radar-wedge, .impact-radar [aria-label="Radar technologies"] button { animation:none !important; transition:none; } }
+@media (prefers-reduced-motion:reduce) { .impact-radar-sweep, .impact-radar-core, .impact-radar-marker, .impact-radar-ping, .impact-agent-edge path, .impact-agent-node, .impact-agent-dot, .impact-landscape-link, .impact-landscape-node > .ls-inner, .impact-landscape-center rect, .impact-landscape-map .impact-diagram-viewport::before, .impact-radar-inspector > *, .impact-radar-panel, .impact-radar-wedge, .impact-radar [aria-label="Radar technologies"] button { animation:none !important; transition:none; } }
 
 /* Inspector categories stay inside the explorer, including immersive mode. */
 .kn-panel-overview { position:relative; height:130px; width:100%; overflow:hidden; border:1px solid var(--border); border-radius:6px; background:transparent; }
