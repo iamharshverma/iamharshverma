@@ -6,6 +6,8 @@ import speakerMomentsThumbnail from "@/assets/reel-DJ6szEOxxgl.webp.asset.json";
 import agentsImpactThumbnail from "@/assets/google-agents-for-impact-share.jpg.asset.json";
 import ieeeSacThumbnail from "@/assets/ieee-sac.svg.asset.json";
 import citrisAicThumbnail from "@/assets/citris-aic.jpg.asset.json";
+import skydeckAdvisorListingPreview from "@/assets/skydeck_advisor_listing_preview.webp.asset.json";
+import skydeckAdvisorListingFull from "@/assets/skydeck_advisor_listing_full.webp.asset.json";
 export type MediaItem = { title: string; img: string; cat: string; group: string; year: number; outlet: string; quote: string; href: string | null; cta: string | null; featured: boolean };
 export const media: MediaItem[] = [
  {
@@ -2196,13 +2198,17 @@ export const judging: Judging[] = [
   "org": "Techstars NYC",
   "role": "Accelerator Startup Mentor",
   "imageHref": "/__l5e/assets-v1/475cee8f-b7a3-4b10-bbc5-de4ea6b30e24/techstars_nyc_mentor_collage.webp",
+  "links": [
+   { "label": "LinkedIn feature", "href": "https://lnkd.in/p/gqwex-PG" }
+  ],
   "desc": "Appointed Startup Mentor for the Techstars NYC Fall 2026 cohort, guiding cutting-edge tech founders in agentic AI architecture, scalable cloud infrastructure, and enterprise go-to-market strategies."
  },
  {
   "title": "Mentor & Advisor at UC Berkeley SkyDeck",
-  "img": "https://www.harshverma.me/images/events/skydeck.svg",
+  "img": skydeckAdvisorListingPreview.url,
   "org": "UC Berkeley SkyDeck",
   "role": "Advisor & Technical Mentor",
+  "imageHref": skydeckAdvisorListingFull.url,
   "desc": "Advised and mentored global high-growth startups at UC Berkeley SkyDeck on building secure enterprise AI architectures, scalable agentic workflows, LLM observability, and cybersecurity compliance."
  },
  {

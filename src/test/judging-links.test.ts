@@ -23,6 +23,19 @@ describe("Judging record links", () => {
     expect(entry?.links?.[0]?.href).toBe("https://citris-uc.org/labs-programs/citris-aic-awards/");
   });
 
+  it("links the LinkedIn feature for the Techstars NYC accelerator mentorship", () => {
+    const entry = judging.find(j => j.title === "Techstars New York City Accelerator Startup Mentor");
+    expect(entry?.role).toBe("Accelerator Startup Mentor");
+    expect(entry?.links?.map(link => link.href)).toEqual(["https://lnkd.in/p/gqwex-PG"]);
+  });
+
+  it("shows the Berkeley SkyDeck advisor listing image on the mentor card", () => {
+    const entry = judging.find(j => j.title === "Mentor & Advisor at UC Berkeley SkyDeck");
+    expect(entry?.role).toBe("Advisor & Technical Mentor");
+    expect(entry?.img).toBe("/__l5e/assets-v1/71515276-864d-4219-94b7-616a1eeb5fb0/skydeck_advisor_listing_preview.webp");
+    expect(entry?.imageHref).toBe("/__l5e/assets-v1/cdbcb50a-2cf6-4d43-a6c7-1a4e67f5c46c/skydeck_advisor_listing_full.webp");
+  });
+
   const big = judging.find(j => j.title === "2026 BIG Awards for Business Judge");
 
   it("links the Business Intelligence Group judge profile", () => {
