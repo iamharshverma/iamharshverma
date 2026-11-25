@@ -312,3 +312,4 @@
 - [x] Capitalize N and B in "Shaping the next builders"
 - [x] Capitalize headings site-wide (title case, frozen user-approved exceptions)
 - [x] Recommendation cards in the landscape stage view: smaller article text, tiny tag in its own color; verified desktop, phone and themes.
+- [x] Add Google Agents for Impact, IEEE SAC Awards and CITRIS-CDSS judging cards with official links; verified images, desktop/phone layout and five link tests.

@@ -3,6 +3,9 @@ import onStageThumbnail from "@/assets/reel-DYaWly9vD60.webp.asset.json";
 import aiWithHarshThumbnail from "@/assets/reel-DYcnn4hOfxe.webp.asset.json";
 import awardsThumbnail from "@/assets/reel-DYSEXmMswXj.webp.asset.json";
 import speakerMomentsThumbnail from "@/assets/reel-DJ6szEOxxgl.webp.asset.json";
+import agentsImpactThumbnail from "@/assets/google-agents-for-impact-share.jpg.asset.json";
+import ieeeSacThumbnail from "@/assets/ieee-sac.svg.asset.json";
+import citrisAicThumbnail from "@/assets/citris-aic.jpg.asset.json";
 export type MediaItem = { title: string; img: string; cat: string; group: string; year: number; outlet: string; quote: string; href: string | null; cta: string | null; featured: boolean };
 export const media: MediaItem[] = [
  {
@@ -2135,8 +2138,35 @@ export const blogs: Blog[] = [
  }
 ];
 
-export type Judging = { title: string; img: string; org: string; role: string; desc: string; href?: string; verifiedHref?: string };
+export type Judging = { title: string; img: string; org: string; role: string; desc: string; href?: string; verifiedHref?: string; imageHref?: string; links?: { label: string; href: string }[] };
 export const judging: Judging[] = [
+ {
+  title: "Google Agents for Impact Hackathon Challenge",
+  img: agentsImpactThumbnail.url,
+  org: "Google Cloud · Sunnyvale",
+  role: "Hackathon Judge",
+  desc: "Judged the Agents for Impact Hackathon Challenge, where builders used Google’s agentic AI and data tools to tackle real-world challenges.",
+  links: [
+   { label: "Event page", href: "https://cloud.google.com/events/agents-for-impact-svl" },
+   { label: "Challenge resources", href: "https://cloud.google.com/resources/agents-for-impact-2026" }
+  ]
+ },
+ {
+  title: "IEEE SAC Awards 2026",
+  img: ieeeSacThumbnail.url,
+  org: "IEEE Student Activities Committee",
+  role: "Awards Judge",
+  desc: "Served as a judge for the 2026 IEEE SAC Awards, recognizing the contributions of student volunteers, student branches and their advisers.",
+  links: [{ label: "Awards program", href: "https://students.ieee.org/student-opportunities/sac-awards-programs/" }]
+ },
+ {
+  title: "CITRIS-CDSS Innovation Fellowship & AIC Awards",
+  img: citrisAicThumbnail.url,
+  org: "UC Berkeley · CITRIS and the Banatao Institute · CDSS",
+  role: "Judge & Selection Reviewer",
+  desc: "Participated in judging and application selection for the CITRIS-CDSS Innovation Fellowship and AIC Awards, a program supporting the translation of UC research into scalable, real-world applications.",
+  links: [{ label: "Fellowship & awards", href: "https://citris-uc.org/labs-programs/citris-aic-awards/" }]
+ },
  {
   "title": "2026 BIG Awards for Business Judge",
   "img": "https://www.harshverma.me/images/judging/big_awards_judge.png",
@@ -2165,6 +2195,7 @@ export const judging: Judging[] = [
   "img": "https://www.harshverma.me/images/events/techstars.svg",
   "org": "Techstars NYC",
   "role": "Accelerator Startup Mentor",
+  "imageHref": "/__l5e/assets-v1/475cee8f-b7a3-4b10-bbc5-de4ea6b30e24/techstars_nyc_mentor_collage.webp",
   "desc": "Appointed Startup Mentor for the Techstars NYC Fall 2026 cohort, guiding cutting-edge tech founders in agentic AI architecture, scalable cloud infrastructure, and enterprise go-to-market strategies."
  },
  {
